@@ -63,13 +63,14 @@ Entidades:
 * Pedido
 
 Tablas:
+<br />
 <img src="/statics/tablas/usuario_tabla.jpg" alt="Logo" width="300" height="300">
 <br />
-<img src="/statics/logo/administrador_tabla.jpg" alt="Logo" width="450" height="450">
+<img src="/statics/tablas/administrador_tabla.jpg" alt="Logo" width="450" height="450">
 <br />
-<img src="/statics/logo/producto_tabla.jpg" alt="Logo" width="450" height="450">
+<img src="/statics/tablas/producto_tabla.jpg" alt="Logo" width="450" height="450">
 <br />
-<img src="/statics/logo/pedido_tabla.jpg" alt="Logo" width="450" height="450">
+<img src="/statics/tablas/pedido_tabla.jpg" alt="Logo" width="450" height="450">
 <br />
 
 ### Tecnologías
