@@ -58,11 +58,6 @@ Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado d
 Entidades:
 
 *Usuario
-
-| id        		|
-| nombre_unico    	|
-| correo    		| 
-
 *Administradores
 *Producto
 *Pedido
