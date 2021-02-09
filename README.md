@@ -53,7 +53,18 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
 
-Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniría de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
+Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniería de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
+
+Entidades:
+*Usuario
+| id        | nombre           | correo  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+*Administradores
+*Producto
+*Pedido
 
 
 ### Tecnologías
