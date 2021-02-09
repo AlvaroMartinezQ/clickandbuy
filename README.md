@@ -27,7 +27,7 @@
   <summary><h2 style="display: inline-block">Tabla de contenidos</h2></summary>
   <ol>
     <li>
-      <a href="#about-the-project">Acerca del proyecto</a>
+      <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
         <li><a href="#built-with">Desarrollado</a></li>
       </ul>
