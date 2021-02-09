@@ -1,19 +1,12 @@
 <!-- PROJECT SHIELDS -->
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 
 
 <!-- LOGO DEL PROYECTO -->
 <br />
 <p align="center">
   <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="company_logo.jpg" alt="Logo" width="80" height="80">
+    <img src="company_logo.jpg" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Click & Buy</h3>
@@ -36,11 +29,11 @@
     <li>
       <a href="#about-the-project">Acerca del proyecto</a>
       <ul>
-        <li><a href="#built-with">Desarrollado con</a></li>
+        <li><a href="#built-with">Desarrollado</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Empecemos....</a>
+      <a href="#getting-started">Empecemos</a>
       <ul>
         <li><a href="#prerequisites">Pre-requisitos</a></li>
         <li><a href="#installation">Instalación</a></li>
@@ -58,7 +51,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Acerca del proyecto
 
 
 
@@ -130,18 +123,3 @@ Luis Blay - l.blay.2017@alumnos.urjc.es
 
 * [Universidad Rey Juan Carlos](https://www.urjc.es/)
 
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
