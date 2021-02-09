@@ -6,7 +6,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/company_logo.jpg" alt="Logo" width="450" height="450">
+    <img src="/statics/logo/company_logo.jpg" alt="Logo" width="450" height="450">
   </a>
 
   <h3 align="center">Click & Buy</h3>
@@ -50,18 +50,27 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
+<!-- ACERCA DEL PROYECTO -->
 ## Acerca del proyecto
 
-Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniería de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
+Proyecto de la asignatura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniería de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
 
 Entidades:
 
-*Usuario
-*Administradores
-*Producto
-*Pedido
+* Usuario
+* Administradores
+* Producto
+* Pedido
 
+Tablas:
+<img src="/statics/tablas/usuario_tabla.jpg" alt="Logo" width="300" height="300">
+<br />
+<img src="/statics/logo/administrador_tabla.jpg" alt="Logo" width="450" height="450">
+<br />
+<img src="/statics/logo/producto_tabla.jpg" alt="Logo" width="450" height="450">
+<br />
+<img src="/statics/logo/pedido_tabla.jpg" alt="Logo" width="450" height="450">
+<br />
 
 ### Tecnologías
 
