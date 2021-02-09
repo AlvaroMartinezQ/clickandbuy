@@ -6,7 +6,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="company_logo.jpg" alt="Logo" width="100" height="100">
+    <img src="company_logo.jpg" alt="Logo" width="500" height="500">
   </a>
 
   <h3 align="center">Click & Buy</h3>
@@ -29,7 +29,7 @@
     <li>
       <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#desarrollado con">Tecnologías</a></li>
+        <li><a href="#tecnoligías">Tecnologías</a></li>
       </ul>
     </li>
     <li>
@@ -114,9 +114,9 @@ TODO
 <!-- CONTACT -->
 ## Contacto
 
-Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es
-Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es
-Luis Blay - l.blay.2017@alumnos.urjc.es
+* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es
+* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es
+* Luis Blay - l.blay.2017@alumnos.urjc.es
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Agradecimientos
