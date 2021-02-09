@@ -29,7 +29,7 @@
     <li>
       <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#tecnoligías">Tecnologías</a></li>
+        <li><a href="#tecnologías">Tecnologías</a></li>
       </ul>
     </li>
     <li>
