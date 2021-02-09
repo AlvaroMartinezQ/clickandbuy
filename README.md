@@ -111,9 +111,9 @@ TODO: selecionar licencia al final del proyecto
 <!-- CONTACTO -->
 ## Contacto
 
-* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es / [Github] (https://github.com/AlvaroMartinezQ)
-* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es / [Github] (https://github.com/patri-create)
-* Luis Blay - l.blay.2017@alumnos.urjc.es / [Github] (https://github.com/lblay)
+* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es / *[Github] (https://github.com/AlvaroMartinezQ)
+* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es / *[Github] (https://github.com/patri-create)
+* Luis Blay - l.blay.2017@alumnos.urjc.es / *[Github] (https://github.com/lblay)
 
 <!-- AGRADECIMIETNOS -->
 ## Agradecimientos
