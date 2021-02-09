@@ -29,22 +29,22 @@
     <li>
       <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#built-with">Desarrollado</a></li>
+        <li><a href="#desarrollado con">Tecnologías</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Empecemos</a>
+      <a href="#empecemos">Empecemos</a>
       <ul>
-        <li><a href="#prerequisites">Pre-requisitos</a></li>
-        <li><a href="#installation">Instalación</a></li>
+        <li><a href="#pre-requisitios">Pre requisitos</a></li>
+        <li><a href="#instalación">Instalación</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Uso</a></li>
-    <li><a href="#roadmap">Mapa de desarrollo</a></li>
-    <li><a href="#contributing">Contribuciones</a></li>
-    <li><a href="#license">Licencia</a></li>
-    <li><a href="#contact">Contacto</a></li>
-    <li><a href="#acknowledgements">Agradecimientos</a></li>
+    <li><a href="#uso">Uso</a></li>
+    <li><a href="#mapa-de-trabajo">Mapa de desarrollo</a></li>
+    <li><a href="#contribuciones">Contribuciones</a></li>
+    <li><a href="#licencia">Licencia</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#agradecimientos">Agradecimientos</a></li>
   </ol>
 </details>
 
@@ -56,7 +56,7 @@
 
 
 
-### Built With
+### Desarrollado con
 
 * [Java](https://www.java.com/es/)
 * [Spring](https://spring.io/)
@@ -65,11 +65,11 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Empecemos
 
 Para descargar una copia local del proyecto sigue los siguientes pasos
 
-### Prerequisites
+### Pre requisitios
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -77,7 +77,7 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+### Instalación
 
 1. Clona el repositorio
    ```sh
@@ -91,35 +91,35 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Uso
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Mapa de trabajo
 
 TODO
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contribuciones
 
 Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
 
 <!-- LICENSE -->
-## License
+## Licencia
 
 TODO
 
 <!-- CONTACT -->
-## Contact
+## Contacto
 
 Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es
 Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es
 Luis Blay - l.blay.2017@alumnos.urjc.es
 
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+## Agradecimientos
 
 * [Universidad Rey Juan Carlos](https://www.urjc.es/)
 
