@@ -12,7 +12,7 @@
   <h3 align="center">Click & Buy</h3>
 
   <p align="center">
-    Simulación de compra y venta online. Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniría de Computadores de la Universidad Rey Juan Carlos, Madrid, España.
+    Simulación de compra y venta online.
     <br />
     <a href="https://github.com/AlvaroMartinezQ/clickandbuy/issues">Reportar un bug</a>
     ·
@@ -53,10 +53,10 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
 
+Proyecto de la asigantura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniría de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
 
 
-
-### Desarrollado con
+### Tecnologías
 
 * [Java](https://www.java.com/es/)
 * [Spring](https://spring.io/)
@@ -64,17 +64,17 @@
 
 
 
-<!-- GETTING STARTED -->
+<!-- EMPECEMOS -->
 ## Empecemos
 
 Para descargar una copia local del proyecto sigue los siguientes pasos
 
 ### Pre requisitios
 
-This is an example of how to list things you need to use the software and how to install them.
+Pasos:
 * npm
   ```sh
-  npm install npm@latest -g
+  TODO: futuros comandos
   ```
 
 ### Instalación
@@ -83,42 +83,39 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+2. TODO
 
 
 
-<!-- USAGE EXAMPLES -->
+<!-- EJEMPLOS DE USO -->
 ## Uso
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+TODO: ejemplos de uso de la aplicación
 
 
 <!-- ROADMAP -->
 ## Mapa de trabajo
 
-TODO
+TODO: mapa de desarrollo (semanas, hitos, metas...)
 
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUCIONES -->
 ## Contribuciones
 
 Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
 
-<!-- LICENSE -->
+<!-- LICENCIA -->
 ## Licencia
 
-TODO
+TODO: selecionar licencia al final del proyecto
 
-<!-- CONTACT -->
+<!-- CONTACTO -->
 ## Contacto
 
-* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es
-* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es
-* Luis Blay - l.blay.2017@alumnos.urjc.es
+* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es / [Github] (https://github.com/AlvaroMartinezQ)
+* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es / [Github] (https://github.com/patri-create)
+* Luis Blay - l.blay.2017@alumnos.urjc.es / [Github] (https://github.com/lblay)
 
-<!-- ACKNOWLEDGEMENTS -->
+<!-- AGRADECIMIETNOS -->
 ## Agradecimientos
 
 * [Universidad Rey Juan Carlos](https://www.urjc.es/)
