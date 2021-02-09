@@ -6,7 +6,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="company_logo.jpg" alt="Logo" width="500" height="500">
+    <img src="./statics/company_logo.jpg" alt="Logo" width="450" height="450">
   </a>
 
   <h3 align="center">Click & Buy</h3>
