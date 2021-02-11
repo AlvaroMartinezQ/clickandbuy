@@ -58,8 +58,14 @@ Proyecto de la asignatura de Desarrollo de Aplicaciones Distribuidas del grado d
 La idea principal es el desarrollo de una tienda de venta online en la que haya productos los cuales son proporcionados por usuarios (proveedores) de la tienda y que estos pueden ser comprados por otros usuarios. A su vez a gestión de la tienda es llevada a cabo por los administradores de la misma, los cuales podrán añadir, dar de baja o eliminar productos. También gestionar la página web y a sus usuarios.
 El registro de usuario será gratuito, sin embargo, se podrán visualizar productos sin necesidad de estar registrado.
 Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando este haya finalizado se generará un pedido que será registrado en el sistema contando con el usuario del pedido, los productos, el precio...
+
+Partes:
 * La parte pública del sistema será la libre visualización de productos.
 * La parte privada del sistema será la compra de pedidos a la vez que la admministración y gestión de la web por parte de los trabajadores.
+
+La aplicación dispondrá de dos sitemas:
+* Sistema de compra - venta: descrito anteriormente.
+* Sistema interno de información: la aplicación principal consumirá un servicio de generación de informes sobre la tienda (pedidos, stock, usuarios...). Este sistema será únicamnete accesible por los administradores de la tienda.
 
 Entidades:
 
@@ -74,22 +80,20 @@ Entidades:
 * Producto
 ```sh
 	Esta entidad representa a los productos del sistema
+	* Tendrá una clave foránea referente al usuario que provee el producto.
  ```
 * Pedido
 ```sh
 	Esta entidad representa a los pedidos del sistema
+	* Trendrá una clave foránea referente al usuario que realiza el pedido.
+	* Tendrá claves foráneas a los productos del pedido.
  ```
-
-Tablas:
-<br />
-<img src="/statics/tablas/usuario_tabla.jpg" alt="Logo" width="300" height="300">
-<br />
-<img src="/statics/tablas/administrador_tabla.jpg" alt="Logo" width="300" height="300">
-<br />
-<img src="/statics/tablas/producto_tabla.jpg" alt="Logo" width="300" height="300">
-<br />
-<img src="/statics/tablas/pedido_tabla.jpg" alt="Logo" width="300" height="300">
-<br />
+ * Rating
+ ```sh
+	Esta entidad representa a los ratings de los pedidos
+	* Tendrá una clave foránea referente al usuario que realiza el pedido.
+	* Tendrá una clave foránea al pedido en cuestión.
+ ```
 
 ### Tecnologías
 
