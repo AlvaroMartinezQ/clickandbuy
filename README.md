@@ -53,19 +53,20 @@
 <!-- ACERCA DEL PROYECTO -->
 ## Acerca del proyecto
 
-Proyecto de la asignatura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniería de Computadores de la Universidad Rey Juan Carlos, Madrid, España. El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
+Proyecto de la asignatura de Desarrollo de Aplicaciones Distribuidas del grado de Ingeniería de Computadores de la Universidad Rey Juan Carlos, Madrid, España. 
+El objetivo principal de la aplicación es dar funcionalidad a una simulación de una tienda de compra de objetos.
 
-La idea principal es el desarrollo de una tienda de venta online en la que haya productos los cuales son proporcionados por usuarios (proveedores) de la tienda y que estos pueden ser comprados por otros usuarios. A su vez a gestión de la tienda es llevada a cabo por los administradores de la misma, los cuales podrán añadir, dar de baja o eliminar productos. También gestionar la página web y a sus usuarios.
+La idea principal es el desarrollo de una tienda de venta online, en donde hay productos, los cuales son proporcionados por usuarios (proveedores), y a su vez, estos pueden ser comprados por otros usuarios. Por otro lado, la gestión de la tienda es llevada a cabo por los administradores de la misma, los cuales podrán añadir, dar de baja o eliminar productos. También gestionar la página web y a sus usuarios.
 El registro de usuario será gratuito, sin embargo, se podrán visualizar productos sin necesidad de estar registrado.
-Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando este haya finalizado se generará un pedido que será registrado en el sistema contando con el usuario del pedido, los productos, el precio...
+Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando éste haya finalizado, se generará un pedido que será registrado en el sistema, contando con el usuario dueño del pedido, los productos que lo forman, el precio...etc.
 
 Partes:
-* La parte pública del sistema será la libre visualización de productos.
-* La parte privada del sistema será la compra de pedidos a la vez que la admministración y gestión de la web por parte de los trabajadores.
+* La parte pública del sistema será la libre visualización de productos, búsqueda de los mismos y navegación por la página.
+* La parte privada del sistema será la compra de productos, el acceso al perfil del usuario, la utilización del ranking, la publicación de comentarios, la administración y gestión de la web.
 
-La aplicación dispondrá de dos sitemas:
+La aplicación dispondrá de dos sistemas:
 * Sistema de compra - venta: descrito anteriormente.
-* Sistema interno de información: la aplicación principal consumirá un servicio de generación de informes sobre la tienda (pedidos, stock, usuarios...). Este sistema será únicamnete accesible por los administradores de la tienda.
+* Sistema interno de información: la aplicación principal se comunicará con un servicio externo de generación de informes sobre la tienda (pedidos, stock, usuarios...). Este sistema será una funcionalidad únicamnete accesible por los administradores de la tienda, que podrán encontrar en el apartado de administración de la página web.
 
 Entidades:
 
@@ -145,7 +146,7 @@ Las contribuciones a este proyecto están cerradas ya que es un desarrollo de apl
 <!-- LICENCIA -->
 ## Licencia
 
-TODO: selecionar licencia al final del proyecto
+TODO: seleccionar licencia al final del proyecto
 
 <!-- CONTACTO -->
 ## Contacto
