@@ -143,6 +143,27 @@ TODO: mapa de desarrollo (semanas, hitos, metas...)
 
 Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
 
+Todo el nuevo código debe de subirse a una nueva rama, ¡no subir cambios directamente a la rama <strong>master</strong>!
+
+1. Crea la rama para tu desarrollo (`git checkout -b feature-<nombre de la nueva característica>`)
+2. Haz commit de tus cambios, no pases los 50 caracteres en la descripcion (`git commit -m 'feature: '<descripción>'`)
+3. Sube tu rama (`git push origin <nombre de la rama>`)
+4. Abre una pull request, opcional
+
+Si quieres mergear ramas sigue los siguientes pasos:
+
+Primero, desde la rama que quieres mergear
+1. Descarga posibles cambios, actualiza la rama (`git pull`)
+2. Mergea tu rama con la rama principal de desarrollo, en este caso dev (`git merge dev`) 
+3. Si no tienes conflictos, cambia a la rama de desarrollo (`git checkout dev`)
+
+Segundo, desde la rama de desarrollo:
+1. Descarga posibles cambios, actualiza la rama (`git pull`)
+2. Mergea la rama con la que acabas de termianr de trabajr (`git merge <rama a mergear>`)
+3. Sube la rama actualizada (`git push`)
+4. Borra tu rama de trabajo de tu entorno local (`git branch -d <rama a borrar>`)
+5. Borra tu rama del repositorio (`git push -d origin <rama a borrar>`)
+
 <!-- LICENCIA -->
 ## Licencia
 
