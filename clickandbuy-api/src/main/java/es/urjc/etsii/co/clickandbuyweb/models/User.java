@@ -37,10 +37,13 @@ public class User implements Serializable{
 	List<Product> user_product_list;
 	// Add photo for user
 	
-	
+	public User() {
+		super();
+	}
+
 	public User(int id, String user_email, String user_password, String user_name, String user_realname,
 			String user_address, int user_phone, int user_bankaccount, Date join_date, Date last_login,
-			boolean is_active, boolean is_supplier) {
+			boolean is_active, boolean is_supplier, List<Product> user_product_list) {
 		super();
 		this.id = id;
 		this.user_email = user_email;
@@ -54,10 +57,7 @@ public class User implements Serializable{
 		this.last_login = last_login;
 		this.is_active = is_active;
 		this.is_supplier = is_supplier;
-	}
-	
-	public User() {
-		super();
+		this.user_product_list = user_product_list;
 	}
 
 	public int getId() {
@@ -156,10 +156,19 @@ public class User implements Serializable{
 		this.is_supplier = is_supplier;
 	}
 
+	public List<Product> getUser_product_list() {
+		return user_product_list;
+	}
+
+	public void setUser_product_list(List<Product> user_product_list) {
+		this.user_product_list = user_product_list;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", user_email=" + user_email + ", user_name=" + user_name + ", user_phone="
-				+ user_phone + ", user_bankaccount=" + user_bankaccount + ", join_date=" + join_date + "]";
+				+ user_phone + ", join_date=" + join_date + ", last_login=" + last_login + ", is_active=" + is_active
+				+ ", is_supplier=" + is_supplier + ", user_product_list=" + user_product_list + "]";
 	}
 	
 }
