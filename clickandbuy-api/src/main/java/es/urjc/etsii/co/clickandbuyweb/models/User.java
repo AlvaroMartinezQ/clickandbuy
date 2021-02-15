@@ -2,12 +2,15 @@ package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +31,12 @@ public class User implements Serializable{
 	private Date last_login;
 	private boolean is_active;
 	private boolean is_supplier;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@Column(nullable=true)
+	List<Product> user_product_list;
 	// Add photo for user
+	
 	
 	public User(int id, String user_email, String user_password, String user_name, String user_realname,
 			String user_address, int user_phone, int user_bankaccount, Date join_date, Date last_login,
