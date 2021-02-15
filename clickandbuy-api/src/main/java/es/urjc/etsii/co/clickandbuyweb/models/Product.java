@@ -14,22 +14,26 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private double price;
-	private String description;
+	private double product_price;
+	private String product_name;
+	private String product_description;
+	private int product_stock;
 	private boolean has_stock;
 	private boolean is_active;
-	
-	// Add photo for admin
+	// Add photo for product
 	
 	public Product() {
 		super();
 	}
 
-	public Product(int id, double price, String description, boolean has_stock, boolean is_active) {
+	public Product(int id, double product_price, String product_name, String product_description, int product_stock,
+			boolean has_stock, boolean is_active) {
 		super();
 		this.id = id;
-		this.price = price;
-		this.description = description;
+		this.product_price = product_price;
+		this.product_name = product_name;
+		this.product_description = product_description;
+		this.product_stock = product_stock;
 		this.has_stock = has_stock;
 		this.is_active = is_active;
 	}
@@ -42,20 +46,36 @@ public class Product implements Serializable{
 		this.id = id;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getProduct_price() {
+		return product_price;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setProduct_price(double product_price) {
+		this.product_price = product_price;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public String getProduct_description() {
+		return product_description;
+	}
+
+	public void setProduct_description(String product_description) {
+		this.product_description = product_description;
+	}
+
+	public int getProduct_stock() {
+		return product_stock;
+	}
+
+	public void setProduct_stock(int product_stock) {
+		this.product_stock = product_stock;
 	}
 
 	public boolean isHas_stock() {
@@ -76,7 +96,8 @@ public class Product implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", price=" + price + ", description=" + description + ", has_stock=" + has_stock
-				+ ", is_active=" + is_active + "]";
+		return "Product [id=" + id + ", product_price=" + product_price + ", product_name=" + product_name
+				+ ", product_description=" + product_description + ", product_stock=" + product_stock + ", has_stock="
+				+ has_stock + ", is_active=" + is_active + "]";
 	}
 }
