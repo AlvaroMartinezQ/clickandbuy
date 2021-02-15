@@ -10,7 +10,6 @@ import es.urjc.etsii.co.clickandbuyweb.models.Administrator;
 
 @Service
 public class AdministratorService {
-	
 	@Autowired
 	private AdminDAO admindao;
 	
