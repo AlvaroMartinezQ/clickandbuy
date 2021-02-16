@@ -66,7 +66,6 @@ public class DatabaseController {
 		userdao.save(u);
 		User u2 = new User();
 		u2.setUser_email("joaquin@gmail.com");
-		u2.setUser_product_list(list_products2);
 		userdao.save(u2);
 		User u3 = new User();
 		u3.setUser_email("alberto@gmail.com");
