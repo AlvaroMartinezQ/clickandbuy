@@ -1,12 +1,14 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,9 +34,10 @@ public class User implements Serializable{
 	private boolean is_active;
 	private boolean is_supplier;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=Product.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
 	@Column(nullable=true)
-	List<Product> user_product_list;
+	List<Product> user_product_list = new ArrayList<>();
+	
 	// Add photo for user
 	
 	public User() {
