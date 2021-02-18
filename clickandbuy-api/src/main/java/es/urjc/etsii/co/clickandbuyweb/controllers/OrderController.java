@@ -6,19 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import es.urjc.etsii.co.clickandbuyweb.models.Administrator;
-import es.urjc.etsii.co.clickandbuyweb.service.AdministratorService;
+import es.urjc.etsii.co.clickandbuyweb.models.Order;
+import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
+
 
 @RestController
-@RequestMapping("/administrators")
-public class AdminController {
+@RequestMapping("/orders")
+public class OrderController {
 	
 	@Autowired
-	private AdministratorService adminservice;
+	private OrderService orderservice;
 	
 	@GetMapping("/all")
-	public List<Administrator> getAdministrators(){
-		return adminservice.getAdministrators();
+	public List<Order> getOrders(){
+		return orderservice.getOrders();
 	}
 
 }
