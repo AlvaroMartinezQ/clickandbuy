@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +24,7 @@ public class Rating implements Serializable {
 	@Column(nullable = false)
 	private int rate;
 
-	@OneToOne()
+	@ManyToOne()
 	private User user;
 
 	@OneToOne()
