@@ -8,16 +8,21 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	</head>
 	<body>
-		<div class="row">
-			<div class="col-1" style="margin-top: 10px;"></div>
-			<div class="col-6" style="margin-top: 10px;">
-				<p class="fs-1" style="text-decoration: underline;text-align: left;">CLICK&BUY Co.</p>
+		<div class="row" style="background-color:#26272b;">
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
+			<div class="col-6" style="margin-top: 10px;margin-bottom:10px;">
+				<a href="/" type="button" class="btn btn-outline-primary">CLICK&BUY Co.</a>
 			</div>
-			<div class="col-4" style="margin-top: 10px;">
-				<button type="button" class="btn btn-primary">Crear una cuenta</button>
-				<button type="button" class="btn btn-outline-primary">Entrar</button>
+			<div class="col-4" style="margin-top: 10px;margin-bottom:10px;">
+				{{#is_logged}}
+					<button type="button" class="btn btn-danger">Cerrar sesión</button>
+				{{/is_logged}}
+				{{^is_logged}}
+					<button type="button" class="btn btn-primary">Crear una cuenta</button>
+					<button type="button" class="btn btn-outline-primary">Entrar</button>
+				{{/is_logged}}
 			</div>
-			<div class="col-1" style="margin-top: 10px;"></div>
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
 		</div>
 		<br>
 	</body>

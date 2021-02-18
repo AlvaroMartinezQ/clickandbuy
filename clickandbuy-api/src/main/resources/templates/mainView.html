@@ -10,24 +10,17 @@
     </head>
 
     <body>
-
+		{{>header}}
 	    <div class="container">
-	    	{{>header}}
+	    	<br>
 		  	<div class="row h-100">
-				<h3>Nuestros productos actuales</h3>
+				<h3 style="text-align:left;color:black">Nuestros productos actuales:</h3>
 			</div>
+			<br>
 		  	<div class="row">
-		    	<div class="col-1">
-					
-		    	</div>
-		    	<div class="col-10">
+		    	<div class="col-12">
 		    		<div class="card-group">
 					{{#products}}
-					<!--  
-						<h5 class="card-title">{{product_name}}</h5><h6>{{product_price}}</h6>
-						<p class="card-text">{{product_description}}</p>
-						<a href="#" class="btn btn-primary">Ver</a>
-					-->
 						<div class="row">
 							<div class="col-1"></div>
 							<div class="card border-dark mb-3" style="width: 18rem;">
@@ -43,13 +36,7 @@
 					{{/products}}
 					</div>
 		    	</div>
-		    	<div class="col-1">
-		      		
-		    	</div>
 		  	</div>
-			<div class="row h-100">
-
-			</div>
 		</div>
 		{{>footer}}
     </body>
