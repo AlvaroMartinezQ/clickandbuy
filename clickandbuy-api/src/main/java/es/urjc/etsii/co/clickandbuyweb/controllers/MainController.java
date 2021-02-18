@@ -1,23 +1,21 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 
 @RestController
-@RequestMapping("/products")
-public class ProductController {
+public class MainController {
 	@Autowired
 	private ProductService productservice;
 	
-	@GetMapping("/all")
-	public List<Product> getProduct(){
-		return productservice.getProducts();
+	@GetMapping("/")
+	public ModelAndView getOrders(Model model){
+		model.addAttribute("products", productservice.getProducts());
+		return new ModelAndView("mainView");
 	}
 }

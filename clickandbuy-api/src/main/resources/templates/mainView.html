@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Pagina principal</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+	    <div class="container">
+	    	{{>header}}
+		  	<div class="row h-100">
+				<h3>Nuestros productos actuales</h3>
+			</div>
+		  	<div class="row">
+		    	<div class="col-1">
+					
+		    	</div>
+		    	<div class="col-10">
+		    		<div class="card-group">
+					{{#products}}
+					<!--  
+						<h5 class="card-title">{{product_name}}</h5><h6>{{product_price}}</h6>
+						<p class="card-text">{{product_description}}</p>
+						<a href="#" class="btn btn-primary">Ver</a>
+					-->
+						<div class="row">
+							<div class="col-1"></div>
+							<div class="card border-dark mb-3" style="width: 18rem;">
+								<img src="https://picsum.photos/100/50" class="card-img-top">
+								<div class="card-body">
+									<h5 class="card-title">{{product_name}}</h5><h6>Precio: {{product_price}}$</h6>
+									<p class="card-text">{{product_description}}</p>
+									<a href="#" class="btn btn-primary">Ver</a>
+								</div>
+							</div>
+							<div class="col-1"></div>
+						</div>
+					{{/products}}
+					</div>
+		    	</div>
+		    	<div class="col-1">
+		      		
+		    	</div>
+		  	</div>
+			<div class="row h-100">
+
+			</div>
+		</div>
+		{{>footer}}
+    </body>
+</html>

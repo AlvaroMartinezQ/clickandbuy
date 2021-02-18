@@ -12,7 +12,6 @@ import es.urjc.etsii.co.clickandbuyweb.service.AdministratorService;
 @RestController
 @RequestMapping("/administrators")
 public class AdminController {
-	
 	@Autowired
 	private AdministratorService adminservice;
 	
