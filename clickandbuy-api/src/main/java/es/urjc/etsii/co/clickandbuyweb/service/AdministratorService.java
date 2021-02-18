@@ -14,7 +14,7 @@ public class AdministratorService {
 	@Autowired
 	private AdminDAO admindao;
 	
-	public List<Administrator> getAdministrator(){
+	public List<Administrator> getAdministrators(){
 		return admindao.findAll();
 	}
 
