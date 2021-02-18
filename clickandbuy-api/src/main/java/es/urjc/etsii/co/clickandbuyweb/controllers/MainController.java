@@ -38,6 +38,7 @@ public class MainController {
 			return new ModelAndView("login");
 		}
 		model.addAttribute("user_id", u.getId());
+		model.addAttribute("user_name", u.getUser_email());
 		model.addAttribute("is_logged", true);
 		model.addAttribute("products", productservice.getProducts());
 		return new ModelAndView("mainView");
