@@ -15,11 +15,12 @@
 			</div>
 			<div class="col-4" style="margin-top: 10px;margin-bottom:10px;">
 				{{#is_logged}}
-					<button type="button" class="btn btn-danger">Cerrar sesión</button>
+					<button type="button" class="btn btn-light">Mi perfil</button>
+					<a href="/closesession" type="button" class="btn btn-danger">Cerrar sesión</a>
 				{{/is_logged}}
 				{{^is_logged}}
-					<button type="button" class="btn btn-primary">Crear una cuenta</button>
-					<button type="button" class="btn btn-outline-primary">Entrar</button>
+					<a href="#" type="button" class="btn btn-primary">Crear una cuenta</a>
+					<a href="/login" type="button" class="btn btn-outline-primary">Entrar</a>
 				{{/is_logged}}
 			</div>
 			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>

@@ -45,4 +45,18 @@ public class UserService {
 		userdao.deleteById(id);
 		return "status: deleted";
 	}
+	
+	public User loginUser(String email, String password) {
+		User u = userdao.findByUser_email(email);
+		if(u==null) {
+			return null;
+		}
+		if(!u.getUser_password().equals(password)) {
+			return null;
+		}
+		Date d = new Date();
+		u.setLast_login(d);
+		userdao.save(u);
+		return u;
+	}
 }
