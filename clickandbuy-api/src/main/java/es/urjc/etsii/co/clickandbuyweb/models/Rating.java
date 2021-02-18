@@ -27,19 +27,19 @@ public class Rating implements Serializable {
 	private User user;
 
 	@OneToOne()
-	private Product order;
+	private Product product;
 
 	public Rating() {
 		super();
 	}
 
-	public Rating(int id, String comment, int rate, User user, Product order) {
+	public Rating(int id, String comment, int rate, User user, Product product) {
 		super();
 		this.id = id;
 		this.comment = comment;
 		this.rate = rate;
 		this.user = user;
-		this.order = order;
+		this.product = product;
 	}
 
 	public int getId() {
@@ -75,16 +75,16 @@ public class Rating implements Serializable {
 	}
 
 	public Product getOrder() {
-		return order;
+		return product;
 	}
 
-	public void setOrder(Product order) {
-		this.order = order;
+	public void setOrder(Product product) {
+		this.product = product;
 	}
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", comment=" + comment + ", rate=" + rate + ", user=" + user + ", order=" + order
+		return "Rating [id=" + id + ", comment=" + comment + ", rate=" + rate + ", user=" + user + ", order=" + product
 				+ "]";
 	}
 

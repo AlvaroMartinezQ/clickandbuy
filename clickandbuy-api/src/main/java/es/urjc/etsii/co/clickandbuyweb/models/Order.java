@@ -37,15 +37,10 @@ public class Order implements Serializable{
 	@OneToOne()
 	@JoinColumn(name="user_id")
 	private User owner;
-	
-	
-	
 
 	public Order() {
 		super();
 	}
-
-
 
 	public Order(int id, double price, Date date, Date estimated_date, String state, List<Product> product_list,
 			int[] cuantity_per_product, User owner) {
@@ -59,8 +54,6 @@ public class Order implements Serializable{
 		this.cuantity_per_product = cuantity_per_product;
 		this.owner = owner;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -134,8 +127,5 @@ public class Order implements Serializable{
 				+ ", state=" + state + ", product_list=" + product_list + ", cuantity_per_product="
 				+ cuantity_per_product + ", owner=" + owner + "]";
 	}
-	
-	
-	
 	
 }
