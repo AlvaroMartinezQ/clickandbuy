@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public class UserService {
 		User u = new User();
 		u.setUser_email(email);
 		u.setUser_password(password);
+		Date d = new Date();
+		u.setJoin_date(d);
 		userdao.save(u);
 		return "status: saved";
 	}
