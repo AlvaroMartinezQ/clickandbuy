@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="row" style="background-color:#26272b;">
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
+			<div class="col-6" style="margin-top: 10px;margin-bottom:10px;">
+				<a href="/" type="button" class="btn btn-outline-primary">CLICK&BUY Co.</a>
+			</div>
+			<div class="col-4 justify-content-md-end" style="margin-top: 10px;margin-bottom:10px;">
+				{{#is_logged}}
+					<button type="button" class="btn btn-light">Mi perfil</button>
+					<a href="/closesession" type="button" class="btn btn-danger">Cerrar sesión</a>
+					<button type="button" class="btn btn-outline-info" disabled>Hola, {{user_name}}</button>
+				{{/is_logged}}
+				{{^is_logged}}
+					<a href="#" type="button" class="btn btn-primary">Crear una cuenta</a>
+					<a href="/login" type="button" class="btn btn-outline-primary">Entrar</a>
+				{{/is_logged}}
+			</div>
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
+		</div>
+		<br>
+	</body>
+</html>

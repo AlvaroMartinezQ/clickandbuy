@@ -12,7 +12,7 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productdao;
 	
-	public List<Product> getProduct(){
+	public List<Product> getProducts(){
 		return productdao.findAll();
 	}
 
