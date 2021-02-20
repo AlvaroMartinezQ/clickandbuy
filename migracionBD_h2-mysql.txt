@@ -1,0 +1,18 @@
+Windows 
+	descargar el instalador: https://dev.mysql.com/downloads/installer/
+	ejecutar el instalador
+	full installation -> descargar requerimientos de visual c++
+	descargar e instalar paquetes -> crear un usuario root con contraseña
+	start del servicio sql, deberia de estar levantado despues de la instalacion y levantarse cada vez que se arranque el pc
+		Si la instancia del servidor no esta levanatda teclas Win+r, escribir services.msc. Buscar MYSQL80 click derecho iniciar
+		C:\Program Files\MySQL\MySQL Server 8.0 -> crear una carpeta /data si no hay
+		"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqladmin" -u root -p shutdown -> para parar el servidor
+	start mysql shell -> mysql -u root -p (te pedira la contraseña)
+		dentro de la shell de sql crear una bd llamada clickandbuy y un usuario y darle permisos en esa bd, ver abajo
+		este no hace falta lo dejo por si acaso -> mysql --user=user_name --password db_name
+	en la shell de mysql
+		create database person_example;
+		create user 'personuser'@'localhost' identified by 'YOUR_PASSWORD';
+		grant all on person_example.* to 'personuser'@'localhost';
+
+IMPORTANTE: acordaros de la primera vez de correr el fichero database controller y despues volver a comentar el codigo para que se queden los datos en memoria persistentes
