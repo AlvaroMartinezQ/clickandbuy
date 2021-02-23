@@ -2,37 +2,31 @@ package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name="order_table")
-public class Order implements Serializable{
+public class Order implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private double price;
+	private int order_id;
 	private Date date;
 	private Date estimated_date;
 	private String state;
 	
-	@OneToMany()
-	private List<Product> product_list;
-	
-	private int[] cuantity_per_product;
+	@OneToOne()
+	@JoinColumn(name="prod_id")
+	private Product product;
 	
 	@OneToOne()
 	@JoinColumn(name="user_id")
@@ -42,16 +36,15 @@ public class Order implements Serializable{
 		super();
 	}
 
-	public Order(int id, double price, Date date, Date estimated_date, String state, List<Product> product_list,
-			int[] cuantity_per_product, User owner) {
+	public Order(int id, int order_id, Date date, Date estimated_date, String state, Product product,
+			User owner) {
 		super();
 		this.id = id;
-		this.price = price;
+		this.order_id = order_id;
 		this.date = date;
 		this.estimated_date = estimated_date;
 		this.state = state;
-		this.product_list = product_list;
-		this.cuantity_per_product = cuantity_per_product;
+		this.product = product;
 		this.owner = owner;
 	}
 
@@ -61,14 +54,6 @@ public class Order implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	public Date getDate() {
@@ -95,24 +80,6 @@ public class Order implements Serializable{
 		this.state = state;
 	}
 
-	public int[] getCuantity_per_product() {
-		return cuantity_per_product;
-	}
-
-
-
-	public void setCuantity_per_product(int[] cuantity_per_product) {
-		this.cuantity_per_product = cuantity_per_product;
-	}
-
-
-
-	public void setProduct_list(List<Product> product_list) {
-		this.product_list = product_list;
-	}
-
-
-
 	public User getOwner() {
 		return owner;
 	}
@@ -121,11 +88,27 @@ public class Order implements Serializable{
 		this.owner = owner;
 	}
 
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", price=" + price + ", date=" + date + ", estimated_date=" + estimated_date
-				+ ", state=" + state + ", product_list=" + product_list + ", cuantity_per_product="
-				+ cuantity_per_product + ", owner=" + owner + "]";
+		return "Order [id=" + id + ", order_id=" + order_id + ", price=" + date
+				+ ", estimated_date=" + estimated_date + ", state=" + state + ", product=" + product + ", owner="
+				+ owner + "]";
 	}
 	
 }

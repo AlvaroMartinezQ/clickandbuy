@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="administrator_table")
-public class Administrator implements Serializable{
+public class Administrator implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

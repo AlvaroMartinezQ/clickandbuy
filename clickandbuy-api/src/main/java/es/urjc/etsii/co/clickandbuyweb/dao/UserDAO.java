@@ -8,6 +8,8 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Integer>{
+	
 	@Query("SELECT u FROM User u WHERE u.user_email=:email")
 	public User findByUser_email(String email);
+	
 }

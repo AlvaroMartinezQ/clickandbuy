@@ -11,7 +11,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
 public class ProductController {
 	@Autowired
 	private ProductService productservice;
