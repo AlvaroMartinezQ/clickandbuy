@@ -16,3 +16,13 @@ Windows
 		grant all on person_example.* to 'personuser'@'localhost';
 
 IMPORTANTE: acordaros de la primera vez de correr el fichero database controller y despues volver a comentar el codigo para que se queden los datos en memoria persistentes
+
+# spring.datasource.url=jdbc:h2:mem:testdb
+# spring.datasource.driverClassName=org.h2.Driver
+# spring.datasource.username=sa
+# spring.datasource.password=
+# spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
