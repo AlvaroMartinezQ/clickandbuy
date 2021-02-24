@@ -124,9 +124,7 @@ Pasos:
 	```sh
 	Crear una base de datos con el nombre <clickandbuy>
 	```
-	```sh
 	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.
-	```
 	```sh
 	Modificar el fichero application.properties con tu usuario y contraseña.
 	```
