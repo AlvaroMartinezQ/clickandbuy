@@ -10,6 +10,10 @@
 .springBeans
 .sts4-cache
 
+### Sensitive Local Data ###
+src/main/resources/application.properties
+
+
 ### Eclipse ###
 
 .metadata
