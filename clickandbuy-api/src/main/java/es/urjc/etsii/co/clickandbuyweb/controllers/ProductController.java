@@ -4,13 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
-import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 
 @RestController
@@ -26,7 +24,7 @@ public class ProductController {
 	
 	@GetMapping("/search")
 	public Product productNameSearch(@RequestParam(required=true) String name) {
-		return productservice.productNameSearch(name);
+		return productservice.productNameSearchL(name);
 	}
 	@GetMapping("/productstock")
 	public int productStock(@RequestParam(required=true) String name) {
