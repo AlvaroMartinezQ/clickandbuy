@@ -72,26 +72,28 @@ Entidades:
 
 * Usuario
 ```sh
-	Esta entidad representa a los usuarios del sistema
+	Esta entidad representa a los usuarios del sistema.
+	* Cada usuario tendrá, si es proveedor, tantos productos como este quiera publicar.
  ```
 * Administradores
 ```sh
-	Esta entidad representa a los administradores del sistema
+	Esta entidad representa a los administradores del sistema.
  ```
 * Producto
 ```sh
-	Esta entidad representa a los productos del sistema
-	* Tendrá una clave foránea referente al usuario que provee el producto.
+	Esta entidad representa a los productos del sistema.
  ```
 * Pedido
 ```sh
-	Esta entidad representa a los pedidos del sistema
+	Esta entidad representa a los pedidos del sistema.
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
+	Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  ```
+ 
  * Rating
  ```sh
-	Esta entidad representa a los ratings de los pedidos
+	Esta entidad representa a los ratings de los pedidos.
 	* Tendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá una clave foránea al pedido en cuestión.
  ```
@@ -101,6 +103,7 @@ Entidades:
 * [Java](https://www.java.com/es/)
 * [Spring](https://spring.io/)
 * [Docker](https://www.docker.com/)
+* [MySQL](https://www.mysql.com/)
 
 
 
@@ -112,7 +115,22 @@ Para descargar una copia local del proyecto sigue los siguientes pasos
 ### Pre requisitios
 
 Pasos:
-* npm
+
+* En caso de usar MySQL:
+	```sh
+	Levantar una instancia de MySQL Server en local
+	```
+	```sh
+	Crear una base de datos con el nombre <clickandbuy>
+	```
+	```sh
+	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.
+	```
+	```sh
+	Modificar el fichero application.properties con tu usuario y contraseña.
+	```
+	
+* En caso de usar Docker:
   ```sh
   TODO: futuros comandos
   ```
@@ -155,11 +173,11 @@ Si quieres mergear ramas sigue los siguientes pasos:
 Primero, desde la rama que quieres mergear
 1. Descarga posibles cambios, actualiza la rama (`git pull`)
 2. Mergea tu rama con la rama principal de desarrollo, en este caso dev (`git merge dev`) 
-3. Si no tienes conflictos, cambia a la rama de desarrollo (`git checkout dev`)
+3. Si no presenta conflictos, cambia a la rama de desarrollo (`git checkout dev`)
 
 Segundo, desde la rama de desarrollo:
 1. Descarga posibles cambios, actualiza la rama (`git pull`)
-2. Mergea la rama con la que acabas de termianr de trabajr (`git merge <rama a mergear>`)
+2. Mergea la rama que acabas de desarrollar (`git merge <rama a mergear>`)
 3. Sube la rama actualizada (`git push`)
 4. Borra tu rama de trabajo de tu entorno local (`git branch -d <rama a borrar>`)
 5. Borra tu rama del repositorio (`git push -d origin <rama a borrar>`)
@@ -167,7 +185,7 @@ Segundo, desde la rama de desarrollo:
 <!-- LICENCIA -->
 ## Licencia
 
-TODO: seleccionar licencia al final del proyecto
+Este proyecto está sujeto a la licencia `Apache License 2.0`. Para obtener más información sobre esta, acceder al fichero LICENSE.
 
 <!-- CONTACTO -->
 ## Contacto
