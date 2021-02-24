@@ -88,8 +88,9 @@ Entidades:
 	Esta entidad representa a los pedidos del sistema.
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
-	Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  ```
+ 
+Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  
  * Rating
  ```sh
