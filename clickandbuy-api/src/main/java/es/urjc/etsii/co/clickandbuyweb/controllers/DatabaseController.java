@@ -29,7 +29,7 @@ public class DatabaseController {
 	@PostConstruct
 	private void initData() {
 		
-		/*Product p = new Product();
+		Product p = new Product();
 		p.setIs_active(true);
 		p.setProduct_price(12.07);
 		p.setProduct_name("Limpiador");
@@ -94,7 +94,7 @@ public class DatabaseController {
 		admindao.save(a);
 		Administrator a2 = new Administrator();
 		a2.setAdmin_email("patricia@gmail.com");
-		admindao.save(a2);*/
+		admindao.save(a2);
 		
 	}
 	
