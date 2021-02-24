@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
@@ -20,6 +19,14 @@ public class ProductService {
 	
 	public Product productNameSearch(String product_name) {
 		Product p = productdao.findByProduct_name(product_name);
+		if(p == null) {
+			return null;
+		}
+		return p;
+	}
+	
+	public Product productNameSearchL(String product_name) {
+		Product p = productdao.findByProduct_nameL(product_name);
 		if(p == null) {
 			return null;
 		}
@@ -83,8 +90,6 @@ public class ProductService {
 		List<Product> list = productdao.findPriceBe(price1, price2);
 		if(list.isEmpty())return null;
 		return list;
-	}
-	
-	
+	}	
 	
 }
