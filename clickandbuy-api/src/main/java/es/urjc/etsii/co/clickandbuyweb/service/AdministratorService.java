@@ -20,11 +20,13 @@ public class AdministratorService {
 		return admindao.findAll();
 	}
 	
-	public String newAdmin(String email, String password, String charge) {
+	public String newAdmin(String email, String password, String realname, String charge) {
 		Administrator admin = new Administrator();
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
+		admin.setAdmin_realname(realname);
 		admin.setAdmin_charge(charge);
+		admin.setIs_superuser(false);
 		Date d = new Date();
 		admin.setLast_login(d);
 		admindao.save(admin);
@@ -62,6 +64,14 @@ public class AdministratorService {
 		return admin;
 	}
 	
+	public Administrator adminRealNameSearch(String realname) {
+		Administrator admin = admindao.findByAdmin_realname(realname);
+		if(admin==null) {
+			return null;
+		}
+		return admin;
+	}
+	
 	public String adminChangePassword(String email, String password, String newPassword) {
 		Administrator admin = admindao.findByAdmin_email(email);
 		if(admin==null) {
@@ -86,6 +96,24 @@ public class AdministratorService {
 		admin.setAdmin_name(newName);
 		admindao.save(admin);
 		return "status: name changed";
+	}
+	
+	public String adminChangeSuperuser(String email, String password, Boolean superuser) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!admin.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!admin.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		admin.setIs_superuser(superuser);
+		admindao.save(admin);
+		if(superuser)
+			return "status: superuser is activated";
+		return "status: superuser is desactivated";
 	}
 
 }

@@ -25,8 +25,8 @@ public class AdminController {
 	}
 	
 	@PostMapping("/add")
-	public String newAdmin(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String charge) {
-		return adminservice.newAdmin(email, password, charge);
+	public String newAdmin(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String realname, @RequestParam(required=true) String charge) {
+		return adminservice.newAdmin(email, password, realname, charge);
 	}
 	
 	@DeleteMapping("/delete")
@@ -34,9 +34,14 @@ public class AdminController {
 		return adminservice.deleteAdminId(id);
 	}
 	
-	@GetMapping("/search")
-	public Administrator adminEmailSearch(@RequestParam(required=true) String email) {
+	@GetMapping("/searchByEmail")
+	public Administrator adminEmailSearchByEmail(@RequestParam(required=true) String email) {
 		return adminservice.adminEmailSearch(email);
+	}
+	
+	@GetMapping("/searchByRealName")
+	public Administrator adminEmailSearchByRealname(@RequestParam(required=true) String realname) {
+		return adminservice.adminRealNameSearch(realname);
 	}
 	
 	@PostMapping("/changePassword")
@@ -47,6 +52,11 @@ public class AdminController {
 	@PostMapping("/changeName")
 	public String changeAdminName(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String newName) {
 		return adminservice.adminChangeName(email,password,newName);
+	}
+	
+	@PostMapping("/changeSuperuser")
+	public String changeAdminSuperuser(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) Boolean superuser) {
+		return adminservice.adminChangeSuperuser(email,password,superuser);
 	}
 	
 }

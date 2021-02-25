@@ -10,4 +10,7 @@ public interface AdminDAO extends JpaRepository<Administrator, Integer>{
 
 	@Query("SELECT admin FROM Administrator admin WHERE admin.admin_email=:email")
 	public Administrator findByAdmin_email(String email);
+	
+	@Query("SELECT admin FROM Administrator admin WHERE admin.admin_realname=:realname")
+	public Administrator findByAdmin_realname(String realname);
 }
