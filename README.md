@@ -58,7 +58,7 @@ El objetivo principal de la aplicación es dar funcionalidad a una simulación de 
 
 La idea principal es el desarrollo de una tienda de venta online, en donde hay productos, los cuales son proporcionados por usuarios (proveedores), y a su vez, estos pueden ser comprados por otros usuarios. Por otro lado, la gestión de la tienda es llevada a cabo por los administradores de la misma, los cuales podrán añadir, dar de baja o eliminar productos. También gestionar la página web y a sus usuarios.
 El registro de usuario será gratuito, sin embargo, se podrán visualizar productos sin necesidad de estar registrado.
-Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando éste haya finalizado, se generará un pedido que será registrado en el sistema, contando con el usuario dueño del pedido, los productos que lo forman, el precio...etc.
+Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando éste haya finalizado, se generará un pedido que será registrado en el sistema, contando con el usuario dueño del pedido, los productos que lo forman, el precio... etc.
 
 Partes:
 * La parte pública del sistema será la libre visualización de productos, búsqueda de los mismos y navegación por la página.
@@ -79,6 +79,12 @@ Entidades:
 ```sh
 	Esta entidad representa a los administradores del sistema.
  ```
+ 
+Hay 3 roles de administradores principales del sistema, estos son:
+* Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, dar de baja usuarios y productos, modificar valores en las tablas...
+* Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
+* Staff: este usuario será responsable de controlar los productos.
+
 * Producto
 ```sh
 	Esta entidad representa a los productos del sistema.
@@ -89,7 +95,6 @@ Entidades:
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
  ```
- 
 Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  
  * Rating
@@ -119,7 +124,7 @@ Pasos:
 
 * En caso de usar MySQL:
 	```sh
-	Levantar una instancia de MySQL Server en local
+	Levantar una instancia de MySQL Server en local.
 	```
 	```sh
 	Crear una base de datos con el nombre <clickandbuy>
@@ -131,7 +136,7 @@ Pasos:
 	
 * En caso de usar Docker:
   ```sh
-  TODO: futuros comandos
+  TODO: futuros comandos.
   ```
 
 ### Instalación
@@ -147,7 +152,7 @@ Pasos:
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
-TODO: ejemplos de uso de la aplicación
+TODO: ejemplos de uso de la aplicación.
 
 
 <!-- ROADMAP -->
@@ -162,24 +167,24 @@ Las contribuciones a este proyecto están cerradas ya que es un desarrollo de apl
 
 Todo el nuevo código debe de subirse a una nueva rama, ¡no subir cambios directamente a la rama <strong>master</strong>!
 
-1. Crea la rama para tu desarrollo (`git checkout -b feature-<nombre de la nueva característica>`)
-2. Haz commit de tus cambios, no pases los 50 caracteres en la descripcion (`git commit -m 'feature: '<descripción>'`)
-3. Sube tu rama (`git push origin <nombre de la rama>`)
-4. Abre una pull request, opcional
+1. Crea la rama para tu desarrollo (`git checkout -b feature-<nombre de la nueva característica>`).
+2. Haz commit de tus cambios, no pases los 50 caracteres en la descripcion (`git commit -m 'feature: '<descripción>'`).
+3. Sube tu rama (`git push origin <nombre de la rama>`).
+4. Abre una pull request, opcional.
 
 Si quieres mergear ramas sigue los siguientes pasos:
 
-Primero, desde la rama que quieres mergear
-1. Descarga posibles cambios, actualiza la rama (`git pull`)
-2. Mergea tu rama con la rama principal de desarrollo, en este caso dev (`git merge dev`) 
-3. Si no presenta conflictos, cambia a la rama de desarrollo (`git checkout dev`)
+Primero, desde la rama que quieres mergear:
+1. Descarga posibles cambios, actualiza la rama (`git pull`).
+2. Mergea tu rama con la rama principal de desarrollo, en este caso dev (`git merge dev`).
+3. Si no presenta conflictos, cambia a la rama de desarrollo (`git checkout dev`).
 
 Segundo, desde la rama de desarrollo:
-1. Descarga posibles cambios, actualiza la rama (`git pull`)
-2. Mergea la rama que acabas de desarrollar (`git merge <rama a mergear>`)
-3. Sube la rama actualizada (`git push`)
-4. Borra tu rama de trabajo de tu entorno local (`git branch -d <rama a borrar>`)
-5. Borra tu rama del repositorio (`git push -d origin <rama a borrar>`)
+1. Descarga posibles cambios, actualiza la rama (`git pull`).
+2. Mergea la rama que acabas de desarrollar (`git merge <rama a mergear>`).
+3. Sube la rama actualizada (`git push`).
+4. Borra tu rama de trabajo de tu entorno local (`git branch -d <rama a borrar>`).
+5. Borra tu rama del repositorio (`git push -d origin <rama a borrar>`).
 
 <!-- LICENCIA -->
 ## Licencia
