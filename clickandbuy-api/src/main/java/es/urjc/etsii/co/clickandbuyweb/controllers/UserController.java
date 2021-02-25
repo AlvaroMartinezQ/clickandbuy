@@ -55,4 +55,9 @@ public class UserController {
 		return userservice.deleteUserId(id);
 	}
 	
+	@DeleteMapping("/product-delete")
+	public String deleteUserProduct(@RequestParam(required=true) int usid, @RequestParam(required=true) int prodid) {
+		return userservice.deleteUserProduct(usid, prodid);
+	}
+	
 }
