@@ -36,6 +36,11 @@ public class UserController {
 		return userservice.UserNameSearch(name);
 	}
 	
+	@GetMapping("/products")
+	public String userProducts(@RequestParam(required=true) int usid) {
+		return userservice.userProducts(usid);
+	}
+	
 	// POST methods
 	
 	@PostMapping("/add")
