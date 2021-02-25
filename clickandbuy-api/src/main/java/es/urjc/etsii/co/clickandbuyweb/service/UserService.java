@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
@@ -122,6 +124,17 @@ public class UserService {
 		} else {
 			return "status: product not found";
 		}
+	}
+	
+	public String userProducts(int usid) {
+		User u = userdao.findByUser_id(usid);
+		Gson g = new Gson();
+		if(u==null) {
+			String status = "status: user not found";
+			return g.toJson(status);
+		}
+		String json = g.toJson(u.getUser_product_list());
+		return json;
 	}
 	
 }
