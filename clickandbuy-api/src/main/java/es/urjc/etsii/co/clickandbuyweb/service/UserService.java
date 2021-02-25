@@ -20,6 +20,10 @@ public class UserService {
 	}
 	
 	public String newUser(String email, String password) {
+		User duplicate = userdao.findByUser_email(email);
+		if(duplicate!=null) {
+			return "status: user email already exists";
+		}
 		User u = new User();
 		u.setUser_email(email);
 		u.setUser_password(password);
