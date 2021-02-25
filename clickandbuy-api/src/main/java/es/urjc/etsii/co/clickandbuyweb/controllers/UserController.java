@@ -41,6 +41,11 @@ public class UserController {
 		return userservice.userProducts(usid);
 	}
 	
+	@GetMapping("/set-bankaccount")
+	public String setUserBankaccount(@RequestParam(required=true) int usid, @RequestParam(required=true) int account) {
+		return userservice.setUserBankaccount(usid, account);
+	}
+	
 	// POST methods
 	
 	@PostMapping("/add")
