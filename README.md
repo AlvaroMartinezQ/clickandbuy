@@ -104,6 +104,12 @@ Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pe
 	* Tendrá una clave foránea al pedido en cuestión.
  ```
 
+* UML
+
+ <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/UML/UML_DAD_fase2.PNG" alt="UML" width="450" height="450">
+  </a>
+
 ### Tecnologías
 
 * [Java](https://www.java.com/es/)
