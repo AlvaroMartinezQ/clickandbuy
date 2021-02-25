@@ -53,6 +53,16 @@ public class UserController {
 		return userservice.addUserProduct(name, desc, price, units, usid);
 	}
 	
+	@PostMapping("/set-supplier")
+	public String setUserSupplier(@RequestParam(required=true) int usid) {
+		return userservice.setUserSupplier(usid);
+	}
+	
+	@PostMapping("/unset-supplier")
+	public String unsetUserSupplier(@RequestParam(required=true) int usid) {
+		return userservice.unsetUserSupplier(usid);
+	}
+	
 	// DELETE methods
 	
 	@DeleteMapping("/delete")
