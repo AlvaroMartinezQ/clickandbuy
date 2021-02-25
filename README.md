@@ -103,7 +103,7 @@ Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo p
 	* Tendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá una clave foránea al pedido en cuestión.
  ```
-
+<br />
 Diagramas de la aplicación:
 
 * UML
