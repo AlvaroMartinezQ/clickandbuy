@@ -163,4 +163,30 @@ public class UserService {
 		return "status: user is not a supplier anymore";
 	}
 	
+	public String activateUser(int usid) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		if(u.isIs_active()) {
+			return "status: user is already active";
+		}
+		u.setIs_active(true);
+		userdao.save(u);
+		return "status: user is now active";
+	}
+	
+	public String deactivateUser(int usid) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		if(!u.isIs_active()) {
+			return "status: user is already deactivated";
+		}
+		u.setIs_active(false);
+		userdao.save(u);
+		return "status: user has been deactivated";
+	}
+	
 }

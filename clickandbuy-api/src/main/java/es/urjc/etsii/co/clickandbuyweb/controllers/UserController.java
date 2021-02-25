@@ -63,6 +63,16 @@ public class UserController {
 		return userservice.unsetUserSupplier(usid);
 	}
 	
+	@PostMapping("/activate")
+	public String activateUser(@RequestParam(required=true) int usid) {
+		return userservice.activateUser(usid);
+	}
+	
+	@PostMapping("/deactivate")
+	public String deactivateUser(@RequestParam(required=true) int usid) {
+		return userservice.deactivateUser(usid);
+	}
+	
 	// DELETE methods
 	
 	@DeleteMapping("/delete")
