@@ -51,12 +51,12 @@ public class UserController {
 		return userservice.userUpdatePassword(usid, pass);
 	}
 	
-	// POST methods
-	
-	@PostMapping("/add")
+	@GetMapping("/add")
 	public String newUser(@RequestParam(required=true) String email, @RequestParam(required=true) String password) {
 		return userservice.newUser(email, password);
 	}
+	
+	// POST methods
 	
 	@PostMapping("/product-add")
 	public String newUserProduct(@RequestParam(required=true) String name, @RequestParam(required=true) String desc, @RequestParam(required=true) double price, @RequestParam(required=true) int units, @RequestParam(required=true) int usid) {
@@ -91,6 +91,16 @@ public class UserController {
 	@PostMapping("/set-name")
 	public String nameUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String name) {
 		return userservice.nameUser(usid, name);
+	}
+	
+	@PostMapping("/set-phone")
+	public String phoneUser(@RequestParam(required=true) int usid, @RequestParam(required=true) int phone) {
+		return userservice.phoneUser(usid, phone);
+	}
+	
+	@PostMapping("/set-realname")
+	public String realnameUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String realname) {
+		return userservice.realnameUser(usid, realname);
 	}
 	
 	// DELETE methods

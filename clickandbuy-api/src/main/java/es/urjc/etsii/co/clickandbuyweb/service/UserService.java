@@ -229,4 +229,24 @@ public class UserService {
 		return "status: updated password";
 	}
 	
+	public String phoneUser(int usid, int phone) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		u.setUser_phone(phone);
+		userdao.save(u);
+		return "status: phone saved";
+	}
+	
+	public String realnameUser(int usid, String realname) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		u.setUser_realname(realname);
+		userdao.save(u);
+		return "status: real name saved";
+	}
+	
 }
