@@ -137,4 +137,30 @@ public class UserService {
 		return json;
 	}
 	
+	public String setUserSupplier(int usid) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		if(u.isIs_supplier()) {
+			return "status: user is already a supplier";
+		}
+		u.setIs_supplier(true);
+		userdao.save(u);
+		return "status: user is a supplier now";
+	}
+	
+	public String unsetUserSupplier(int usid) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		if(!u.isIs_supplier()) {
+			return "status: user is already not a supplier";
+		}
+		u.setIs_supplier(false);
+		userdao.save(u);
+		return "status: user is not a supplier anymore";
+	}
+	
 }
