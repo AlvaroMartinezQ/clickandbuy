@@ -83,6 +83,11 @@ public class UserController {
 		return userservice.addressUser(usid, address);
 	}
 	
+	@PostMapping("/set-name")
+	public String nameUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String name) {
+		return userservice.nameUser(usid, name);
+	}
+	
 	// DELETE methods
 	
 	@DeleteMapping("/delete")

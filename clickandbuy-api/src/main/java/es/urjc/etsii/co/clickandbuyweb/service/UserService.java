@@ -209,4 +209,14 @@ public class UserService {
 		return "status: user account saved";
 	}
 	
+	public String nameUser(int usid, String name) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		u.setUser_name(name);
+		userdao.save(u);
+		return "status: name changed";
+	}
+	
 }
