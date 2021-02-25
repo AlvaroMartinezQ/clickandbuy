@@ -31,11 +31,21 @@ public class UserController {
 		return userservice.userEmailSearch(email);
 	}
 	
+	@GetMapping("/name-search")
+	public List<User> UserNameSearch(@RequestParam(required=true) String name) {
+		return userservice.UserNameSearch(name);
+	}
+	
 	// POST methods
 	
 	@PostMapping("/add")
 	public String newUser(@RequestParam(required=true) String email, @RequestParam(required=true) String password) {
 		return userservice.newUser(email, password);
+	}
+	
+	@PostMapping("/product-add")
+	public String newUserProduct(@RequestParam(required=true) String name, @RequestParam(required=true) String desc, @RequestParam(required=true) double price, @RequestParam(required=true) int units, @RequestParam(required=true) int usid) {
+		return userservice.addUserProduct(name, desc, price, units, usid);
 	}
 	
 	// DELETE methods
