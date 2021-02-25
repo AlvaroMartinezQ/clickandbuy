@@ -96,4 +96,32 @@ public class UserService {
 		userdao.save(u);
 		return "status: new product saved -> " + p.toString();
 	}
+	
+	public String deleteUserProduct(int usid, int prodid) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user doesn't exist";
+		}
+		if(!u.isIs_supplier()) {
+			return "status: this user is not a supplier and has no products";
+		}
+		boolean found = false;
+		List<Product> productlist = u.getUser_product_list();
+		Product find = new Product();
+		for(Product p: productlist) {
+			if(p.getId()==prodid) {
+				found = true;
+				find = p;
+			}
+		}
+		if(found) {
+			productlist.remove(find);
+			u.setUser_product_list(productlist);
+			userdao.save(u);
+			return "status: product deleted";
+		} else {
+			return "status: product not found";
+		}
+	}
+	
 }
