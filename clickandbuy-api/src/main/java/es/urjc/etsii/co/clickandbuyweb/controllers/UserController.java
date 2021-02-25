@@ -73,6 +73,11 @@ public class UserController {
 		return userservice.deactivateUser(usid);
 	}
 	
+	@PostMapping("/set-address")
+	public String addressUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String address) {
+		return userservice.addressUser(usid, address);
+	}
+	
 	// DELETE methods
 	
 	@DeleteMapping("/delete")

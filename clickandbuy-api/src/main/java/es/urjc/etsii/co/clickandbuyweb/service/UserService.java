@@ -189,4 +189,14 @@ public class UserService {
 		return "status: user has been deactivated";
 	}
 	
+	public String addressUser(int usid, String address) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		u.setUser_address(address);
+		userdao.save(u);
+		return "status: address updated";
+	}
+	
 }
