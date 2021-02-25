@@ -46,6 +46,11 @@ public class UserController {
 		return userservice.setUserBankaccount(usid, account);
 	}
 	
+	@GetMapping("/update-password")
+	public String userUpdatePassword(@RequestParam(required=true) int usid, @RequestParam(required=true) String pass) {
+		return userservice.userUpdatePassword(usid, pass);
+	}
+	
 	// POST methods
 	
 	@PostMapping("/add")

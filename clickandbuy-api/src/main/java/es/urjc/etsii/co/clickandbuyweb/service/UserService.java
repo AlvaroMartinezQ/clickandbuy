@@ -219,4 +219,14 @@ public class UserService {
 		return "status: name changed";
 	}
 	
+	public String userUpdatePassword(int usid, String pass) {
+		User u = userdao.findByUser_id(usid);
+		if(u==null) {
+			return "status: user not found";
+		}
+		u.setUser_password(pass);
+		userdao.save(u);
+		return "status: updated password";
+	}
+	
 }
