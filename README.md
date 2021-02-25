@@ -107,7 +107,7 @@ Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pe
 * UML
 
  <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/uml/uml_fase2.jpg" alt="uml" width="450" height="450">
+    <img src="/statics/uml/uml_fase2.jpg" alt="uml">
   </a>
 
 ### Tecnologías
