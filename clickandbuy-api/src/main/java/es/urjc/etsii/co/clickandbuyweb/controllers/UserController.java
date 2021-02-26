@@ -31,11 +31,76 @@ public class UserController {
 		return userservice.userEmailSearch(email);
 	}
 	
-	// POST methods
+	@GetMapping("/name-search")
+	public List<User> UserNameSearch(@RequestParam(required=true) String name) {
+		return userservice.UserNameSearch(name);
+	}
 	
-	@PostMapping("/add")
+	@GetMapping("/products")
+	public String userProducts(@RequestParam(required=true) int usid) {
+		return userservice.userProducts(usid);
+	}
+	
+	@GetMapping("/set-bankaccount")
+	public String setUserBankaccount(@RequestParam(required=true) int usid, @RequestParam(required=true) int account) {
+		return userservice.setUserBankaccount(usid, account);
+	}
+	
+	@GetMapping("/update-password")
+	public String userUpdatePassword(@RequestParam(required=true) int usid, @RequestParam(required=true) String pass) {
+		return userservice.userUpdatePassword(usid, pass);
+	}
+	
+	@GetMapping("/add")
 	public String newUser(@RequestParam(required=true) String email, @RequestParam(required=true) String password) {
 		return userservice.newUser(email, password);
+	}
+	
+	// POST methods
+	
+	@PostMapping("/product-add")
+	public String newUserProduct(@RequestParam(required=true) String name, @RequestParam(required=true) String desc, @RequestParam(required=true) double price, @RequestParam(required=true) int units, @RequestParam(required=true) int usid) {
+		return userservice.addUserProduct(name, desc, price, units, usid);
+	}
+	
+	@PostMapping("/set-supplier")
+	public String setUserSupplier(@RequestParam(required=true) int usid) {
+		return userservice.setUserSupplier(usid);
+	}
+	
+	@PostMapping("/unset-supplier")
+	public String unsetUserSupplier(@RequestParam(required=true) int usid) {
+		return userservice.unsetUserSupplier(usid);
+	}
+	
+	@PostMapping("/activate")
+	public String activateUser(@RequestParam(required=true) int usid) {
+		return userservice.activateUser(usid);
+	}
+	
+	@PostMapping("/deactivate")
+	public String deactivateUser(@RequestParam(required=true) int usid) {
+		return userservice.deactivateUser(usid);
+	}
+	
+	@PostMapping("/set-address")
+	public String addressUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String address) {
+		return userservice.addressUser(usid, address);
+	}
+	
+	@PostMapping("/set-name")
+	public String nameUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String name) {
+		return userservice.nameUser(usid, name);
+	}
+	
+	@PostMapping("/set-phone")
+	public String phoneUser(@RequestParam(required=true) int usid, @RequestParam(required=true) int phone) {
+		return userservice.phoneUser(usid, phone);
+	}
+	
+	@PostMapping("/set-realname")
+	public String realnameUser(@RequestParam(required=true) int usid, @RequestParam(required=true) String realname) {
+		return userservice.realnameUser(usid, realname);
 	}
 	
 	// DELETE methods
@@ -43,6 +108,11 @@ public class UserController {
 	@DeleteMapping("/delete")
 	public String deleteUserId(@RequestParam(required=true) int id) {
 		return userservice.deleteUserId(id);
+	}
+	
+	@DeleteMapping("/product-delete")
+	public String deleteUserProduct(@RequestParam(required=true) int usid, @RequestParam(required=true) int prodid) {
+		return userservice.deleteUserProduct(usid, prodid);
 	}
 	
 }

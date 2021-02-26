@@ -25,10 +25,15 @@ public class User implements Serializable {
 	private String user_email;
 	@Column(nullable=false)
 	private String user_password;
+	@Column(nullable=true)
 	private String user_name;
+	@Column(nullable=true)
 	private String user_realname;
+	@Column(nullable=true)
 	private String user_address;
+	@Column(nullable=true)
 	private int user_phone;
+	@Column(nullable=true)
 	private int user_bankaccount;
 	private Date join_date;
 	private Date last_login;
