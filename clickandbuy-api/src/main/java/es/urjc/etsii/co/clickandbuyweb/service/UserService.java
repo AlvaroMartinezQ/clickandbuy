@@ -32,6 +32,7 @@ public class UserService {
 		u.setUser_password(password);
 		Date d = new Date();
 		u.setJoin_date(d);
+		u.setIs_active(true);
 		userdao.save(u);
 		return "status: saved";
 	}

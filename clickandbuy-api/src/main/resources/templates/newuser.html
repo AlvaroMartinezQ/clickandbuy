@@ -1,32 +1,38 @@
 <!doctype html>
 <html lang="es">
-    <head>
-    	<title>Login</title>
+	<head>
+		<title>Nuevo usuario</title>
     	<!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- BOOTSTRAP CSS only  -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    </head>
-
-    <body>
+	</head>
+		
+	<body>
 		{{>header}}
 		<div class="container">
 			<div class="card">
 				<article class="card-body">
-				<h4 class="card-title mb-4 mt-1">Inicio de sesión</h4>
-				{{#comes_from_login}}
-					<p class="text-left" style="color:green;">Su usuario se ha creado correctamente. Inicie sesión.</p>
-				{{/comes_from_login}}
-				<form action="/weblogin" method="post">
+				<h4 class="card-title mb-4 mt-1">Crear una cuenta</h4>
+				<form action="/webcreateaccount" method="post">
 				    <div class="form-group">
 				    	<label>Email</label>
 				        <input name="email" class="form-control" placeholder="Email" type="email">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
+				    	<label>Confirme email</label>
+				        <input name="emailconfirmation" class="form-control" placeholder="Email" type="email">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
 				    	<!-- <a class="float-right" href="#">Forgot?</a>  -->
 				    	<label>Contraseña</label>
 				        <input name="password" class="form-control" placeholder="******" type="password">
+				    </div> <!-- form-group// --> 
+				    <div class="form-group">
+				    	<!-- <a class="float-right" href="#">Forgot?</a>  -->
+				    	<label>Confirme contraseña</label>
+				        <input name="passwordconfirmation" class="form-control" placeholder="******" type="password">
 				    </div> <!-- form-group// --> 
 				    <div class="form-group"> 
 				    <div class="checkbox">
@@ -35,17 +41,20 @@
 				    </div> <!-- form-group// -->
 				    <br>
 				    <div class="form-group">
-				        <button type="submit" class="btn btn-primary btn-block"> Acceder </button>
+				        <button type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
 				    </div> <!-- form-group// -->                                                           
 				</form>
 				<br>
-				{{#login_error}}
-					<p class="text-left" style="color:red;">Credenciales erróneas</p>
-				{{/login_error}}
+				{{#bad_fields}}
+					<p class="text-left" style="color:red;">Los datos no coinciden</p>
+				{{/bad_fields}}
+				{{#email_taken}}
+					<p class="text-left" style="color:red;">Ya existe un usuario con ese email. Seleccione uno nuevo.</p>
+				{{/email_taken}}
 				</article>
 				</div> <!-- card.// -->
 		</div>
 		<br>
 		{{>footer}}
-    </body>
+	</body>
 </html>
