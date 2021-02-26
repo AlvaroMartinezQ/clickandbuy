@@ -71,6 +71,10 @@ public class MainController {
 			model.addAttribute("bad_fields", true);
 			return new ModelAndView("newuser");
 		}
+		if(email.equals("")||emailconfirmation.equals("")||password.equals("")||passwordconfirmation.equals("")) {
+			model.addAttribute("bad_fields", true);
+			return new ModelAndView("newuser");
+		}
 		String status = userservice.newUser(email, password);
 		if(status.equals("status: user email already exists")) {
 			model.addAttribute("email_taken", true);
