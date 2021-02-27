@@ -73,4 +73,9 @@ public class AdminController {
 	public String modifyAdminRealName(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String adminEmail, @RequestParam(required=true) String newRealname) {
 		return adminservice.managerModifyRealname(email,password,adminEmail,newRealname);
 	}
+	
+	@PostMapping("/modifyCharge")
+	public String modifyAdminCharge(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String adminEmail, @RequestParam(required=true) String newCharge) {
+		return adminservice.managerModifyCharge(email,password,adminEmail,newCharge);
+	}
 }
