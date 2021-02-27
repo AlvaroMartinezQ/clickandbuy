@@ -20,15 +20,16 @@ public class AdministratorService {
 		return admindao.findAll();
 	}
 	
-	public String newAdmin(String email, String password, String realname, String charge) {
+	public String newAdmin(String email, String password, String realname, String name, int phone, String charge) {
 		Administrator admin = new Administrator();
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
 		admin.setAdmin_realname(realname);
+		admin.setAdmin_phone(phone);
 		admin.setAdmin_charge(charge);
+		admin.setIs_active(false);
 		admin.setIs_superuser(false);
-		Date d = new Date();
-		admin.setLast_login(d);
+		admin.setLast_login(new Date());
 		admindao.save(admin);
 		return "status: saved";
 	}
@@ -115,5 +116,36 @@ public class AdministratorService {
 			return "status: superuser is activated";
 		return "status: superuser is desactivated";
 	}
+	
+	public String adminChangeRealName(String email, String password, String newRealname) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!admin.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!admin.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		admin.setAdmin_realname(newRealname);
+		admindao.save(admin);
+		return "status: real name changed";
+	}
+	
+	public String adminChangePhone(String email, String password, int newPhone) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!admin.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+
+		admin.setAdmin_phone(newPhone);
+		admindao.save(admin);
+		return "status: phone number changed";
+	}
+	
 
 }
