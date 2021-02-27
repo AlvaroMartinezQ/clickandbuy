@@ -25,6 +25,7 @@ public class AdministratorService {
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
 		admin.setAdmin_realname(realname);
+		admin.setAdmin_name(name);
 		admin.setAdmin_phone(phone);
 		admin.setAdmin_charge(charge);
 		admin.setIs_active(false);
@@ -145,6 +146,26 @@ public class AdministratorService {
 		admin.setAdmin_phone(newPhone);
 		admindao.save(admin);
 		return "status: phone number changed";
+	}
+	
+	public String managerModifyRealname(String email, String password, String adminEmail, String newRealname) {
+		Administrator manager = admindao.findByAdmin_email(email);
+		if(manager==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!manager.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!manager.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		Administrator admin = admindao.findByAdmin_email(adminEmail);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		admin.setAdmin_realname(newRealname);
+		admindao.save(admin);
+		return "status: "+adminEmail+"'s real name has changed";	
 	}
 	
 
