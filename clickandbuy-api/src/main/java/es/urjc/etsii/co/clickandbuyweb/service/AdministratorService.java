@@ -165,7 +165,27 @@ public class AdministratorService {
 		}
 		admin.setAdmin_realname(newRealname);
 		admindao.save(admin);
-		return "status: "+adminEmail+"'s real name has changed";	
+		return "status: "+adminEmail+" real name has changed";	
+	}
+	
+	public String managerModifyCharge(String email, String password, String adminEmail, String newCharge) {
+		Administrator manager = admindao.findByAdmin_email(email);
+		if(manager==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!manager.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!manager.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		Administrator admin = admindao.findByAdmin_email(adminEmail);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		admin.setAdmin_charge(newCharge);
+		admindao.save(admin);
+		return "status: "+adminEmail+" charge has changed";	
 	}
 	
 
