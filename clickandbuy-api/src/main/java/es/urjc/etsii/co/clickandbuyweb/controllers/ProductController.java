@@ -26,6 +26,7 @@ public class ProductController {
 	public Product productNameSearch(@RequestParam(required=true) String name) {
 		return productservice.productNameSearchL(name);
 	}
+	
 	@GetMapping("/productstock")
 	public int productStock(@RequestParam(required=true) String name) {
 		return productservice.productStock(name);
