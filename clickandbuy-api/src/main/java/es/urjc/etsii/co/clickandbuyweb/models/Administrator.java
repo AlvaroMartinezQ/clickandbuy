@@ -80,6 +80,8 @@ public class Administrator implements Serializable {
 	}
 
 	public void setAdmin_name(String admin_name) {
+		if(admin_name.isBlank())
+			admin_name = "defaultName";
 		this.admin_name = admin_name;
 	}
 
@@ -96,6 +98,8 @@ public class Administrator implements Serializable {
 	}
 
 	public void setAdmin_phone(int admin_phone) {
+		if(admin_phone == 0)
+			admin_phone = 000000000;
 		this.admin_phone = admin_phone;
 	}
 
