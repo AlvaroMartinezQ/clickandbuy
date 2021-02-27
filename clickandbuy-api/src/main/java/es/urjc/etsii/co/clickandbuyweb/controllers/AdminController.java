@@ -25,7 +25,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/add")
-	public String newAdmin(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String realname, @RequestParam String name, @RequestParam int phone, @RequestParam(required=true) String charge) {
+	public String newAdmin(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String realname, @RequestParam(defaultValue="defaultName") String name, @RequestParam(defaultValue="123456") int phone, @RequestParam(required=true) String charge) {
 		return adminservice.newAdmin(email, password, realname, name, phone, charge);
 	}
 	
@@ -67,5 +67,10 @@ public class AdminController {
 	@PostMapping("/changePhone")
 	public String changeAdminPhone(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) int newPhone) {
 		return adminservice.adminChangePhone(email,password,newPhone);
+	}
+	
+	@PostMapping("/modifyRealname")
+	public String modifyAdminRealName(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String adminEmail, @RequestParam(required=true) String newRealname) {
+		return adminservice.managerModifyRealname(email,password,adminEmail,newRealname);
 	}
 }
