@@ -20,15 +20,17 @@ public class AdministratorService {
 		return admindao.findAll();
 	}
 	
-	public String newAdmin(String email, String password, String realname, String charge) {
+	public String newAdmin(String email, String password, String realname, String name, int phone, String charge) {
 		Administrator admin = new Administrator();
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
 		admin.setAdmin_realname(realname);
+		admin.setAdmin_name(name);
+		admin.setAdmin_phone(phone);
 		admin.setAdmin_charge(charge);
+		admin.setIs_active(false);
 		admin.setIs_superuser(false);
-		Date d = new Date();
-		admin.setLast_login(d);
+		admin.setLast_login(new Date());
 		admindao.save(admin);
 		return "status: saved";
 	}
@@ -115,5 +117,76 @@ public class AdministratorService {
 			return "status: superuser is activated";
 		return "status: superuser is desactivated";
 	}
+	
+	public String adminChangeRealName(String email, String password, String newRealname) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!admin.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!admin.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		admin.setAdmin_realname(newRealname);
+		admindao.save(admin);
+		return "status: real name changed";
+	}
+	
+	public String adminChangePhone(String email, String password, int newPhone) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!admin.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+
+		admin.setAdmin_phone(newPhone);
+		admindao.save(admin);
+		return "status: phone number changed";
+	}
+	
+	public String managerModifyRealname(String email, String password, String adminEmail, String newRealname) {
+		Administrator manager = admindao.findByAdmin_email(email);
+		if(manager==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!manager.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!manager.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		Administrator admin = admindao.findByAdmin_email(adminEmail);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		admin.setAdmin_realname(newRealname);
+		admindao.save(admin);
+		return "status: "+adminEmail+" real name has changed";	
+	}
+	
+	public String managerModifyCharge(String email, String password, String adminEmail, String newCharge) {
+		Administrator manager = admindao.findByAdmin_email(email);
+		if(manager==null) {
+			return "This administrator doesn't exist";
+		}
+		if(!manager.getAdmin_password().equals(password)) {
+			return "Incorrect password";
+		}
+		if(!manager.getAdmin_charge().equals("Manager")) {
+			return "You are not allow to do this action";
+		}
+		Administrator admin = admindao.findByAdmin_email(adminEmail);
+		if(admin==null) {
+			return "This administrator doesn't exist";
+		}
+		admin.setAdmin_charge(newCharge);
+		admindao.save(admin);
+		return "status: "+adminEmail+" charge has changed";	
+	}
+	
 
 }

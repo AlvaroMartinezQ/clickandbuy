@@ -11,7 +11,7 @@
 .sts4-cache
 
 ### Sensitive Local Data ###
-src/main/resources/application.properties
+clickandbuy-api/src/main/resources/application.properties
 
 
 ### Eclipse ###

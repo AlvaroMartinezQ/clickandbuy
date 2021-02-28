@@ -1,6 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -71,16 +72,16 @@ public class Rating implements Serializable {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Optional<User> user) {
+		this.user = user.get();
 	}
 
-	public Product getOrder() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setOrder(Product product) {
-		this.product = product;
+	public void setProduct(Optional<Product> product) {
+		this.product = product.get();
 	}
 
 	@Override
