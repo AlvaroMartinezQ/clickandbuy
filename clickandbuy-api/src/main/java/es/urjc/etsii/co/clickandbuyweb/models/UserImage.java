@@ -16,7 +16,7 @@ public class UserImage implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Lob
-    private byte[] content;
+	private byte[] content;
 	private int usid;
 	
 	public UserImage(int id, byte[] content, int usid) {

@@ -36,11 +36,9 @@ public class UserImageService {
 			UserImage uploadImage = new UserImage();
 			uploadImage.setContent(image.getBytes());
 			uploadImage.setUsid(u.getId());
-			System.out.println("Non existing image");
 			return userimagedao.save(uploadImage).getId();
 		} else {
 			existingImage.setContent(image.getBytes());
-			System.out.println("Existing image");
 			return userimagedao.save(existingImage).getId();
 		}
 	}
