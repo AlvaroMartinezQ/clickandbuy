@@ -34,7 +34,6 @@ public class ProductService {
 	}
 	
 	public int productStock(String product_name){
-		
 		Product p = productdao.findByProduct_name(product_name);
 		if(p == null) {
 			return 0;

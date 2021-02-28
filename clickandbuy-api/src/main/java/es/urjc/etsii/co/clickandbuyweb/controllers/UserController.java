@@ -41,22 +41,22 @@ public class UserController {
 		return userservice.userProducts(usid);
 	}
 	
-	@GetMapping("/set-bankaccount")
+	// POST methods
+	
+	@PostMapping("/set-bankaccount")
 	public String setUserBankaccount(@RequestParam(required=true) int usid, @RequestParam(required=true) int account) {
 		return userservice.setUserBankaccount(usid, account);
 	}
 	
-	@GetMapping("/update-password")
+	@PostMapping("/update-password")
 	public String userUpdatePassword(@RequestParam(required=true) int usid, @RequestParam(required=true) String pass) {
 		return userservice.userUpdatePassword(usid, pass);
 	}
 	
-	@GetMapping("/add")
+	@PostMapping("/add")
 	public String newUser(@RequestParam(required=true) String email, @RequestParam(required=true) String password) {
 		return userservice.newUser(email, password);
 	}
-	
-	// POST methods
 	
 	@PostMapping("/product-add")
 	public String newUserProduct(@RequestParam(required=true) String name, @RequestParam(required=true) String desc, @RequestParam(required=true) double price, @RequestParam(required=true) int units, @RequestParam(required=true) int usid) {

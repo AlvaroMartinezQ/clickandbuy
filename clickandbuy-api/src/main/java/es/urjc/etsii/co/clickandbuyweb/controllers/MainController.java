@@ -27,7 +27,6 @@ public class MainController {
 		if(!model.containsAttribute("is_logged")) {
 			model.addAttribute("is_logged", false);
 		}
-		System.out.println(model);
 		return new ModelAndView("mainView");
 	}
 	
