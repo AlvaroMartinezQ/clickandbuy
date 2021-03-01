@@ -44,6 +44,7 @@ public class UserImageService {
 	}
 	
 	public Resource getImage(int usid) {
+		// Server status response shouldn't be shown by the browser - sensitive info
 		byte[] image = userimagedao.findbyid(usid).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getContent();
 		return new ByteArrayResource(image);
 	}
