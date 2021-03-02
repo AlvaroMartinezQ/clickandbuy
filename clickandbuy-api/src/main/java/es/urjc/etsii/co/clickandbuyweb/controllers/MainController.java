@@ -79,4 +79,21 @@ public class MainController {
 		return new ModelAndView("login");
 	}
 	
+	@GetMapping("/users")
+	public ModelAndView userMain(Model model) {
+		return new ModelAndView("/users/usersMain");
+	}
+	
+	@GetMapping("/users/all")
+	public ModelAndView userAll(Model model) {
+		model.addAttribute("userlist", userservice.getUsers());
+		return new ModelAndView("/users/userList");
+	}
+	
+	@GetMapping("/users/delete")
+	public ModelAndView userDelete(@RequestParam(required=true) int usid, Model model) {
+		userservice.deleteUserId(usid);
+		model.addAttribute("userlist", userservice.getUsers());
+		return new ModelAndView("/users/userList");
+	}
 }
