@@ -1,5 +1,8 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,4 +99,22 @@ public class MainController {
 		model.addAttribute("userlist", userservice.getUsers());
 		return new ModelAndView("/users/userList");
 	}
+	
+	@GetMapping("/users/search")
+	public ModelAndView userSearch(Model model) {
+		return new ModelAndView("/users/userSearch");
+	}
+	
+	@GetMapping("/users/search/user")
+	public ModelAndView userEmailSearchView(@RequestParam(required=true) String email, Model model) {
+		// These steps should be inside the service but idc :)
+		User u = userservice.userEmailSearch(email);
+		List<User> list = new ArrayList<>();
+		if(u!=null) {
+			list.add(u);
+		}
+		model.addAttribute("userlist", list);
+		return new ModelAndView("/users/userList");
+	}
+	
 }
