@@ -13,6 +13,33 @@
 		{{>header}}
 	    <div class="container">
 	    	<br>
+	    	<div class="row h-100">
+				<h3 style="text-align:left;color:black">Enlaces rápidos:</h3>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<a type="button" href="/users" class="btn btn-primary">Usuarios</a>
+				</div>
+				<div class="col-4">
+					<a type="button" href="/" class="btn btn-primary">Administradores</a>
+				</div>
+				<div class="col-4">
+					<a type="button" href="/" class="btn btn-primary">Productos</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-4">
+					<a type="button" href="/" class="btn btn-primary">Pedidos</a>
+				</div>
+				<div class="col-4">
+					<a type="button" href="/" class="btn btn-warning">Ratings</a>
+				</div>
+				<div class="col-4">
+					<a type="button" href="/" class="btn btn-primary">Imágenes de usuarios</a>
+				</div>
+			</div>
+			<br>
 		  	<div class="row h-100">
 				<h3 style="text-align:left;color:black">Nuestros productos actuales:</h3>
 			</div>
@@ -20,7 +47,7 @@
 		  	<div class="row">
 		    	<div class="col-12">
 		    		<div class="card-group">
-		    		{{#products.length}}
+		    		{{#products.0}}
 					{{#products}}
 						<div class="row">
 							<div class="col-1"></div>
@@ -35,13 +62,13 @@
 							<div class="col-1"></div>
 						</div>
 					{{/products}}
-					{{/products.length}}
-					{{^products.length}}
+					{{/products.0}}
+					{{^products.0}}
 						<div class="row">
 							<h5 style="text-align:center;color:black">Sin productos disponibles.</h5>
 						</div>
-					{{/products.length}}
-					<br />
+					{{/products.0}}
+					<br>
 					</div>
 		    	</div>
 		  	</div>
