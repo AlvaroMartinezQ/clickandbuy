@@ -1,7 +1,5 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,8 +40,6 @@ public class MainController {
 			model.addAttribute("login_error", true);
 			return new ModelAndView("login");
 		}
-		Date d = new Date();
-		u.setLast_login(d);
 		model.addAttribute("user_id", u.getId());
 		model.addAttribute("user_name", u.getUser_email());
 		model.addAttribute("is_logged", true);
