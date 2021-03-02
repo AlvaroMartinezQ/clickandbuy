@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Administrator;
-import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 
 @Service
