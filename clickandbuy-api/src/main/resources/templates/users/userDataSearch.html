@@ -16,25 +16,8 @@
 			<br>
 			<div class="card">
 				<article class="card-body">
-					<h4 class="card-title mb-4 mt-1">Buscar por nombre:</h4>
-					<form action="/users/search/user-name" method="get">
-						<div class="form-group">
-						    <label>Nombre</label>
-						    <input name="name" class="form-control" placeholder="nombre">
-						</div>
-						<br>
-						<div class="form-group">
-						    <button type="submit" class="btn btn-primary btn-block"> Buscar </button>
-						</div>                                                          
-					</form>
-					<br>
-				</article>
-			</div>
-			<br>
-			<div class="card">
-				<article class="card-body">
 					<h4 class="card-title mb-4 mt-1">Buscar por email:</h4>
-					<form action="/users/search/user-email" method="get">
+					<form action="/users/data/search/user-email" method="get">
 						<div class="form-group">
 						    <label>Email</label>
 						    <input name="email" class="form-control" placeholder="email" type="email">
@@ -51,7 +34,7 @@
 			<div class="card">
 				<article class="card-body">
 					<h4 class="card-title mb-4 mt-1">Buscar por id:</h4>
-					<form action="/users/search/user-id" method="get">
+					<form action="/users/data/search/id" method="get">
 						<div class="form-group">
 						    <label>Id</label>
 						    <input name="id" class="form-control" placeholder="id">
