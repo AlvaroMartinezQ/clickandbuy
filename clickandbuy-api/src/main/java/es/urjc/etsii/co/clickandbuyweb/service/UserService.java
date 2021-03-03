@@ -250,4 +250,33 @@ public class UserService {
 		return "status: real name saved";
 	}
 	
+	public User idSearch(int id) {
+		User u = userdao.findByUser_id(id);
+		return u;
+	}
+	
+	public User dataUpdate(String email, String user_name, String user_realname, int  user_phone, int  user_bankaccount, String user_address, Date last_login, Date join_date, int is_active, int is_supplier) {
+		User u = userdao.findByUser_email(email);
+		if(u==null) {
+			return null;
+		}
+		if(is_active>0) {
+			u.setIs_active(true);
+		} else {
+			u.setIs_active(false);
+		}
+		if(is_supplier>0) {
+			u.setIs_supplier(true);
+		} else {
+			u.setIs_supplier(false);
+		}
+		u.setUser_address(user_address);
+		u.setUser_bankaccount(user_bankaccount);
+		u.setUser_name(user_name);
+		u.setUser_phone(user_phone);
+		u.setUser_realname(user_realname);
+		userdao.save(u);
+		return u;
+	}
+	
 }
