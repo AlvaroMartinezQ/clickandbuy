@@ -111,7 +111,13 @@ Diagramas de la aplicación:
  <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/uml_fase2.jpg" alt="uml">
   </a>
+  
+  * Modelo E/R
 
+ <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/uml/ModeloER.PNG" alt="modeler">
+  </a>
+  
 ### Tecnologías
 
 * [Java](https://www.java.com/es/)
