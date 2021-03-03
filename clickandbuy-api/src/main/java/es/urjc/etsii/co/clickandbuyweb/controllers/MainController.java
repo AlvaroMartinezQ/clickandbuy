@@ -1,6 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public class MainController {
 		return new ModelAndView("/users/userSearch");
 	}
 	
-	@GetMapping("/users/search/user")
+	@GetMapping("/users/search/user-email")
 	public ModelAndView userEmailSearchView(@RequestParam(required=true) String email, Model model) {
 		// These steps should be inside the service but idc :)
 		User u = userservice.userEmailSearch(email);
@@ -117,4 +118,61 @@ public class MainController {
 		return new ModelAndView("/users/userList");
 	}
 	
+	@GetMapping("/users/search/user-name")
+	public ModelAndView userNameSearchView(@RequestParam(required=true) String name, Model model) {
+		// These steps should be inside the service but idc :)
+		List<User> list = userservice.UserNameSearch(name);
+		model.addAttribute("userlist", list);
+		return new ModelAndView("/users/userList");
+	}
+	
+	@GetMapping("/users/search/user-id")
+	public ModelAndView userIdSearchView(@RequestParam(required=true) int id, Model model) {
+		// These steps should be inside the service but idc :)
+		User u = userservice.idSearch(id);
+		List<User> list = new ArrayList<>();
+		if(u!=null) {
+			list.add(u);
+		}
+		model.addAttribute("userlist", list);
+		return new ModelAndView("/users/userList");
+	}
+	
+	@GetMapping("/users/data/search")
+	public ModelAndView userDataSearchView(Model model) {
+		return new ModelAndView("/users/userDataSearch");
+	}
+	
+	@GetMapping("/users/data/search/user-email")
+	public ModelAndView userDataEmailSearchView(@RequestParam(required=true) String email, Model model) {
+		User u = userservice.userEmailSearch(email);
+		if(u!=null) {
+			model.addAttribute("user", u);
+		}
+		return new ModelAndView("/users/userData");
+	}
+	
+	@GetMapping("/users/data/search/id")
+	public ModelAndView userDataIdSearchView(@RequestParam(required=true) int id, Model model) {
+		User u = userservice.idSearch(id);
+		model.addAttribute("user", u);
+		return new ModelAndView("/users/userData");
+	}
+	
+	@PostMapping("/users/data/user-update")
+	public ModelAndView userDataUpdate(@RequestParam(required=true) String email, 
+										@RequestParam(required=true) String user_name,
+										@RequestParam(required=true) String user_realname,
+										@RequestParam(required=true) int  user_phone,
+										@RequestParam(required=true) int  user_bankaccount,
+										@RequestParam(required=true) String user_address,
+										@RequestParam(required=true) Date last_login,
+										@RequestParam(required=true) Date join_date,
+										@RequestParam(required=true) int is_active,
+										@RequestParam(required=true) int is_supplier,
+										Model model) {
+		User u = userservice.dataUpdate(email, user_name, user_realname, user_phone, user_bankaccount, user_address, last_login, join_date, is_active, is_supplier);
+		model.addAttribute("user", u);
+		return new ModelAndView("/users/userData");
+	}
 }
