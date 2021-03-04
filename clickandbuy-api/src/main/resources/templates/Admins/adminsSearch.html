@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Búsqueda de administradores</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </head>
+
+    <body>
+		{{>header}}
+		<div class="container">
+		<div class="col-1"><a href="/admins" type="button" class="btn btn-outline-info">Volver</a></div>
+			<br>
+			<div class="card">
+				<article class="card-body">
+					<h4 class="card-title mb-4 mt-1">Buscar por nombre:</h4>
+					<form action="/admins/search/admin-name" method="get">
+						<div class="form-group">
+						    <label>Nombre</label>
+						    <input name="name" class="form-control" placeholder="nombre">
+						</div>
+						<br>
+						<div class="form-group">
+						    <button type="submit" class="btn btn-primary btn-block"> Buscar </button>
+						</div>                                                          
+					</form>
+					<br>
+				</article>
+			</div>
+			<br>
+			<div class="card">
+				<article class="card-body">
+					<h4 class="card-title mb-4 mt-1">Buscar por email:</h4>
+					<form action="/admins/search/admin-email" method="get">
+						<div class="form-group">
+						    <label>Email</label>
+						    <input name="email" class="form-control" placeholder="email" type="email">
+						</div>
+						<br>
+						<div class="form-group">
+						    <button type="submit" class="btn btn-primary btn-block"> Buscar </button>
+						</div>                                                          
+					</form>
+					<br>
+				</article>
+			</div>
+			<br>
+			<div class="card">
+				<article class="card-body">
+					<h4 class="card-title mb-4 mt-1">Buscar por id:</h4>
+					<form action="/admins/search/admin-id" method="get">
+						<div class="form-group">
+						    <label>Id</label>
+						    <input name="id" class="form-control" placeholder="id" value=0>
+						</div>
+						<br>
+						<div class="form-group">
+						    <button type="submit" class="btn btn-primary btn-block"> Buscar </button>
+						</div>                                                          
+					</form>
+					<br>
+				</article>
+			</div>
+		</div>
+		<br>
+		{{>footer}}
+	</body>
+</html>

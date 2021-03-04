@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Página de administradores</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </head>
+
+    <body>
+		{{>header}}
+		<div class="container">
+		    <br>
+		    <div class="row">
+		    	<div class="col-1"><a href="/admins" type="button" class="btn btn-outline-info">Volver</a></div>
+		    	<div class="col-12">
+		    		<br>
+		    		<div class="card-group">
+			    		{{#adminlist.0}}
+			    		{{#adminlist}}
+						  	<div class="row">
+								<div class="col-1"></div>
+								<div class="card border-dark mb-3" style="width: 23rem;">
+									<div class="card-body">
+										<h5 class="card-title">Id: {{id}}</h5>
+										{{#admin_realname}}
+										<h6>Nombre: {{admin_realname}}</h6>
+										{{/admin_realname}}
+										{{#admin_charge}}
+										<h6>Cargo: {{admin_charge}}</h6>
+										{{/admin_charge}}
+										<h7>Email: {{admin_email}}</h7>
+										<p class="card-text">Permisos de superusuario: {{is_superuser}}</p>
+										{{#last_login}}
+										<p class="card-text">Visto por última vez: {{last_login}}</p>
+										{{/last_login}}
+										{{#admin_phone}}
+										<p class="card-text">Contacto: {{admin_phone}}</p>
+										{{/admin_phone}}
+									</div>
+									<p style="text-align:center;">Imagen del administrador</p>
+									<img src="/api/image/retreive?id={{id}}" class="card-img-top">
+									<br>
+									<a href="http://127.0.0.1:8080/admins/delete?id={{id}}" type="button" class="btn btn-danger">Eliminar</a>
+									<br>
+								</div>
+								<div class="col-1"></div>
+							</div>
+						{{/adminlist}}
+						{{/adminlist.0}}
+						{{^adminlist.0}}
+			    		<div class="row">
+							<h5 style="text-align:center;color:black">Aún no hay administradores dados de alta.</h5>
+						</div>
+						{{/adminlist.0}}
+			    		</div>
+		    		</div>
+				</div>
+		    <br>
+	    </div>
+		{{>footer}}
+	</body>
+</html>
