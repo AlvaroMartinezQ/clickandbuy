@@ -4,48 +4,82 @@
     	<title>Página principal</title>
     	<!-- Required meta tags -->
 	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- BOOTSTRAP CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<style>
+    	hr {
+		  margin-top: 1rem;
+		  margin-bottom: 1rem;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+    	</style>
     </head>
 
     <body>
 		{{>header}}
-	    <div class="container">
+	    <div class="container-fluid">
 	    	<br>
-	    	<div class="row h-100">
-				<h3 style="text-align:left;color:black">Enlaces rápidos:</h3>
-			</div>
-			<div class="row">
+	    	<div class="row">
+	    		<div class="col-4">
+					
+				</div>
 				<div class="col-4">
+					<h3 style="text-align:left;color:black">Enlaces rápidos</h3>
+				</div>
+				<div class="col-4">
+					
+				</div>
+			</div>
+			<br />
+			<hr />
+			<div class="row">
+				<div class="col-1">
+				</div>
+				<div class="col-3">
 					<a type="button" href="/users" class="btn btn-primary">Usuarios</a>
 				</div>
 				<div class="col-4">
 					<a type="button" href="/admins" class="btn btn-primary">Administradores</a>
 				</div>
-				<div class="col-4">
+				<div class="col-3">
 					<a type="button" href="/" class="btn btn-primary">Productos</a>
+				</div>
+				<div class="col-1">
 				</div>
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-4">
+				<div class="col-1">
+				</div>
+				<div class="col-3">
 					<a type="button" href="/" class="btn btn-primary">Pedidos</a>
 				</div>
 				<div class="col-4">
 					<a type="button" href="/" class="btn btn-warning">Ratings</a>
 				</div>
-				<div class="col-4">
+				<div class="col-3">
 					<a type="button" href="/" class="btn btn-primary">Imágenes de usuarios</a>
+				</div>
+				<div class="col-1">
 				</div>
 			</div>
 			<br>
-		  	<div class="row h-100">
-				<h3 style="text-align:left;color:black">Nuestros productos actuales:</h3>
+			<hr />
+		  	<div class="row">
+		  		<div class="col-1">
+				</div>
+				<div class="col-10">
+					<h3 style="text-align:left;color:black">Nuestros productos actuales:</h3>
+				</div>
+				<div class="col-1">
+				</div>
 			</div>
 			<br>
 		  	<div class="row">
-		    	<div class="col-12">
+		  		<div class="col-1">
+				</div>
+		    	<div class="col-10">
 		    		<div class="card-group">
 		    		{{#products.0}}
 					{{#products}}
@@ -72,8 +106,16 @@
 					<br />
 					</div>
 		    	</div>
+		    	<div class="col-1">
+				</div>
+		  	</div>
+		  	<hr />
+		  	<div class="row">
+		  		<div class="col-1"></div>
+		  		<div class="col-1"><a type="button" href="/" class="btn btn-success">Página principal</a></div>
+		  		<div class="col-10"></div>
+		  		<br>
 		  	</div>
 		</div>
-		{{>footer}}
     </body>
 </html>

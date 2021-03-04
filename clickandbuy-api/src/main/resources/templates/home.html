@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Página principal</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<style>
+    	hr {
+		  margin-top: 1rem;
+		  margin-bottom: 1rem;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+    	</style>
+    </head>
+    
+    <body>
+    	<div class="container-fluid">
+    	{{>header}}
+    		<div class="row">
+    			<div class="col-3"></div>
+    			<div class="col-6">
+    				<div class="card text-center">
+					<div class="card-header">
+					    <h2>Página de inicio</h2>
+					</div>
+					<div class="card-body">
+					    <h5 class="card-title">Tienda de compra venta online</h5>
+					    <p class="card-text">Comercio libre, rápido, serio y seguro. Compra objetos que te llamen la atención vende aquellos que no quieras a otros usuarios.</p>
+					    <a href="/createaccount" class="btn btn-primary">¿Comenzamos?</a>
+					    <p></p>
+					    <a href="/prouctView" class="btn btn-outline-secondary">Continuar sin identificarse</a>
+					    <hr />
+					    <p class="card-text">Inicio de sesión para usuarios registrados.</p>
+					    <a href="/login" class="btn btn-outline-primary">Entrar en mi cuenta</a>
+					    <br>
+					    <p class="card-text">Solicitar un cambio de contraseña o datos de usuarios.</p>
+					    <a href="/" class="btn btn-outline-primary">Recuperar mis datos</a>
+					    <hr />
+					    <p class="card-text">¿Has tenido algún problema? Háznoslo saber.</p>
+					    <a href="/" class="btn btn-outline-danger">Reportar una incidencia</a>
+					</div>
+					<div class="card-footer text-muted">
+					    Click & Buy Co.
+					</div>
+					</div>
+    			</div>
+    			<div class="col-3"></div>
+    		</div>
+    	</div>
+    </body>
+</html>
