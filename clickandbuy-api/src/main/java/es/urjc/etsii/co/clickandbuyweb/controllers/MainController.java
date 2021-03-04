@@ -1,7 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,17 +160,17 @@ public class MainController {
 	
 	@PostMapping("/users/data/user-update")
 	public ModelAndView userDataUpdate(@RequestParam(required=true) String email, 
-										@RequestParam(required=true) String user_name,
-										@RequestParam(required=true) String user_realname,
-										@RequestParam(required=true) int  user_phone,
-										@RequestParam(required=true) int  user_bankaccount,
-										@RequestParam(required=true) String user_address,
-										@RequestParam(required=true) Date last_login,
-										@RequestParam(required=true) Date join_date,
-										@RequestParam(required=true) int is_active,
-										@RequestParam(required=true) int is_supplier,
+										@RequestParam(required=false) String user_name,
+										@RequestParam(required=false) String user_realname,
+										@RequestParam(required=false) int  user_phone,
+										@RequestParam(required=false) int  user_bankaccount,
+										@RequestParam(required=false) String user_address,
+										@RequestParam(required=false) int is_active,
+										@RequestParam(required=false) int is_supplier,
 										Model model) {
-		User u = userservice.dataUpdate(email, user_name, user_realname, user_phone, user_bankaccount, user_address, last_login, join_date, is_active, is_supplier);
+		System.out.println(email);
+		User u = userservice.dataUpdate(email, user_name, user_realname, user_phone, user_bankaccount, user_address, is_active, is_supplier);
+		System.out.println(u);
 		model.addAttribute("user", u);
 		return new ModelAndView("/users/userData");
 	}

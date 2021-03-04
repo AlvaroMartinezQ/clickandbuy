@@ -255,10 +255,27 @@ public class UserService {
 		return u;
 	}
 	
-	public User dataUpdate(String email, String user_name, String user_realname, int  user_phone, int  user_bankaccount, String user_address, Date last_login, Date join_date, int is_active, int is_supplier) {
+	public User dataUpdate(String email, String user_name, String user_realname, int  user_phone, int  user_bankaccount, String user_address, int is_active, int is_supplier) {
+		System.out.println(email + " " + user_name + " " +  user_realname + " " +  user_phone + " " +  user_bankaccount + " " +  user_address + " " +  is_active + " " +  is_supplier);
 		User u = userdao.findByUser_email(email);
+		System.out.println(u);
 		if(u==null) {
 			return null;
+		}
+		if(!user_name.equals("")) {
+			u.setUser_name(user_name);
+		}
+		if(!user_realname.equals("")) {
+			u.setUser_realname(user_realname);
+		}
+		if(user_phone != 0) {
+			u.setUser_phone(user_phone);
+		}
+		if(user_bankaccount != 0) {
+			u.setUser_bankaccount(user_bankaccount);
+		}
+		if(!user_address.equals("")) {
+			u.setUser_address(user_address);
 		}
 		if(is_active>0) {
 			u.setIs_active(true);
@@ -270,11 +287,7 @@ public class UserService {
 		} else {
 			u.setIs_supplier(false);
 		}
-		u.setUser_address(user_address);
-		u.setUser_bankaccount(user_bankaccount);
-		u.setUser_name(user_name);
-		u.setUser_phone(user_phone);
-		u.setUser_realname(user_realname);
+		System.out.println(u);
 		userdao.save(u);
 		return u;
 	}
