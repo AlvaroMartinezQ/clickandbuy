@@ -13,14 +13,19 @@
 		{{>header}}
 		<div class="container">
 			<div class="col-1"><a href="/users" type="button" class="btn btn-outline-info">Volver</a></div>
+			<br>
 			{{#user}}
 			<div class="card">
 				<article class="card-body">
 				<h4 class="card-title mb-4 mt-1">Usuario</h4>
 				<form action="/users/data/user-update" method="post">
+					<div class="form-group">
+				        <input type="hidden" class="form-control" name="email" value="{{user_email}}" />
+				    </div> <!-- form-group// -->
+				    <!-- This field is not sent -->
 				    <div class="form-group">
 				    	<label>Email</label>
-				        <input name="email" class="form-control" placeholder="{{user_email}}" type="email" readonly>
+				        <input name="" class="form-control" placeholder="{{user_email}}" readonly>
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<label>Nombre de usuario</label>
@@ -42,11 +47,11 @@
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<label>Teléfono</label>
-				        <input name="user_phone" class="form-control" placeholder="{{user_phone}}">
+				        <input type="number" name="user_phone" class="form-control" placeholder="{{user_phone}}">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<label>Cuenta de banco</label>
-				        <input name="user_bankaccount" class="form-control" placeholder="{{user_bankaccount}}">
+				        <input type="number" name="user_bankaccount" class="form-control" placeholder="{{user_bankaccount}}">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<label>Dirección</label>
@@ -57,15 +62,17 @@
 				        	<input name="user_address" class="form-control" placeholder="">
 				        {{/user_address}}
 				    </div> <!-- form-group// -->
+				    <br>
 				    {{#last_login}}
-				    <div class="form-group">
+				    <div class="last-login">
 				    	<label>Último login</label>
-				        <input name="user_lastlogin" class="form-control" placeholder="{{last_login}}" readonly>
+				        <input name="user_lastlogin" placeholder="{{last_login}}" readonly>
 				    </div> <!-- form-group// -->
 				    {{/last_login}}
-				    <div class="form-group">
-				    	<label>Fecha de alta</label>
-				        <input name="join_date" class="form-control" placeholder="{{join_date}}" readonly>
+				    <br>
+				    <div class="join-date">
+				    	<label>Fecha de alta:</label>
+				        <input name="user_joindate" placeholder="{{join_date}}" readonly>
 				    </div> <!-- form-group// -->
 				    <br>
 				    <div><p>Un valor mayor de 0 cambiará el atributo a true, un valor menor o igual a 0 cambiará el atributo a false.</p></div>
@@ -83,10 +90,9 @@
 				    </div> <!-- form-group// -->                                                           
 				</form>
 				<br>
-				</article>
-				</div> <!-- card.// -->
+			</article>
+		</div> <!-- card.// -->
 		{{/user}}
-		</div>
 		{{^user}}
 			<div class="row">
 				<div class="col-4"></div>
@@ -95,6 +101,7 @@
 			</div>
 		{{/user}}
 		<br>
+		</div>
 		{{>footer}}
 	</body>
 </html>
