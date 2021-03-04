@@ -38,6 +38,9 @@ public class UserService {
 	}
 	
 	public User userEmailSearch(String email) {
+		if(email.equals("")) {
+			return null;
+		}
 		User u = userdao.findByUser_email(email);
 		if(u==null) {
 			return null;
@@ -69,6 +72,9 @@ public class UserService {
 	}
 	
 	public List<User> UserNameSearch (String name){
+		if(name.equals("")) {
+			return null;
+		}
 		return userdao.searchByUser_name(name);
 	}
 	

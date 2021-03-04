@@ -152,8 +152,9 @@ public class MainController {
 	}
 	
 	@GetMapping("/users/data/search/id")
-	public ModelAndView userDataIdSearchView(@RequestParam(required=true) int id, Model model) {
-		User u = userservice.idSearch(id);
+	public ModelAndView userDataIdSearchView(@RequestParam(required=true, defaultValue="0") String id, Model model) {
+		int usid=Integer.parseInt(id);
+		User u = userservice.idSearch(usid);
 		model.addAttribute("user", u);
 		return new ModelAndView("/users/userData");
 	}
