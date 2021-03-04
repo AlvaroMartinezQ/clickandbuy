@@ -20,6 +20,14 @@ public class AdministratorService {
 	}
 	
 	public String newAdmin(String email, String password, String realname, String name, int phone, String charge) {
+		Administrator replicate = admindao.findByAdmin_email(email);
+		if(replicate!=null) {
+			return "status: this administrator already exist";
+		}
+		replicate = admindao.findByAdmin_realname(realname);
+		if(replicate!=null) {
+			return "status: this administrator already exist";
+		}
 		Administrator admin = new Administrator();
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
@@ -71,6 +79,14 @@ public class AdministratorService {
 			return null;
 		}
 		return admin;
+	}
+	
+	public Administrator adminIdSearch(int id) {
+		Optional<Administrator> admin = admindao.findById(id);
+		if(!admin.isPresent()) {
+			return null;
+		}
+		return admin.get();
 	}
 	
 	public String adminChangePassword(String email, String password, String newPassword) {
