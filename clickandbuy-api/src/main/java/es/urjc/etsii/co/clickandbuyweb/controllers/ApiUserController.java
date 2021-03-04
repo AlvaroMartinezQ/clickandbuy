@@ -15,7 +15,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
+public class ApiUserController {
 	@Autowired
 	private UserService userservice;
 	

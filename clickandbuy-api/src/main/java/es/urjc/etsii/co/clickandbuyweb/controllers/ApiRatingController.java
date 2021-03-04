@@ -15,7 +15,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.RatingService;
 
 @RestController
 @RequestMapping("/api/rating")
-public class RatingController {
+public class ApiRatingController {
 	@Autowired
 	private RatingService ratingservice;
 

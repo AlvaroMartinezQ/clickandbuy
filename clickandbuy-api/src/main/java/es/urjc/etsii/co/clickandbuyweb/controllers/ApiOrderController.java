@@ -14,7 +14,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 
 @RestController
 @RequestMapping("/api/order")
-public class OrderController {
+public class ApiOrderController {
 	@Autowired
 	private OrderService orderservice;
 
