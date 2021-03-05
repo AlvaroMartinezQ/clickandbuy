@@ -182,6 +182,9 @@ Si iniciamos la aplicación a través de Eclipse, esta será desplegada y accesi
 
 * Página de error: <url -> cualquiera que no exista, por ejemplo: 127.0.0.1:8080/no_funciono>. Esta página es una redirección de /error cuando ocurre un fallo en el servidor, ya sea un error 403, 500, 400... También se ha ocultado información sensible respectiva al servidor de que sea imprimida por pantalla en el navegador. 
 
+<img src="/statics/navimgs/error.JPG" alt="error">
+
+
 <!-- ROADMAP -->
 ## Mapa de trabajo
 
