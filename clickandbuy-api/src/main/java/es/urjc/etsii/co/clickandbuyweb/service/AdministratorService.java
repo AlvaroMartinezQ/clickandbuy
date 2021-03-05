@@ -20,6 +20,14 @@ public class AdministratorService {
 	}
 	
 	public String newAdmin(String email, String password, String realname, String name, int phone, String charge) {
+		Administrator replicate = admindao.findByAdmin_email(email);
+		if(replicate!=null) {
+			return "status: this administrator already exist";
+		}
+		replicate = admindao.findByAdmin_realname(realname);
+		if(replicate!=null) {
+			return "status: this administrator already exist";
+		}
 		Administrator admin = new Administrator();
 		admin.setAdmin_email(email);
 		admin.setAdmin_password(password);
@@ -71,6 +79,14 @@ public class AdministratorService {
 			return null;
 		}
 		return admin;
+	}
+	
+	public Administrator adminIdSearch(int id) {
+		Optional<Administrator> admin = admindao.findById(id);
+		if(!admin.isPresent()) {
+			return null;
+		}
+		return admin.get();
 	}
 	
 	public String adminChangePassword(String email, String password, String newPassword) {
@@ -185,6 +201,41 @@ public class AdministratorService {
 		admin.setAdmin_charge(newCharge);
 		admindao.save(admin);
 		return "status: "+adminEmail+" charge has changed";	
+	}
+	
+	public Administrator adminUpdate(String email, String realname, String name, String phone, String charge, String is_active, String is_superuser) {
+		Administrator admin = admindao.findByAdmin_email(email);
+		if(!realname.isBlank()) {
+			admin.setAdmin_realname(realname);
+		}
+		if(!name.isBlank()) {
+			admin.setAdmin_name(name);
+		}
+		if(!phone.isBlank()) {
+			admin.setAdmin_phone(Integer.parseInt(phone));
+		}
+		if(!charge.isBlank()) {
+			admin.setAdmin_charge(charge);
+		}
+		if(!name.isBlank()) {
+			admin.setAdmin_name(name);
+		}
+		if(!is_active.isBlank()) {
+			if(Integer.parseInt(is_active)>0) {
+				admin.setIs_active(true);
+			} else {
+				admin.setIs_active(false);
+			}
+		}
+		if(!is_superuser.isBlank()) {
+			if(Integer.parseInt(is_superuser)>0) {
+				admin.setIs_superuser(true);
+			} else {
+				admin.setIs_superuser(false);
+			}
+		}
+		admindao.save(admin);
+		return admin;
 	}
 	
 

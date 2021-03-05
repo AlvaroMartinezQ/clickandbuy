@@ -261,10 +261,8 @@ public class UserService {
 		return u;
 	}
 	
-	public User dataUpdate(String email, String user_name, String user_realname, int  user_phone, int  user_bankaccount, String user_address, int is_active, int is_supplier) {
-		System.out.println(email + " " + user_name + " " +  user_realname + " " +  user_phone + " " +  user_bankaccount + " " +  user_address + " " +  is_active + " " +  is_supplier);
+	public User dataUpdate(String email, String user_name, String user_realname, String  user_phone, String  user_bankaccount, String user_address, String is_active, String is_supplier) {
 		User u = userdao.findByUser_email(email);
-		System.out.println(u);
 		if(u==null) {
 			return null;
 		}
@@ -274,26 +272,33 @@ public class UserService {
 		if(!user_realname.equals("")) {
 			u.setUser_realname(user_realname);
 		}
-		if(user_phone != 0) {
-			u.setUser_phone(user_phone);
+		if(!user_phone.equals("")) {
+			int tphone = Integer.parseInt(user_phone);
+			u.setUser_phone(tphone);
 		}
-		if(user_bankaccount != 0) {
-			u.setUser_bankaccount(user_bankaccount);
+		if(!user_bankaccount.equals("")) {
+			int tbankacc = Integer.parseInt(user_bankaccount);
+			u.setUser_bankaccount(tbankacc);
 		}
 		if(!user_address.equals("")) {
 			u.setUser_address(user_address);
 		}
-		if(is_active>0) {
-			u.setIs_active(true);
-		} else {
-			u.setIs_active(false);
+		if(!is_active.equals("")) {
+			int tactive = Integer.parseInt(is_active);
+			if(tactive>0) {
+				u.setIs_active(true);
+			} else {
+				u.setIs_active(false);
+			}
 		}
-		if(is_supplier>0) {
-			u.setIs_supplier(true);
-		} else {
-			u.setIs_supplier(false);
+		if(!is_supplier.equals("")) {
+			int tsupplier = Integer.parseInt(is_supplier);
+			if(tsupplier>0) {
+				u.setIs_supplier(true);
+			} else {
+				u.setIs_supplier(false);
+			}
 		}
-		System.out.println(u);
 		userdao.save(u);
 		return u;
 	}
