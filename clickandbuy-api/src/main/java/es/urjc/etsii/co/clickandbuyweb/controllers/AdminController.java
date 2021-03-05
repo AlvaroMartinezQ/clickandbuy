@@ -38,16 +38,17 @@ public class AdminController {
 	}
 	
 	@PostMapping("/webcreateaccountadmin")
-	public ModelAndView webcreateaccountadmin(Model model,  @RequestParam(required=true) String email, @RequestParam(required=true) String admin_realname, @RequestParam(required=true) String admin_name, @RequestParam(required=true) String admin_charge, @RequestParam(required=true) int admin_phone,  @RequestParam(required=true) String password, @RequestParam(required=true) String passwordconfirmation) {
-		if(email.equals("")||password.equals("")||passwordconfirmation.equals("")||admin_realname.equals("")||admin_name.equals("")||admin_charge.equals("")) {
-			model.addAttribute("bad_fields", true);
+	public ModelAndView webcreateaccountadmin(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String admin_realname, @RequestParam(required=true) String admin_name, @RequestParam(required=true) String admin_charge, @RequestParam(required=true) String admin_phone,  @RequestParam(required=true) String password, @RequestParam(required=true) String passwordconfirmation) {
+		if(email.equals("")||password.equals("")||passwordconfirmation.equals("")||admin_realname.equals("")||admin_name.equals("")||admin_charge.equals("")||admin_phone.equals("")) {
+			model.addAttribute("fill_fields", true);
 			return new ModelAndView("/admins/adminsNew");
 		}
 		if(!password.equals(passwordconfirmation)) {
 			model.addAttribute("bad_fields", true);
 			return new ModelAndView("/admins/adminsNew");
 		}
-		String status = adminservice.newAdmin(email, password, admin_realname, admin_name, admin_phone, admin_charge);
+		int phone = Integer.parseInt(admin_phone);
+		String status = adminservice.newAdmin(email, password, admin_realname, admin_name, phone, admin_charge);
 		if(status.equals("status: this administrator already exist")) {
 			model.addAttribute("email_taken", true);
 			return new ModelAndView("/admins/adminsNew");
