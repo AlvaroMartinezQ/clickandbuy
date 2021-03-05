@@ -34,7 +34,7 @@
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<label>Teléfono</label>
-				        <input name="admin_phone" class="form-control" placeholder="123456" type="number" value="123456">
+				        <input name="admin_phone" class="form-control" placeholder="123456" type="text">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
 				    	<!-- <a class="float-right" href="#">Forgot?</a>  -->
@@ -60,6 +60,12 @@
 				{{#bad_fields}}
 					<p class="text-left" style="color:red;">Los datos no coinciden</p>
 				{{/bad_fields}}
+				{{#fill_fields}}
+					<p class="text-left" style="color:red;">Por favor, rellene todos los datos</p>
+				{{/fill_fields}}
+				{{#bad_charge}}
+					<p class="text-left" style="color:red;">Los cargos disponibles son: Manager, Técnico o Staff</p>
+				{{/bad_charge}}
 				{{#email_taken}}
 					<p class="text-left" style="color:red;">Ya existe un administrador con ese email. Seleccione uno nuevo.</p>
 				{{/email_taken}}

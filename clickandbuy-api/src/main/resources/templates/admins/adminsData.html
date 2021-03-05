@@ -17,7 +17,7 @@
 			{{#admin}}
 			<div class="card">
 				<article class="card-body">
-				<h4 class="card-title mb-4 mt-1">Admin</h4>
+				<h4 class="card-title mb-4 mt-1">Administrador</h4>
 				<form action="/admins/data/admin-update" method="post">
 					<div class="form-group">
 				        <input type="hidden" class="form-control" name="email" value="{{admin_email}}" />
@@ -27,17 +27,9 @@
 				    	<label>Email</label>
 				        <input name="" class="form-control" placeholder="{{admin_email}}" readonly>
 				    </div> <!-- form-group// -->
+
 				    <div class="form-group">
-				    	<label>Nombre del administrador</label>
-				    	{{#admin_name}}
-				        	<input name="admin_name" class="form-control" placeholder="{{admin_name}}">
-				    	{{/admin_name}}
-				    	{{^admin_name}}
-				    		<input name="admin_name" class="form-control" placeholder="">
-				    	{{/admin_name}}
-				    </div> <!-- form-group// -->
-				    <div class="form-group">
-				    	<label>Nombre real</label>
+				    	<label>Nombre</label>
 				    	{{#admin_realname}}
 				        	<input name="admin_realname" class="form-control" placeholder="{{admin_realname}}">
 				        {{/admin_realname}}
@@ -54,17 +46,35 @@
 				        	<input name="admin_charge" class="form-control" placeholder="">
 				        {{/admin_charge}}
 				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Alias en la web</label>
+				    	{{#admin_name}}
+				        	<input name="admin_name" class="form-control" placeholder="{{admin_name}}">
+				    	{{/admin_name}}
+				    	{{^admin_name}}
+				    		<input name="admin_name" class="form-control" placeholder="">
+				    	{{/admin_name}}
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Teléfono</label>
+				    	{{#admin_phone}}
+				        	<input name="admin_phone" class="form-control" placeholder="{{admin_phone}}">
+				    	{{/admin_phone}}
+				    	{{^admin_phone}}
+				    		<input name="admin_phone" class="form-control" placeholder="">
+				    	{{/admin_phone}}
+				    </div> <!-- form-group// -->
 				    <br>
 				    {{#last_login}}
 				    <div class="last-login">
 				    	<label>Último login</label>
-				        <input name="user_lastlogin" placeholder="{{last_login}}" readonly>
+				        <input name="admin_lastlogin" placeholder="{{last_login}}" readonly>
 				    </div> <!-- form-group// -->
 				    {{/last_login}}
 				    <br>
 				    <div><p>Un valor mayor de 0 cambiará el atributo a true, un valor menor o igual a 0 cambiará el atributo a false.</p></div>
 				    <div class="form-group">
-				    	<label>Usuario activo</label>
+				    	<label>Administrador confirmado</label>
 				        <input name="is_active" class="form-control" placeholder="{{is_active}}">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
@@ -76,6 +86,10 @@
 				        <button type="submit" class="btn btn-primary btn-block"> Actualizar administrador </button>
 				    </div> <!-- form-group// -->                                                           
 				</form>
+				<br>
+				{{#bad_charge}}
+					<p class="text-left" style="color:red;">Los cargos disponibles son: Manager, Técnico o Staff</p>
+				{{/bad_charge}}
 				<br>
 			</article>
 		</div> <!-- card.// -->
