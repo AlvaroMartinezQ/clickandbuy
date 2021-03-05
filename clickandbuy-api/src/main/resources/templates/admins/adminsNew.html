@@ -63,6 +63,9 @@
 				{{#fill_fields}}
 					<p class="text-left" style="color:red;">Por favor, rellene todos los datos</p>
 				{{/fill_fields}}
+				{{#bad_charge}}
+					<p class="text-left" style="color:red;">Los cargos disponibles son: Manager, Técnico o Staff</p>
+				{{/bad_charge}}
 				{{#email_taken}}
 					<p class="text-left" style="color:red;">Ya existe un administrador con ese email. Seleccione uno nuevo.</p>
 				{{/email_taken}}
