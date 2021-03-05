@@ -27,17 +27,9 @@
 				    	<label>Email</label>
 				        <input name="" class="form-control" placeholder="{{admin_email}}" readonly>
 				    </div> <!-- form-group// -->
+
 				    <div class="form-group">
-				    	<label>Nombre del administrador</label>
-				    	{{#admin_name}}
-				        	<input name="admin_name" class="form-control" placeholder="{{admin_name}}">
-				    	{{/admin_name}}
-				    	{{^admin_name}}
-				    		<input name="admin_name" class="form-control" placeholder="">
-				    	{{/admin_name}}
-				    </div> <!-- form-group// -->
-				    <div class="form-group">
-				    	<label>Nombre real</label>
+				    	<label>Nombre</label>
 				    	{{#admin_realname}}
 				        	<input name="admin_realname" class="form-control" placeholder="{{admin_realname}}">
 				        {{/admin_realname}}
@@ -53,6 +45,15 @@
 				        {{^admin_charge}}
 				        	<input name="admin_charge" class="form-control" placeholder="">
 				        {{/admin_charge}}
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Alias en la web</label>
+				    	{{#admin_name}}
+				        	<input name="admin_name" class="form-control" placeholder="{{admin_name}}">
+				    	{{/admin_name}}
+				    	{{^admin_name}}
+				    		<input name="admin_name" class="form-control" placeholder="">
+				    	{{/admin_name}}
 				    </div> <!-- form-group// -->
 				    <br>
 				    {{#last_login}}
