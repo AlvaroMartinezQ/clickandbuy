@@ -22,6 +22,11 @@ public class MainController {
 	@Autowired
 	private UserService userservice;
 	
+	@GetMapping("/")
+	public ModelAndView home(Model model) {
+		return new ModelAndView("home");
+	}
+	
 	@GetMapping("/prouctView")
 	public ModelAndView getOrders(Model model) {
 		model.addAttribute("products", productservice.getProducts());
@@ -29,11 +34,6 @@ public class MainController {
 			model.addAttribute("is_logged", false);
 		}
 		return new ModelAndView("mainView");
-	}
-
-	@GetMapping("/")
-	public ModelAndView home(Model model) {
-		return new ModelAndView("home");
 	}
 	
 	@GetMapping("/login")
