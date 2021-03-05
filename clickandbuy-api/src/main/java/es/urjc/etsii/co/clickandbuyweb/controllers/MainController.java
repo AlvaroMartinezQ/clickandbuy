@@ -168,15 +168,14 @@ public class MainController {
 	public ModelAndView userDataUpdate(@RequestParam(required=true) String email, 
 										@RequestParam(required=false) String user_name,
 										@RequestParam(required=false) String user_realname,
-										@RequestParam(required=false) int  user_phone,
-										@RequestParam(required=false) int  user_bankaccount,
+										@RequestParam(required=false) String  user_phone,
+										@RequestParam(required=false) String  user_bankaccount,
 										@RequestParam(required=false) String user_address,
-										@RequestParam(required=false) int is_active,
-										@RequestParam(required=false) int is_supplier,
+										@RequestParam(required=false) String is_active,
+										@RequestParam(required=false) String is_supplier,
 										Model model) {
-		System.out.println(email);
 		User u = userservice.dataUpdate(email, user_name, user_realname, user_phone, user_bankaccount, user_address, is_active, is_supplier);
-		System.out.println(u);
+		model.addAttribute("updated", true);
 		model.addAttribute("user", u);
 		return new ModelAndView("/users/userData");
 	}
