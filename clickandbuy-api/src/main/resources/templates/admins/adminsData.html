@@ -55,17 +55,26 @@
 				    		<input name="admin_name" class="form-control" placeholder="">
 				    	{{/admin_name}}
 				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Teléfono</label>
+				    	{{#admin_phone}}
+				        	<input name="admin_phone" class="form-control" placeholder="{{admin_phone}}">
+				    	{{/admin_phone}}
+				    	{{^admin_phone}}
+				    		<input name="admin_phone" class="form-control" placeholder="">
+				    	{{/admin_phone}}
+				    </div> <!-- form-group// -->
 				    <br>
 				    {{#last_login}}
 				    <div class="last-login">
 				    	<label>Último login</label>
-				        <input name="user_lastlogin" placeholder="{{last_login}}" readonly>
+				        <input name="admin_lastlogin" placeholder="{{last_login}}" readonly>
 				    </div> <!-- form-group// -->
 				    {{/last_login}}
 				    <br>
 				    <div><p>Un valor mayor de 0 cambiará el atributo a true, un valor menor o igual a 0 cambiará el atributo a false.</p></div>
 				    <div class="form-group">
-				    	<label>Usuario activo</label>
+				    	<label>Administrador confirmado</label>
 				        <input name="is_active" class="form-control" placeholder="{{is_active}}">
 				    </div> <!-- form-group// -->
 				    <div class="form-group">
