@@ -77,8 +77,18 @@ public class ApiProductController {
 	}
 	
 	@GetMapping("/set-active")
-	public String SetActive(@RequestParam(required=true)String name) {
+	public String setActive(@RequestParam(required=true)String name) {
 		return productservice.setActive(name);
+	}
+	
+	@GetMapping("/set-stock")
+	public String setStock(@RequestParam(required=true)String name) {
+		return productservice.setStock(name);
+	}
+	
+	@GetMapping("/unset-stock")
+	public String unSetStock(@RequestParam(required=true)String name) {
+		return productservice.unSetStock(name);
 	}
 	
 }
