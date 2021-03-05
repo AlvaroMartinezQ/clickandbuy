@@ -110,6 +110,13 @@ public class AdminController {
 	
 	@PostMapping("/admins/data/admin-update")
 	public ModelAndView adminDataUpdate(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String admin_realname, @RequestParam(required=true) String admin_name, @RequestParam(required=true) String admin_phone, @RequestParam(required=true) String admin_charge, @RequestParam(required=true) String is_active, @RequestParam(required=true) String is_superuser) {
+		if(!admin_charge.equals("Manager") &&!admin_charge.equals("Técnico") && !admin_charge.equals("Staff")) {
+			model.addAttribute("bad_charge",true);
+			Administrator admin = adminservice.adminEmailSearch(email);
+			model.addAttribute("admin",admin);
+			return new ModelAndView("/admins/adminsData");
+		}
+		
 		Administrator admin = adminservice.adminUpdate(email, admin_realname, admin_name, admin_phone, admin_charge, is_active, is_superuser);
 		model.addAttribute("updated",true);
 		model.addAttribute("admin",admin);
