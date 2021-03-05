@@ -170,15 +170,15 @@ Si iniciamos la aplicación a través de Eclipse, esta será desplegada y accesi
 
 * Página de inicio: <url -> 127.0.0.1:8080/> home del sitio web. En esta pantalla somos capaces de registrarnos, continuar al sitio web sin acceder a ninguna cuenta, o acceder al sitio web con, por el momento, una simulación de login. Los botones siguientes recuperar datos e informar de una incidencia están aún por aprobar su desarrollo y uso.
 
-<img src="/statics/navimgs/home.jpg" alt="home">
+<img src="/statics/navimgs/home.JPG" alt="home">
 
 * Página de crear cuenta: <url -> 127.0.0.1:8080/createaccount>. En esta página y a través de un formulario podemos registrarnos como usuarios en la web.
 
-<img src="/statics/navimgs/createAcc.jpg" alt="newacc">
+<img src="/statics/navimgs/createAcc.JPG" alt="newacc">
 
 * Página de inicio de sesión: <url -> 127.0.0.1:8080/login>. En esta página y a través de un formulario podemos entrar en la web y, por el momento, simular un login.
 
-<img src="/statics/navimgs/login.jpg" alt="login">
+<img src="/statics/navimgs/login.JPG" alt="login">
 
 * Página de error: <url -> cualquiera que no exista, por ejemplo: 127.0.0.1:8080/no_funciono>. Esta página es una redirección de /error cuando ocurre un fallo en el servidor, ya sea un error 403, 500, 400... También se ha ocultado información sensible respectiva al servidor de que sea imprimida por pantalla en el navegador. 
 
