@@ -47,6 +47,10 @@ public class AdminController {
 			model.addAttribute("bad_fields", true);
 			return new ModelAndView("/admins/adminsNew");
 		}
+		if(!admin_charge.equals("Manager") &&!admin_charge.equals("Técnico") && !admin_charge.equals("Staff")) {
+			model.addAttribute("bad_charge",true);
+			return new ModelAndView("/admins/adminsNew");
+		}
 		int phone = Integer.parseInt(admin_phone);
 		String status = adminservice.newAdmin(email, password, admin_realname, admin_name, phone, admin_charge);
 		if(status.equals("status: this administrator already exist")) {
@@ -105,9 +109,11 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admins/data/admin-update")
-	public String adminDataUpdate(@RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String realname, @RequestParam(defaultValue="defaultName") String name, @RequestParam(defaultValue="123456") int phone, @RequestParam(required=true) String charge) {
-		//TODO
-		return "Working on it";
+	public ModelAndView adminDataUpdate(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String admin_realname, @RequestParam(required=true) String admin_name, @RequestParam(required=true) String admin_phone, @RequestParam(required=true) String admin_charge, @RequestParam(required=true) String is_active, @RequestParam(required=true) String is_superuser) {
+		Administrator admin = adminservice.adminUpdate(email, admin_realname, admin_name, admin_phone, admin_charge, is_active, is_superuser);
+		model.addAttribute("updated",true);
+		model.addAttribute("admin",admin);
+		return new ModelAndView("/admins/adminsData");
 	}
 	
 }
