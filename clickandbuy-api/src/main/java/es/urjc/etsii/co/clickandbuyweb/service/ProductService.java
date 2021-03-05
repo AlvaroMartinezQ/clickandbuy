@@ -25,12 +25,12 @@ public class ProductService {
 		return p;
 	}
 	
-	public Product productNameSearchL(String product_name) {
-		Product p = productdao.findByProduct_nameL(product_name);
-		if(p == null) {
+	public List <Product> productNameSearchL(String product_name) {
+		List <Product> list = productdao.findByProduct_nameL(product_name);
+		if(list == null) {
 			return null;
 		}
-		return p;
+		return list;
 	}
 	
 	public int productStock(String product_name){
@@ -89,6 +89,26 @@ public class ProductService {
 		List<Product> list = productdao.findPriceBe(price1, price2);
 		if(list.isEmpty())return null;
 		return list;
-	}	
+	}
+	
+	public String unSetActive(String name) {
+		Product p = productdao.findByProduct_name(name);
+		if(p == null) {
+			return "status: not found";
+		}
+		p.setIs_active(false);
+		productdao.save(p);
+		return "status: product is not active";
+	}
+	
+	public String setActive(String name) {
+		Product p = productdao.findByProduct_name(name);
+		if(p == null) {
+			return "status: not found";
+		}
+		p.setIs_active(true);
+		productdao.save(p);
+		return "status: product is not active";
+	}
 	
 }

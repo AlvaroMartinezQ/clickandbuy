@@ -15,9 +15,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	public Product findByProduct_name(String name);
 	
 	@Query("SELECT p FROM Product p WHERE p.product_name LIKE :name%")
-	public Product findByProduct_nameL(String name);
+	public List<Product> findByProduct_nameL(String name);
 	
-	@Query("SELECT p FROM Product p WHERE p.has_stock=TRUE")
+	@Query("SELECT p FROM Product p WHERE p.has_stock=TRUE AND p.is_active=TRUE")
 	public List<Product> findAllStock();
 	
 	@Query("SELECT p FROM Product p WHERE p.is_active=TRUE")

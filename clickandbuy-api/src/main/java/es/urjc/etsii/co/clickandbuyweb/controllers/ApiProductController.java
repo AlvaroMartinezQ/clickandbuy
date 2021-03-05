@@ -23,7 +23,7 @@ public class ApiProductController {
 	}
 	
 	@GetMapping("/search")
-	public Product productNameSearch(@RequestParam(required=true) String name) {
+	public List<Product> productNameSearch(@RequestParam(required=true) String name) {
 		return productservice.productNameSearchL(name);
 	}
 	
@@ -43,7 +43,7 @@ public class ApiProductController {
 	}
 	
 	@GetMapping("/stock")
-	public boolean productStockName(String name){
+	public boolean productStockName(@RequestParam(required=true) String name){
 		return productservice.productHasStockName(name);
 	}
 	
@@ -53,22 +53,32 @@ public class ApiProductController {
 	}
 	
 	@GetMapping("/active")
-	public boolean productIsActiveName(String name){
+	public boolean productIsActiveName(@RequestParam(required=true)String name){
 		return productservice.productIsActiveName(name);
 	}
 	
 	@GetMapping("/pricele")
-	public List<Product> productsPriceLe(double price){
+	public List<Product> productsPriceLe(@RequestParam(required=true)double price){
 		return productservice.productsPriceLe(price);
 	}
 	@GetMapping("/pricege")
-	public List<Product> productsPricGe(double price){
+	public List<Product> productsPricGe(@RequestParam(required=true)double price){
 		return productservice.productsPriceGe(price);
 	}
 	
 	@GetMapping("/pricebe")
-	public List<Product> productsPricBe(double price1, double price2){
+	public List<Product> productsPricBe(@RequestParam(required=true) double price1, @RequestParam(required=true) double price2){
 		return productservice.productsPriceBe(price1, price2);
+	}
+	
+	@GetMapping("/unset-active")
+	public String unSetActive(@RequestParam(required=true)String name) {
+		return productservice.unSetActive(name);
+	}
+	
+	@GetMapping("/set-active")
+	public String SetActive(@RequestParam(required=true)String name) {
+		return productservice.setActive(name);
 	}
 	
 }
