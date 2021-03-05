@@ -43,10 +43,58 @@ public class UserImageService {
 		}
 	}
 	
+	public int upload(MultipartFile image, String email) throws Exception {
+		User u = userdao.findByUser_email(email);
+		if(u==null) {
+			// Error code for a non existing user
+			return -1;
+		}
+		int usid = u.getId();
+		UserImage existingImage = userimagedao.findByUser_id(usid);
+		if(existingImage==null) {
+			UserImage uploadImage = new UserImage();
+			uploadImage.setContent(image.getBytes());
+			uploadImage.setUsid(usid);
+			return userimagedao.save(uploadImage).getId();
+		} else {
+			existingImage.setContent(image.getBytes());
+			return userimagedao.save(existingImage).getId();
+		}
+	}
+	
 	public Resource getImage(int usid) {
 		// Server status response shouldn't be shown by the browser - sensitive info
 		byte[] image = userimagedao.findbyid(usid).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getContent();
 		return new ByteArrayResource(image);
+	}
+	
+	public boolean hasPhoto(int usid) {
+		// Server status response shouldn't be shown by the browser - sensitive info
+		byte[] image = null;
+		try {
+			image = userimagedao.findbyid(usid).orElseThrow(() -> new Exception("User has no photo")).getContent();
+		} catch (Exception e) {
+			
+		}
+		if(image!=null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Resource getImage(String email) {
+		// Server status response shouldn't be shown by the browser - sensitive info
+		User u = userdao.findByUser_email(email);
+		if(u==null) {
+			return null;
+		}
+		int usid = u.getId();
+		byte[] image = userimagedao.findby_id(usid);
+		if(image==null) {
+			return null;
+		}
+		return new ByteArrayResource(image);
+		//return new ByteArrayResource(image);
 	}
 	
 }
