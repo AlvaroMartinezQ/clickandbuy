@@ -51,20 +51,26 @@ public class ProductControllerView {
 	@GetMapping("/pricele")
 	public ModelAndView productPriceLe(@RequestParam(required=true, defaultValue="-1") String price, Model model) {
 		model.addAttribute("products", productservice.productsPriceLe(Double.parseDouble(price)));
-		return new ModelAndView("/products/");	
+		return new ModelAndView("/products/productList");	
 	}
 	
 	@GetMapping("/pricege")
 	public ModelAndView productPriceGe(@RequestParam(required=true, defaultValue="10000000") String price, Model model) {
 		model.addAttribute("products", productservice.productsPriceGe(Double.parseDouble(price)));
-		return new ModelAndView("/products/");	
+		return new ModelAndView("/products/productList");	
 	}
 	
 	@GetMapping("/pricebe")
 	public ModelAndView productPriceBe(@RequestParam(required=true, defaultValue="-10") String price1, @RequestParam(required=true, defaultValue="-1") String price2, Model model) {
 		model.addAttribute("products", productservice.productsPriceBe(Double.parseDouble(price1),Double.parseDouble(price2)));
-		return new ModelAndView("/products/");	
+		return new ModelAndView("/products/productList");	
 	}
+	
+	@GetMapping("/price")
+	public ModelAndView productPrice() {
+		return new ModelAndView("/products/productPrice");
+	}
+	
 	
 
 }
