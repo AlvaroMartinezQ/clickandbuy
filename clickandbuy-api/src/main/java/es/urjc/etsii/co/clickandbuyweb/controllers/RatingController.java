@@ -48,6 +48,10 @@ public class RatingController {
 			model.addAttribute("fill_fields", true);
 			return new ModelAndView("/ratings/ratingsNew");
 		}
+		if(!rate.equals("1")&&!rate.equals("2")&&!rate.equals("3")&&!rate.equals("4")&&!rate.equals("5")) {
+			model.addAttribute("bad_rate",true);
+			return new ModelAndView("/ratings/ratingsNew");
+		}
 		User user = userservice.userEmailSearch(email);
 		if(user==null) {
 			model.addAttribute("bad_fields", true);
