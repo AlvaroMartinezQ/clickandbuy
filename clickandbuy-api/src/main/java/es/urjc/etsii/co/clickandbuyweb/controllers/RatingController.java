@@ -65,4 +65,10 @@ public class RatingController {
 		ratingservice.newRating(comment,Integer.parseInt(rate) , user.getId(), product.getId());
 		return new ModelAndView("/ratings/ratingsList");
 	}
+	
+	@GetMapping("/ratings/search")
+	public ModelAndView ratingSort(Model model) {
+		model.addAttribute("ratinglist",ratingservice.getRatingsSorted());
+		return new ModelAndView("/ratings/ratingsList");
+	}
 }
