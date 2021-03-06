@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<title>Generar rating</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	</head>
+		
+	<body>
+		{{>header}}
+		<div class="container">
+			<div class="card">
+				<article class="card-body">
+				<h4 class="card-title mb-4 mt-1">Genera un rating</h4>
+				<form action="/ratings/createrating" method="post">
+				    <div class="form-group">
+				    	<label>Email</label>
+				        <input name="email" class="form-control" placeholder="Email" type="email">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Contraseña</label>
+				        <input name="password" class="form-control" placeholder="******" type="password">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Comentario</label>
+				        <input name="comment" class="form-control" placeholder="Describa su experiencia con el producto" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Puntuación</label>
+				        <input name="rate" class="form-control" placeholder="1, 2, 3, 4 o 5" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Producto</label>
+				        <input name="productName" class="form-control" placeholder="Nombre del producto: PC gamer..." type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group"> 
+				    <div class="checkbox">
+				    <!-- <label> <input type="checkbox"> Save password </label> -->
+				    </div> <!-- checkbox .// -->
+				    </div> <!-- form-group// -->
+				    <br>
+				    <div class="form-group">
+				        <button type="submit" class="btn btn-primary btn-block">Enviar rating</button>
+				    </div> <!-- form-group// -->                                                           
+				</form>
+				<br>
+				{{#bad_fields}}
+					<p class="text-left" style="color:red;">Los datos no coinciden</p>
+				{{/bad_fields}}
+				{{#bad_rate}}
+					<p class="text-left" style="color:red;">La puntuación va de 1 a 5</p>
+				{{/bad_rate}}
+				{{#fill_fields}}
+					<p class="text-left" style="color:red;">Por favor, rellene todos los datos</p>
+				{{/fill_fields}}
+				</article>
+				</div> <!-- card.// -->
+		</div>
+		<br>
+		{{>footer}}
+	</body>
+</html>

@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +73,17 @@ public class RatingService {
 			return "status: administrator not found";
 		ratingdao.deleteById(id);
 		return "status: rating deleted";
+	}
+	
+	public List<Rating> getRatingsSorted() {
+		List<Rating> ratingSorted = ratingdao.findAll();
+		Collections.sort(ratingSorted, new Comparator<Rating>() {
+			public int compare(Rating r1, Rating r2) {
+				return r1.getRate()>r2.getRate()? -1: (r1.getRate()==r2.getRate()? 0: 1);
+			}
+		});
+		
+		return ratingSorted;
 	}
 	
 	

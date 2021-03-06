@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Página gestión de ratings</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </head>
+
+    <body>
+		{{>header}}
+	    <br>
+	    <div class="row">
+	    	<h2 style="text-align:center;">Rating de la web</h2>
+	    </div>
+	    <br>
+	    <div class="row">
+	    	<div class="col-4"></div>
+	    	<div class="col-1">
+	    		<a type="button" href="/ratings/all" class="btn btn-primary">Ver todos</a>
+	    	</div>
+	    	<div class="col-2">
+	    		<a type="button" href="/ratings/search" class="btn btn-warning">Mejores productos</a>
+	    	</div>
+	    	<div class="col-2">
+	    		<a type="button" href="/ratings/add" class="btn btn-success">Hacer rating</a>
+	    	</div>
+	    	<div class="col-2"></div>
+	    </div>
+	    <br>
+	    {{>footer}}
+</html>
