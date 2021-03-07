@@ -14,63 +14,63 @@ import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 @RestController
 @RequestMapping("/products")
 public class ProductControllerView {
-	
+
 	@Autowired
 	private ProductService productservice;
-	@Autowired
 	private UserService userservice;
-	
+
 	@GetMapping("/main")
 	public ModelAndView userMain(Model model) {
 		return new ModelAndView("/products/productsMain");
 	}
-	
+
 	@GetMapping("/all")
 	public ModelAndView productsAll(Model model) {
 		model.addAttribute("products", productservice.getProducts());
 		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/stock")
 	public ModelAndView productsStock(Model model) {
-		model.addAttribute("products",productservice.productHasStock());
-		return new ModelAndView("/products/productList");	
+		model.addAttribute("products", productservice.productHasStock());
+		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/search")
 	public ModelAndView productSearch() {
-		return new ModelAndView("/products/productSearch");	
+		return new ModelAndView("/products/productSearch");
 	}
-	
+
 	@GetMapping("/searchdata")
-	public ModelAndView productSearchData(@RequestParam(required=true, defaultValue="@") String name, Model model) {
-		model.addAttribute("products",productservice.productNameSearchL(name));
-		return new ModelAndView("/products/productList");	
+	public ModelAndView productSearchData(@RequestParam(required = true, defaultValue = "@") String name, Model model) {
+		model.addAttribute("products", productservice.productNameSearchL(name));
+		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/pricele")
-	public ModelAndView productPriceLe(@RequestParam(required=true, defaultValue="-1") String price, Model model) {
+	public ModelAndView productPriceLe(@RequestParam(required = true, defaultValue = "-1") String price, Model model) {
 		model.addAttribute("products", productservice.productsPriceLe(Double.parseDouble(price)));
-		return new ModelAndView("/products/productList");	
+		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/pricege")
-	public ModelAndView productPriceGe(@RequestParam(required=true, defaultValue="10000000") String price, Model model) {
+	public ModelAndView productPriceGe(@RequestParam(required = true, defaultValue = "10000000") String price,
+			Model model) {
 		model.addAttribute("products", productservice.productsPriceGe(Double.parseDouble(price)));
-		return new ModelAndView("/products/productList");	
+		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/pricebe")
-	public ModelAndView productPriceBe(@RequestParam(required=true, defaultValue="-10") String price1, @RequestParam(required=true, defaultValue="-1") String price2, Model model) {
-		model.addAttribute("products", productservice.productsPriceBe(Double.parseDouble(price1),Double.parseDouble(price2)));
-		return new ModelAndView("/products/productList");	
+	public ModelAndView productPriceBe(@RequestParam(required = true, defaultValue = "-10") String price1,
+			@RequestParam(required = true, defaultValue = "-1") String price2, Model model) {
+		model.addAttribute("products",
+				productservice.productsPriceBe(Double.parseDouble(price1), Double.parseDouble(price2)));
+		return new ModelAndView("/products/productList");
 	}
-	
+
 	@GetMapping("/price")
 	public ModelAndView productPrice() {
 		return new ModelAndView("/products/productPrice");
 	}
-	
-	
 
 }
