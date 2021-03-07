@@ -42,6 +42,13 @@ public class RatingController {
 		return new ModelAndView("/ratings/ratingsNew");
 	}
 	
+	@GetMapping("/ratings/delete")
+	public ModelAndView ratingDelete(Model model, @RequestParam(required=true) int id, @RequestParam(required=true) int usid) {
+		ratingservice.deleteRating(id, usid);
+		model.addAttribute("ratinglist",ratingservice.getRatings());
+		return new ModelAndView("/ratings/ratingsList");
+	}
+	
 	@PostMapping("/ratings/createrating")
 	public ModelAndView ratingCreate(Model model, @RequestParam(required=true) String comment, @RequestParam(required=true) String rate, @RequestParam(required=true) String email, @RequestParam(required=true) String password, @RequestParam(required=true) String productName) {
 		if(email.equals("")||password.equals("")||comment.equals("")||rate.equals("")||productName.equals("")) {
