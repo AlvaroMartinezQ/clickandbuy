@@ -2,6 +2,7 @@ package es.urjc.etsii.co.clickandbuyweb.service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,40 +36,48 @@ public class OrderService {
 		return orderdao.findbyorder_id(order_id);
 	}
 
-	public Order makeOrder(int usid, int prodid, int orderid) {
+	public String makeOrder(int usid, int prodid, int orderid) {
 		// Search if the given user and product exist
 		User u = userdao.findById(usid).orElseThrow();
-		Product p = productdao.findById(prodid).orElseThrow();
-		if (orderid == 0) {
-			// New order
-			Order neworder = new Order();
-			Date d = new Date();
-			neworder.setDate(d);
-			List<Order> orderlist = orderdao.findAll();
-			int id = 0;
-			for (Order o : orderlist) {
-				if (o.getOrder_id() > id) {
-					id = o.getOrder_id();
+		Product p = productdao.findByProductId(prodid);
+		if (p == null)
+			return "status: product not available";
+		if (p.isHas_stock()) {
+			if (orderid == 0) {
+				// New order
+				checkStock(p);
+				Order neworder = new Order();
+				Date d = new Date();
+				neworder.setDate(d);
+				List<Order> orderlist = orderdao.findAll();
+				int id = 0;
+				for (Order o : orderlist) {
+					if (o.getOrder_id() > id) {
+						id = o.getOrder_id();
+					}
 				}
+				id++;
+				neworder.setOrder_id(id);
+				neworder.setState("POR APROBAR");
+				neworder.setOwner(u);
+				neworder.setProduct(p);
+				orderdao.save(neworder);
+				return "status: new order created successfully";
+			} else {
+				List<Order> list = orderdao.findbyorder_id(orderid);
+				if (list.isEmpty() || list.get(0).getOwner().getId() != usid)
+					return "status: non-existent order";
+				Order existingorder = new Order();
+				checkStock(p);
+				existingorder.setOrder_id(orderid);
+				existingorder.setOwner(u);
+				existingorder.setProduct(p);
+				orderdao.save(existingorder);
+				return "status: successfully modified order";
 			}
-			id++;
-			neworder.setOrder_id(id);
-			neworder.setState("POR APROBAR");
-			neworder.setOwner(u);
-			neworder.setProduct(p);
-			orderdao.save(neworder);
-			return neworder;
-		} else {
-			// Existing order
-			Order existingorder = new Order();
-			Date d = new Date();
-			existingorder.setDate(d);
-			existingorder.setOrder_id(orderid);
-			existingorder.setOwner(u);
-			existingorder.setProduct(p);
-			orderdao.save(existingorder);
-			return existingorder;
+
 		}
+		return "status: product out of stock";
 	}
 
 	public String changeStatus(int order_id, int status_id) {
@@ -116,5 +125,25 @@ public class OrderService {
 			finalprice += o.getProduct().getProduct_price();
 		}
 		return Double.toString(finalprice);
+	}
+
+	public List<Product> productOrder(int order_id) {
+		List<Order> list = orderdao.findbyorder_id(order_id);
+		if (list.isEmpty()) {
+			return null;
+		}
+		List<Product> listproduct = new ArrayList<Product>();
+		for (Order p : list) {
+			listproduct.add(p.getProduct());
+		}
+
+		return listproduct;
+	}
+
+	private void checkStock(Product p) {
+		p.setProduct_stock(p.getProduct_stock() - 1);
+		if (p.getProduct_stock() <= 0)
+			p.setHas_stock(false);
+		productdao.save(p);
 	}
 }
