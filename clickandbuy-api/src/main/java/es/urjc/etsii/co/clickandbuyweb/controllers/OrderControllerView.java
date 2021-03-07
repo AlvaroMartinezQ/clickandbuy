@@ -30,8 +30,8 @@ public class OrderControllerView {
 	}
 
 	@GetMapping("/all")
-	public ModelAndView orderAll(Model model1, Model model2) {
-		model1.addAttribute("orderlist", orderservice.getOrders());
+	public ModelAndView orderAll(Model model) {
+		model.addAttribute("orderlist", orderservice.getOrders());
 		// model2.addAttribute("productlist",orderservice.p);
 		return new ModelAndView("/orders/orderList");
 	}
@@ -43,11 +43,11 @@ public class OrderControllerView {
 	}
 
 	@PostMapping("/cmorderdata")
-	public ModelAndView cmOrder(@RequestParam(required = true) String usid,
-			@RequestParam(required = true) String prodid,
-			@RequestParam(required = true) String orderid, Model model) {
-		String cad = orderservice.makeOrder(Integer.parseInt(usid), Integer.parseInt(prodid), Integer.parseInt(orderid));
-		model.addAttribute(cad);
+	public ModelAndView cmOrder(@RequestParam(required = true) String user_id,
+			@RequestParam(required = true) String prod_id,
+			@RequestParam(required = true) String order_id, Model model) {
+		String cad = orderservice.makeOrder(Integer.parseInt(user_id), Integer.parseInt(prod_id), Integer.parseInt(order_id));
+		model.addAttribute("result", cad);
 		model.addAttribute("updated",true);
 		return new ModelAndView("/orders/cmOrder");
 	}
