@@ -1,6 +1,5 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class ApiOrderController {
 	// POST methods
 
 	@PostMapping("/make")
-	public Order makeOrder(@RequestParam(required = true) int usid, @RequestParam(required = true) int prodid,
+	public String makeOrder(@RequestParam(required = true) int usid, @RequestParam(required = true) int prodid,
 			@RequestParam(required = true) int orderid) {
 		return orderservice.makeOrder(usid, prodid, orderid);
 	}
