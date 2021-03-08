@@ -176,7 +176,7 @@ public class MainController {
 										Model model) {
 		User u = userservice.dataUpdate(email, user_name, user_realname, user_phone, user_bankaccount, user_address, is_active, is_supplier);
 		model.addAttribute("updated", true);
-		model.addAttribute("cad", u);
+		model.addAttribute("user", u);
 		return new ModelAndView("/users/userData");
 	}
 }
