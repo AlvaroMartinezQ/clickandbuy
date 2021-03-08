@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
-import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
 @RequestMapping("/products")
@@ -17,7 +16,6 @@ public class ProductControllerView {
 
 	@Autowired
 	private ProductService productservice;
-	private UserService userservice;
 
 	@GetMapping("/main")
 	public ModelAndView userMain(Model model) {
