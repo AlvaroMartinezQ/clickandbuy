@@ -93,7 +93,7 @@ public class OrderControllerView {
 		for(Order o: orderlist) {
 			System.out.println(o);
 		}
-		//model.addAttribute("productlist", productlist);
+		model.addAttribute("price", orderservice.priceOrder(order_id));
 		model.addAttribute("orderlist", orderlist);
 		return new ModelAndView("/orders/orderList");
 	}

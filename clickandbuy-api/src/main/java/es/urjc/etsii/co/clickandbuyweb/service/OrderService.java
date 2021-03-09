@@ -23,8 +23,6 @@ public class OrderService {
 	private UserDAO userdao;
 	@Autowired
 	private ProductDAO productdao;
-	@Autowired
-	private ProductService productservice;
 
 	String[] orderstatus = { "POR APROBAR", "EN PREPARACION", "EN REPARTO", "ENTREGADO", "CANCELADO" };
 
