@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.urjc.etsii.co.clickandbuyweb.models.Order;
+import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 
 @RestController
@@ -28,14 +32,6 @@ public class OrderControllerView {
 		return new ModelAndView("/orders/orderStatus");
 	}
 
-	@GetMapping("/all")
-	public ModelAndView orderAll(Model model) {
-		model.addAttribute("orderlist", orderservice.getOrders());
-		// model2.addAttribute("productlist",orderservice.p);
-		return new ModelAndView("/orders/orderList");
-	}
-
-	// crear y modificar pedido
 	@GetMapping("/cmorder")
 	public ModelAndView cmOrder() {
 		return new ModelAndView("/orders/cmOrder");
@@ -71,7 +67,35 @@ public class OrderControllerView {
 		model.addAttribute("updated", true);
 		model.addAttribute("cad", cad);
 		return new ModelAndView("/orders/deletedProduct");
-
+	}
+	
+	@GetMapping("/search")
+	public ModelAndView search(Model model) {
+		return new ModelAndView("/orders/orderSearch");
+	}
+	
+	@GetMapping("/search-id")
+	public ModelAndView searchId(@RequestParam(required=true, defaultValue="0") String id, Model model) {
+		int order_id=0;
+		try {
+			order_id=Integer.parseInt(id);
+		} catch (Exception e) {
+			System.out.println("bad params");
+			model.addAttribute("error", true);
+			return new ModelAndView("/orders/orderSearch");
+		}
+		List<Order> orderlist=orderservice.getOrder(order_id);
+		if(orderlist==null||orderlist.size()==0) {
+			model.addAttribute("no_result", true);
+			return new ModelAndView("/orders/orderSearch");
+		}
+		//List<Product>productlist=orderservice.getProductList(orderlist);
+		for(Order o: orderlist) {
+			System.out.println(o);
+		}
+		//model.addAttribute("productlist", productlist);
+		model.addAttribute("orderlist", orderlist);
+		return new ModelAndView("/orders/orderList");
 	}
 
 }

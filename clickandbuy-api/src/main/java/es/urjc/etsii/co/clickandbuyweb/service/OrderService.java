@@ -23,6 +23,8 @@ public class OrderService {
 	private UserDAO userdao;
 	@Autowired
 	private ProductDAO productdao;
+	@Autowired
+	private ProductService productservice;
 
 	String[] orderstatus = { "POR APROBAR", "EN PREPARACION", "EN REPARTO", "ENTREGADO", "CANCELADO" };
 
@@ -143,5 +145,13 @@ public class OrderService {
 		if (p.getProduct_stock() <= 0)
 			p.setHas_stock(false);
 		productdao.save(p);
+	}
+	
+	public List<Product> getProductList(List<Order> orderlist) {
+		List<Product> productlist = new ArrayList<>();
+		for(Order o: orderlist) {
+			productlist.add(o.getProduct());
+		}
+		return productlist;
 	}
 }
