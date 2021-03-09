@@ -88,10 +88,6 @@ public class OrderControllerView {
 			model.addAttribute("no_result", true);
 			return new ModelAndView("/orders/orderSearch");
 		}
-		//List<Product>productlist=orderservice.getProductList(orderlist);
-		for(Order o: orderlist) {
-			System.out.println(o);
-		}
 		model.addAttribute("price", orderservice.priceOrder(order_id));
 		model.addAttribute("orderlist", orderlist);
 		return new ModelAndView("/orders/orderList");
