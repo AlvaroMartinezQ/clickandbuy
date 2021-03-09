@@ -1,7 +1,10 @@
 spring.datasource.url=jdbc:mysql://localhost:3306/clickandbuy?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-spring.datasource.username=root
-spring.datasource.password=pass
+# set up your database config here
+spring.datasource.username=
+spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
+
+# Some of the next values are optional and recommended for debug
 
 #spring.jpa.show-sql = true
 

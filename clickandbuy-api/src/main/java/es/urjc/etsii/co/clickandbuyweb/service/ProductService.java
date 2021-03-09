@@ -6,12 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
+import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
+import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productdao;
+	@Autowired
+	private UserService us;
+	@Autowired
+	private UserDAO udao;
 
 	public List<Product> getProducts() {
 
@@ -145,5 +151,50 @@ public class ProductService {
 		p.setHas_stock(false);
 		productdao.save(p);
 		return "status: out-of-stock product";
+	}
+	
+	
+	public int productUpload(String email, String product_name, String product_desc, String product_price, String product_stock) {
+		if(email.equals("")||product_name.equals("")) {
+			// bad fields
+			return -1;
+		}
+		User u = us.userEmailSearch(email);
+		if(u==null) {
+			// bad user
+			return -2;
+		}
+		if(!u.isIs_supplier()) {
+			// Not supplier
+			return -4;
+		}
+		Product p = new Product();
+		p.setProduct_name(product_name);
+		p.setProduct_description(product_desc);
+		int price=0, stock=0;
+		try {
+			price=Integer.parseInt(product_price);
+			stock=Integer.parseInt(product_stock);
+		} catch (Exception e) {
+			System.out.println("Non valid price or stock fields");
+			return -3;
+		}
+		if(price<0) {
+			price=0;
+		}
+		p.setProduct_price(price);
+		if(stock<0) {
+			stock=0;
+			p.setHas_stock(false);
+		} else {
+			p.setHas_stock(true);
+			p.setProduct_stock(stock);
+			p.setIs_active(true);
+		}
+		List<Product> list = u.getUser_product_list();
+		list.add(p);
+		u.setUser_product_list(list);
+		udao.save(u);
+		return 0;
 	}
 }

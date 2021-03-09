@@ -147,6 +147,7 @@ Pasos:
 	```sh
 	Modificar el fichero application.properties con tu usuario y contraseña.
 	```
+	NOTA: renombrar el fichero application.properties.template a application.properties en la carpeta donde este se encuentra 
 	
 * En caso de usar Docker:
   ```sh

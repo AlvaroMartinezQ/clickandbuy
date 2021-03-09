@@ -300,6 +300,7 @@ public class UserService {
 			}
 		}
 		userdao.save(u);
+		System.out.println(u);
 		return u;
 	}
 	

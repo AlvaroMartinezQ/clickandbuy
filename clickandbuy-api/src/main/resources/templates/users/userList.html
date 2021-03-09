@@ -37,10 +37,11 @@
 										<p class="card-text">Contacto: {{user_phone}}</p>
 										{{/user_phone}}
 									</div>
-									<p style="text-align:center;">Imagen de usuario</p>
-									<img src="/api/image/retreive?usid={{id}}" class="card-img-top">
+									<p style="text-align:center;">Imagen de usuario: 
+										<img src="/api/image/retreive?usid={{id}}" class="card-img-top" style="align-items:center;height:150px;width:150px;">
+									</p>
 									<br>
-									<a href="http://127.0.0.1:8080/users/delete?usid={{id}}" type="button" class="btn btn-danger">Eliminar</a>
+									<a href="/users/delete?usid={{id}}" type="button" class="btn btn-danger">Eliminar</a>
 									<br>
 								</div>
 								<div class="col-1"></div>
