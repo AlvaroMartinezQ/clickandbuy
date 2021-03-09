@@ -1,54 +1,64 @@
 <!doctype html>
 <html lang="es">
-    <head>
-    	<title>Página control de productos</title>
-    	<!-- Required meta tags -->
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- BOOTSTRAP CSS only -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    </head>
+<head>
+<title>Página control de productos</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BOOTSTRAP CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+</head>
 
-    <body>
-		{{>header}}
-	    <br>
-	    <div class="row">
-	    	<h2 style="text-align:center;">Productos de la web</h2>
-	    </div>
-	    <br>
-	    <div class="row">
-	    	<div class="col-2"></div>
-	    	<div class="col-2">
-	    		<a type="button" href="/products/all" class="btn btn-primary">Ver todos</a>
-	    	</div>
-	    	<div class="col-2">
-	    		<a type="button" href="/products/search" class="btn btn-primary">Buscar un producto</a>
-	    	</div>
-	    	<div class="col-2">
-	    		<a type="button" href="/products/stock" class="btn btn-primary">Productos en stock</a>
-	    	</div>
-	    	<div class="col-2">
-	    		<a type="button" href="/products/price" class="btn btn-primary">Filtrar por precio</a>
-	    	</div>
-	    	<div class="col-2"></div>
-	    </div>
-	    <br>
-	    <div class="row">
-	    	<div class="col-2"></div>
-	    	<div class="col-2">
-	    		<a type="button" href="/products/upload" class="btn btn-primary">Subir un producto</a>
-	    	</div>
-	    	<div class="col-2">
-	    		
-	    	</div>
-	    	<div class="col-2">
-	    		
-	    	</div>
-	    	<div class="col-2">
-	    		
-	    	</div>
-	    	<div class="col-2"></div>
-	    </div>
-	    <br>
-	    {{>footer}}
+<body>
+	{{>header}}
+	<br>
+	<div class="row">
+		<h2 style="text-align: center;">Productos de la web</h2>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-2"></div>
+		<div class="col-2">
+			<a type="button" href="/products/all" class="btn btn-primary">Ver
+				todos</a>
+		</div>
+		<div class="col-2">
+			<a type="button" href="/products/search" class="btn btn-primary">Buscar
+				un producto</a>
+		</div>
+		<div class="col-2">
+			<a type="button" href="/products/stock" class="btn btn-primary">Productos
+				en stock</a>
+		</div>
+		<div class="col-2">
+			<a type="button" href="/products/price" class="btn btn-primary">Filtrar
+				por precio</a>
+		</div>
+		<div class="col-2"></div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-2"></div>
+		<div class="col-2">
+			<a type="button" href="/products/upload" class="btn btn-primary">Subir
+				un producto</a>
+		</div>
+		<div class="col-2">
+			<a type="button" href="/products/modify" class="btn btn-warning">Modificar
+				un producto</a>
+		</div>
+		<div class="col-2">
+			<a type="button" href="/products/deleteform" class="btn btn-danger">Eliminar
+				un producto</a>
+		</div>
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+	</div>
+	<br> {{>footer}}
 </html>

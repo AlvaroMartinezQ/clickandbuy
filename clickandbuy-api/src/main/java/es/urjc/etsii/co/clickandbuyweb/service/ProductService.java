@@ -152,39 +152,39 @@ public class ProductService {
 		productdao.save(p);
 		return "status: out-of-stock product";
 	}
-	
-	
-	public int productUpload(String email, String product_name, String product_desc, String product_price, String product_stock) {
-		if(email.equals("")||product_name.equals("")) {
+
+	public int productUpload(String email, String product_name, String product_desc, String product_price,
+			String product_stock) {
+		if (email.equals("") || product_name.equals("")) {
 			// bad fields
 			return -1;
 		}
 		User u = us.userEmailSearch(email);
-		if(u==null) {
+		if (u == null) {
 			// bad user
 			return -2;
 		}
-		if(!u.isIs_supplier()) {
+		if (!u.isIs_supplier()) {
 			// Not supplier
 			return -4;
 		}
 		Product p = new Product();
 		p.setProduct_name(product_name);
 		p.setProduct_description(product_desc);
-		int price=0, stock=0;
+		int price = 0, stock = 0;
 		try {
-			price=Integer.parseInt(product_price);
-			stock=Integer.parseInt(product_stock);
+			price = Integer.parseInt(product_price);
+			stock = Integer.parseInt(product_stock);
 		} catch (Exception e) {
 			System.out.println("Non valid price or stock fields");
 			return -3;
 		}
-		if(price<0) {
-			price=0;
+		if (price < 0) {
+			price = 0;
 		}
 		p.setProduct_price(price);
-		if(stock<0) {
-			stock=0;
+		if (stock < 0) {
+			stock = 0;
 			p.setHas_stock(false);
 		} else {
 			p.setHas_stock(true);
@@ -196,5 +196,39 @@ public class ProductService {
 		u.setUser_product_list(list);
 		udao.save(u);
 		return 0;
+	}
+
+	public String dataUpdate(String product_name, String product_description, String product_price,
+			String product_stock, String is_active) {
+
+		Product p = productdao.findByProduct_name(product_name);
+		if (p == null) {
+			return "status: product not found";
+		}
+		if (!product_description.equals("")) {
+			p.setProduct_description(product_description);
+		}
+		if (!product_price.equals("")) {
+			p.setProduct_price(Double.parseDouble(product_price));
+		}
+		if (!product_stock.equals("")) {
+			p.setProduct_stock(Integer.parseInt(product_stock));
+			if (p.getProduct_stock() > 0) {
+				p.setHas_stock(true);
+			} else {
+				p.setHas_stock(false);
+			}
+		}
+
+		if (!is_active.equals("")) {
+			int tactive = Integer.parseInt(is_active);
+			if (tactive > 0) {
+				p.setIs_active(true);
+			} else {
+				p.setIs_active(false);
+			}
+		}
+		productdao.save(p);
+		return "status: product successfully updated";
 	}
 }

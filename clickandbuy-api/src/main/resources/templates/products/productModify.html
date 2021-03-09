@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Modificar producto</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BOOTSTRAP CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	{{>header}}
+	<div class="container">
+		<div class="col-1">
+			<a href="/products/main" type="button" class="btn btn-outline-info">Volver</a>
+		</div>
+		<br>
+		<div class="card">
+			<article class="card-body">
+				<h4 class="card-title mb-4 mt-1">Modificar producto</h4>
+				<form action="/products/update" method="post">
+					<div class="form-group">
+						<label>Nombre</label> <input name="product_name"
+							class="form-control" placeholder="nombre">
+					</div>
+					<div class="form-group">
+						<label>Descripción</label> <input name="product_description"
+							class="form-control" placeholder="descripción">
+					</div>
+					<div class="form-group">
+						<label>Precio</label> <input name="product_price"
+							class="form-control" placeholder="precio">
+					</div>
+					<div class="form-group">
+						<label>Unidades en stock</label> <input name="product_stock"
+							class="form-control" placeholder="stock">
+					</div>
+					<div class="form-group">
+						<br>
+						<p>Un valor mayor de 0 cambiará el atributo a true, un valor
+							menor o igual a 0 cambiará el atributo a false.</p>
+						<label>Activo</label> <input name="is_active" class="form-control"
+							placeholder="0">
+					</div>
+					<br> {{#updated}}
+					<p style="color: green;">{{result}}</p>
+					{{/updated}}
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">
+							Actualizar</button>
+					</div>
+				</form>
+				<br>
+			</article>
+		</div>
+		<br>
+	</div>
+	<br> {{>footer}}
+</body>
+</html>
