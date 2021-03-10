@@ -98,6 +98,9 @@ public class UserService {
 		if(p.getProduct_stock()>0) {
 			p.setHas_stock(true);
 			p.setIs_active(true);
+		} else {
+			p.setHas_stock(false);
+			p.setIs_active(false);
 		}
 		List<Product> productlist = u.getUser_product_list();
 		productlist.add(p);
@@ -300,7 +303,6 @@ public class UserService {
 			}
 		}
 		userdao.save(u);
-		System.out.println(u);
 		return u;
 	}
 	

@@ -231,4 +231,12 @@ public class ProductService {
 		productdao.save(p);
 		return "status: product successfully updated";
 	}
+	
+	public Product searchId (int id) {
+		Product p = productdao.findByProductId(id);
+		if(p==null) {
+			return null;
+		}
+		return p;
+	}
 }

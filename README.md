@@ -94,15 +94,15 @@ Hay 3 roles de administradores principales del sistema, estos son:
 	Esta entidad representa a los pedidos del sistema.
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
- ```
+```
 Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  
- * Rating
- ```sh
+* Rating
+```sh
 	Esta entidad representa a los ratings de los pedidos.
 	* Tendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá una clave foránea al pedido en cuestión.
- ```
+```
 <br />
 Diagramas de la aplicación:
 
@@ -112,7 +112,7 @@ Diagramas de la aplicación:
     <img src="/statics/uml/uml_fase2.jpg" alt="uml">
 </a>
   
-  * Modelo E/R
+* Modelo E/R
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/ModeloER.PNG" alt="modeler">
@@ -124,6 +124,7 @@ Diagramas de la aplicación:
 * [Spring](https://spring.io/)
 * [Docker](https://www.docker.com/)
 * [MySQL](https://www.mysql.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 
 
@@ -180,6 +181,10 @@ Si iniciamos la aplicación a través de Eclipse, esta será desplegada y accesi
 * Página de inicio de sesión: <url -> 127.0.0.1:8080/login>. En esta página y a través de un formulario podemos entrar en la web y, por el momento, simular un login.
 
 <img src="/statics/navimgs/login.JPG" alt="login">
+
+* Página principal de visualización: <url -> 127.0.0.1:8080/productView>. Es esta página se muestran todos los productos a la venta a la vez que una serie de botones de enlaces rápidos que redireccionan a páginas de gestión de la web.
+
+<img src="/statics/navimgs/mainView.JPG" alt="mainview">
 
 * Página de error: <url -> cualquiera que no exista, por ejemplo: 127.0.0.1:8080/no_funciono>. Esta página es una redirección de /error cuando ocurre un fallo en el servidor, ya sea un error 403, 500, 400... También se ha ocultado información sensible respectiva al servidor de que sea imprimida por pantalla en el navegador. 
 

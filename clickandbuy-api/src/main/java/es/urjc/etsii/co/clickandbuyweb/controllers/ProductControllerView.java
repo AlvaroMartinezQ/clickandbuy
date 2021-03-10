@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 

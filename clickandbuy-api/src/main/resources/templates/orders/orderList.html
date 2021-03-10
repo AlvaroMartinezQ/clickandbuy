@@ -1,59 +1,75 @@
 <!doctype html>
 <html lang="es">
-<head>
-<title>Página de usuarios</title>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- BOOTSTRAP CSS only -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-</head>
+	<head>
+		<title>Página de usuarios</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+			
+		<style>
+    	hr {
+		  margin-top: 1rem;
+		  margin-bottom: 1rem;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+    	</style>
+	</head>
 
-<body>
-	{{>header}}
-	<div class="container">
+	<body>
+		{{>header}}
 		<br>
-		<div class="row">
-			<div class="col-1">
-				<a href="/orders/main" type="button" class="btn btn-outline-info">Volver</a>
-			</div>
-			<div class="col-12">
-				<br>
-				<div class="card-group">
-					{{#orderlist.0}} {{#orderlist}}
-					<div class="row">
-						<div class="col-1"></div>
-						<div class="card border-dark mb-3" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">Id: {{order_id}}</h5>
-								{{#date}}
-								<p class="card-text">Fecha: {{date}}</p>
-								{{/date}}
-								{{#estimated_date}}
-								<p class="card-text">F. estimada: {{estimated_date}}</p>
-								{{/estimated_date}}
-								{{#state}}
-								<p class="card-text">Estado: {{state}}</p>
-								{{/state}}
-							</div>
-						</div>
-						<div class="col-1"></div>
-					</div>
-					{{/orderlist}} {{/orderlist.0}} {{^orderlist.0}}
-					<div class="row">
-						<h5 style="text-align: center; color: black">Sin pedidos en
-							la web.</h5>
-					</div>
-					{{/orderlist.0}}
-				</div>
+		<div class="container">
+			<div class="col-1"><a href="/orders/main" type="button" class="btn btn-outline-info">Volver</a></div><br>
+			<div class="card text-center">
+				<div class="card-header">
+	    			Pedido
+	  			</div>
+	  			<div class="card-body">
+	  				<h5 class="card-title">Número de pedido: {{orderlist.0.order_id}}</h5>
+	  				<h6>Fecha de creacion: {{orderlist.0.date}}</h6>
+	  				<hr />
+	  				<h5>Usuario creador</h5>
+	  				<span style="white-space: pre-line">
+	  					Id: {{orderlist.0.owner.id}}
+	  					Correo: {{orderlist.0.owner.user_email}}
+	  				</span>
+	  				{{#orderlist.0.estimated_date}}
+		  				<span style="white-space: pre-line">
+		  					Llegada estimada: {{orderlist.0.estimated_date}}
+		  				</span>
+	  				{{/orderlist.0.estimated_date}}
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Estado del pedido</h5>
+	  				<span style="white-space: pre-line">
+	  					{{orderlist.0.state}}
+	  				</span>
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Productos</h5>
+	  				<span>
+		  				{{#orderlist}}
+				  			<p>&bull;Producto: {{product.product_name}}, precio: {{product.product_price}}$.</p>
+		  				{{/orderlist}}
+	  				</span>
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Importe total</h5>
+	  				<span>
+		  				{{#price}}
+				  			<p>Precio: {{price}}$.</p>
+		  				{{/price}}
+	  				</span>
+	  			</div>
 			</div>
 		</div>
 		<br>
-	</div>
-	{{>footer}}
-</body>
+		{{>footer}}
+	</body>
 </html>

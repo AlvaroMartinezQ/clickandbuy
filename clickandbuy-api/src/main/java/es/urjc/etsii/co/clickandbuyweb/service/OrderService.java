@@ -144,4 +144,12 @@ public class OrderService {
 			p.setHas_stock(false);
 		productdao.save(p);
 	}
+	
+	public List<Product> getProductList(List<Order> orderlist) {
+		List<Product> productlist = new ArrayList<>();
+		for(Order o: orderlist) {
+			productlist.add(o.getProduct());
+		}
+		return productlist;
+	}
 }
