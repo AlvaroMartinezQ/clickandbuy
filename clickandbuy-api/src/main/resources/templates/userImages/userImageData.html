@@ -11,40 +11,46 @@
     
     <body>
     	{{>header}}
-    	<div class="container-fluid">
+    	<div class="container">
     		<div class="row"><div class="col-1"><a href="/image" type="button" class="btn btn-outline-info">Volver</a></div></div>
     		<br>
-    		<div class="card">
-    			<article class="card-body">
-    				{{#no_user}}
-    					<h4 class="card-title mb-4 mt-1">Este usuario no existe.</h4>
-    				{{/no_user}}
-    				{{^no_user}}
-			    		{{#error}}
-			    			<!-- NO IMAGE -->
-			    			<h4 class="card-title mb-4 mt-1">Este usuario ({{email}}) no tiene imagen.</h4>
-			    		{{/error}}
-			    		{{^error}}
-			    			<!-- IMAGE -->
-			    			<h4 class="card-title mb-4 mt-1">Imagen de usuario con correo {{email}}</h4>
-			    			<img alt="" src="/api/image/retreive?usid={{usid}}">
-			    		{{/error}}
-			    		<form action="/image/user/upload" method="post" enctype="multipart/form-data">
-			    			<div class="form-group">
-					        	<input type="hidden" class="form-control" name="email" value="{{email}}" />
-					    	</div>
-			    			<div class="form-group">
-							    <label>Seleccionar imagen nueva</label>
-							    <input name="img" class="form-control" placeholder="" type="file">
-							</div>
-							<br>
-							<div class="form-group">
-							    <button type="submit" class="btn btn-primary btn-block"> Subir imagen </button>
-							</div>
-			    		</form>
-			    	{{/no_user}}
-	    		</article>
-    		</div>
+    		<div class="row">
+    			<div class="col-1"></div>
+    			<div class="col-10">
+		    		<div class="card">
+		    			<article class="card-body">
+		    				{{#no_user}}
+		    					<h4 class="card-title mb-4 mt-1">Este usuario no existe.</h4>
+		    				{{/no_user}}
+		    				{{^no_user}}
+					    		{{#error}}
+					    			<!-- NO IMAGE -->
+					    			<h4 class="card-title mb-4 mt-1">Este usuario ({{email}}) no tiene imagen.</h4>
+					    		{{/error}}
+					    		{{^error}}
+					    			<!-- IMAGE -->
+					    			<h4 class="card-title mb-4 mt-1">Imagen de usuario con correo {{email}}</h4>
+					    			<img alt="" src="/api/image/retreive?usid={{usid}}">
+					    		{{/error}}
+					    		<form action="/image/user/upload" method="post" enctype="multipart/form-data">
+					    			<div class="form-group">
+							        	<input type="hidden" class="form-control" name="email" value="{{email}}" />
+							    	</div>
+					    			<div class="form-group">
+									    <label>Seleccionar imagen nueva</label>
+									    <input name="img" class="form-control" placeholder="" type="file">
+									</div>
+									<br>
+									<div class="form-group">
+									    <button type="submit" class="btn btn-primary btn-block"> Subir imagen </button>
+									</div>
+					    		</form>
+					    	{{/no_user}}
+			    		</article>
+		    		</div>
+		    	</div>
+		    	<div class="col-1"></div>
+	    	</div>
     	</div>
     	{{>footer}}
     </body>

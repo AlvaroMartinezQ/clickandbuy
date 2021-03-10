@@ -74,7 +74,8 @@ public class RatingController {
 			return new ModelAndView("/ratings/ratingsNew");
 		}
 		ratingservice.newRating(comment,Integer.parseInt(rate) , user.getId(), product.getId());
-		return new ModelAndView("/ratings/ratingsList");
+		model.addAttribute("created",true);
+		return new ModelAndView("/ratings/ratingsNew");
 	}
 	
 	@GetMapping("/ratings/search")

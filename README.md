@@ -81,9 +81,15 @@ Entidades:
  ```
  
 Hay 3 roles de administradores principales del sistema, estos son:
-* Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, dar de baja usuarios y productos, modificar valores en las tablas...
-* Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
-* Staff: este usuario será responsable de controlar los productos.
+<p>
+:arrow_forward: Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, 	dar de baja usuarios y productos, modificar valores en las tablas...
+</p>
+<p>
+:arrow_forward: Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
+</p>
+<p>
+:arrow_forward: Staff: este usuario será responsable de controlar los productos.
+</p>
 
 * Producto
 ```sh
@@ -94,15 +100,15 @@ Hay 3 roles de administradores principales del sistema, estos son:
 	Esta entidad representa a los pedidos del sistema.
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
- ```
+```
 Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
  
- * Rating
- ```sh
+* Rating
+```sh
 	Esta entidad representa a los ratings de los pedidos.
 	* Tendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá una clave foránea al pedido en cuestión.
- ```
+```
 <br />
 Diagramas de la aplicación:
 
@@ -112,10 +118,54 @@ Diagramas de la aplicación:
     <img src="/statics/uml/uml_fase2.jpg" alt="uml">
 </a>
   
-  * Modelo E/R
+* Modelo E/R
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/ModeloER.PNG" alt="modeler">
+</a>
+
+Pantallas de navegación:
+
+* /
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/1p.JPG" alt="pantalla1">
+</a>
+
+* /productView
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/2p.JPG" alt="pantalla2">
+</a>
+
+* /users
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/3p.JPG" alt="pantalla3">
+</a>
+
+* /admins
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/4p.JPG" alt="pantalla4">
+</a>
+
+* /products/main
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/5p.JPG" alt="pantalla5">
+</a>
+
+* /orders/main
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/6p.JPG" alt="pantalla6">
+</a>
+
+* /ratings
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/7p.JPG" alt="pantalla7">
 </a>
   
 ### Tecnologías
@@ -124,13 +174,14 @@ Diagramas de la aplicación:
 * [Spring](https://spring.io/)
 * [Docker](https://www.docker.com/)
 * [MySQL](https://www.mysql.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 
 
 <!-- EMPECEMOS -->
 ## Empecemos
 
-Para descargar una copia local del proyecto sigue los siguientes pasos
+Para descargar una copia local del proyecto sigue los siguientes pasos :rocket:
 
 ### Pre requisitios
 
@@ -160,7 +211,7 @@ Pasos:
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. TODO
+2. En caso de usar Eclipse para lanzar el proyecto, abrir este en el IDE y lanzar la aplicación como una aplicación Spring.
 
 
 
@@ -181,6 +232,10 @@ Si iniciamos la aplicación a través de Eclipse, esta será desplegada y accesi
 
 <img src="/statics/navimgs/login.JPG" alt="login">
 
+* Página principal de visualización: <url -> 127.0.0.1:8080/productView>. Es esta página se muestran todos los productos a la venta a la vez que una serie de botones de enlaces rápidos que redireccionan a páginas de gestión de la web.
+
+<img src="/statics/navimgs/mainView.JPG" alt="mainview">
+
 * Página de error: <url -> cualquiera que no exista, por ejemplo: 127.0.0.1:8080/no_funciono>. Esta página es una redirección de /error cuando ocurre un fallo en el servidor, ya sea un error 403, 500, 400... También se ha ocultado información sensible respectiva al servidor de que sea imprimida por pantalla en el navegador. 
 
 <img src="/statics/navimgs/error.JPG" alt="error">
@@ -194,7 +249,7 @@ TODO: mapa de desarrollo (semanas, hitos, metas...)
 <!-- CONTRIBUCIONES -->
 ## Contribuciones
 
-Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
+Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**. :octocat:
 
 Todo el nuevo código debe de subirse a una nueva rama, ¡no subir cambios directamente a la rama <strong>master</strong>!
 

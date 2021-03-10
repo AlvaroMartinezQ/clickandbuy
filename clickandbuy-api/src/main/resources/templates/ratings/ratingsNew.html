@@ -12,6 +12,8 @@
 	<body>
 		{{>header}}
 		<div class="container">
+		<div class="col-1"><a href="/ratings" type="button" class="btn btn-outline-info">Volver</a></div>
+		<br>
 			<div class="card">
 				<article class="card-body">
 				<h4 class="card-title mb-4 mt-1">Genera un rating</h4>
@@ -56,6 +58,9 @@
 				{{#fill_fields}}
 					<p class="text-left" style="color:red;">Por favor, rellene todos los datos</p>
 				{{/fill_fields}}
+				{{#created}}
+					<p class="text-left" style="color:green;">Rating creado correctamente</p>
+				{{/created}}
 				</article>
 				</div> <!-- card.// -->
 		</div>
