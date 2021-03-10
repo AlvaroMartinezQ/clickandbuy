@@ -181,7 +181,7 @@ Pantallas de navegación:
 <!-- EMPECEMOS -->
 ## Empecemos
 
-Para descargar una copia local del proyecto sigue los siguientes pasos
+Para descargar una copia local del proyecto sigue los siguientes pasos :rocket:
 
 ### Pre requisitios
 
@@ -211,7 +211,7 @@ Pasos:
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. TODO
+2. En caso de usar Eclipse para lanzar el proyecto, abrir este en el IDE y lanzar la aplicación como una aplicación Spring.
 
 
 
@@ -249,7 +249,7 @@ TODO: mapa de desarrollo (semanas, hitos, metas...)
 <!-- CONTRIBUCIONES -->
 ## Contribuciones
 
-Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
+Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**. :octocat:
 
 Todo el nuevo código debe de subirse a una nueva rama, ¡no subir cambios directamente a la rama <strong>master</strong>!
 
