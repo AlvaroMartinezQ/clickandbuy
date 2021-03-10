@@ -117,6 +117,10 @@ Diagramas de la aplicación:
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/ModeloER.PNG" alt="modeler">
 </a>
+
+Pantallas de navegaci�n:
+
+*Main
   
 ### Tecnologías
 
