@@ -120,43 +120,43 @@ Diagramas de la aplicación:
 
 Pantallas de navegación:
 
-*/
+* /
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/1p.JPG" alt="pantalla1">
 </a>
 
-*/productView
+* /productView
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/2p.JPG" alt="pantalla2">
 </a>
 
-*/users
+* /users
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/3p.JPG" alt="pantalla3">
 </a>
 
-*/admins
+* /admins
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/4p.JPG" alt="pantalla4">
 </a>
 
-*/products/main
+* /products/main
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/5p.JPG" alt="pantalla5">
 </a>
 
-*/orders/main
+* /orders/main
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/6p.JPG" alt="pantalla6">
 </a>
 
-*/ratings
+* /ratings
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/pantallas/7p.JPG" alt="pantalla7">
