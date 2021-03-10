@@ -81,9 +81,15 @@ Entidades:
  ```
  
 Hay 3 roles de administradores principales del sistema, estos son:
-* Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, dar de baja usuarios y productos, modificar valores en las tablas...
-* Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
-* Staff: este usuario será responsable de controlar los productos.
+<p>
+:arrow_forward: Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, 	dar de baja usuarios y productos, modificar valores en las tablas...
+</p>
+<p>
+:arrow_forward: Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
+</p>
+<p>
+:arrow_forward: Staff: este usuario será responsable de controlar los productos.
+</p>
 
 * Producto
 ```sh
@@ -175,7 +181,7 @@ Pantallas de navegación:
 <!-- EMPECEMOS -->
 ## Empecemos
 
-Para descargar una copia local del proyecto sigue los siguientes pasos
+Para descargar una copia local del proyecto sigue los siguientes pasos :rocket:
 
 ### Pre requisitios
 
@@ -205,7 +211,7 @@ Pasos:
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. TODO
+2. En caso de usar Eclipse para lanzar el proyecto, abrir este en el IDE y lanzar la aplicación como una aplicación Spring.
 
 
 
@@ -243,7 +249,7 @@ TODO: mapa de desarrollo (semanas, hitos, metas...)
 <!-- CONTRIBUCIONES -->
 ## Contribuciones
 
-Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**.
+Las contribuciones a este proyecto están cerradas ya que es un desarrollo de aplicación para un proyecto final de la universidad. Sin embargo, **el reporte de algún bug se apreciará por los desarrolladores**. :octocat:
 
 Todo el nuevo código debe de subirse a una nueva rama, ¡no subir cambios directamente a la rama <strong>master</strong>!
 
