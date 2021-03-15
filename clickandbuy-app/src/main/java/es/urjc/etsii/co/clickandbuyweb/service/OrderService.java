@@ -34,7 +34,7 @@ public class OrderService {
         return odao.findAll();
     }
 	
-	public ResponseEntity<Order> create(String idus, String idprod, String quantity, String order) {
+	public Order create(String idus, String idprod, String quantity, String order) {
 		int productid=Integer.parseInt(idprod);
 		Product p = pservice.getProduct(productid);
 		if(p==null) {
@@ -64,7 +64,8 @@ public class OrderService {
 				// Should only be 1 iteration
 				opdao.save(orderproduct);
 			}
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return neworder;
+			// return new ResponseEntity<>(HttpStatus.CREATED);
 		} else {
 			// Order id is type long
 			Long order_id=Long.parseLong(order);
@@ -80,7 +81,8 @@ public class OrderService {
 			// Save the OrderProduct entity FIRST!!!
 			opdao.save(orderproduct);
 			odao.save(existingOrder);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return existingOrder;
+			// return new ResponseEntity<>(HttpStatus.CREATED);
 		}
 	}
 }

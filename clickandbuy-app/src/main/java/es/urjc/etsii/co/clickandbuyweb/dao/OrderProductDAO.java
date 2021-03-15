@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import es.urjc.etsii.co.clickandbuyweb.models.OrderProduct;
 
 @Repository
-public interface OrderProductDAO extends JpaRepository<OrderProduct, Integer>{
+public interface OrderProductDAO extends JpaRepository<OrderProduct, Long>{
 
 }

@@ -13,3 +13,4 @@ logging.level.org.springframework.web=DEBUG
 #spring.h2.console.enabled=TRUE
 spring.mustache.suffix:.html
 server.error.path=/src/main/resources/templates/error
+spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false
