@@ -39,9 +39,10 @@ public class ProductService {
 		if(u==null) {
 			return null;
 		}
-		int pPrice=0, pStock=0;
+		int pStock=0;
+		double pPrice=0;
 		// Exception for impossible parses ??
-		pPrice=Integer.parseInt(price);
+		pPrice=Double.parseDouble(price);
 		pStock=Integer.parseInt(stock);
 		Product p=new Product();
 		p.setName(name);
