@@ -23,7 +23,7 @@ public class OrderApiController {
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<Order> create(@RequestParam String idus, @RequestParam String idprod, @RequestParam String quantity, @RequestParam(required=false,defaultValue="0") String order) {
+	public Order create(@RequestParam String idus, @RequestParam String idprod, @RequestParam String quantity, @RequestParam(required=false,defaultValue="0") String order) {
 		return oservice.create(idus, idprod, quantity, order);
 	}
 }

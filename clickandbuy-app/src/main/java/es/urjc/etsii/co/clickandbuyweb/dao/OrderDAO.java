@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import es.urjc.etsii.co.clickandbuyweb.models.Order;
 
 @Repository
-public interface OrderDAO extends JpaRepository<Order,Integer>{
+public interface OrderDAO extends JpaRepository<Order, Long>{
 	
 	@Query("SELECT o FROM Order o WHERE o.id=:order_id")
 	public Order findByOrderId(@Param("order_id") Long order_id);
