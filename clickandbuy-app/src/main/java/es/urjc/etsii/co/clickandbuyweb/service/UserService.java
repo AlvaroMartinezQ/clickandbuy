@@ -9,12 +9,19 @@ import org.springframework.stereotype.Service;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
+import es.urjc.etsii.co.clickandbuyweb.validator.SingIn;
+import es.urjc.etsii.co.clickandbuyweb.validator.SingUp;
+import mailer.WelcomeEmail;
 
 @Service
 @Transactional
 public class UserService {
 	@Autowired
 	private UserDAO udao;
+	@Autowired
+	private SingUp singUpValidator;
+	@Autowired
+	private SingIn singInValidator;
 	
 	public Iterable<User> getUsers(){
 		return udao.findAll();
@@ -69,5 +76,37 @@ public class UserService {
 		}
 		udao.delete(u);
 		return "status: deleted";
+	}
+	
+	public int singUpUser(String email, String emailConfirmation, String password, String passwordConfirmation) {
+		int status=singUpValidator.validateUser(email, emailConfirmation, password, passwordConfirmation);
+		if(status!=0) {
+			return status;
+		}
+		User u=new User();
+		u.setEmail(email);
+		u.setPassword(password);
+		u.setIs_active(true);
+		udao.save(u);
+		sendWelcomeMail(u.getEmail());
+		return status;
+	}
+	
+	private void sendWelcomeMail (String emailTo) {
+		System.out.println("sending email");
+		WelcomeEmail we=new WelcomeEmail(emailTo);
+		we.setUp();
+	}
+	
+	public boolean singInUser(String email, String password) {
+		if(email.equals("")||password.equals("")) {
+			return false;
+		}
+		User u=udao.findByUserEmail(email);
+		if(u==null) {
+			return false;
+		}
+		boolean success=singInValidator.validateLogin(u, password);
+		return success;
 	}
 }
