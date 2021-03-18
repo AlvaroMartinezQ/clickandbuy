@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//http.authorizeRequests().antMatchers("/user/singInForm").permitAll();
 		
 		// Error end-point
-		http.authorizeRequests().antMatchers("/error").permitAll();
+		//http.authorizeRequests().antMatchers("/error").permitAll();
 		
 		/*
 		 * Static resources

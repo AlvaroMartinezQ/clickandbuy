@@ -18,7 +18,7 @@ public class MarketPlaceController {
 	@Autowired
 	private ProductService ps;
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
 		model.addAttribute("products", ps.getAll());
 		return new ModelAndView("/marketplace/productList");

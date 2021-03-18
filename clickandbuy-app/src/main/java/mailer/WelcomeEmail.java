@@ -18,7 +18,6 @@ public class WelcomeEmail {
     // Recipient's email ID needs to be mentioned
     private String to="";
     
-    // Assuming you are sending email through relay.jangosmtp.net
     private final String host = "smtp.gmail.com";
     
     public WelcomeEmail(String email) {
@@ -36,7 +35,7 @@ public class WelcomeEmail {
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
         
-        // Get the Session object.// and pass username and password
+        // Get the Session object.// and pass user name and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(from, password);

@@ -59,15 +59,6 @@ public class UserController {
 	@PostMapping("/singInForm")
 	public String singInForm(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String password, HttpServletRequest request) {
 		System.out.println("Sing in form");
-		/*
-		boolean status=us.singInUser(email, password);
-		if(!status) {
-			System.out.println("bad login");
-			model.addAttribute("badFields", true);
-			return new ModelAndView("user/singIn");
-		}
-		*/
-		//model.addAttribute("products", ps.getAll());
 		return ("singInForm");
 	}
 	

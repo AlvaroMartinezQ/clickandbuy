@@ -88,6 +88,7 @@ public class UserService {
 		u.setPassword(password);
 		u.setIs_active(true);
 		udao.save(u);
+		// Uncomment this line to send an email through gmail smtp
 		sendWelcomeMail(u.getEmail());
 		return status;
 	}
