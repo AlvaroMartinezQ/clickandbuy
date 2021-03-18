@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
@@ -51,6 +54,10 @@ public class UserController {
 		return new ModelAndView("user/singIn");
 	}
 	
+	/*
+	 * SingIp: View and Form
+	 */
+	
 	@GetMapping("/singIn")
 	public ModelAndView singIn(Model model, HttpServletRequest request) {
 		return new ModelAndView("user/singIn");
@@ -62,4 +69,21 @@ public class UserController {
 		return ("singInForm");
 	}
 	
+	@GetMapping("/singInError")
+	public ModelAndView singInError(Model model, HttpServletRequest request) {
+		return new ModelAndView("user/singInError");
+	}
+	
+	/*
+	 * Profile: View and Methods
+	 */
+	
+	@GetMapping("/profile")
+	public ModelAndView profile(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		model.addAttribute("userName", principal.getName());
+		User u=us.getUser(principal.getName());
+		model.addAttribute("user", u);
+		return new ModelAndView("user/profile");
+	}
 }

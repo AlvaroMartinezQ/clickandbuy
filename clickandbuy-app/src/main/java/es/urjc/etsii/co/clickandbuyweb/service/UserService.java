@@ -1,6 +1,8 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +27,10 @@ public class UserService {
 	
 	public Iterable<User> getUsers(){
 		return udao.findAll();
+	}
+	
+	public User getUser(String email) {
+		return udao.findByUserEmail(email);
 	}
 	
 	public String saveUser(String email, String password) {
@@ -87,6 +93,10 @@ public class UserService {
 		u.setEmail(email);
 		u.setPassword(password);
 		u.setIs_active(true);
+		List<String> roles = new ArrayList<>();
+		roles.add("USER");
+		u.setRoles(roles);
+		u.setJoin_date(new Date());
 		udao.save(u);
 		// Uncomment this line to send an email through gmail smtp
 		sendWelcomeMail(u.getEmail());

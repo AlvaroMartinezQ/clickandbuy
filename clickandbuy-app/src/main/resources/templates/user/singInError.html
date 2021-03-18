@@ -13,8 +13,32 @@
     <body>
     	{{>header}}
 		<div class="container">
-			<div class="row"><h5 id="pError">Malas credenciales proporcionadas. Prueba de nuevo</h5></div>
+			<div class="card">
+				<article class="card-body">
+				<h4 class="card-title mb-4 mt-1">Inicio de sesión</h4>
+				{{#userCreated}}
+					<p class="text-left" style="color:green;">Su usuario se ha creado correctamente. Inicie sesión.</p>
+				{{/userCreated}}
+				<form action="/user/singInForm" method="post">
+				    <div class="form-group">
+				    	<label>Email</label>
+				        <input name="email" class="form-control" placeholder="Email" type="email">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Contraseña</label>
+				        <input name="password" class="form-control" placeholder="******" type="password">
+				    </div>
+				    <br>
+				    <div class="form-group">
+				        <button type="submit" class="btn btn-primary btn-block"> Acceder </button>
+				    </div>                                                        
+				</form>
+				<br>
+				<p class="text-left" style="color:red;">Credenciales erróneas</p>
+				</article>
+				</div>
 		</div>
+		<br>
 		{{>footer}}
     </body>
 </html>

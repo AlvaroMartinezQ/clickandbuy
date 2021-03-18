@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class MarketPlaceController {
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
 		model.addAttribute("products", ps.getAll());
+		Principal principal = request.getUserPrincipal();
+		model.addAttribute("userName", principal.getName());
 		return new ModelAndView("/marketplace/productList");
 	}
 	

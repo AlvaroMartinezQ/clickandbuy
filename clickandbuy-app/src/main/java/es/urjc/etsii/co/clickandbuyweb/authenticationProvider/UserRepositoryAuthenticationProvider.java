@@ -25,7 +25,6 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		System.out.println("Auth class: " + authentication);
 		User u=udao.findByUserEmail(authentication.getName());
 		if (u==null) {
 			 throw new BadCredentialsException("No user present with this email");
