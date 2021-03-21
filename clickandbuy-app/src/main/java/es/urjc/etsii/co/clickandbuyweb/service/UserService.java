@@ -13,6 +13,7 @@ import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.validator.SingIn;
 import es.urjc.etsii.co.clickandbuyweb.validator.SingUp;
+import es.urjc.etsii.co.clickandbuyweb.validator.UpdateUser;
 import mailer.WelcomeEmail;
 
 @Service
@@ -24,6 +25,8 @@ public class UserService {
 	private SingUp singUpValidator;
 	@Autowired
 	private SingIn singInValidator;
+	@Autowired
+	private UpdateUser updateUserValidator;
 	
 	public Iterable<User> getUsers(){
 		return udao.findAll();
@@ -98,7 +101,7 @@ public class UserService {
 		u.setRoles(roles);
 		u.setJoin_date(new Date());
 		udao.save(u);
-		// Uncomment this line to send an email through gmail smtp
+		// Uncomment this next line to send an email through gmail smtp
 		sendWelcomeMail(u.getEmail());
 		return status;
 	}
@@ -107,6 +110,12 @@ public class UserService {
 		System.out.println("sending email");
 		WelcomeEmail we=new WelcomeEmail(emailTo);
 		we.setUp();
+	}
+	
+	public void updateLogin(User u) {
+		Date d=new Date();
+		u.setLast_login(d);
+		udao.save(u);
 	}
 	
 	public boolean singInUser(String email, String password) {
@@ -119,5 +128,9 @@ public class UserService {
 		}
 		boolean success=singInValidator.validateLogin(u, password);
 		return success;
+	}
+	
+	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String is_active, String is_supplier) {
+		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier);
 	}
 }

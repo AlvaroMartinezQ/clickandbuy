@@ -81,9 +81,24 @@ public class UserController {
 	@GetMapping("/profile")
 	public ModelAndView profile(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		model.addAttribute("userName", principal.getName());
 		User u=us.getUser(principal.getName());
+		model.addAttribute("userName", u.getEmail());
 		model.addAttribute("user", u);
+		return new ModelAndView("user/profile");
+	}
+	
+	@PostMapping("/profileUpdate")
+	public ModelAndView profileUpdate(Model model, HttpServletRequest request, @RequestParam(required=true) String email,
+										@RequestParam(required=true) String name, @RequestParam(required=true) String realname,
+										@RequestParam(required=true) String phone, @RequestParam(required=true) String bankaccount,
+										@RequestParam(required=true) String address, @RequestParam(required=true) String is_active,
+										@RequestParam(required=true) String is_supplier) {
+		us.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier);
+		Principal principal = request.getUserPrincipal();
+		User u=us.getUser(principal.getName());
+		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("user", u);
+		model.addAttribute("updated", true);
 		return new ModelAndView("user/profile");
 	}
 }
