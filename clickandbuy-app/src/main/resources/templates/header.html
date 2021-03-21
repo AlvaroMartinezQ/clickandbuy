@@ -18,15 +18,15 @@
 				{{/userName}}
 		  	</div>
 			<div class="col-4 justify-content-md-end" style="margin-top: 10px;margin-bottom:10px;">
-				{{#userName}}
+				{{#name}}
 					<button type="button" class="btn btn-info" disabled>Bienvenido, {{userName}}</button>
 					<a href="/user/profile" type="button" class="btn btn-success">Tu perfil</a>
 					<a href="/logout" type="button" class="btn btn-danger">Cerrar sesión</a>
-				{{/userName}}
-				{{^userName}}
+				{{/name}}
+				{{^name}}
 					<a href="/user/singUp" type="button" class="btn btn-primary">Crear cuenta</a>
 					<a href="/user/singIn" type="button" class="btn btn-outline-primary">Entrar</a>
-				{{/userName}}
+				{{/name}}
 			</div>
 			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
 			</div>

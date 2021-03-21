@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.models.User;
+import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+	
 	@Autowired
 	private UserService us;
+	@Autowired
+	private UserImageService uis;
 	
 	/*
 	 * SingUp: View and Form
@@ -82,8 +87,17 @@ public class UserController {
 	public ModelAndView profile(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
-		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("name", u.getEmail());
+		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
+		
+		// User image
+		if(uis.hasPhoto(u.getId())) {
+			model.addAttribute("userImage", true);
+			model.addAttribute("imageFile", uis.getImage(u.getId()));
+		} else {
+			model.addAttribute("userImage", false);
+		}
 		return new ModelAndView("user/profile");
 	}
 	
@@ -97,8 +111,42 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);
+		
+		// User image
+		if(uis.hasPhoto(u.getId())) {
+			model.addAttribute("userImage", true);
+			model.addAttribute("imageFile", uis.getImage(u.getId()));
+		} else {
+			model.addAttribute("userImage", false);
+		}
+		return new ModelAndView("user/profile");
+	}
+	
+	@PostMapping("/imageUpload")
+	public ModelAndView uploadImage(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam MultipartFile img) throws Exception {
+		try {
+			uis.upload(img, email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Principal principal = request.getUserPrincipal();
+		User u=us.getUser(principal.getName());
+		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("userid", u.getId());
+		model.addAttribute("user", u);
+		model.addAttribute("updated", true);
+		
+		// User image
+		if(uis.hasPhoto(u.getId())) {
+			model.addAttribute("userImage", true);
+			model.addAttribute("image", uis.getImage(u.getId()));
+		} else {
+			model.addAttribute("userImage", false);
+		}
 		return new ModelAndView("user/profile");
 	}
 }

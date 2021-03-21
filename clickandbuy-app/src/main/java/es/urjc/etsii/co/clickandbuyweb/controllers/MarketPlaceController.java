@@ -27,13 +27,16 @@ public class MarketPlaceController {
 	
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
-		// Save the last login for the user
+		// Get the user
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
+		
+		// Save the last login for the user
 		us.updateLogin(u);
+		
 		// Return products
 		model.addAttribute("products", ps.getAll());
-		model.addAttribute("userName", principal.getName());
+		model.addAttribute("name", u.getName());
 		return new ModelAndView("/marketplace/productList");
 	}
 	

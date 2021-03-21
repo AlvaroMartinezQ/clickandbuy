@@ -69,7 +69,6 @@ public class UserImageService {
 	}
 	
 	public boolean hasPhoto(int usid) {
-		// Server status response shouldn't be shown by the browser - sensitive info
 		byte[] image = null;
 		try {
 			image = userimagedao.findById(usid).orElseThrow(() -> new Exception("User has no photo")).getContent();
