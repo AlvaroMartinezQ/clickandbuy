@@ -1,6 +1,10 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.transaction.Transactional;
 
@@ -9,15 +13,29 @@ import org.springframework.stereotype.Service;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
+import es.urjc.etsii.co.clickandbuyweb.validator.SingIn;
+import es.urjc.etsii.co.clickandbuyweb.validator.SingUp;
+import es.urjc.etsii.co.clickandbuyweb.validator.UpdateUser;
+import mailer.WelcomeEmail;
 
 @Service
 @Transactional
 public class UserService {
 	@Autowired
 	private UserDAO udao;
+	@Autowired
+	private SingUp singUpValidator;
+	@Autowired
+	private SingIn singInValidator;
+	@Autowired
+	private UpdateUser updateUserValidator;
 	
 	public Iterable<User> getUsers(){
 		return udao.findAll();
+	}
+	
+	public User getUser(String email) {
+		return udao.findByUserEmail(email);
 	}
 	
 	public String saveUser(String email, String password) {
@@ -69,5 +87,56 @@ public class UserService {
 		}
 		udao.delete(u);
 		return "status: deleted";
+	}
+	
+	public int singUpUser(String email, String emailConfirmation, String password, String passwordConfirmation) {
+		int status=singUpValidator.validateUser(email, emailConfirmation, password, passwordConfirmation);
+		if(status!=0) {
+			return status;
+		}
+		User u=new User();
+		u.setEmail(email);
+		u.setPassword(password);
+		u.setIs_active(true);
+		List<String> roles = new ArrayList<>();
+		roles.add("USER");
+		u.setRoles(roles);
+		u.setJoin_date(new Date());
+		udao.save(u);
+		
+		/*
+		 * Next lines runs the email send in a different threads
+		 */
+		ExecutorService executor = Executors.newFixedThreadPool(1);
+		executor.execute(() -> sendWelcomeMail(u.getEmail()));
+		executor.shutdown();
+		return status;
+	}
+	
+	private void sendWelcomeMail (String emailTo) {
+		WelcomeEmail we=new WelcomeEmail(emailTo);
+		we.setUp();
+	}
+	
+	public void updateLogin(User u) {
+		Date d=new Date();
+		u.setLast_login(d);
+		udao.save(u);
+	}
+	
+	public boolean singInUser(String email, String password) {
+		if(email.equals("")||password.equals("")) {
+			return false;
+		}
+		User u=udao.findByUserEmail(email);
+		if(u==null) {
+			return false;
+		}
+		boolean success=singInValidator.validateLogin(u, password);
+		return success;
+	}
+	
+	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String is_active, String is_supplier) {
+		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier);
 	}
 }

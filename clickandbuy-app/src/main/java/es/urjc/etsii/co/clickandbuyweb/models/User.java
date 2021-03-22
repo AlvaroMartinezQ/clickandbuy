@@ -1,11 +1,13 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="core_user")
@@ -42,6 +45,9 @@ public class User {
 	private boolean is_active;
 	private boolean is_supplier;
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	private List<String> roles;
+
 	@OneToMany(targetEntity=Product.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
 	@Column(nullable=true)
 	List<Product> user_product_list = new ArrayList<>();
@@ -52,7 +58,7 @@ public class User {
 
 	public User(int id, String email, String password, String name, String realname, String realsurnames,
 			String address, String phone, String user_bankaccount, Date join_date, Date last_login, boolean is_active,
-			boolean is_supplier, List<Product> user_product_list) {
+			boolean is_supplier, List<Product> user_product_list, String... roles) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -68,6 +74,7 @@ public class User {
 		this.is_active = is_active;
 		this.is_supplier = is_supplier;
 		this.user_product_list = user_product_list;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 	public int getId() {
@@ -91,7 +98,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
 	public String getName() {
@@ -173,7 +180,15 @@ public class User {
 	public void setIs_supplier(boolean is_supplier) {
 		this.is_supplier = is_supplier;
 	}
+	
+	public List<String> getRoles() {
+		return roles;
+	}
 
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
 	public List<Product> getUser_product_list() {
 		return user_product_list;
 	}
