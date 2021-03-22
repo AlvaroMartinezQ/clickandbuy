@@ -110,7 +110,8 @@ public class UserController {
 		us.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier);
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
-		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("name", u.getEmail());
+		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);
@@ -135,7 +136,8 @@ public class UserController {
 		
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
-		model.addAttribute("userName", u.getEmail());
+		model.addAttribute("name", u.getEmail());
+		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);

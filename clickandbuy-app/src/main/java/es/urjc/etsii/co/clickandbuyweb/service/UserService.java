@@ -3,6 +3,8 @@ package es.urjc.etsii.co.clickandbuyweb.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.transaction.Transactional;
 
@@ -101,13 +103,17 @@ public class UserService {
 		u.setRoles(roles);
 		u.setJoin_date(new Date());
 		udao.save(u);
-		// Uncomment this next line to send an email through gmail smtp
-		sendWelcomeMail(u.getEmail());
+		
+		/*
+		 * Next lines runs the email send in a different threads
+		 */
+		ExecutorService executor = Executors.newFixedThreadPool(1);
+		executor.execute(() -> sendWelcomeMail(u.getEmail()));
+		executor.shutdown();
 		return status;
 	}
 	
 	private void sendWelcomeMail (String emailTo) {
-		System.out.println("sending email");
 		WelcomeEmail we=new WelcomeEmail(emailTo);
 		we.setUp();
 	}
