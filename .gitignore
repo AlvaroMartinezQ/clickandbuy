@@ -11,7 +11,6 @@
 .sts4-cache
 
 ### Sensitive Local Data ###
-clickandbuy-api/src/main/resources/application.properties
 clickandbuy-app/src/main/resources/application.properties
 
 
