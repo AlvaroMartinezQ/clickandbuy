@@ -70,7 +70,6 @@ public class UserController {
 	
 	@PostMapping("/singInForm")
 	public String singInForm(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String password, HttpServletRequest request) {
-		System.out.println("Sing in form");
 		return ("singInForm");
 	}
 	
@@ -111,7 +110,6 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("name", u.getEmail());
-		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);
@@ -137,7 +135,6 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("name", u.getEmail());
-		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);
