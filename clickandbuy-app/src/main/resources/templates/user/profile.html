@@ -71,6 +71,15 @@
 				        {{/realname}}
 				    </div>
 				    <div class="form-group">
+				    	<label>Apellidos</label>
+				    	{{#realsurnames}}
+				        	<input name="realsurnames" class="form-control" placeholder="{{realsurnames}}">
+				        {{/realsurnames}}
+				        {{^realsurnames}}
+				        	<input name="realsurnames" class="form-control" placeholder="">
+				        {{/realsurnames}}
+				    </div>
+				    <div class="form-group">
 				    	<label>Teléfono</label>
 				    	{{#phone}}
 				        	<input type="text" name="phone" class="form-control" placeholder="{{phone}}">
