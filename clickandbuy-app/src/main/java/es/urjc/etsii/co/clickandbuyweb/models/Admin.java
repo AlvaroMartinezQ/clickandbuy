@@ -41,7 +41,6 @@ public class Admin implements Serializable{
     @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate last_login;
 	// Charge should be: [MANAGER, ADMIN]
-	@Column(insertable=false, updatable=false)
 	private String charge;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -51,19 +50,6 @@ public class Admin implements Serializable{
 		super();
 	}
 	
-	public Admin(String email, String password, String name, String realname, String phone,
-			LocalDate last_login, String charge, String rol) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.realname = realname;
-		this.phone = phone;
-		this.last_login = last_login;
-		this.charge = charge;
-		this.roles.add(rol);
-	}
-
 	public Admin(String email, String password, String name, String realname, String phone,
 			LocalDate last_login, String charge, String...roles) {
 		super();
