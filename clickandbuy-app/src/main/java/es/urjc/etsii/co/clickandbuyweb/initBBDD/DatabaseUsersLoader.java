@@ -19,7 +19,6 @@ public class DatabaseUsersLoader {
 	
 	@PostConstruct
 	private void initDatabse() {
-		//Create first manager in BBDD, after that, comment this line
 		if(admindao.findByEmail("manager@admin.es")==null)
 			admindao.save(new Admin("manager@admin.es",new BCryptPasswordEncoder().encode("1"),"Patrii","Patricia Tarazaga","6456875",LocalDate.now(), "Manager","MANAGER_ROLE"));
 	}
