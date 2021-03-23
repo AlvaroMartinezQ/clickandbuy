@@ -12,7 +12,7 @@
 
 ### Sensitive Local Data ###
 clickandbuy-app/src/main/resources/application.properties
-clickandbuy-api/src/main/resources/application.properties
+internal-service/src/main/resources/application.properties
 
 ### Eclipse ###
 
