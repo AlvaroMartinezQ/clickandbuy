@@ -1,9 +1,14 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sun.el.stream.Optional;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
@@ -12,66 +17,51 @@ import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 @Transactional
 public class AdminService {
 	@Autowired
-	private AdminDAO adao;
+	private AdminDAO admindao;
 	
-	public Iterable<Admin> getAll() {
-		return adao.findAll();
+	public List<Admin> getAll() {
+		return admindao.findAll();
 	}
 	
-	public String saveAdmin(String adminEmail, String password) {
-		Admin a=new Admin();
-		// Validations should be before
-		a.setemail(adminEmail);
-		a.setpassword(password);
+	public String newManager(String email, String password, String realname, String name, String phone, String rol) {
+		Admin replicate = admindao.findByEmail(email);
+		if(replicate!=null) {
+			return "status: this administrator's email already exist";
+		}
+		replicate = admindao.findByRealname(realname);
+		if(replicate!=null) {
+			return "status: this administrator's name already exist";
+		}
+		Admin admin = new Admin(email,password,name,realname,phone,LocalDate.now(),rol);
+		admindao.save(admin);
 		return "status: saved";
 	}
-	
-	public String updateUser(String adminEmail, String name, String realname, String phone, String adminCharge, boolean active, boolean superuser) {
-		Admin a=adao.findByAdminEmail(adminEmail);
-		if(a==null) {
-			return "status: admin not found";
+
+	public String deleteById(int id) {
+		Optional<Admin> admin =admindao.findById(id);
+		if(admin.isPresent()) {
+			admindao.deleteById(id);
+			return "status: deleted";
 		}
-		if(!name.equals("")) {
-			a.setname(name);
-		}
-		if(!realname.equals("")) {
-			a.setrealname(realname);
-		}
-		if(!phone.equals("")) {
-			a.setphone(phone);
-		}
-		if(!adminCharge.equals("")) {
-			/*
-			 * SUPERUSER | ADMIN | STAFF
-			 */
-			if(adminCharge.equals("SUPERUSER")||adminCharge.equals("ADMIN")||adminCharge.equals("STAFF")) {
-				a.setAdmin_charge(adminCharge);
-			} else {
-				return "status: bad role for admin";
-			}
-		}
-		if(active) {
-			a.setActive(true);
-		} else {
-			a.setActive(false);
-		}
-		if(superuser) {
-			a.setSuperuser(true);
-		} else {
-			a.setSuperuser(false);
-		}
-		adao.save(a);
-		return "status: saved";
+		return "status: not found";
 	}
 	
-	public String deleteAdmin(String adminid) {
-		int id=Integer.parseInt(adminid);
-		Admin a=adao.findByAdminId(id);
-		if(a==null) {
-			return "status: admin not found";
+	public String managerUpdate(String email, String realname, String name, String phone) {
+		Admin admin = admindao.findByEmail(email);
+		if(!realname.isBlank()) {
+			admin.setRealname(realname);
 		}
-		adao.delete(a);
-		return "status: deleted";
+		if(!name.isBlank()) {
+			admin.setName(name);
+		}
+		if(!phone.isBlank()) {
+			admin.setPhone(phone);
+		}
+		if(!name.isBlank()) {
+			admin.setName(name);
+		}
+		admindao.save(admin);
+		return "status: new Manager saved";
 	}
 	
 }
