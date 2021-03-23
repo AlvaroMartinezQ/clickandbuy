@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
+import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
@@ -25,11 +27,21 @@ public class MarketPlaceController {
 	@Autowired
 	private UserService us;
 	
+	@Autowired
+	private AdminDAO admindao;
+	
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
 		// Get the user
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
+		
+		//Check if is admin
+		Admin admin = (Admin) admindao.findByEmail(principal.getName());
+		if(admin.getRoles().contains("MANAGER_ROLE")) {
+			model.addAttribute("userName", principal.getName());
+			return new ModelAndView("/admin/productListAdmin");
+		}
 		
 		// Save the last login for the user
 		us.updateLogin(u);
