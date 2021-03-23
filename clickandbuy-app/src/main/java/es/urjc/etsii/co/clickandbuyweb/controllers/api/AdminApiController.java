@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,29 +17,28 @@ import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 @RequestMapping("/api/admin")
 public class AdminApiController {
 	@Autowired
-	private AdminService aservice;
+	private AdminService adminservice;
 	
 	@GetMapping("/all")
-	public Iterable<Admin> getAll() {
-		return aservice.getAll();
+	public List<Admin> getAll() {
+		return adminservice.getAdmins();
 	}
 	
 	@PostMapping("/new")
-	public String saveAdmin(@RequestParam(required=true)String adminEmail, @RequestParam(required=true)String password) {
-		return aservice.saveAdmin(adminEmail, password);
+	public String saveAdmin(@RequestParam(required=true)String email, @RequestParam(required=true)String password, String realname, String name, String phone, String rol) {
+		return adminservice.newAdmin(email, password,realname,name,phone,rol);
 	}
 	
 	@PostMapping("/update")
-	public String updateUser(@RequestParam(required=true)String email, @RequestParam(required=false)String name,
+	public String updateManager(@RequestParam(required=true)String email, @RequestParam(required=false)String name,
 								@RequestParam(required=false)String realname, @RequestParam(required=false)String phone,
-								@RequestParam(required=false)String adminCharge, @RequestParam(required=false)boolean active,
-								@RequestParam(required=false)boolean superuser) {
-		return aservice.updateUser(email, name, realname, phone, adminCharge, active, superuser);
+								@RequestParam(required=false)String adminCharge, @RequestParam(required=false) String rol) {
+		return adminservice.adminUpdate(email, realname, name, phone, rol);
 	}
 	
 	@DeleteMapping("/delete")
-	public String deleteAdmin(@RequestParam(required=true)String adminid) {
-		return aservice.deleteAdmin(adminid);
+	public String deleteAdmin(@RequestParam(required=true)int id) {
+		return adminservice.deleteById(id);
 	}
 	
 }
