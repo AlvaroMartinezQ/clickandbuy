@@ -2,6 +2,8 @@ package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -47,10 +50,35 @@ public class Admin implements Serializable{
 	public Admin() {
 		super();
 	}
+	
+	public Admin(String email, String password, String name, String realname, String phone,
+			LocalDate last_login, String charge, String rol) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.realname = realname;
+		this.phone = phone;
+		this.last_login = last_login;
+		this.charge = charge;
+		this.roles.add(rol);
+	}
 
+	public Admin(String email, String password, String name, String realname, String phone,
+			LocalDate last_login, String charge, String...roles) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.realname = realname;
+		this.phone = phone;
+		this.last_login = last_login;
+		this.charge = charge;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
+	}
 
 	public Admin(int id, String email, String password, String name, String realname, String phone,
-			LocalDate last_login, String charge, List<String> roles) {
+			LocalDate last_login, String charge, String...roles) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -60,7 +88,7 @@ public class Admin implements Serializable{
 		this.phone = phone;
 		this.last_login = last_login;
 		this.charge = charge;
-		this.roles = roles;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 
@@ -90,7 +118,7 @@ public class Admin implements Serializable{
 
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
 
