@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.models.User;
+import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
@@ -26,18 +27,29 @@ public class UserController {
 	private UserService us;
 	@Autowired
 	private UserImageService uis;
+	@Autowired
+	private ProductService ps;
 	
 	/*
 	 * SingUp: View and Form
 	 */
 	
 	@GetMapping("/singUp")
-	public ModelAndView singUp(Model model) {
+	public ModelAndView singUp(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal!=null) {
+			User u=us.getUser(principal.getName());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			model.addAttribute("products", ps.getAll());
+			return new ModelAndView("/marketplace/productList");
+		}
 		return new ModelAndView("user/singUp");
 	}
 	
 	@PostMapping("/singUpForm")
-	public ModelAndView singUpForm(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String emailConfirmation,
+	public ModelAndView singUpForm(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam(required=true) String emailConfirmation,
 									@RequestParam(required=true) String password, @RequestParam(required=true) String passwordConfirmation) {
 		int status=us.singUpUser(email, emailConfirmation, password, passwordConfirmation);
 		if(status!=0) {
@@ -65,6 +77,15 @@ public class UserController {
 	
 	@GetMapping("/singIn")
 	public ModelAndView singIn(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal!=null) {
+			User u=us.getUser(principal.getName());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			model.addAttribute("products", ps.getAll());
+			return new ModelAndView("/marketplace/productList");
+		}
 		return new ModelAndView("user/singIn");
 	}
 	
