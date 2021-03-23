@@ -70,7 +70,6 @@ public class UserController {
 	
 	@PostMapping("/singInForm")
 	public String singInForm(Model model, @RequestParam(required=true) String email, @RequestParam(required=true) String password, HttpServletRequest request) {
-		System.out.println("Sing in form");
 		return ("singInForm");
 	}
 	
@@ -106,12 +105,11 @@ public class UserController {
 										@RequestParam(required=true) String name, @RequestParam(required=true) String realname,
 										@RequestParam(required=true) String phone, @RequestParam(required=true) String bankaccount,
 										@RequestParam(required=true) String address, @RequestParam(required=true) String is_active,
-										@RequestParam(required=true) String is_supplier) {
-		us.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier);
+										@RequestParam(required=true) String is_supplier, @RequestParam(required=true) String realsurnames) {
+		us.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier, realsurnames);
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("name", u.getEmail());
-		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);
@@ -137,7 +135,6 @@ public class UserController {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("name", u.getEmail());
-		model.addAttribute("userName", u.getName());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		model.addAttribute("updated", true);

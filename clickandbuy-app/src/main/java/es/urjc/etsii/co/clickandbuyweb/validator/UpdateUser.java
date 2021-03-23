@@ -18,7 +18,7 @@ public class UpdateUser {
 	 * -2 | user not found
 	 */
 	
-	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String is_active, String is_supplier) {
+	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String is_active, String is_supplier, String realsurnames) {
 		User u=udao.findByUserEmail(email);
 		if(u==null) {
 			return -2;
@@ -37,6 +37,9 @@ public class UpdateUser {
 		}
 		if(!address.equals("")) {
 			u.setAddress(address);
+		}
+		if(!realsurnames.equals("")) {
+			u.setRealsurnames(realsurnames);
 		}
 		if(!is_active.equals("")) {
 			int active=Integer.parseInt(is_active);
