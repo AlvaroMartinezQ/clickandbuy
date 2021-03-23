@@ -10,11 +10,9 @@ import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 public interface AdminDAO extends JpaRepository<Admin, Integer>{
 
 	@Query("SELECT admin FROM Admin admin WHERE admin.email=:email")
-	public Admin findByAdminEmail(String email);
+	public Admin findByEmail(String email);
 	
 	@Query("SELECT admin FROM Admin admin WHERE admin.realname=:realname")
-	public Admin findByAdminRealname(String realname);
+	public Admin findByRealname(String realname);
 	
-	@Query("SELECT admin FROM Admin admin WHERE admin.id=:id")
-	public Admin findByAdminId(int id);
 }
