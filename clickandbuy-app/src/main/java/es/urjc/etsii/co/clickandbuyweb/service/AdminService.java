@@ -24,6 +24,10 @@ public class AdminService {
 		return admindao.findAll();
 	}
 	
+	public Admin getAdmin(String email) {
+		return admindao.findByEmail(email);
+	}
+	
 	public String newAdmin(String email, String password, String realname, String name, String phone, String rol) {
 		Admin replicate = admindao.findByEmail(email);
 		if(replicate!=null) {
