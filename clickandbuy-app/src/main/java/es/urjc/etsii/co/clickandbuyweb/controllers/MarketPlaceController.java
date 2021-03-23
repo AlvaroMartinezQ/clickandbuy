@@ -36,7 +36,7 @@ public class MarketPlaceController {
 		
 		// Return products
 		model.addAttribute("products", ps.getAll());
-		model.addAttribute("name", u.getEmail());
+		model.addAttribute("mail", u.getEmail());
 		return new ModelAndView("/marketplace/productList");
 	}
 	
