@@ -20,11 +20,11 @@ public class AdminService {
 	@Autowired
 	private AdminDAO admindao;
 	
-	public List<Admin> getAll() {
+	public List<Admin> getAdmins() {
 		return admindao.findAll();
 	}
 	
-	public String newManager(String email, String password, String realname, String name, String phone, String rol) {
+	public String newAdmin(String email, String password, String realname, String name, String phone, String rol) {
 		Admin replicate = admindao.findByEmail(email);
 		if(replicate!=null) {
 			return "status: this administrator's email already exist";
@@ -47,7 +47,7 @@ public class AdminService {
 		return "status: not found";
 	}
 	
-	public String managerUpdate(String email, String realname, String name, String phone) {
+	public String adminUpdate(String email, String realname, String name, String phone, String rol) {
 		Admin admin = admindao.findByEmail(email);
 		if(!realname.isBlank()) {
 			admin.setRealname(realname);
@@ -58,11 +58,11 @@ public class AdminService {
 		if(!phone.isBlank()) {
 			admin.setPhone(phone);
 		}
-		if(!name.isBlank()) {
-			admin.setName(name);
+		if(!rol.isBlank()) {
+			admin.setName(rol);
 		}
 		admindao.save(admin);
-		return "status: new Manager saved";
+		return "status: Admin updated";
 	}
 	
 }
