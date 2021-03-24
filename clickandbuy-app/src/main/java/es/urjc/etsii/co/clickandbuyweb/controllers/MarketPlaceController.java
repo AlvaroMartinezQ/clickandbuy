@@ -20,37 +20,51 @@ import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 @RestController
 @RequestMapping("/marketplace")
 public class MarketPlaceController {
-	
+
 	@Autowired
 	private ProductService ps;
-	
+
 	@Autowired
 	private UserService us;
-	
+
 	@Autowired
 	private AdminDAO admindao;
-	
+
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
 		// Get the user
 		Principal principal = request.getUserPrincipal();
-		User u=us.getUser(principal.getName());
-		
-		//Check if is admin
+		User u = us.getUser(principal.getName());
+
+		// Check if is admin
 		Admin admin = (Admin) admindao.findByEmail(principal.getName());
-		if(admin.getRoles().contains("MANAGER_ROLE")) {
-			model.addAttribute("products", ps.getAll());
-			model.addAttribute("email", admin.getEmail());
-			return new ModelAndView("/admin/productListAdmin");
+		if (admin != null) {
+			if (admin.getRoles().contains("MANAGER_ROLE")) {
+				model.addAttribute("products", ps.getAll());
+				model.addAttribute("email", admin.getEmail());
+				return new ModelAndView("/admin/productListAdmin");
+			}
 		}
-		
-		// Save the last login for the user
-		us.updateLogin(u);
-		
-		// Return products
-		model.addAttribute("products", ps.getAll());
-		model.addAttribute("mail", u.getEmail());
-		return new ModelAndView("/marketplace/productList");
+
+		// Check if user is supplier
+		if (u != null) {
+			if (u.getRoles().contains("SUPPLIER_ROLE")) {
+				us.updateLogin(u);
+				model.addAttribute("products", ps.getAll());
+				model.addAttribute("mail", u.getEmail());
+				return new ModelAndView("/marketplace/productList");
+			}
+
+			// Save the last login for the user
+			if (u.getRoles().contains("NOT_SUPPLIER_ROLE")) {
+				us.updateLogin(u);
+				// Return products
+				model.addAttribute("products", ps.getAll());
+				model.addAttribute("mail", u.getEmail());
+				return new ModelAndView("/marketplace/productList");
+			}
+		}
+		return null;
 	}
-	
+
 }
