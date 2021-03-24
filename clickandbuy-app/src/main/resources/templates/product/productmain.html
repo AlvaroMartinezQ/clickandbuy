@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Productos</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BOOTSTRAP CSS only  -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+<link href="/css/marketplace.css" rel="stylesheet" />
+</head>
+
+<body>
+	{{>header}}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-2">
+					<a type="button" href="/product/#" class="btn btn-primary">Ver
+						productos subidos</a>
+				</div>
+				<div class="col-2">
+					<a type="button" href="/products/search" class="btn btn-primary">Buscar
+						un producto</a>
+				</div>
+				<div class="col-2">
+					<a type="button" href="/product/#" class="btn btn-primary">Subir
+						producto</a>
+				</div>
+				<div class="col-2">
+					<a type="button" href="/product/#" class="btn btn-primary">Modificar
+						producto</a>
+				</div>
+				<div class="col-2">
+					<a type="button" href="/product/#" class="btn btn-danger">Eliminar
+						producto</a>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+	{{>footer}}
+</body>
+</html>
