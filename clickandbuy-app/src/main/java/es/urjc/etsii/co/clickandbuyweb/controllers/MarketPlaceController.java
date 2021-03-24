@@ -41,7 +41,7 @@ public class MarketPlaceController {
 		if(admin.getRoles().contains("MANAGER_ROLE")) {
 			model.addAttribute("products", ps.getAll());
 			model.addAttribute("email", admin.getEmail());
-			return new ModelAndView("/admin/productListAdmin");
+			return new ModelAndView("/admin/productList");
 		}
 		
 		// Save the last login for the user
