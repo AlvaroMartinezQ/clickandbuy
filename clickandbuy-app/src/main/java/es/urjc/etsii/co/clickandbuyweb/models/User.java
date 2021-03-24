@@ -55,6 +55,24 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(String email, String password, String name, String realname, String realsurnames,
+			String address, String phone, String user_bankaccount, Date join_date, boolean is_active,
+			boolean is_supplier, String... roles) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.realname = realname;
+		this.realsurnames = realsurnames;
+		this.address = address;
+		this.phone = phone;
+		this.bankaccount = user_bankaccount;
+		this.join_date = join_date;
+		this.is_active = is_active;
+		this.is_supplier = is_supplier;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
+	}
 
 	public User(int id, String email, String password, String name, String realname, String realsurnames,
 			String address, String phone, String user_bankaccount, Date join_date, Date last_login, boolean is_active,
