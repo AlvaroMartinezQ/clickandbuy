@@ -42,8 +42,8 @@ public class MarketPlaceController {
 		if (admin != null) {
 			if (admin.getRoles().contains("MANAGER_ROLE")) {
 				model.addAttribute("products", ps.getAll());
-				model.addAttribute("email", admin.getEmail());
-				return new ModelAndView("/admin/productListAdmin");
+				model.addAttribute("mail", admin.getEmail());
+				return new ModelAndView("/admin/productList");
 			}
 		}
 
