@@ -40,7 +40,7 @@ public class MarketPlaceController {
 		Admin admin = (Admin) admindao.findByEmail(principal.getName());
 		if(admin.getRoles().contains("MANAGER_ROLE")) {
 			model.addAttribute("products", ps.getAll());
-			model.addAttribute("email", admin.getEmail());
+			model.addAttribute("mail", admin.getEmail());
 			return new ModelAndView("/admin/productList");
 		}
 		

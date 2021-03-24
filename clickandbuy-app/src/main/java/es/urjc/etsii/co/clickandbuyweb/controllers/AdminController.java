@@ -68,5 +68,15 @@ public class AdminController {
 		}
 		return new ModelAndView("admin/profile");
 	}
+	
+	@GetMapping("/management")
+	public ModelAndView management(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		return new ModelAndView("admin/management");
+	}
 
 }
