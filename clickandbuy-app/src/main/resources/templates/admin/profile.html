@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Tu perfil</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<link href="/css/user/profile.css" rel="stylesheet">
+    </head>
+    
+    <body>
+    	{{>header}}
+    	<div class="container-fluid">
+    		{{#user}}
+    		<h4 class="card-title mb-4 mt-1">Tu perfil:</h4>
+    		<div class="card">
+    			<article class="card-body">
+		    		{{#userImage}}
+		    			<!-- IMAGE -->
+					    <h4 class="card-title mb-4 mt-1">Imagen de perfil:</h4>
+					    <img alt="" src="/userPhoto/retreive?usid={{userid}}" width="100" height="100">
+		    		{{/userImage}}
+		    		{{^userImage}}
+		    			<!-- NO IMAGE -->
+					    <h4 class="card-title mb-4 mt-1">Aún no tienes imagen de perfil.</h4>
+		    		{{/userImage}}
+		    		<form action="/user/imageUpload" method="post" enctype="multipart/form-data">
+		    			<div class="form-group">
+							<input type="hidden" class="form-control" name="email" value="{{email}}" />
+						</div>
+						<div class="form-group">
+							<label>Seleccionar imagen nueva</label>
+							 <input name="img" class="form-control" placeholder="" type="file">
+						</div>
+						<br>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block"> Subir imagen </button>
+						</div>
+		    		</form>
+		    	</article>
+    		</div>
+    		<br>
+			<div class="card">
+				<article class="card-body">
+				<form action="/user/profileUpdate" method="post">
+					<div class="form-group">
+				        <input type="hidden" class="form-control" name="email" value="{{email}}" />
+				    </div>
+				    <!-- This field is not sent -->
+				    <div class="form-group">
+				    	<label>Email</label>
+				        <input name="" class="form-control" placeholder="{{email}}" readonly>
+				    </div>
+				    <div class="form-group">
+				    	<label>Nombre de usuario</label>
+				    	{{#name}}
+				        	<input name="name" class="form-control" placeholder="{{name}}">
+				    	{{/name}}
+				    	{{^name}}
+				    		<input name="name" class="form-control" placeholder="">
+				    	{{/name}}
+				    </div>
+				    <div class="form-group">
+				    	<label>Nombre real</label>
+				    	{{#realname}}
+				        	<input name="realname" class="form-control" placeholder="{{realname}}">
+				        {{/realname}}
+				        {{^realname}}
+				        	<input name="realname" class="form-control" placeholder="">
+				        {{/realname}}
+				    </div>
+				    <div class="form-group">
+				    	<label>Cargo</label>
+				        <input name="charge" class="form-control" placeholder="{{charge}}" readonly>
+				    </div>
+				    <div class="form-group">
+				    	<label>Teléfono</label>
+				    	{{#phone}}
+				        	<input type="text" name="phone" class="form-control" placeholder="{{phone}}">
+				    	{{/phone}}
+				    	{{^phone}}
+				    		<input type="text" name="phone" class="form-control" placeholder="">
+				    	{{/phone}}
+				    </div>
+				    <br>
+				    {{#last_login}}
+				    <div class="last-login">
+				    	<label>Último login</label>
+				        <input name="lastlogin" placeholder="{{last_login}}" readonly>
+				    </div>
+				    {{/last_login}}
+				    <br>
+				   <div class="form-group"> 
+				        <button type="submit" class="btn btn-primary btn-block"> Actualizar usuario </button>
+				        <a href="/marketplace"  type="button" class="btn btn-outline-primary"> Volver </a>
+				    </div>                                                         
+				</form>	
+				<br>
+				{{#updated}}
+					<p class="updated">Usuario actualizado</p>
+				{{/updated}}
+				<br>
+			</article>
+		</div>
+		{{/user}}
+		{{^user}}
+			<div class="row">
+				<div class="col-4"></div>
+				<div class="col-4"><h3>Ha ocurrido un error. Vuelve a intentarlo.</h3></div>
+				<div class="col-4"></div>
+			</div>
+		{{/user}}
+		<br>
+		</div>
+    	{{>footer}}
+    </body>
+</html>
