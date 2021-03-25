@@ -23,9 +23,9 @@ public class ProductApiController {
 	}
 	
 	@PostMapping("/new")
-	public Product addProduct(@RequestParam(required=true)String userEmail, @RequestParam(required=true)String price,
+	public Product addProduct(@RequestParam(required=true)String userEmail, @RequestParam(required=true)Double price,
 								@RequestParam(required=true)String name, @RequestParam(required=true)String description,
-								@RequestParam(required=true)String stock) {
+								@RequestParam(required=true)int stock) {
 		return pservice.saveProduct(userEmail, price, name, description, stock);
 	}
 	
