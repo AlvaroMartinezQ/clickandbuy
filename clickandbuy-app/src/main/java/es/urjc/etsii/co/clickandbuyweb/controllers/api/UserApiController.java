@@ -37,7 +37,7 @@ public class UserApiController {
 								@RequestParam(required=false)String realname, @RequestParam(required=false)String realsurnames, 
 								@RequestParam(required=false)String address, @RequestParam(required=false)String phone,
 								@RequestParam(required=false)String bankaccount) {
-		return uservice.updateUser(userEmail, name, realname, realsurnames, address, phone, bankaccount);
+		return uservice.updateUserApi(userEmail, name, realname, realsurnames, address, phone, bankaccount);
 	}
 	
 	@DeleteMapping("/delete")

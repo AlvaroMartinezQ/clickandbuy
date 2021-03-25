@@ -53,7 +53,7 @@ public class UserService {
 		return "status: saved";
 	}
 	
-	public String updateUser(String userEmail, String name, String realname, String realsurnames, String address, String phone, String bankaccount) {
+	public String updateUserApi(String userEmail, String name, String realname, String realsurnames, String address, String phone, String bankaccount) {
 		User u=udao.findByUserEmail(userEmail);
 		if(u==null) {
 			return "status: no existing user";
