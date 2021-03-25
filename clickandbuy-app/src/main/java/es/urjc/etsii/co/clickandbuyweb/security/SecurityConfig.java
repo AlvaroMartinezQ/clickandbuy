@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// Private pages
 		http.authorizeRequests().anyRequest().authenticated();
+		//http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER_ROLE");
 		
 		/*
 		 * DO NOT put any http.authorizeRequests() after anyRequest() it won't work
