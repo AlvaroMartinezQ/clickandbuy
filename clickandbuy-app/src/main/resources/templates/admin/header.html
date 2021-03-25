@@ -18,11 +18,13 @@
 				{{/mail}}
 		  	</div>
 			<div class="col-4 justify-content-md-end" style="margin-top: 10px;margin-bottom:10px;">
-				
-					<button type="button" class="btn btn-info" disabled>Bienvenido, {{mail}}</button>
-					<a href="/admin/profile" type="button" class="btn btn-success">Tu perfil</a>
-					<a href="/admin/management" type="button" class="btn btn-warning">Gestión</a>
-					<a href="/logout" type="button" class="btn btn-danger">Cerrar sesión</a>
+					<form action="/logout" method="post">
+						<button type="button" class="btn btn-info" disabled>Bienvenido, {{mail}}</button>
+						<a href="/admin/profile" type="button" class="btn btn-success">Tu perfil</a>
+						<a href="/admin/management" type="button" class="btn btn-warning">Gestión</a>
+						<button type="submit" class="btn btn-danger">Cerrar sesión</button>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
 			</div>
 			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
 			</div>
