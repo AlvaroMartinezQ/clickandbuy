@@ -34,21 +34,17 @@ public class ProductService {
 		return p;
 	}
 	
-	public Product saveProduct(String userEmail, String price, String name, String description, String stock) {
+	public Product saveProduct(String userEmail, Double price, String name, String description, int stock) {
 		User u=udao.findByUserEmail(userEmail);
 		if(u==null) {
 			return null;
 		}
-		int pStock=0;
-		double pPrice=0;
-		// Exception for impossible parses ??
-		pPrice=Double.parseDouble(price);
-		pStock=Integer.parseInt(stock);
+
 		Product p=new Product();
 		p.setName(name);
 		p.setDescription(description);
-		p.setPrice(pPrice);
-		p.setstock(pStock);
+		p.setPrice(price);
+		p.setstock(stock);
 		p.setActive(true);
 		List<Product> list=u.getUser_product_list();
 		list.add(p);
