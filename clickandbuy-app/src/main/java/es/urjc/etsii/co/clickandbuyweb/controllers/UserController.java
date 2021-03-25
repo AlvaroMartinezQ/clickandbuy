@@ -50,8 +50,8 @@ public class UserController {
 	
 	@PostMapping("/singUpForm")
 	public ModelAndView singUpForm(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam(required=true) String emailConfirmation,
-									@RequestParam(required=true) String password, @RequestParam(required=true) String passwordConfirmation) {
-		int status=us.singUpUser(email, emailConfirmation, password, passwordConfirmation);
+									@RequestParam(required=true) String password, @RequestParam(required=true) String passwordConfirmation, @RequestParam(required=true) boolean is_supplier) {
+		int status=us.singUpUser(email, emailConfirmation, password, passwordConfirmation, is_supplier);
 		if(status!=0) {
 			if(status==-1) {
 				model.addAttribute("emptyFields", true);

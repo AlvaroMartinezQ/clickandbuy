@@ -89,7 +89,7 @@ public class UserService {
 		return "status: deleted";
 	}
 	
-	public int singUpUser(String email, String emailConfirmation, String password, String passwordConfirmation) {
+	public int singUpUser(String email, String emailConfirmation, String password, String passwordConfirmation, boolean is_supplier) {
 		int status=singUpValidator.validateUser(email, emailConfirmation, password, passwordConfirmation);
 		if(status!=0) {
 			return status;
@@ -98,9 +98,16 @@ public class UserService {
 		u.setEmail(email);
 		u.setPassword(password);
 		u.setIs_active(true);
-		List<String> roles = new ArrayList<>();
-		roles.add("USER");
-		u.setRoles(roles);
+		u.setIs_supplier(is_supplier);
+		if (is_supplier) {
+			List<String> roles = new ArrayList<>();
+			roles.add("SUPPLIER_ROLE");
+			u.setRoles(roles);
+		} else {
+			List<String> roles = new ArrayList<>();
+			roles.add("NOT_SUPPLIER_ROLE");
+			u.setRoles(roles);
+		}
 		u.setJoin_date(new Date());
 		udao.save(u);
 		
