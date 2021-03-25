@@ -1,0 +1,67 @@
+>
+<!doctype html>
+<html lang="es">
+<head>
+<title>Producto nuevo</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BOOTSTRAP CSS only  -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	{{>header}}
+	<div class="container">
+		<div class="col-1">
+			<a href="/product/productmain" type="button"
+				class="btn btn-outline-info">Volver</a>
+		</div>
+		<br>
+		<div class="card">
+			<article class="card-body">
+				<h4 class="card-title mb-4 mt-1">Producto</h4>
+				<form action="/product/uploadform" method="post">
+					<!-- form-group// -->
+					<div class="form-group">
+						<label>Nombre del producto</label> <input name="name"
+							class="form-control" placeholder="Nombre">
+					</div>
+					<div class="form-group">
+						<label>Descripcion del producto</label> <input name="desc"
+							class="form-control" placeholder="Descripción">
+					</div>
+					<!-- form-group// -->
+					<div class="form-group">
+						<label>Precio del producto</label> <input type="number"
+							step="0.01" name="price" class="form-control"
+							placeholder="Precio">
+					</div>
+					<!-- form-group// -->
+					<div class="form-group">
+						<label>Stock</label> <input type="number" name="stock"
+							class="form-control" placeholder="Número de unidades">
+					</div>
+					<!-- form-group// -->
+					<br> {{#updated}}
+					<p style="color: green;">Producto subido correctamente</p>
+					{{/updated}}
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">
+							Subir producto</button>
+					</div>
+					<input type="hidden" name="_csrf" value="{{token}}" />
+					<!-- form-group// -->
+				</form>
+				<br>
+			</article>
+		</div>
+		<!-- card.// -->
+		{{>footer}}
+	</div>
+</body>
+</html>
