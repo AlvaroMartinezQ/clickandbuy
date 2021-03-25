@@ -21,7 +21,10 @@
 				{{#mail}}
 					<button type="button" class="btn btn-info" disabled>Bienvenido, {{mail}}</button>
 					<a href="/user/profile" type="button" class="btn btn-success">Tu perfil</a>
-					<a href="/logout" type="button" class="btn btn-danger">Cerrar sesión</a>
+					<form action="/logout" method="post">
+						<button type="submit" class="btn btn-danger">Cerrar sesión</button>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
 				{{/mail}}
 				{{^mail}}
 					<a href="/user/singUp" type="button" class="btn btn-primary">Crear cuenta</a>

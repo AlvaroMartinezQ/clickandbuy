@@ -37,6 +37,7 @@
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block"> Subir imagen </button>
 						</div>
+						<input type="hidden" name="_csrf" value="{{token}}" />
 		    		</form>
 		    	</article>
     		</div>
@@ -130,7 +131,8 @@
 				    <br>
 				    <div class="form-group">
 				        <button type="submit" class="btn btn-primary btn-block"> Actualizar usuario </button>
-				    </div>                                                         
+				    </div>  
+				    <input type="hidden" name="_csrf" value="{{token}}" />                                                       
 				</form>
 				<br>
 				{{#updated}}

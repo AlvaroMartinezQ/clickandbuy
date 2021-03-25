@@ -143,7 +143,7 @@ public class UserService {
 		return success;
 	}
 	
-	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String is_active, String is_supplier, String realsurnames) {
-		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier, realsurnames);
+	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String realsurnames) {
+		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address,  realsurnames);
 	}
 }

@@ -41,7 +41,8 @@
 				    <br>
 				    <div class="form-group">
 				        <button type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
-				    </div>                                                          
+				    </div>
+				    <input type="hidden" name="_csrf" value="{{token}}"/>
 				</form>
 				<br>
 				{{#emailTaken}}

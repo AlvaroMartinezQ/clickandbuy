@@ -50,7 +50,7 @@ public class UserController {
 	
 	@PostMapping("/singUpForm")
 	public ModelAndView singUpForm(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam(required=true) String emailConfirmation,
-									@RequestParam(required=true) String password, @RequestParam(required=true) String passwordConfirmation, @RequestParam(required=true) boolean is_supplier) {
+									@RequestParam(required=true) String password, @RequestParam(required=true) String passwordConfirmation, @RequestParam(required=false) boolean is_supplier) {
 		int status=us.singUpUser(email, emailConfirmation, password, passwordConfirmation, is_supplier);
 		if(status!=0) {
 			if(status==-1) {
@@ -125,9 +125,8 @@ public class UserController {
 	public ModelAndView profileUpdate(Model model, HttpServletRequest request, @RequestParam(required=true) String email,
 										@RequestParam(required=true) String name, @RequestParam(required=true) String realname,
 										@RequestParam(required=true) String phone, @RequestParam(required=true) String bankaccount,
-										@RequestParam(required=true) String address, @RequestParam(required=true) String is_active,
-										@RequestParam(required=true) String is_supplier, @RequestParam(required=true) String realsurnames) {
-		us.updateUser(email, name, realname, phone, bankaccount, address, is_active, is_supplier, realsurnames);
+										@RequestParam(required=true) String address, @RequestParam(required=true) String realsurnames) {
+		us.updateUser(email, name, realname, phone, bankaccount, address, realsurnames);
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		model.addAttribute("mail", u.getEmail());

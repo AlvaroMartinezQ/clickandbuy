@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user/singUp").permitAll();
 		http.authorizeRequests().antMatchers("/user/singUpForm").permitAll();
 		http.authorizeRequests().antMatchers("/user/singIn").permitAll();
+		http.authorizeRequests().antMatchers("/logout").permitAll();
 		
 		/*
 		 * Static resources
@@ -58,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		
 		http.logout().logoutUrl("/logout");
-		http.logout().logoutSuccessUrl("/");
+        http.logout().logoutSuccessUrl("/");
 		
 		// Disable CSRF at the moment
-		http.csrf().disable();
+		// http.csrf().disable();
 	}
 	
 	@Override
