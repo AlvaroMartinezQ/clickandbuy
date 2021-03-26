@@ -111,6 +111,7 @@ public class AdminController {
 			return new ModelAndView("/register");
 		}
 		
+		model.addAttribute("successfully", true);
 		return new ModelAndView("admin/register");
 	}
 
