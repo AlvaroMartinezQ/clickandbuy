@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Dar de alta a un administrador</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<link href="/css/user/profile.css" rel="stylesheet">
+    </head>
+    
+    <body>
+    	{{>\admin\header}}
+		<div class="container">
+			<div class="card">
+				<article class="card-body">
+				<h4 class="card-title mb-4 mt-1">Dar de alta administrador</h4>
+				<form action="/admin/newAdmin" method="post">
+				    <div class="form-group">
+				    	<label>Email</label>
+				        <input name="email" class="form-control" placeholder="nombre@admin.es" type="email">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Nombre</label>
+				        <input name="realname" class="form-control" placeholder="Nombre Apellido" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Cargo</label>
+				        <div></div>
+							<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+							  <label class="btn btn-outline-primary" for="btnradio1">Manager</label>
+							
+							  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+							  <label class="btn btn-outline-primary" for="btnradio2">Staff</label>
+							</div>
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Alias</label>
+				        <input name="name" class="form-control" placeholder="Nombre en la web" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Teléfono</label>
+				        <input name="phone" class="form-control" placeholder="123456" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group">
+				    	<label>Contraseña</label>
+				        <input name="password" class="form-control" placeholder="******" type="password">
+				    </div> <!-- form-group// --> 
+				    <div class="form-group">
+				    	<label>Confirme contraseña</label>
+				        <input name="passwordconfirmation" class="form-control" placeholder="******" type="password">
+				    </div> <!-- form-group// --> 
+				    <div class="form-group"> 
+				    <div class="checkbox">
+				    </div>
+				    </div>
+				    <br>
+				    <div class="form-group">
+				        <button type="submit" class="btn btn-primary btn-block"> Dar de alta</button>
+				    </div>  
+				     <input type="hidden" name="_csrf" value="{{token}}"/>                                                         
+				</form>
+				<br>
+				</article>
+				</div> <!-- card.// -->
+		</div>
+		<br>
+    	{{>footer}}
+    </body>
+</html>

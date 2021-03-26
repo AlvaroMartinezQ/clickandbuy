@@ -31,11 +31,11 @@ public class AdminService {
 	public String newAdmin(String email, String password, String realname, String name, String phone, String rol) {
 		Admin replicate = admindao.findByEmail(email);
 		if(replicate!=null) {
-			return "status: this administrator's email already exist";
+			return "status: this administrator already exist";
 		}
 		replicate = admindao.findByRealname(realname);
 		if(replicate!=null) {
-			return "status: this administrator's name already exist";
+			return "status: this administrator already exist";
 		}
 		Admin admin = new Admin(email,password,name,realname,phone,LocalDate.now(),rol);
 		admindao.save(admin);

@@ -1,6 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
-import java.security.Principal;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
-import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 
@@ -77,6 +76,41 @@ public class AdminController {
 		model.addAttribute("user", admin);
 		
 		return new ModelAndView("admin/management");
+	}
+	
+	@GetMapping("/register")
+	public ModelAndView register(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		return new ModelAndView("admin/register");
+	}
+	
+	@PostMapping("/newAdmin")
+	public ModelAndView newAdmin(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam(required=true) String realname, @RequestParam(required=true) String name, @RequestParam(required=true) String phone,  @RequestParam(required=true) String password, @RequestParam(required=true) String passwordconfirmation, boolean btnradio1, boolean btnradio2) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		if(email.isBlank()||password.isBlank()||passwordconfirmation.isBlank()||realname.isBlank()||name.isBlank()||phone.isBlank()) {
+			model.addAttribute("fill_fields", true);
+			return new ModelAndView("/register");
+		}
+		if(!password.equals(passwordconfirmation)) {
+			model.addAttribute("bad_fields", true);
+			return new ModelAndView("/register");
+		}
+		
+		String charge = btnradio1? "MANAGER_ROLE":"STAFF_ROLE"; 
+		String status = adminservice.newAdmin(email, passwordconfirmation, realname, name, phone, charge);
+		if(status.equals("status: this administrator already exist")) {
+			model.addAttribute("email_taken", true);
+			return new ModelAndView("/register");
+		}
+		
+		return new ModelAndView("admin/register");
 	}
 
 }
