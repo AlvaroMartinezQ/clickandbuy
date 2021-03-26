@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -28,7 +29,7 @@ public class AdminService {
 		return admindao.findByEmail(email);
 	}
 	
-	public String newAdmin(String email, String password, String realname, String name, String phone, String rol) {
+	public String newAdmin(String email, String password, String realname, String name, String phone, String charge, String rol) {
 		Admin replicate = admindao.findByEmail(email);
 		if(replicate!=null) {
 			return "status: this administrator already exist";
@@ -37,7 +38,7 @@ public class AdminService {
 		if(replicate!=null) {
 			return "status: this administrator already exist";
 		}
-		Admin admin = new Admin(email,password,name,realname,phone,LocalDate.now(),rol);
+		Admin admin = new Admin(email,new BCryptPasswordEncoder().encode(password),name,realname,phone,LocalDate.now(),charge,rol);
 		admindao.save(admin);
 		return "status: saved";
 	}

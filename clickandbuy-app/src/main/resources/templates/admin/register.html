@@ -62,6 +62,15 @@
 				     <input type="hidden" name="_csrf" value="{{token}}"/>                                                         
 				</form>
 				<br>
+				{{#bad_fields}}
+					<p class="text-left" style="color:red;">Los datos no coinciden</p>
+				{{/bad_fields}}
+				{{#fill_fields}}
+					<p class="text-left" style="color:red;">Por favor, rellene todos los datos</p>
+				{{/fill_fields}}
+				{{#email_taken}}
+					<p class="text-left" style="color:red;">Ya existe un administrador con ese email. Seleccione uno nuevo.</p>
+				{{/email_taken}}
 				</article>
 				</div> <!-- card.// -->
 		</div>

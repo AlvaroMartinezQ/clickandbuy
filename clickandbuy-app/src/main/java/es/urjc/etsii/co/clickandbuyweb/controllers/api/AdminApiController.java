@@ -25,8 +25,8 @@ public class AdminApiController {
 	}
 	
 	@PostMapping("/new")
-	public String saveAdmin(@RequestParam(required=true)String email, @RequestParam(required=true)String password, String realname, String name, String phone, String rol) {
-		return adminservice.newAdmin(email, password,realname,name,phone,rol);
+	public String saveAdmin(@RequestParam(required=true)String email, @RequestParam(required=true)String password, String realname, String name, String phone, String charge, String rol) {
+		return adminservice.newAdmin(email, password,realname,name,phone,charge, rol);
 	}
 	
 	@PostMapping("/update")
