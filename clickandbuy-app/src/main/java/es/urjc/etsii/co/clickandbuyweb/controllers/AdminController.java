@@ -129,5 +129,28 @@ public class AdminController {
 		model.addAttribute("userlist", userservice.getUsers());
 		return new ModelAndView("admin/userList");
 	}
+	
+	@PostMapping("/delete")
+	public ModelAndView delete(Model model, HttpServletRequest request, @RequestParam(required=true) int id, @RequestParam(required=true) String type) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		if (type.equals("admin")) {
+			if(id==1) {
+				model.addAttribute("bad_fields", true);
+				model.addAttribute("adminlist", adminservice.getAdmins());
+				model.addAttribute("userlist", userservice.getUsers());
+				return new ModelAndView("admin/userList");
+			}
+			adminservice.deleteById(id);
+		} else {
+			userservice.deleteUser(String.valueOf(id));
+		}
+		model.addAttribute("adminlist", adminservice.getAdmins());
+		model.addAttribute("userlist", userservice.getUsers());
+		return new ModelAndView("admin/userList");
+	}
 
 }

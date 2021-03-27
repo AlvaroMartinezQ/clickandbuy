@@ -26,11 +26,12 @@
 						  	<div class="row">
 								<div class="col-1"></div>
 								<div class="card border-dark mb-3" style="width: 18rem;">
+								
 									<div class="card-body">
 										<h5 class="card-title">Id: {{id}}</h5>
 										<h6>Nombre: {{realname}}</h6>
 										<h6>Cargo: {{charge}}</h6>
-										<h7>Email: {{email}}</h7>
+										<h6>Email: {{email}}</h6>
 										<p class="card-text">Visto por última vez: {{last_login}}</p>
 										<p class="card-text">Contacto: {{phone}}</p>
 										
@@ -38,10 +39,15 @@
 									<p style="text-align:center;">Imagen del administrador</p>
 									<img src="/api/image/retreive?id={{id}}" class="card-img-top">
 									<br>
-									<a href="http://127.0.0.1:8080/admins/delete?id={{id}}" type="button" class="btn btn-danger">Eliminar</a>
-									<br>
-								</div>
-								<div class="col-1"></div>
+									<form action="/admin/delete" method="post">
+										<button type="submit" class="btn btn-danger">Eliminar</button>
+										<input type="hidden" name="type" value="admin" />
+										<input type="hidden" name="id" value="{{id}}" />
+										<input type="hidden" name="_csrf" value="{{token}}" />
+									</form>
+								<br>
+							</div>
+							<div class="col-1"></div>
 							</div>
 						{{/adminlist}}
 						{{/adminlist.0}}
@@ -51,6 +57,10 @@
 						</div>
 						{{/adminlist}}
 			    		</div>
+			    		
+			    {{#bad_fields}}
+					<p class="text-left" style="color:red;">Este manager no se puede eliminar</p>
+				{{/bad_fields}}
 			    		
 		    	<div class="col-md-6" style="background-color:#26272b;color:white;text-align:center"><h4>Usuarios del sistema</h4></div>
 		    		<br>
@@ -78,7 +88,12 @@
 									<p style="text-align:center;">Imagen del administrador</p>
 									<img src="/api/image/retreive?id={{id}}" class="card-img-top">
 									<br>
-									<a href="http://127.0.0.1:8080/admins/delete?id={{id}}" type="button" class="btn btn-danger">Eliminar</a>
+									<form action="/admin/delete" method="post">
+										<button type="submit" class="btn btn-danger">Eliminar</button>
+										<input type="hidden" name="type" value="user" />
+										<input type="hidden" name="id" value="{{id}}" />
+										<input type="hidden" name="_csrf" value="{{token}}" />
+									</form>
 									<br>
 								</div>
 								<div class="col-1"></div>
