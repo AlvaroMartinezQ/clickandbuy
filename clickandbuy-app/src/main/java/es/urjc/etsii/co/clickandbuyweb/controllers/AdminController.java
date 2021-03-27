@@ -189,5 +189,20 @@ public class AdminController {
 		model.addAttribute("product",productservice.getProduct(id));
 		return new ModelAndView("admin/modifyProduct");
 	}
+	
+	@PostMapping("/updateProduct")
+	public ModelAndView updateProduct(Model model, HttpServletRequest request, @RequestParam(required=true) int id, @RequestParam(required = true) String name, @RequestParam(required = true) String desc,
+			@RequestParam(required = true) String price, @RequestParam(required = true) String stock,
+			@RequestParam(required = true) boolean active) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+
+		model.addAttribute("updated", true);
+		model.addAttribute("result", productservice.updateProduct(String.valueOf(id), name, desc, price, stock, active));
+		model.addAttribute("product",productservice.getProduct(id));
+		return new ModelAndView("admin/modifyProduct");
+	}
 
 }

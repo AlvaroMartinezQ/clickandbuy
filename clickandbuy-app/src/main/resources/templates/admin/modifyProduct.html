@@ -15,25 +15,29 @@
 	<div class="container">
 	{{#product}}
 		<div class="col-1">
-			<a href="/product/productmain" type="button"
+			<a href="/admin/productsView" type="button"
 				class="btn btn-outline-info">Volver</a>
 		</div>
 		<br>
 		<div class="card">
 			<article class="card-body">
 				<h4 class="card-title mb-4 mt-1">Modificar producto</h4>
-				<form action="/product/modifyok" method="post">
+				<form action="/admin/updateProduct" method="post">
 					<div class="form-group">
 				    	<label>Id</label>
-				        <input name="id" class="form-control" placeholder="{{id}}" readonly>
+				        <input name="id" class="form-control" placeholder="{{id}}" value="{{id}}"readonly>
+				    </div>
+				    <div class="form-group">
+				    	<label>Nombre</label>
+				        <input name="name" class="form-control" placeholder="{{name}}">
 				    </div>
 					<div class="form-group">
 				    	<label>Descripcion</label>
 				    	{{#description}}
-				        	<input name="name" class="form-control" placeholder="{{description}}">
+				        	<input name="desc" class="form-control" placeholder="{{description}}">
 				    	{{/description}}
 				    	{{^description}}
-				    		<input name="name" class="form-control" placeholder="">
+				    		<input name="des" class="form-control" placeholder="">
 				    	{{/description}}
 				    </div>
 					<div class="form-group">
