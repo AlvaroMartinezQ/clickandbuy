@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
+import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
 @RequestMapping("/admin")
@@ -26,6 +27,8 @@ public class AdminController {
 	private AdminService adminservice;
 	@Autowired
 	private UserImageService uis;
+	@Autowired
+	private UserService userservice;
 	
 	@GetMapping("/profile")
 	public ModelAndView profile(Model model, HttpServletRequest request) {
@@ -113,6 +116,18 @@ public class AdminController {
 		
 		model.addAttribute("successfully", true);
 		return new ModelAndView("admin/register");
+	}
+	
+	@GetMapping("/userList")
+	public ModelAndView userList(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		model.addAttribute("adminlist", adminservice.getAdmins());
+		model.addAttribute("userlist", userservice.getUsers());
+		return new ModelAndView("admin/userList");
 	}
 
 }
