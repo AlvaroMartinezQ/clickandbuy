@@ -204,5 +204,17 @@ public class AdminController {
 		model.addAttribute("product",productservice.getProduct(id));
 		return new ModelAndView("admin/modifyProduct");
 	}
+	
+	@PostMapping("/deleteProduct")
+	public ModelAndView deleteProduct(Model model, HttpServletRequest request, @RequestParam(required=true) int id) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		//productservice.deleteProduct(String.valueOf(id));
+		model.addAttribute("products", productservice.getAll());
+		return new ModelAndView("admin/productsView");
+	}
 
 }

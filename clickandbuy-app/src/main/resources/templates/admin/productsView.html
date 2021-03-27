@@ -36,7 +36,7 @@
 												<p class="card-text">Unidades del producto: {{stock}}</p>
 											</div>
 										</div>
-									<form action="/admin/management" method="post">
+									<form action="/admin/deleteProduct" method="post">
 										<a href="/admin/modifyProduct?id={{id}}" type="button" class="btn btn-primary">Modificar</a>
 										<button type="submit" class="btn btn-danger">Eliminar</button>
 										<input type="hidden" name="id" value="{{id}}" />
