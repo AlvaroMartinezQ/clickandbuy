@@ -32,12 +32,12 @@ public class DatabaseUsersLoader {
 		
 		if(userdao.findByUserEmail("user@proveedor.es")== null) {
 			Date date = new Date();
-			userdao.save(new User("user@proveedor.es",new BCryptPasswordEncoder().encode("1"),"LB","Luis","Blay","Calle inventada, 3","123456","123456",date,true,true,"SUPPLIER_ROLE"));
+			userdao.save(new User("user@proveedor.es",new BCryptPasswordEncoder().encode("1"),"LB","Luis","Blay","Calle inventada, 3","123456","123456",date,true,true,"ROLE_SUPPLIER"));
 		}
 		
 		if(userdao.findByUserEmail("user@comprador.es")== null) {
 			Date date = new Date();
-			userdao.save(new User("user@comprador.es",new BCryptPasswordEncoder().encode("1"),"AQ","Alvaro","Quiroga","Calle inventada, 3","123456","123456",date,true,true,"NOT_SUPPLIER_ROLE"));
+			userdao.save(new User("user@comprador.es",new BCryptPasswordEncoder().encode("1"),"AQ","Alvaro","Quiroga","Calle inventada, 3","123456","123456",date,true,false,"ROLE_NOTSUPPLIER"));
 		}
 			
 	}

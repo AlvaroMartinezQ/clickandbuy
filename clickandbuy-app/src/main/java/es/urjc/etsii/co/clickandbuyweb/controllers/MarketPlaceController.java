@@ -48,7 +48,7 @@ public class MarketPlaceController {
 
 		// Check if user is supplier
 		if (u != null) {
-			if (u.getRoles().contains("SUPPLIER_ROLE")) {
+			if (u.getRoles().contains("ROLE_SUPPLIER")) {
 				us.updateLogin(u);
 				model.addAttribute("products", ps.getAll());
 				model.addAttribute("mail", u.getEmail());
@@ -56,7 +56,7 @@ public class MarketPlaceController {
 			}
 
 			// Save the last login for the user
-			if (u.getRoles().contains("NOT_SUPPLIER_ROLE")) {
+			if (u.getRoles().contains("ROLE_NOTSUPPLIER")) {
 				us.updateLogin(u);
 				// Return products
 				model.addAttribute("products", ps.getAll());
