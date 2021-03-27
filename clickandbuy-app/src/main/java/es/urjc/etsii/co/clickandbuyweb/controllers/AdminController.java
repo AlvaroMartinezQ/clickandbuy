@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
+import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
@@ -29,6 +30,8 @@ public class AdminController {
 	private UserImageService uis;
 	@Autowired
 	private UserService userservice;
+	@Autowired
+	private ProductService productservice;
 	
 	@GetMapping("/profile")
 	public ModelAndView profile(Model model, HttpServletRequest request) {
@@ -162,6 +165,29 @@ public class AdminController {
 		
 
 		return new ModelAndView("admin/denied");
+	}
+	
+	@GetMapping("/productsView")
+	public ModelAndView productsView(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		model.addAttribute("products", productservice.getAll());
+
+		return new ModelAndView("admin/productsView");
+	}
+	
+	@GetMapping("/modifyProduct")
+	public ModelAndView modifyProduct(Model model, HttpServletRequest request, @RequestParam(required=true) int id) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+
+		model.addAttribute("product",productservice.getProduct(id));
+		return new ModelAndView("admin/modifyProduct");
 	}
 
 }

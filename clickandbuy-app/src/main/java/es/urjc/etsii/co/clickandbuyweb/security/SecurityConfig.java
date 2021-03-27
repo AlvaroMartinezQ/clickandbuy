@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Private pages
 		http.authorizeRequests().antMatchers("/admin/register").hasRole("MANAGER").and().exceptionHandling().accessDeniedPage("/admin/denied");
 		http.authorizeRequests().antMatchers("/admin/userList").hasRole("MANAGER").and().exceptionHandling().accessDeniedPage("/admin/denied");
+		http.authorizeRequests().antMatchers("/admin/productsView").hasAnyRole("MANAGER","STAFF").and().exceptionHandling().accessDeniedPage("/admin/denied");
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		//http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER_ROLE");
