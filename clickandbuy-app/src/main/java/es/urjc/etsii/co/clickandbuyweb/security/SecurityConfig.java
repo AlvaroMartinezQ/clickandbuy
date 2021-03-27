@@ -29,15 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user/singIn").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		
-		/*
-		 * Static resources
-		 */
-		
 		// Custom Style Sheets and Images
 		http.authorizeRequests().antMatchers("/css/**", "/imgs/**", "/favicon.ico").permitAll();
 		
 		// Private pages
+		http.authorizeRequests().antMatchers("/admin/register").hasRole("MANAGER");
 		http.authorizeRequests().anyRequest().authenticated();
+		
 		//http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER_ROLE");
 		
 		/*

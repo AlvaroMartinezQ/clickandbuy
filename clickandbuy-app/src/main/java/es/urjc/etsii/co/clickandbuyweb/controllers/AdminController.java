@@ -106,7 +106,7 @@ public class AdminController {
 			return new ModelAndView("/register");
 		}
 		
-		String rol = btnradio1? "MANAGER_ROLE":"STAFF_ROLE"; 
+		String rol = btnradio1? "ROLE_MANAGER":"ROLE_STAFF"; 
 		String charge = btnradio1? "Manager":"Staff"; 
 		String status = adminservice.newAdmin(email, passwordconfirmation, realname, name, phone, charge, rol);
 		if(status.equals("status: this administrator already exist")) {

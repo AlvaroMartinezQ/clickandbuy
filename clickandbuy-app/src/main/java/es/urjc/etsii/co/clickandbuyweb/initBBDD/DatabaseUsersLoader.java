@@ -28,7 +28,7 @@ public class DatabaseUsersLoader {
 	@PostConstruct
 	private void initDatabse() {
 		if(admindao.findByEmail("manager@admin.es")==null)
-			admindao.save(new Admin("manager@admin.es",new BCryptPasswordEncoder().encode("1"),"Patrii","Patricia Tarazaga","6456875",LocalDate.now(), "Manager","MANAGER_ROLE"));
+			admindao.save(new Admin("manager@admin.es",new BCryptPasswordEncoder().encode("1"),"Patrii","Patricia Tarazaga","6456875",LocalDate.now(), "Manager","ROLE_MANAGER"));
 		
 		if(userdao.findByUserEmail("user@proveedor.es")== null) {
 			Date date = new Date();
