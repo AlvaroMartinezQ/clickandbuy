@@ -152,5 +152,16 @@ public class AdminController {
 		model.addAttribute("userlist", userservice.getUsers());
 		return new ModelAndView("admin/userList");
 	}
+	
+	@GetMapping("/denied")
+	public ModelAndView denied(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+
+		return new ModelAndView("admin/denied");
+	}
 
 }
