@@ -37,8 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**", "/imgs/**", "/favicon.ico").permitAll();
 		
 		// Private pages
+		http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER");
+		http.authorizeRequests().antMatchers("/product/uploadform").hasAnyRole("SUPPLIER");
+		http.authorizeRequests().antMatchers("/product/owner").hasAnyRole("SUPPLIER");
+		http.authorizeRequests().antMatchers("/product/modify").hasAnyRole("SUPPLIER");
+		http.authorizeRequests().antMatchers("/product/modifyok").hasAnyRole("SUPPLIER");
 		http.authorizeRequests().anyRequest().authenticated();
-		//http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER_ROLE");
+		
 		
 		/*
 		 * DO NOT put any http.authorizeRequests() after anyRequest() it won't work
