@@ -36,9 +36,9 @@ public class ProductApiController {
 		return pservice.updateProduct(id, name, description, price, stock, active);
 	}
 
-	@DeleteMapping("/delete")
-	public String deleteProduct(@RequestParam(required = true) String id) {
-		return pservice.deleteProduct(id);
-	}
+	/*@DeleteMapping("/delete")
+	public void deleteProduct(@RequestParam(required = true) int id) {
+			pservice.deleteProduct(id);
+	}*/
 
 }
