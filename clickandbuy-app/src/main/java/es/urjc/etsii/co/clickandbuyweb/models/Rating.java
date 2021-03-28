@@ -28,6 +28,14 @@ public class Rating {
 	public Rating() {
 		super();
 	}
+	
+	public Rating(String comment, int rate, User user, Product product) {
+		super();
+		this.comment = comment;
+		this.rate = rate;
+		this.user = user;
+		this.product = product;
+	}
 
 	public Rating(int id, String comment, int rate, User user, Product product) {
 		super();

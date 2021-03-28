@@ -1,5 +1,10 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,35 +21,51 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 @Transactional
 public class RatingService {
 	@Autowired
-	private RatingDAO rdao;
+	private RatingDAO ratingdao;
 	@Autowired
-	private UserDAO udao;
+	private UserDAO userdao;
 	@Autowired
-	private ProductDAO pdao;
+	private ProductDAO productdao;
 	
-	public Iterable<Rating> getAll() {
-		return rdao.findAll();
+	public List<Rating> getAll() {
+		return ratingdao.findAll();
 	}
 	
-	// The user SHOULD have purchased the product first
-	public String saveRating(String userEmail, String productpk, String rate, String comment) {
-		User u=udao.findByUserEmail(userEmail);
-		if(u==null) {
-			return "status: user not found";
-		}
-		int productid=Integer.parseInt(productpk);
-		Product p=pdao.findByProductId(productid);
-		if(p==null) {
-			return "status: product not found";
-		}
-		Rating r=new Rating();
-		r.setComment(comment);
-		int rating=Integer.parseInt(rate);
-		r.setRate(rating);
-		r.setUser(u);
-		r.setProduct(p);
-		rdao.save(r);
+	public String newRating(String comment, int rate, int idUser, int idProduct) {
+		//We need to know if user has bought a product
+		Optional<User> user = userdao.findById(idUser);
+		if(!user.isPresent())
+			return "status: user doesn't exist!";
+		Optional<Product> product = productdao.findById(idProduct);
+		if(!product.isPresent())
+			return "status: product doesn't exist!";
+		Rating rating = new Rating(comment,rate,user.get(),product.get());
+		ratingdao.save(rating);
 		return "status: saved";
+	}
+	
+	public String deleteRating(int id, int idUser) {
+		Optional<Rating> rating = ratingdao.findById(id);
+		Optional<User> user = userdao.findById(idUser);
+		if(!rating.isPresent())
+			return "status: rating not found";
+		if(!user.isPresent())
+			return "status: user not found";
+		if(rating.get().getUser().getId() != user.get().getId())
+			return "status: you are not the owner of this rating";
+		ratingdao.deleteById(id);
+		return "status: rating deleted";
+	}
+	
+	public List<Rating> getRatingsSorted() {
+		List<Rating> ratingSorted = ratingdao.findAll();
+		Collections.sort(ratingSorted, new Comparator<Rating>() {
+			public int compare(Rating r1, Rating r2) {
+				return r1.getRate()>r2.getRate()? -1: (r1.getRate()==r2.getRate()? 0: 1);
+			}
+		});
+		
+		return ratingSorted;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +30,26 @@ public class Product {
 	private int stock;
 	private boolean active;
 	
+	private Set<Integer> buyers;
+	
 	public Product() {
 		super();
 	}
+
+	
+	public Product(@NotNull(message = "Product price is required.") Double price,
+			@NotNull(message = "Product name is required.") String name,
+			@NotNull(message = "Product description is required.") String description,
+			@NotNull(message = "Product stock is required.") int stock, boolean active, Set<Integer> buyers) {
+		super();
+		this.price = price;
+		this.name = name;
+		this.description = description;
+		this.stock = stock;
+		this.active = active;
+		this.buyers = buyers;
+	}
+
 
 	public Product(int id, double price, String name, String description, int stock, boolean active) {
 		super();
@@ -90,9 +109,23 @@ public class Product {
 		this.active = active;
 	}
 
+	
+	public Set<Integer> getBuyers() {
+		return buyers;
+	}
+
+
+	public void setBuyers(Set<Integer> buyers) {
+		this.buyers = buyers;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", price=" + price + ", name=" + name + ", description=" + description
-				+ ", stock=" + stock + ", active=" + active + "]";
+		return "Product [id=" + id + ", price=" + price + ", name=" + name + ", description=" + description + ", stock="
+				+ stock + ", active=" + active + ", buyers=" + buyers + "]";
 	}
+
+
+
 }
