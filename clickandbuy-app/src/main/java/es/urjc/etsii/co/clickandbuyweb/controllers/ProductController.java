@@ -150,4 +150,13 @@ public class ProductController {
 		productservice.deleteProduct(u.getId(), id);
 		return new ModelAndView("/product/management");
 	}
+	@RequestMapping("/denied")
+	public ModelAndView denied(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		User u = us.getUser(principal.getName());
+		model.addAttribute("mail", u.getEmail());
+		model.addAttribute("userid", u.getId());
+		model.addAttribute("user", u);
+		return new ModelAndView("product/denied");
+	}
 }
