@@ -1,7 +1,5 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;

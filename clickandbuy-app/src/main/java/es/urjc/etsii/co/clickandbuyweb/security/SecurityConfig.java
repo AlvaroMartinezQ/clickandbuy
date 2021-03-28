@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// User end-points
 		http.authorizeRequests().antMatchers("/user/singUp").permitAll();
 		http.authorizeRequests().antMatchers("/user/singUpForm").permitAll();
+		http.authorizeRequests().antMatchers("/ws").permitAll();
 		http.authorizeRequests().antMatchers("/user/singIn").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		
