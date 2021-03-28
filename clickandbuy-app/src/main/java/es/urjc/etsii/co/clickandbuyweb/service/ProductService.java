@@ -53,7 +53,8 @@ public class ProductService {
 		return p;
 	}
 
-	public String updateProduct(String id, String name, String description, String price, String stock, boolean active) {
+	public String updateProduct(String id, String name, String description, String price, String stock,
+			boolean active) {
 		int pid = Integer.parseInt(id);
 		Product p = pdao.findByProductId(pid);
 		if (p == null) {
@@ -78,14 +79,13 @@ public class ProductService {
 		return "status: saved";
 	}
 
-	public String deleteProduct(String id) {
-		int pid = Integer.parseInt(id);
-		Product p = pdao.findByProductId(pid);
-		if (p == null) {
-			return "status: product doesn't exist";
-		}
-		pdao.delete(p);
-		return "status: deleted";
+	public void deleteProduct(int uid, int id) {
+		User user = udao.findByUserId(uid);
+		Product product = pdao.findByProductId(id);
+		List<Product> list = user.getUser_product_list();
+		list.remove(product);
+		user.setUser_product_list(list);
+		udao.save(user);
 	}
 
 	public Product search(String name) {

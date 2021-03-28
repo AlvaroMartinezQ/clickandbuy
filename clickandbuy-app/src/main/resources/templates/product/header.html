@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="row" style="background-color:#26272b;">
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
+			<div class="col-6" style="margin-top: 10px;margin-bottom:10px;">
+				{{#mail}}
+					<a href="/marketplace" type="button" class="btn btn-info">CLICK&BUY Co.</a>
+				{{/mail}}
+				{{^mail}}
+					<a href="/" type="button" class="btn btn-info">CLICK&BUY Co.</a>
+				{{/mail}}
+		  	</div>
+			<div class="col-4 justify-content-md-end" style="margin-top: 10px;margin-bottom:10px;">
+					<form action="/logout" method="post">
+						<button type="button" class="btn btn-info" disabled>Bienvenido, {{mail}}</button>
+						<a href="/user/profile" type="button" class="btn btn-success">Tu perfil</a>
+						<a href="/product/management" type="button" class="btn btn-warning">Gestión</a>
+						<button type="submit" class="btn btn-danger">Cerrar sesión</button>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
+			</div>
+			<div class="col-1" style="margin-top: 10px;margin-bottom:10px;"></div>
+			</div>
+		<br>
+	</body>
+</html>

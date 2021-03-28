@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Mercado</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<link href="/css/marketplace.css" rel="stylesheet"/>
+    </head>
+    
+    <body>
+    	{{>\product\header}}
+			<div class="container">
+			  <div class="row row-cols-2">
+			  <div class="col-10">
+    				<h4 id="title">GESTIÓN DE PRODUCTOS</h4>
+    			</div>
+    			<br>
+    			<br>
+    			<br>
+    			<br>
+			    <div class="col">
+			    
+					<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+					  <div class="card-header">
+					  	<a href="/product/upload" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Dar de alta un producto</span></a>
+					  </div>
+					  <div class="card-body">
+					    <p class="card-text">Registrar un nuevo producto en el sistema. Sólo el proveedor tiene acceso.</p>
+					  </div>
+					</div>
+			    
+			    </div>
+			    				
+			    <div class="col">
+			    
+			    
+					<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+					  <div class="card-header">
+					  	<a href="/product/search" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Buscar un producto</span></a>
+					  </div>
+					  <div class="card-body">
+					    <p class="card-text">Busca un producto del sistema.</p> 
+					  </div>
+					</div>			    
+			    
+			    </div>
+			    <div class="col">
+			    
+					<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+					  <div class="card-header">
+					  	<a href="/product/view" class="btn btn-outline-light"><span style="font-size:20px;">Modificar productos</span></a>
+					  </div>
+					  <div class="card-body">
+					    <p class="card-text">Editar o eliminar productos del sistema.</p> 
+					  </div>
+					</div>	
+			    
+			    </div>
+			    <div class="col">
+			    
+					<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+					  <div class="card-header">
+					  	<a href="/product/owner" class="btn btn-outline-light"><span style="font-size:20px;">Ver productos subidos</span></a>
+					  </div>
+					  <div class="card-body">
+					    <p class="card-text" style="color:white;">Ver productos que ha subido el proveedor. Solo el proveedor tiene acceso. </p> 
+					  </div>
+					</div>
+			    
+			    
+			    </div>
+			  </div>
+			</div>
+      {{>footer}}
+    </body>
+</html>
