@@ -60,19 +60,19 @@
 						    <span style="font-size:20px;">Valora el producto:</span>
 						    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="1" autocomplete="off" checked>
-								  <label class="btn btn-outline-primary" for="btnradio1">1</label>
+								  <label class="btn btn-outline-warning" for="btnradio1">1</label>
 								
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="2" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio2">2</label>
+								  <label class="btn btn-outline-warning" for="btnradio2">2</label>
 								
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" value="3" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio3">3</label>
+								  <label class="btn btn-outline-warning" for="btnradio3">3</label>
 								  
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" value="4"  autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio4">4</label>
+								  <label class="btn btn-outline-warning" for="btnradio4">4</label>
 								  
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" value="5" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio5">5</label>
+								  <label class="btn btn-outline-warning" for="btnradio5">5</label>
 							</div>
 						</div>
 						<br>
@@ -87,9 +87,22 @@
 						<span style="font-size:20px;">Opiniones de los usuarios:</span>
 				    	{{#rating}}
 				    		<br>
-				        	<span style="font-size:18px;">{{user.name}}</span>
-				        	<span style="font-size:18px;">{{rate}}</span>
-				        	<span style="font-size:18px;">{{comment}}</span>
+				        	<div class="card" style="width: 18rem;">
+							  <div class="card-header"> Usuario {{user.email}}</div>
+							  <ul class="list-group list-group-flush">
+							    <li class="list-group-item">Evaluación: {{rate}}</li>
+							    <li class="list-group-item">Comentario: {{comment}}</li>
+							    
+							   	<li class="list-group-item">
+							   		<form action="/marketplace/deleteRate" method="post">
+							   			<a href="/marketplace/deleteRate?_csrf={{token}}&&id={{product.id}}&&idrating={{id}}" type="button" style="font-size:10px" class="btn btn-outline-danger">Eliminar</a>
+							   			<input type="hidden" name="idrating" value="{{id}}"/>
+							   			<input type="hidden" name="id" value="{{product.id}}"/>
+							   			<input type="hidden" name="_csrf" value="{{token}}" />
+							   		</form>
+								</li>
+							  </ul>
+							</div>
 				    	{{/rating}}
 				    	{{^rating}}
 				    		<span style="font-size:18px;">Aún no hay opiniones para este producto</span>

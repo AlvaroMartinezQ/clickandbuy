@@ -1,6 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +20,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.Rating;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
+import es.urjc.etsii.co.clickandbuyweb.service.RatingService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
 @RestController
@@ -33,6 +35,9 @@ public class MarketPlaceController {
 
 	@Autowired
 	private AdminDAO admindao;
+	
+	@Autowired
+	private RatingService ratingservice;
 
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
@@ -94,10 +99,31 @@ public class MarketPlaceController {
 	
 		//User has bought this product
 		Product product = ps.getProduct(id);
-		Rating rating = new Rating(comment,Integer.valueOf(rate),user,product);
+		Rating rating = new Rating(comment,Integer.valueOf(rate),us.getUser(user.getEmail()),product);
+		ratingservice.save(rating);
+		product.getRating().add(rating);
+		ps.saveUpdateProduct(product);
 		//Add rating to ratingList of that product
 		
 		model.addAttribute("product", product);
+		return new ModelAndView("/marketplace/productsView");
+	}
+	
+	@GetMapping("/deleteRate")
+	public ModelAndView deleteRate(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam(required = true) int idrating) {
+		Principal principal = request.getUserPrincipal();
+		User user = us.getUser(principal.getName());
+		model.addAttribute("mail", user.getEmail());
+		model.addAttribute("userid", user.getId());
+		model.addAttribute("user", user);
+	
+		Product product = ps.getProduct(id);
+		Optional<Rating> rating = ratingservice.getRating(idrating);
+		product.getRating().remove(rating.get());
+		String status = ratingservice.deleteRating(idrating, user.getId());
+		System.out.println(status);
+		ps.saveUpdateProduct(product);
+		model.addAttribute("product", ps.getProduct(id));
 		return new ModelAndView("/marketplace/productsView");
 	}
 	

@@ -52,6 +52,11 @@ public class ProductService {
 		udao.save(u);
 		return p;
 	}
+	
+	public String saveUpdateProduct(Product product) {
+		pdao.save(product);
+		return "status: saved";
+	}
 
 	public String updateProduct(String id, String name, String description, String price, String stock,
 			boolean active) {

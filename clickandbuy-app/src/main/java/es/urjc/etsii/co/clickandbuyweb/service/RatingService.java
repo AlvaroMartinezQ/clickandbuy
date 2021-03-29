@@ -31,6 +31,10 @@ public class RatingService {
 		return ratingdao.findAll();
 	}
 	
+	public Optional<Rating> getRating(int id) {
+		return ratingdao.findById(id);
+	}
+	
 	public String newRating(String comment, int rate, int idUser, int idProduct) {
 		//We need to know if user has bought a product
 		Optional<User> user = userdao.findById(idUser);
@@ -40,6 +44,11 @@ public class RatingService {
 		if(!product.isPresent())
 			return "status: product doesn't exist!";
 		Rating rating = new Rating(comment,rate,user.get(),product.get());
+		ratingdao.save(rating);
+		return "status: saved";
+	}
+	
+	public String save(Rating rating) {
 		ratingdao.save(rating);
 		return "status: saved";
 	}

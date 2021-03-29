@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Product {
 	private int stock;
 	private boolean active;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Rating> rating;
 	
 	@Column
