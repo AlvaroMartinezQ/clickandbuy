@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,6 +66,31 @@ public class MarketPlaceController {
 			}
 		}
 		return null;
+	}
+	
+	@RequestMapping("/productsView")
+	public ModelAndView view(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
+		Principal principal = request.getUserPrincipal();
+
+		User u = us.getUser(principal.getName());
+		model.addAttribute("mail", u.getEmail());
+		model.addAttribute("userid", u.getId());
+		model.addAttribute("user", u);
+
+		model.addAttribute("product", ps.getProduct(id));
+		return new ModelAndView("/marketplace/productsView");
+	}
+	
+	@GetMapping("/rate")
+	public ModelAndView rate(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
+		Principal principal = request.getUserPrincipal();
+		User user = us.getUser(principal.getName());
+		model.addAttribute("mail", user.getEmail());
+		model.addAttribute("userid", user.getId());
+		model.addAttribute("user", user);
+		
+		model.addAttribute("product", ps.getProduct(id));
+		return new ModelAndView("/marketplace/productsView");
 	}
 
 }

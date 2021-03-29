@@ -1,12 +1,16 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -30,6 +34,11 @@ public class Product {
 	private int stock;
 	private boolean active;
 	
+	@OneToMany
+	private List<Rating> rating;
+	
+	@Column
+	@ElementCollection(targetClass=Integer.class)
 	private Set<Integer> buyers;
 	
 	public Product() {
@@ -117,6 +126,16 @@ public class Product {
 
 	public void setBuyers(Set<Integer> buyers) {
 		this.buyers = buyers;
+	}
+
+
+	public List<Rating> getRating() {
+		return rating;
+	}
+
+
+	public void setRating(List<Rating> rating) {
+		this.rating = rating;
 	}
 
 
