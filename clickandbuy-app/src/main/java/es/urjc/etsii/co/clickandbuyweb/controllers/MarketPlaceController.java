@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
+import es.urjc.etsii.co.clickandbuyweb.models.Product;
+import es.urjc.etsii.co.clickandbuyweb.models.Rating;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
@@ -81,16 +84,22 @@ public class MarketPlaceController {
 		return new ModelAndView("/marketplace/productsView");
 	}
 	
-	@GetMapping("/rate")
-	public ModelAndView rate(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
+	@PostMapping("/rate")
+	public ModelAndView rate(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam(required = true) String comment, @RequestParam("btnradio") String rate) {
 		Principal principal = request.getUserPrincipal();
 		User user = us.getUser(principal.getName());
 		model.addAttribute("mail", user.getEmail());
 		model.addAttribute("userid", user.getId());
 		model.addAttribute("user", user);
+	
+		//User has bought this product
+		Product product = ps.getProduct(id);
+		Rating rating = new Rating(comment,Integer.valueOf(rate),user,product);
+		//Add rating to ratingList of that product
 		
-		model.addAttribute("product", ps.getProduct(id));
+		model.addAttribute("product", product);
 		return new ModelAndView("/marketplace/productsView");
 	}
+	
 
 }
