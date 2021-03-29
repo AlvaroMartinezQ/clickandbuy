@@ -2,6 +2,7 @@ package es.urjc.etsii.co.clickandbuyweb.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -47,17 +48,29 @@ public class OrderService {
 		return order.get();
 	}
 	
-	public String makeOrder(int usid, int prodid, int cuantity, Cart cart) {
+	public String makeOrder(int usid, Set<Cart> carts) {
 		Optional<User> user = userdao.findById(usid);
-		Optional<Product> product = productdao.findById(prodid);
 		
 		return "";
 	}
 	
-	public void addCart(int id, Cart cart) {
+	public String addCart(int id, Cart cart) {
 		Optional<Order> order = orderdao.findById(id);
 		if(order.isPresent()) {
 			order.get().getCarts().add(cart);
+			return "added product";
 		}
+		return "product not added";
 	}
+	public String deleteCart(int id, Cart cart) {
+		Optional<Order> order = orderdao.findById(id);
+		if(order.isPresent()) {
+			order.get().getCarts().remove(cart);
+			return "delete product";
+		}
+		return "product not delete";
+	}
+	
+	
+	
 }

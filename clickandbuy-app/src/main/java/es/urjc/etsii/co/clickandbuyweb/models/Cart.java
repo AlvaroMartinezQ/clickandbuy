@@ -1,9 +1,11 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,8 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private Product product;
 	private int cuantity;
 	private double price;
@@ -25,6 +28,13 @@ public class Cart {
 	public Cart(int id, Product product, int cuantity, double price) {
 		super();
 		this.id = id;
+		this.product = product;
+		this.cuantity = cuantity;
+		this.price = price * cuantity;
+	}
+
+	public Cart(Product product, int cuantity, double price) {
+		super();
 		this.product = product;
 		this.cuantity = cuantity;
 		this.price = price * cuantity;
@@ -59,7 +69,7 @@ public class Cart {
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.price = price * this.getCantidad();
 	}
 
 }

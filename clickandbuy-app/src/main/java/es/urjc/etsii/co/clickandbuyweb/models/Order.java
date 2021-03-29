@@ -42,6 +42,14 @@ public class Order {
 		this.state = state;
 		this.carts = carts;
 	}
+	
+	public Order(LocalDate date, LocalDate estimated, String state, Set<Cart> carts) {
+		super();
+		this.date = date;
+		this.estimated = estimated;
+		this.state = state;
+		this.carts = carts;
+	}
 
 	public int getId() {
 		return id;
