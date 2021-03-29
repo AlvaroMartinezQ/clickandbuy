@@ -60,7 +60,7 @@ public class Product {
 	}
 
 
-	public Product(int id, double price, String name, String description, int stock, boolean active) {
+	public Product(int id, double price, String name, String description, int stock, boolean active, Set<Integer> buyers) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -68,6 +68,7 @@ public class Product {
 		this.description = description;
 		this.stock = stock;
 		this.active = active;
+		this.buyers = buyers;
 	}
 
 	public int getId() {
