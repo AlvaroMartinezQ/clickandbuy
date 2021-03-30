@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Chat global</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	
+    </head>
+    
+    <body>
+    	{{>header}}
+    	<div class="container-fluid">
+    		<div class="card">
+    			<article class="card-body">
+					<h4 class="card-title">Chat del sistema</h4>
+					<div class="row">
+						<p>¡Aquí podrás hablar con todos los usuarios que estén conectados al chat!</p>
+					</div>
+					<div class="row">
+						<p>Escribe un mensaje y si algún usuario esta conectado te responderá:</p>
+						<div id="messages"></div>
+						<input type="hidden" id="userEmail" value="{{mail}}" />
+					    <div class="input-fields">
+					        <input id="message"/>
+					        <button id="send">Send</button>
+					    </div>
+					</div>
+				</article>
+			</div>
+    	</div>
+    	{{>footer}}
+    </body>
+	<!-- TODO: split script code from html -->
+	<script type="text/javascript">
+		const messageWindow = document.getElementById("messages");
+		const sendButton = document.getElementById("send");
+		const messageInput = document.getElementById("message");
+		var userEmail = document.getElementById("userEmail").value;
+		
+		const socket = new WebSocket("ws://127.0.0.1:8081/socket");
+		socket.binaryType = "arraybuffer";
+	
+		socket.onopen = function(e) {
+			console.log("[Click&Buy Web Socket] Connection established");
+			socket.send("connection petition");
+		};
+		
+		socket.onmessage = function (event) {
+	        if (event.data instanceof ArrayBuffer) {
+	            addMessageToWindow('Got Image:');
+	            addImageToWindow(event.data);
+	        } else {
+	            addMessageToWindow(`${event.data}`);
+	        }
+	    };
+		
+		/* socket.onmessage = function (event) {
+			alert(`[message] Data received from server: ${event.data}`);
+		}; */
+	
+		socket.onclose = function(event) {
+			if (event.wasClean) {
+				console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+			} else {
+				// server process killed or network down
+				console.log('[close] Connection died.');
+				alert('Connection died, please check your Internet availability.');
+			}
+		};
+	
+		socket.onerror = function(error) {
+			alert(`[error] ${error.message}`);
+		};
+		
+		sendButton.onclick = function (event) {
+	        sendMessage(messageInput.value);
+	        messageInput.value = "";
+	    };
+		
+		function sendMessage(message) {
+	        socket.send(new Date().toISOString().split('T')[0] + " - " + userEmail + ": " + message);
+	    }
+	
+	    function addMessageToWindow(message) {
+	        messageWindow.innerHTML += `<div>${message}</div>`
+	    }
+	</script>
+</html>
