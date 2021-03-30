@@ -168,4 +168,15 @@ public class UserController {
 		}
 		return new ModelAndView("user/profile");
 	}
+	
+	// Chat - Internal service
+	@GetMapping("/chat")
+	public ModelAndView chat(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		User u=us.getUser(principal.getName());
+		model.addAttribute("mail", u.getEmail());
+		model.addAttribute("userid", u.getId());
+		model.addAttribute("user", u);
+		return new ModelAndView("user/globalChat");
+	}
 }
