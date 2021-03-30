@@ -19,6 +19,10 @@ public class ProductService {
 	private ProductDAO pdao;
 	@Autowired
 	private UserDAO udao;
+	@Autowired
+	private UserService userservice;
+	@Autowired
+	private RatingService ratingservice;
 
 	public Iterable<Product> getAll() {
 		return pdao.findAll();
@@ -91,6 +95,26 @@ public class ProductService {
 		list.remove(product);
 		user.setUser_product_list(list);
 		udao.save(user);
+	}
+	
+	public String deleteProductByAdmin(int id) {
+		Product product = pdao.findByProductId(id);
+		Iterable<User> users = userservice.getUsers();
+		for(User user: users) {
+			if(user.getUser_product_list().contains(product)) {
+				System.out.println("el usuario se ha encontrado");
+				List<Product> list = user.getUser_product_list();
+				list.remove(product);
+				System.out.println("se ha eliminado el producto de su lista");
+				user.setUser_product_list(list);
+				udao.save(user);
+				
+				ratingservice.deleteAllRatingsFromProduct(id);
+				return "Product has been deleted correctly";
+			}
+		}
+		return "There have been a problem during deleting product";
+		
 	}
 
 	public Product search(String name) {

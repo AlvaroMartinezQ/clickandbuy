@@ -215,9 +215,8 @@ public class AdminController {
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
 		
-		//Necesito que admin pueda borrar un producto, pero no tengo el id del usuario
-		//al que le pertenece ese producto
-		//productservice.deleteProduct(idusuario, id);
+	
+		System.out.println(productservice.deleteProductByAdmin(id));
 		model.addAttribute("products", productservice.getAll());
 		return new ModelAndView("admin/productsView");
 	}

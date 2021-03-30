@@ -49,7 +49,7 @@ public class RatingService {
 		Optional<Product> product = productdao.findById(idProduct);
 		if(!product.isPresent())
 			return "status: product doesn't exist!";
-		Rating rating = new Rating(comment,rate,user.get(),product.get());
+		Rating rating = new Rating(comment,rate,user.get());
 		ratingdao.save(rating);
 		return "status: saved";
 	}
@@ -96,9 +96,10 @@ public class RatingService {
 		return ratingSorted;
 	}
 	
-	public String deleteAllRatingsFromProduct(int idProduct) {
-		Product product = productservice.getProduct(idProduct);
+	public String deleteAllRatingsFromProduct(int id) {
+		Product product = productservice.getProduct(id);
 		product.getRating().clear();
+		ratingdao.deleteAllByProduct(id);;
 		productservice.saveUpdateProduct(product);
 		return "status: all ratings deleted";
 	}

@@ -130,7 +130,7 @@ public class MarketPlaceController {
 		model.addAttribute("ratinglist", listSorted);
 		
 		if(!isAdmin) {
-			Rating rating = new Rating(comment,Integer.valueOf(rate),us.getUser(user.getEmail()),product);
+			Rating rating = new Rating(comment,Integer.valueOf(rate),us.getUser(user.getEmail()));
 			ratingservice.save(rating);
 			product.getRating().add(rating);
 			ps.saveUpdateProduct(product);
