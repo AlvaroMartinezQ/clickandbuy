@@ -9,10 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/ws")
 public class WSController {
+	// THIS CONTROLLER DOESN'T WORK ANY MORE
 	
 	@GetMapping("")
 	public ModelAndView test(Model model) {
-		return new ModelAndView("ws-test");
+		return new ModelAndView("/home");
 	}
 	
 }
