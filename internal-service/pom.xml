@@ -11,8 +11,8 @@
 	<groupId>es.urjc.etsii.co.clickandbuy</groupId>
 	<artifactId>clickandbuy-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>clickandbuy-api</name>
-	<description>Click And Buy API</description>
+	<name>internal-service</name>
+	<description>Click And Buy API | internal service</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
