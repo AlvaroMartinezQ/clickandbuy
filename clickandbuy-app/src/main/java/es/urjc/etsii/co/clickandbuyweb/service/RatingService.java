@@ -66,8 +66,18 @@ public class RatingService {
 		return "status: rating deleted";
 	}
 	
-	public List<Rating> getRatingsSorted() {
+	public List<Rating> getAllRatingsSorted() {
 		List<Rating> ratingSorted = ratingdao.findAll();
+		Collections.sort(ratingSorted, new Comparator<Rating>() {
+			public int compare(Rating r1, Rating r2) {
+				return r1.getRate()>r2.getRate()? -1: (r1.getRate()==r2.getRate()? 0: 1);
+			}
+		});
+		
+		return ratingSorted;
+	}
+	
+	public List<Rating> getRatingSorted(List<Rating> ratingSorted) {
 		Collections.sort(ratingSorted, new Comparator<Rating>() {
 			public int compare(Rating r1, Rating r2) {
 				return r1.getRate()>r2.getRate()? -1: (r1.getRate()==r2.getRate()? 0: 1);

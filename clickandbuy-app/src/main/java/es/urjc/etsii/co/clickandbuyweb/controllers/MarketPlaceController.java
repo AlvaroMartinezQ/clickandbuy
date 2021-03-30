@@ -1,6 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,6 +85,10 @@ public class MarketPlaceController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
+		
+		Product product = ps.getProduct(id);
+		List<Rating> listSorted = product.getRating();
+		model.addAttribute("ratinglist", listSorted);
 
 		model.addAttribute("product", ps.getProduct(id));
 		return new ModelAndView("/marketplace/productsView");
@@ -99,6 +104,10 @@ public class MarketPlaceController {
 	
 		//User has bought this product
 		Product product = ps.getProduct(id);
+		
+		List<Rating> listSorted = product.getRating();
+		model.addAttribute("ratinglist", listSorted);
+		
 		Rating rating = new Rating(comment,Integer.valueOf(rate),us.getUser(user.getEmail()),product);
 		ratingservice.save(rating);
 		product.getRating().add(rating);
@@ -116,14 +125,39 @@ public class MarketPlaceController {
 		model.addAttribute("mail", user.getEmail());
 		model.addAttribute("userid", user.getId());
 		model.addAttribute("user", user);
+		
 	
 		Product product = ps.getProduct(id);
+		
+		List<Rating> listSorted = product.getRating();
+		model.addAttribute("ratinglist", listSorted);
+		
 		Optional<Rating> rating = ratingservice.getRating(idrating);
 		product.getRating().remove(rating.get());
 		String status = ratingservice.deleteRating(idrating, user.getId());
 		System.out.println(status);
 		ps.saveUpdateProduct(product);
 		model.addAttribute("product", ps.getProduct(id));
+		return new ModelAndView("/marketplace/productsView");
+	}
+	
+	@PostMapping("/sortRating")
+	public ModelAndView sortRating(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam("sort") String sortBy) {
+		Principal principal = request.getUserPrincipal();
+		User user = us.getUser(principal.getName());
+		model.addAttribute("mail", user.getEmail());
+		model.addAttribute("userid", user.getId());
+		model.addAttribute("user", user);
+	
+		Product product = ps.getProduct(id);
+		List<Rating> listSorted = product.getRating();
+		if(sortBy.equals("rate")) {
+			listSorted = ratingservice.getRatingSorted(product.getRating());
+			model.addAttribute("ratinglist", listSorted);
+		}
+		model.addAttribute("ratinglist", listSorted);
+		
+		model.addAttribute("product", product);
 		return new ModelAndView("/marketplace/productsView");
 	}
 	

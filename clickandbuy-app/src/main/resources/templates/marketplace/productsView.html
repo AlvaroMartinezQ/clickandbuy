@@ -48,6 +48,7 @@
 						<br>
 				        	<span style="font-size:18px;">{{active}}</span>
 					</div>
+					<hr width=500>
 					<form action="/marketplace/rate" method="post">
 						<div class="form-group">
 							<span style="font-size:20px;">Deja un comentario:</span>
@@ -77,16 +78,32 @@
 						</div>
 						<br>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Puntuar</button>
+							<button type="submit" class="btn btn-warning">Puntuar</button>
 						</div>
 						<input type="hidden" name="id" value="{{id}}"/>
 						<input type="hidden" name="_csrf" value="{{token}}" />
 					</form>
 					<div class="form-group">
 					<br>
+					<hr width=500>
+					<form action="/marketplace/sortRating" method="post">
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+						  <input type="radio" class="btn-check" name="sort" id="sort1" value="time" autocomplete="off" checked>
+						  <label class="btn btn-outline-secondary" for="sort1">Tiempo</label>
+						
+						  <input type="radio" class="btn-check" name="sort" id="sort2" value="rate" autocomplete="off">
+						  <label class="btn btn-outline-secondary" for="sort2">Puntuación</label>
+						</div>
+						<button type="submit" class="btn btn-dark">Ordenar</button>
+						<input type="hidden" name="id" value="{{id}}"/>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
+						<br>
+						<br>
+						<br>
 						<span style="font-size:20px;">Opiniones de los usuarios:</span>
-				    	{{#rating}}
-				    		<br>
+						<br>
+				    	{{#ratinglist}}
 				        	<div class="card" style="width: 18rem;">
 							  <div class="card-header"> Usuario {{user.email}}</div>
 							  <ul class="list-group list-group-flush">
@@ -103,10 +120,10 @@
 								</li>
 							  </ul>
 							</div>
-				    	{{/rating}}
-				    	{{^rating}}
+				    	{{/ratinglist}}
+				    	{{^ratinglist}}
 				    		<span style="font-size:18px;">Aún no hay opiniones para este producto</span>
-				    	{{/rating}}
+				    	{{/ratinglist}}
 					</div>
 					
 					<br> <br> <br> {{#updated}}
