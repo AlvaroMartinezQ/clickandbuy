@@ -48,9 +48,11 @@ public class User {
 	private boolean is_active;
 	private boolean is_supplier;
 	
-	@Column
-	@ElementCollection(targetClass=Integer.class)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Order> myOrders;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Order orderactive;
 	
 	
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -232,6 +234,15 @@ public class User {
 
 	public void setMyOrders(Set<Order> myOrders) {
 		this.myOrders = myOrders;
+	}
+	
+
+	public Order getOrderactive() {
+		return orderactive;
+	}
+
+	public void setOrderactive(Order orderactive) {
+		this.orderactive = orderactive;
 	}
 
 	@Override
