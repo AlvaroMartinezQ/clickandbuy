@@ -48,6 +48,7 @@
 						<br>
 				        	<span style="font-size:18px;">{{active}}</span>
 					</div>
+					<hr width=500>
 					<form action="/marketplace/rate" method="post">
 						<div class="form-group">
 							<span style="font-size:20px;">Deja un comentario:</span>
@@ -60,40 +61,72 @@
 						    <span style="font-size:20px;">Valora el producto:</span>
 						    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="1" autocomplete="off" checked>
-								  <label class="btn btn-outline-primary" for="btnradio1">1</label>
+								  <label class="btn btn-outline-warning" for="btnradio1">1</label>
 								
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="2" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio2">2</label>
+								  <label class="btn btn-outline-warning" for="btnradio2">2</label>
 								
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" value="3" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio3">3</label>
+								  <label class="btn btn-outline-warning" for="btnradio3">3</label>
 								  
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" value="4"  autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio4">4</label>
+								  <label class="btn btn-outline-warning" for="btnradio4">4</label>
 								  
 								  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" value="5" autocomplete="off">
-								  <label class="btn btn-outline-primary" for="btnradio5">5</label>
+								  <label class="btn btn-outline-warning" for="btnradio5">5</label>
 							</div>
 						</div>
 						<br>
+						{{#isAdmin}}
+							<p class="text-left" style="color:red;">Los administradores no pueden puntuar productos</p>
+						{{/isAdmin}}
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">Puntuar</button>
+							<button type="submit" class="btn btn-warning">Puntuar</button>
 						</div>
 						<input type="hidden" name="id" value="{{id}}"/>
 						<input type="hidden" name="_csrf" value="{{token}}" />
 					</form>
 					<div class="form-group">
 					<br>
+					<hr width=500>
+					<form action="/marketplace/sortRating" method="post">
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+						  <input type="radio" class="btn-check" name="sort" id="sort1" value="time" autocomplete="off" checked>
+						  <label class="btn btn-outline-secondary" for="sort1">Tiempo</label>
+						
+						  <input type="radio" class="btn-check" name="sort" id="sort2" value="rate" autocomplete="off">
+						  <label class="btn btn-outline-secondary" for="sort2">Puntuación</label>
+						</div>
+						<button type="submit" class="btn btn-dark">Ordenar</button>
+						<input type="hidden" name="id" value="{{id}}"/>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
+						<br>
+						<br>
+						<br>
 						<span style="font-size:20px;">Opiniones de los usuarios:</span>
-				    	{{#rating}}
-				    		<br>
-				        	<span style="font-size:18px;">{{user.name}}</span>
-				        	<span style="font-size:18px;">{{rate}}</span>
-				        	<span style="font-size:18px;">{{comment}}</span>
-				    	{{/rating}}
-				    	{{^rating}}
+						<br>
+				    	{{#ratinglist}}
+				        	<div class="card" style="width: 18rem;">
+							   <div class="card-header" style="background-color:#3498DB; font-weight: bold"> Usuario {{user.email}}</div>
+								 <ul class="list-group list-group-flush">
+									 <li class="list-group-item" style="background-color:#FFC300"><b>Evaluación:</b> {{rate}}</li>
+									 <li class="list-group-item" style="background-color:#E5E8E8"><b>Comentario:</b> {{comment}}</li>
+							    
+							   	<li class="list-group-item">
+							   		<form action="/marketplace/deleteRate" method="post">
+							   			<a href="/marketplace/deleteRate?_csrf={{token}}&&id={{product.id}}&&idrating={{id}}" type="button" style="font-size:10px" class="btn btn-outline-danger">Eliminar</a>
+							   			<input type="hidden" name="idrating" value="{{id}}"/>
+							   			<input type="hidden" name="id" value="{{product.id}}"/>
+							   			<input type="hidden" name="_csrf" value="{{token}}" />
+							   		</form>
+								</li>
+							  </ul>
+							</div>
+				    	{{/ratinglist}}
+				    	{{^ratinglist}}
 				    		<span style="font-size:18px;">Aún no hay opiniones para este producto</span>
-				    	{{/rating}}
+				    	{{/ratinglist}}
 					</div>
 					
 					<br> <br> <br> {{#updated}}

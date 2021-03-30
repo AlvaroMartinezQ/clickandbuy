@@ -1,12 +1,12 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,28 +22,26 @@ public class Rating {
 	
 	@ManyToOne()
 	private User user;
-	@OneToOne()
-	private Product product;
+
 
 	public Rating() {
 		super();
 	}
 	
-	public Rating(String comment, int rate, User user, Product product) {
+	public Rating(String comment, int rate, User user) {
 		super();
 		this.comment = comment;
 		this.rate = rate;
 		this.user = user;
-		this.product = product;
+
 	}
 
-	public Rating(int id, String comment, int rate, User user, Product product) {
+	public Rating(int id, String comment, int rate, User user) {
 		super();
 		this.id = id;
 		this.comment = comment;
 		this.rate = rate;
 		this.user = user;
-		this.product = product;
 	}
 
 	public int getId() {
@@ -78,17 +76,10 @@ public class Rating {
 		this.user = user;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", comment=" + comment + ", rate=" + rate + ", user=" + user + ", product="
-				+ product + "]";
+		return "Rating [id=" + id + ", comment=" + comment + ", rate=" + rate + ", user=" + user +"]";
 	}
 }

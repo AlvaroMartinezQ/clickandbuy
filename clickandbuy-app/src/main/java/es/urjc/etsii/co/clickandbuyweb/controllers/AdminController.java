@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
+import es.urjc.etsii.co.clickandbuyweb.service.RatingService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
@@ -32,6 +33,8 @@ public class AdminController {
 	private UserService userservice;
 	@Autowired
 	private ProductService productservice;
+	@Autowired
+	private RatingService ratingservice;
 	
 	@GetMapping("/profile")
 	public ModelAndView profile(Model model, HttpServletRequest request) {
@@ -212,9 +215,33 @@ public class AdminController {
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
 		
-		//productservice.deleteProduct(String.valueOf(id));
+	
+		System.out.println(productservice.deleteProductByAdmin(id));
 		model.addAttribute("products", productservice.getAll());
 		return new ModelAndView("admin/productsView");
+	}
+	
+	@GetMapping("/ratingsView")
+	public ModelAndView ratingsView(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+
+		model.addAttribute("products", productservice.getAll());
+		return new ModelAndView("admin/ratingsView");
+	}
+	
+	@PostMapping("/emptyRatings")
+	public ModelAndView emptyRatings(Model model, HttpServletRequest request, @RequestParam(required=true) int id) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		ratingservice.deleteAllRatingsFromProduct(id);
+		model.addAttribute("products", productservice.getAll());
+		return new ModelAndView("admin/ratingsView");
 	}
 
 }
