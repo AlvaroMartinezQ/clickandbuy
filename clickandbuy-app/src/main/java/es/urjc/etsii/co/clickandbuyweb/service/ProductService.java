@@ -109,7 +109,8 @@ public class ProductService {
 				user.setUser_product_list(list);
 				udao.save(user);
 				
-				ratingservice.deleteAllRatingsFromProduct(id);
+				ratingservice.deleteAllRatingsFromProductWithoutUpdate(id);
+				pdao.delete(product);
 				return "Product has been deleted correctly";
 			}
 		}
