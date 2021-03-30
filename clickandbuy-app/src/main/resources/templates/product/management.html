@@ -11,11 +11,11 @@
     </head>
     
     <body>
-    	{{>\admin\header}}
+    	{{>\product\header}}
 			<div class="container">
 			  <div class="row row-cols-2">
 			  <div class="col-10">
-    				<h4 id="title">GESTIÓN DE LA WEB</h4>
+    				<h4 id="title">GESTIÓN DE PRODUCTOS</h4>
     			</div>
     			<br>
     			<br>
@@ -25,10 +25,10 @@
 			    
 					<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
 					  <div class="card-header">
-					  	<a href="/admin/register" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Dar de alta</span></a>
+					  	<a href="/product/upload" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Dar de alta un producto</span></a>
 					  </div>
 					  <div class="card-body">
-					    <p class="card-text">Registrar un nuevo administrador en el sistema. Sólo el manager tiene acceso.</p>
+					    <p class="card-text">Registrar un nuevo producto en el sistema. Sólo el proveedor tiene acceso.</p>
 					  </div>
 					</div>
 			    
@@ -37,22 +37,21 @@
 			    <div class="col">
 			    
 			    
-					<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+					<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
 					  <div class="card-header">
-					  	<a href="/admin/userList" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Eliminar un usuario</span></a>
+					  	<a href="/product/search" type="button" class="btn btn-outline-light"><span style="font-size:20px;">Buscar un producto</span></a>
 					  </div>
 					  <div class="card-body">
-					    <p class="card-text">Borrar un usuario del sistema.</p> 
-					    <p>Sólo el manager tiene acceso.</p>
+					    <p class="card-text">Busca un producto del sistema.</p> 
 					  </div>
 					</div>			    
 			    
 			    </div>
 			    <div class="col">
 			    
-					<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+					<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
 					  <div class="card-header">
-					  	<a href="/admin/productsView" class="btn btn-outline-light"><span style="font-size:20px;">Modificar productos</span></a>
+					  	<a href="/product/view" class="btn btn-outline-light"><span style="font-size:20px;">Modificar productos</span></a>
 					  </div>
 					  <div class="card-body">
 					    <p class="card-text">Editar o eliminar productos del sistema.</p> 
@@ -62,12 +61,12 @@
 			    </div>
 			    <div class="col">
 			    
-					<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+					<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
 					  <div class="card-header">
-					  	<a href="/admin/ratingsView"  class="btn btn-outline-light"><span style="font-size:20px;">Modificar ratings</span></a>
+					  	<a href="/product/owner" class="btn btn-outline-light"><span style="font-size:20px;">Ver productos subidos</span></a>
 					  </div>
 					  <div class="card-body">
-					    <p class="card-text" style="color:white;">Editar o eliminar ratings del sistema.</p> 
+					    <p class="card-text" style="color:white;">Ver productos que ha subido el proveedor. Solo el proveedor tiene acceso. </p> 
 					  </div>
 					</div>
 			    

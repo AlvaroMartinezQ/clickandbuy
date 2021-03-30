@@ -13,45 +13,39 @@
     <body>
     	{{>\admin\header}}
     	<div class="container-fluid">
-    		<div class="row">
-    			<div class="col-2">
-    			
-    			</div>
-    			<div class="col-10">
-    				<h4 id="title">PRODUCTOS DE LA TIENDA VISTA ADMINISTRADOR</h4>
-    			</div>
-    			<div class="col-2">
-    			
-    			</div>
-    		</div>
-    		<br>
-    		<div class="row">
-    			<div class="col-2">
-    			
-    			</div>
-    			<div class="col-10">
-    				<div class="card-group">
-    					<h5 id="title">Productos:</h5>
-	    				{{#products}}
-	    					<div class="card border-dark mb-3" style="width: 18rem;">
-	    						<div class="card-body">
-									<h5 class="card-title">{{name}}</h5><h6>Precio: {{price}}$</h6>
-									<p class="card-text">{{description}}</p>
-									<p class="card-text">Unidades del producto: {{stock}}</p>
-									<a href="" class="btn btn-primary">Ver</a>
-								</div>
-	    					</div>
-	    				{{/products}}
-	    				{{^products}}
-	    					<h5 id="title">Sin productos.</h5>
-	    				{{/products}}
-	    			</div>
-    			</div>
-    			<div class="col-2">
-    			
-    			</div>
-    		</div>
-    	</div>
+			<div class="row">
+				<div class="row h-100">
+					<h4 id="title" style="text-align: center">PRODUCTOS DE LA
+						TIENDA</h4>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="col-12">
+			<div class="card-group">
+				{{#products}}
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="card border-dark mb-3" style="width: 18rem;">
+						<img src="https://picsum.photos/100/50" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">{{name}}</h5>
+							<h6>Precio: {{price}}$</h6>
+							<p class="card-text">{{description}}</p>
+							<p class="card-text">Unidades del producto: {{stock}}</p>
+							<a href="/marketplace/productsView?id={{id}}" type="button" class="btn btn-primary">Ver</a>
+						</div>
+					</div>
+					<div class="col-1"></div>
+				</div>
+				{{/products}} {{^products}}
+				<div class="row">
+					<h5 style="text-align: center; color: black">Sin productos
+						disponibles.</h5>
+				</div>
+				{{/products}}
+			</div>
+		</div>
     	{{>footer}}
     </body>
 </html>

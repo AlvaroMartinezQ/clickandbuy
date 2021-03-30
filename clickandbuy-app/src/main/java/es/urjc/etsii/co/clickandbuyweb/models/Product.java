@@ -1,10 +1,19 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -28,11 +37,34 @@ public class Product {
 	private int stock;
 	private boolean active;
 	
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
+	@JoinColumn(name="product_id")
+	private List<Rating> rating;
+	
+	@Column
+	@ElementCollection(targetClass=Integer.class)
+	private Set<Integer> buyers;
+	
 	public Product() {
 		super();
 	}
 
-	public Product(int id, double price, String name, String description, int stock, boolean active) {
+	
+	public Product(@NotNull(message = "Product price is required.") Double price,
+			@NotNull(message = "Product name is required.") String name,
+			@NotNull(message = "Product description is required.") String description,
+			@NotNull(message = "Product stock is required.") int stock, boolean active, Set<Integer> buyers) {
+		super();
+		this.price = price;
+		this.name = name;
+		this.description = description;
+		this.stock = stock;
+		this.active = active;
+		this.buyers = buyers;
+	}
+
+
+	public Product(int id, double price, String name, String description, int stock, boolean active, Set<Integer> buyers) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -40,6 +72,7 @@ public class Product {
 		this.description = description;
 		this.stock = stock;
 		this.active = active;
+		this.buyers = buyers;
 	}
 
 	public int getId() {
@@ -90,9 +123,33 @@ public class Product {
 		this.active = active;
 	}
 
+	
+	public Set<Integer> getBuyers() {
+		return buyers;
+	}
+
+
+	public void setBuyers(Set<Integer> buyers) {
+		this.buyers = buyers;
+	}
+
+
+	public List<Rating> getRating() {
+		return rating;
+	}
+
+
+	public void setRating(List<Rating> rating) {
+		this.rating = rating;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", price=" + price + ", name=" + name + ", description=" + description
-				+ ", stock=" + stock + ", active=" + active + "]";
+		return "Product [id=" + id + ", price=" + price + ", name=" + name + ", description=" + description + ", stock="
+				+ stock + ", active=" + active + ", buyers=" + buyers + "]";
 	}
+
+
+
 }

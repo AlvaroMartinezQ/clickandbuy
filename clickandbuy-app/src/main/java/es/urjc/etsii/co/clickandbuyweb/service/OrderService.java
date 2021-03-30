@@ -2,85 +2,82 @@ package es.urjc.etsii.co.clickandbuyweb.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.urjc.etsii.co.clickandbuyweb.dao.CartDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.OrderDAO;
-import es.urjc.etsii.co.clickandbuyweb.dao.OrderProductDAO;
+import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
+import es.urjc.etsii.co.clickandbuyweb.models.Cart;
 import es.urjc.etsii.co.clickandbuyweb.models.Order;
-import es.urjc.etsii.co.clickandbuyweb.models.OrderProduct;
-import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 @Transactional
 public class OrderService {
-	@Autowired 
-	private OrderDAO odao;
+
 	@Autowired
-	private UserDAO udao;
+	private OrderDAO orderdao;
+
 	@Autowired
-	private OrderProductDAO opdao;
+	private UserDAO userdao;
+
 	@Autowired
-	private ProductService pservice;
-	
-	public Iterable<Order> getAll() {
-        return odao.findAll();
-    }
-	
-	public Order create(String idus, String idprod, String quantity, String order) {
-		int productid=Integer.parseInt(idprod);
-		Product p = pservice.getProduct(productid);
-		if(p==null) {
-			return null;
-		}
-		int usid=Integer.parseInt(idus);
-		User u=udao.findByUserId(usid);
-		if(u==null) {
-			return null;
-		}
-		int orderid=Integer.parseInt(order);
-		if(orderid==0) {
-			// new
-			Order neworder=new Order();
-			neworder.setDateCreated(LocalDate.now());
-			neworder.setStatus("PENDING");
-			int product_quantity=Integer.parseInt(quantity);
-			OrderProduct op=new OrderProduct(neworder, p, product_quantity);
-			// On this point we have all 3 entities
-			// Next list should be empty as this is a new Order
-			List<OrderProduct> prod_list=neworder.getOrderProducts();
-			prod_list.add(op);
-			neworder.setOrderProducts(prod_list);
-			neworder.setOwner(u);
-			odao.save(neworder);
-			for(OrderProduct orderproduct:prod_list) {
-				// Should only be 1 iteration
-				opdao.save(orderproduct);
-			}
-			return neworder;
-			// return new ResponseEntity<>(HttpStatus.CREATED);
-		} else {
-			// Order id is type long
-			Long order_id=Long.parseLong(order);
-			Order existingOrder=odao.findByOrderId(order_id);
-			if(existingOrder==null) {
-				return null;
-			}
-			int product_quantity=Integer.parseInt(quantity);
-			List<OrderProduct> orderproductlist=existingOrder.getOrderProducts();
-			OrderProduct orderproduct=new OrderProduct(existingOrder, p, product_quantity);
-			orderproductlist.add(orderproduct);
-			existingOrder.setOrderProducts(orderproductlist);
-			// Save the OrderProduct entity FIRST!!!
-			opdao.save(orderproduct);
-			odao.save(existingOrder);
-			return existingOrder;
-			// return new ResponseEntity<>(HttpStatus.CREATED);
-		}
+	private CartDAO cartdao;
+
+	@Autowired
+	private ProductDAO productdao;
+
+	public List<Order> getOrders() {
+		return orderdao.findAll();
 	}
+
+	public Order getOrderById(int id) {
+		Optional<Order> order = orderdao.findById(id);
+		if (!order.isPresent()) {
+			return null;
+		}
+		return order.get();
+	}
+
+	public String buy(int id) {
+		Optional<User> user = userdao.findById(id);
+		Order order = new Order(LocalDate.now(), LocalDate.now().plusDays((long) ((long) 2 + Math.random() * 7)),
+				"COMPLETADO", user.get().getOrderactive().getCarts());
+		order.priceTotal();
+		for(Cart c : order.getCarts()) {
+			c.getProduct().getBuyers().add(id);
+			productdao.save(c.getProduct());
+		}
+		user.get().getMyOrders().add(order);
+		user.get().setOrderactive(new Order());
+		orderdao.save(order);
+		userdao.save(user.get());
+		return "order completed!";
+	}
+
+	public String addCart(int id, Cart cart) {
+		Optional<User> user = userdao.findById(id);
+
+		if (user.isPresent()) {
+			user.get().getOrderactive().getCarts().add(cart);
+			cartdao.save(cart);
+			userdao.save(user.get());
+			return "added product";
+		}
+		return "product not added";
+	}
+
+	/*
+	 * public String deleteCart(int id, Cart cart) {
+	 * 
+	 * }
+	 */
+
 }

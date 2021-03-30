@@ -1,109 +1,108 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.Valid;
+import javax.persistence.JoinColumn;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="marketplace_order")
+@Table(name = "marketplace_order")
 public class Order {
+
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate dateCreated;
-    private String status;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "pk.order")
-    @Valid
-    private List<OrderProduct> orderProducts=new ArrayList<>();
-    @OneToOne
-    private User owner;
-    
-    @Transient
-    public Double getTotalOrderPrice() {
-        double sum = 0D;
-        List<OrderProduct> orderProducts = getOrderProducts();
-        for (OrderProduct op : orderProducts) {
-            sum += op.getTotalPrice();
-        }
-        return sum;
-    }
-    
-    @Transient
-    public int getNumberOfProducts() {
-        return this.orderProducts.size();
-    }
-    
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	private LocalDate date;
+	private LocalDate estimated;
+	private String state;
+	private double price;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id")
+	private Set<Cart> carts = new HashSet<>();
+
 	public Order() {
 		super();
 	}
-	
-	public Order(Long id, LocalDate dateCreated, String status, @Valid List<OrderProduct> orderProducts, User owner) {
+
+	public Order(LocalDate date, LocalDate estimated, String state, Set<Cart> carts) {
 		super();
-		this.id = id;
-		this.dateCreated = dateCreated;
-		this.status = status;
-		this.orderProducts = orderProducts;
-		this.owner = owner;
+		this.date = date;
+		this.estimated = estimated;
+		this.state = state;
+		this.carts = carts;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	
-	public void setId(Long id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public LocalDate getDateCreated() {
-		return dateCreated;
-	}
-	
-	public void setDateCreated(LocalDate dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	public List<OrderProduct> getOrderProducts() {
-		return orderProducts;
-	}
-	
-	public void setOrderProducts(List<OrderProduct> orderProducts) {
-		this.orderProducts = orderProducts;
-	}
-	
-	public User getOwner() {
-		return owner;
+
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setOwner(User owner) {
-		this.owner = owner;
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalDate getEstimated() {
+		return estimated;
+	}
+
+	public void setEstimated(LocalDate estimated) {
+		this.estimated = estimated;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Set<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
+	}
+
+	
+	public double getPriceTotal() {
+		return price;
+	}
+
+	public void setPriceTotal(double price) {
+		this.price = price;
+	}
+
+	public void priceTotal() {
+		this.price = 0;
+		for (Cart c : this.getCarts()) {
+			this.price += c.getPrice();
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", dateCreated=" + dateCreated + ", status=" + status + ", orderProducts="
-				+ orderProducts + ", owner=" + owner + "]";
+		return "Order [id=" + id + ", date=" + date + ", estimated=" + estimated + ", state=" + state + ", carts="
+				+ carts + "]";
 	}
+
 }

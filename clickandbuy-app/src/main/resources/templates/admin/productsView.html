@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Dar de alta a un administrador</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+        <!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<link href="/css/user/profile.css" rel="stylesheet">
+    </head>
+    
+    <body>
+    	{{>\admin\header}}
+		<div class="container">
+		    <br>
+		    <div class="row">
+		    	<div class="col-1"><a href="/admin/management" type="button" class="btn btn-outline-info">Volver</a></div>
+		    	<div class="col-12">
+		    	<br>
+		    	<br>
+		    	<div class="col-md-6" style="background-color:#26272b;color:white;text-align:center"><h4>Productos</h4></div>
+		    		<br>
+		    		<div class="card-group">
+		    		{{#products}}
+						  	<div class="row">
+								<div class="col-1"></div>
+								<div class="card border-dark mb-3" style="width: 18rem; margin: 30px;">
+									<h4>Id: {{id}}</h4>
+									<div class="card-body">
+										<div class="card border-dark mb-3" style="width: 18rem;">
+											<img src="https://picsum.photos/100/50" class="card-img-top">
+											<div class="card-body">
+												<h5 class="card-title">{{name}}</h5>
+												<h6>Precio: {{price}}$</h6>
+												<p class="card-text">{{description}}</p>
+												<p class="card-text">Unidades del producto: {{stock}}</p>
+											</div>
+										</div>
+									<form action="/admin/deleteProduct" method="post">
+										<a href="/admin/modifyProduct?id={{id}}" type="button" class="btn btn-primary">Modificar</a>
+										<button type="submit" class="btn btn-danger">Eliminar</button>
+										<input type="hidden" name="id" value="{{id}}" />
+										<input type="hidden" name="_csrf" value="{{token}}" />
+									</form>
+								<br>
+							</div>
+							<div class="col-1"></div>
+							</div>
+							</div>
+						{{/products}}
+						{{^products}}
+			    		<div class="row">
+							<h5 style="text-align:center;color:black">Aún no hay productos en el sistema.</h5>
+						</div>
+						{{/products}}
+	    		
+		    		</div>
+				</div>
+		    <br>
+		   </div>
+	    </div>
+    	{{>footer}}
+    </body>
+</html>

@@ -3,7 +3,9 @@ package es.urjc.etsii.co.clickandbuyweb.models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,6 +48,13 @@ public class User {
 	private boolean is_active;
 	private boolean is_supplier;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Order> myOrders;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Order orderactive;
+	
+	
 	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 
@@ -71,6 +81,7 @@ public class User {
 		this.join_date = join_date;
 		this.is_active = is_active;
 		this.is_supplier = is_supplier;
+		this.myOrders = new HashSet<>();
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
@@ -92,6 +103,7 @@ public class User {
 		this.is_active = is_active;
 		this.is_supplier = is_supplier;
 		this.user_product_list = user_product_list;
+		this.myOrders = new HashSet<>();
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
@@ -213,6 +225,24 @@ public class User {
 
 	public void setUser_product_list(List<Product> user_product_list) {
 		this.user_product_list = user_product_list;
+	}
+	
+
+	public Set<Order> getMyOrders() {
+		return myOrders;
+	}
+
+	public void setMyOrders(Set<Order> myOrders) {
+		this.myOrders = myOrders;
+	}
+	
+
+	public Order getOrderactive() {
+		return orderactive;
+	}
+
+	public void setOrderactive(Order orderactive) {
+		this.orderactive = orderactive;
 	}
 
 	@Override

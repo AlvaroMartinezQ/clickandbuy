@@ -34,11 +34,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**", "/imgs/**", "/favicon.ico").permitAll();
 		
 		// Private pages
+
 		http.authorizeRequests().antMatchers("/admin/register").hasRole("MANAGER").and().exceptionHandling().accessDeniedPage("/admin/denied");
 		http.authorizeRequests().antMatchers("/admin/userList").hasRole("MANAGER").and().exceptionHandling().accessDeniedPage("/admin/denied");
+		http.authorizeRequests().antMatchers("/admin/productsView").hasAnyRole("MANAGER","STAFF").and().exceptionHandling().accessDeniedPage("/admin/denied");
+		http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/uploadform").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/owner").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/modify").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/modifyok").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/delete").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/product/view").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+
 		http.authorizeRequests().anyRequest().authenticated();
-		
-		//http.authorizeRequests().antMatchers("/product/upload").hasAnyRole("SUPPLIER_ROLE");
 		
 		/*
 		 * DO NOT put any http.authorizeRequests() after anyRequest() it won't work

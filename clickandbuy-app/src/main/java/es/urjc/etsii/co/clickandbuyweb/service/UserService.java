@@ -101,11 +101,11 @@ public class UserService {
 		u.setIs_supplier(is_supplier);
 		if (is_supplier) {
 			List<String> roles = new ArrayList<>();
-			roles.add("SUPPLIER_ROLE");
+			roles.add("ROLE_SUPPLIER");
 			u.setRoles(roles);
 		} else {
 			List<String> roles = new ArrayList<>();
-			roles.add("NOT_SUPPLIER_ROLE");
+			roles.add("ROLE_NOTSUPPLIER");
 			u.setRoles(roles);
 		}
 		u.setJoin_date(new Date());
