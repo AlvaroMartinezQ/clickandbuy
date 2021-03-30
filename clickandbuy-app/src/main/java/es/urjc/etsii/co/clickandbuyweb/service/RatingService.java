@@ -10,9 +10,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.RatingDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
+import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.Rating;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
@@ -26,6 +28,8 @@ public class RatingService {
 	private UserDAO userdao;
 	@Autowired
 	private ProductDAO productdao;
+	@Autowired
+	private AdminDAO admindao;
 	
 	public List<Rating> getAll() {
 		return ratingdao.findAll();
@@ -53,15 +57,18 @@ public class RatingService {
 		return "status: saved";
 	}
 	
-	public String deleteRating(int id, int idUser) {
+	public String deleteRating(int id, String email) {
 		Optional<Rating> rating = ratingdao.findById(id);
-		Optional<User> user = userdao.findById(idUser);
+		User user = userdao.findByUserEmail(email);
+		Admin admin = admindao.findByEmail(email);
 		if(!rating.isPresent())
 			return "status: rating not found";
-		if(!user.isPresent())
+		if(user==null && admin==null)
 			return "status: user not found";
-		if(rating.get().getUser().getId() != user.get().getId())
-			return "status: you are not the owner of this rating";
+		if(user!=null) {
+			if(rating.get().getUser().getEmail() != email)
+				return "status: you are not the owner of this rating";
+		}
 		ratingdao.deleteById(id);
 		return "status: rating deleted";
 	}

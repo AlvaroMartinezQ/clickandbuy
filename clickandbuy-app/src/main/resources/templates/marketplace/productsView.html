@@ -77,6 +77,9 @@
 							</div>
 						</div>
 						<br>
+						{{#isAdmin}}
+							<p class="text-left" style="color:red;">Los administradores no pueden puntuar productos</p>
+						{{/isAdmin}}
 						<div class="form-group">
 							<button type="submit" class="btn btn-warning">Puntuar</button>
 						</div>
