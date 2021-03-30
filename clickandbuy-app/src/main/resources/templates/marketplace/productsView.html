@@ -108,10 +108,10 @@
 						<br>
 				    	{{#ratinglist}}
 				        	<div class="card" style="width: 18rem;">
-							  <div class="card-header"> Usuario {{user.email}}</div>
-							  <ul class="list-group list-group-flush">
-							    <li class="list-group-item">Evaluación: {{rate}}</li>
-							    <li class="list-group-item">Comentario: {{comment}}</li>
+							   <div class="card-header" style="background-color:#3498DB; font-weight: bold"> Usuario {{user.email}}</div>
+								 <ul class="list-group list-group-flush">
+									 <li class="list-group-item" style="background-color:#FFC300"><b>Evaluación:</b> {{rate}}</li>
+									 <li class="list-group-item" style="background-color:#E5E8E8"><b>Comentario:</b> {{comment}}</li>
 							    
 							   	<li class="list-group-item">
 							   		<form action="/marketplace/deleteRate" method="post">

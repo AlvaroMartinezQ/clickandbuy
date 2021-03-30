@@ -30,6 +30,8 @@ public class RatingService {
 	private ProductDAO productdao;
 	@Autowired
 	private AdminDAO admindao;
+	@Autowired
+	private ProductService productservice;
 	
 	public List<Rating> getAll() {
 		return ratingdao.findAll();
@@ -93,5 +95,13 @@ public class RatingService {
 		
 		return ratingSorted;
 	}
+	
+	public String deleteAllRatingsFromProduct(int idProduct) {
+		Product product = productservice.getProduct(idProduct);
+		product.getRating().clear();
+		productservice.saveUpdateProduct(product);
+		return "status: all ratings deleted";
+	}
+	
 	
 }

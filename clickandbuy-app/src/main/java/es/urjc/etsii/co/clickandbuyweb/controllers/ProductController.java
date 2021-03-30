@@ -156,4 +156,5 @@ public class ProductController {
 		model.addAttribute("user", u);
 		return new ModelAndView("product/denied");
 	}
+	
 }
