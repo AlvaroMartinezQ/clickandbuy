@@ -21,6 +21,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.Rating;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
+import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.RatingService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
@@ -37,12 +38,15 @@ public class MarketPlaceController {
 
 	@Autowired
 	private AdminDAO admindao;
-	
+
 	@Autowired
 	private RatingService ratingservice;
-	
+
 	@Autowired
 	private AdminService adminservice;
+
+	@Autowired
+	private OrderService orderservice;
 
 	@GetMapping("")
 	public ModelAndView marketplaceInit(Model model, HttpServletRequest request) {
@@ -57,7 +61,7 @@ public class MarketPlaceController {
 			model.addAttribute("products", ps.getAll());
 			model.addAttribute("mail", admin.getEmail());
 			return new ModelAndView("/admin/productList");
-			
+
 		}
 
 		// Check if user is supplier
@@ -80,23 +84,23 @@ public class MarketPlaceController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/productsView")
 	public ModelAndView view(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
 		Principal principal = request.getUserPrincipal();
 
 		Admin admin = adminservice.getAdmin(principal.getName());
 		User user = us.getUser(principal.getName());
-		if(admin!=null) {
+		if (admin != null) {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
 		} else {
+			model.addAttribute("orderactive", user.getOrderactive().getCarts());
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
-		}	
-		
+		}
 		Product product = ps.getProduct(id);
 		List<Rating> listSorted = product.getRating();
 		model.addAttribute("ratinglist", listSorted);
@@ -104,15 +108,16 @@ public class MarketPlaceController {
 		model.addAttribute("product", ps.getProduct(id));
 		return new ModelAndView("/marketplace/productsView");
 	}
-	
+
 	@PostMapping("/rate")
-	public ModelAndView rate(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam(required = true) String comment, @RequestParam("btnradio") String rate) {
+	public ModelAndView rate(Model model, HttpServletRequest request, @RequestParam(required = true) int id,
+			@RequestParam(required = true) String comment, @RequestParam("btnradio") String rate) {
 		Principal principal = request.getUserPrincipal();
 
 		Admin admin = adminservice.getAdmin(principal.getName());
 		User user = us.getUser(principal.getName());
 		boolean isAdmin = false;
-		if(admin!=null) {
+		if (admin != null) {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
@@ -121,16 +126,16 @@ public class MarketPlaceController {
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
-		}	
-	
-		//User has bought this product
+		}
+
+		// User has bought this product
 		Product product = ps.getProduct(id);
-		
+
 		List<Rating> listSorted = product.getRating();
 		model.addAttribute("ratinglist", listSorted);
-		
-		if(!isAdmin) {
-			Rating rating = new Rating(comment,Integer.valueOf(rate),us.getUser(user.getEmail()));
+
+		if (!isAdmin) {
+			Rating rating = new Rating(comment, Integer.valueOf(rate), us.getUser(user.getEmail()));
 			ratingservice.save(rating);
 			product.getRating().add(rating);
 			ps.saveUpdateProduct(product);
@@ -140,14 +145,15 @@ public class MarketPlaceController {
 		model.addAttribute("product", product);
 		return new ModelAndView("/marketplace/productsView");
 	}
-	
+
 	@GetMapping("/deleteRate")
-	public ModelAndView deleteRate(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam(required = true) int idrating) {
+	public ModelAndView deleteRate(Model model, HttpServletRequest request, @RequestParam(required = true) int id,
+			@RequestParam(required = true) int idrating) {
 		Principal principal = request.getUserPrincipal();
 		Admin admin = adminservice.getAdmin(principal.getName());
 		User user = us.getUser(principal.getName());
 		String emailUser;
-		if(admin!=null) {
+		if (admin != null) {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
@@ -156,15 +162,15 @@ public class MarketPlaceController {
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
+			model.addAttribute("orderactive", user.getOrderactive().getCarts());
 			emailUser = user.getEmail();
-		}	
-		
-	
+		}
+
 		Product product = ps.getProduct(id);
-		
+
 		List<Rating> listSorted = product.getRating();
 		model.addAttribute("ratinglist", listSorted);
-		
+
 		Optional<Rating> rating = ratingservice.getRating(idrating);
 		product.getRating().remove(rating.get());
 		String status = ratingservice.deleteRating(idrating, emailUser);
@@ -173,13 +179,14 @@ public class MarketPlaceController {
 		model.addAttribute("product", ps.getProduct(id));
 		return new ModelAndView("/marketplace/productsView");
 	}
-	
+
 	@PostMapping("/sortRating")
-	public ModelAndView sortRating(Model model, HttpServletRequest request, @RequestParam(required = true) int id, @RequestParam("sort") String sortBy) {
+	public ModelAndView sortRating(Model model, HttpServletRequest request, @RequestParam(required = true) int id,
+			@RequestParam("sort") String sortBy) {
 		Principal principal = request.getUserPrincipal();
 		Admin admin = adminservice.getAdmin(principal.getName());
 		User u = us.getUser(principal.getName());
-		if(admin!=null) {
+		if (admin != null) {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
@@ -187,19 +194,52 @@ public class MarketPlaceController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
-		}	
-	
+			model.addAttribute("orderactive", u.getOrderactive().getCarts());
+		}
+
 		Product product = ps.getProduct(id);
 		List<Rating> listSorted = product.getRating();
-		if(sortBy.equals("rate")) {
+		if (sortBy.equals("rate")) {
 			listSorted = ratingservice.getRatingSorted(product.getRating());
 			model.addAttribute("ratinglist", listSorted);
 		}
 		model.addAttribute("ratinglist", listSorted);
-		
+
 		model.addAttribute("product", product);
 		return new ModelAndView("/marketplace/productsView");
 	}
+
+	@RequestMapping("/add")
+	public ModelAndView add(Model model, HttpServletRequest request, @RequestParam(required = true) int id,
+			@RequestParam(required = true) int cuantity) {
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+			Product product = ps.getProduct(id);
+			User u = us.getUser(principal.getName());
+			model.addAttribute("orderactive", u.getOrderactive().getCarts());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			model.addAttribute("product", product);
+			orderservice.addCart(u.getId(), id, cuantity);
+
+		}
+		return new ModelAndView("/marketplace/productsView");
+
+	}
 	
+	@RequestMapping("/buy")
+	public ModelAndView buy(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if (principal != null) {
+			User u = us.getUser(principal.getName());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			orderservice.buy(u.getId());
+		}
+		return new ModelAndView("/order/orderplaced");
+	}
 
 }
