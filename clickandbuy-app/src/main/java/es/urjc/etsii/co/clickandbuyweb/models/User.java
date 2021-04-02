@@ -64,6 +64,7 @@ public class User {
 	
 	public User() {
 		super();
+		this.orderactive = new Order();
 	}
 	
 	public User(String email, String password, String name, String realname, String realsurnames,
@@ -83,6 +84,7 @@ public class User {
 		this.is_supplier = is_supplier;
 		this.myOrders = new HashSet<>();
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.orderactive = new Order();
 	}
 
 	public User(int id, String email, String password, String name, String realname, String realsurnames,
@@ -105,6 +107,7 @@ public class User {
 		this.user_product_list = user_product_list;
 		this.myOrders = new HashSet<>();
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.orderactive = new Order();
 	}
 
 	public int getId() {

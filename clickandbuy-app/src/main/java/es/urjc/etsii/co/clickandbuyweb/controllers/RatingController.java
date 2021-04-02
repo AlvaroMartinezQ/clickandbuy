@@ -42,7 +42,7 @@ public class RatingController {
 		model.addAttribute("user", user);
 		
 		return new ModelAndView("marketplace/productsView?id={{id}}");
+		
 	}
-	
 
 }
