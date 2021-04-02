@@ -19,12 +19,13 @@
 						<p>¡Aquí podrás hablar con todos los usuarios que estén conectados al chat!</p>
 					</div>
 					<div class="row">
-						<p>Escribe un mensaje y si algún usuario esta conectado te responderá:</p>
+						<p>Escribe un mensaje y si algún usuario esta conectado te responderá.</p>
 						<div id="messages"></div>
 						<input type="hidden" id="userEmail" value="{{mail}}" />
 					    <div class="input-fields">
 					        <input id="message"/>
-					        <button id="send">Send</button>
+					        <button id="send">Enviar</button>
+					        <a id="disconnect" href="/marketplace">Desconectar</a>
 					    </div>
 					</div>
 				</article>
@@ -36,6 +37,7 @@
 	<script type="text/javascript">
 		const messageWindow = document.getElementById("messages");
 		const sendButton = document.getElementById("send");
+		const disconnectButton = document.getElementById("disconnect");
 		const messageInput = document.getElementById("message");
 		var userEmail = document.getElementById("userEmail").value;
 		
@@ -43,8 +45,8 @@
 		socket.binaryType = "arraybuffer";
 	
 		socket.onopen = function(e) {
-			console.log("[Click&Buy Web Socket] Connection established");
 			socket.send("connection petition");
+			console.log("[Click&Buy Web Socket] Connection established");
 		};
 		
 		socket.onmessage = function (event) {
@@ -62,7 +64,8 @@
 	
 		socket.onclose = function(event) {
 			if (event.wasClean) {
-				console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+				// console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+				console.log('Connection closed.');
 			} else {
 				// server process killed or network down
 				console.log('[close] Connection died.');
@@ -78,6 +81,11 @@
 	        sendMessage(messageInput.value);
 	        messageInput.value = "";
 	    };
+	    
+	    disconnectButton.onclick = async function (event) {
+	    	socket.send("connection close petition");
+	    	socket.close();
+	    }
 		
 		function sendMessage(message) {
 	        socket.send(new Date().toISOString().split('T')[0] + " - " + userEmail + ": " + message);

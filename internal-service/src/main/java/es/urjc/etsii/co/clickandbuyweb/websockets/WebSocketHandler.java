@@ -17,21 +17,32 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
 		if(!connectedClients.contains(session)) {
+			System.out.println("New session connected: " + session.toString());
 			connectedClients.add(session);
 		}
-		System.out.println(message);
 		String value = message.getPayload();
 		if(value.equals("connection petition")) {
-			TextMessage newMsg = new TextMessage("Connected");
+			System.out.println("Connection petition");
+			System.out.println("Connected clients: " + connectedClients);
+			TextMessage newMsg = new TextMessage("From server: Connected");
+			session.sendMessage(newMsg);
+			return;
+		} 
+		if(value.equals("connection close petition")) {
+			System.out.println("Disconnect petition");
+			connectedClients.remove(session);
+			System.out.println("Connected clients: " + connectedClients);
+			TextMessage newMsg = new TextMessage("From server: Disconnected");
 			session.sendMessage(newMsg);
 			return;
 		}
+		System.out.println("New message received | Sending message to all connected clients");
 		for(WebSocketSession client: connectedClients) {
 			client.sendMessage(message);
 		}
 	}
 
-	// Binary messages for example photos, PDFs...
+	// Binary messages for example photos, PDFs... Not used
 	@Override
 	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws IOException {
 	    System.out.println("New Binary Message Received");
