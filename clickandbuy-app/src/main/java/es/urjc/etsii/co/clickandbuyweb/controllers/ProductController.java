@@ -33,7 +33,6 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-
 		model.addAttribute("products", u.getUser_product_list());
 		return new ModelAndView("product/productsView");
 	}
