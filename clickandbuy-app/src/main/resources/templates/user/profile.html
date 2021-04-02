@@ -46,7 +46,7 @@
 				<article class="card-body">
 				<form action="/user/profileUpdate" method="post">
 					<div class="form-group">
-				        <input type="hidden" class="form-control" name="email" value="{{email}}" />
+				        <input type="hidden" class="form-control" id="userEmail" name="email" value="{{email}}" />
 				    </div>
 				    <!-- This field is not sent -->
 				    <div class="form-group">
@@ -148,6 +148,17 @@
 						<a href="/user/chat" class="btn btn-primary">Acceder</a>
 				</article>
 			</div>
+			<br>
+			<div class="card">
+				<article class="card-body">
+						<h5 class="card-title">Políticas de privacidad</h5>
+						<p>En Click&Buy podrás recuperar siempre tus datos almacenados.</p>
+						{{#info}}
+							<p class="updated">¡Tus datos llegarán a tu correo personal en breve!</p>
+						{{/info}}
+						<a id="infoButton" href="/user/info" class="btn btn-primary">Solicitar mis datos</a>
+				</article>
+			</div>
 		{{/user}}
 		{{^user}}
 			<div class="row">
@@ -160,4 +171,17 @@
 		</div>
     	{{>footer}}
     </body>
+    
+    <script type="text/javascript">
+    	var userEmail = document.getElementById("userEmail").value;
+    	
+    	function requestData () {
+    		console.log("click info");
+    		$.ajax({
+    			url:"http://127.0.0.1/legacy/user-info?data=test"
+    		}).done(function(data) {
+    				console.log(data);
+    		});
+    	};
+    </script>
 </html>
