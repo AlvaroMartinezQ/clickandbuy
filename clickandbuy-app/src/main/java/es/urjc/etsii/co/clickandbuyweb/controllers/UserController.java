@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
+import java.io.IOException;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -178,5 +180,43 @@ public class UserController {
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		return new ModelAndView("user/globalChat");
+	}
+	
+	// User info - Internal service
+	@RequestMapping("/info")
+	public ModelAndView infoUser(Model model, HttpServletRequest request) throws IOException {
+		System.out.println("Info request from user");
+		Principal principal = request.getUserPrincipal();
+		User u=us.getUser(principal.getName());
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String data = u.toString();
+		/*
+		 *  Keep this URL hardcoded as it is not going to change
+		 */
+		String url="http://127.0.0.1:8081/legacy/user/info?data=" + data + "&email=" + u.getEmail();
+		/*
+		 * Fire the end-point call
+		 * The end-point sends back a String object
+		 */
+		String response = restTemplate.getForObject(url, String.class);
+		/*
+		 * Print the response from the server. For DEBUG purposes
+		 */
+		System.out.println(response);
+		
+		model.addAttribute("mail", u.getEmail());
+		model.addAttribute("userid", u.getId());
+		model.addAttribute("user", u);
+		model.addAttribute("info", true);
+		
+		// User image
+		if(uis.hasPhoto(u.getId())) {
+			model.addAttribute("userImage", true);
+			model.addAttribute("imageFile", uis.getImage(u.getId()));
+		} else {
+			model.addAttribute("userImage", false);
+		}
+		return new ModelAndView("user/profile");
 	}
 }

@@ -112,7 +112,7 @@ public class UserService {
 		udao.save(u);
 		
 		/*
-		 * Next lines runs the email send in a different threads
+		 * Next lines runs the email send in a different thread
 		 */
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 		executor.execute(() -> sendWelcomeMail(u.getEmail()));
