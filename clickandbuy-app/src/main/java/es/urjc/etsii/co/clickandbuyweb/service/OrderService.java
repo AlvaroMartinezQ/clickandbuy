@@ -3,7 +3,6 @@ package es.urjc.etsii.co.clickandbuyweb.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -16,6 +15,7 @@ import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Cart;
 import es.urjc.etsii.co.clickandbuyweb.models.Order;
+import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
@@ -56,28 +56,25 @@ public class OrderService {
 			productdao.save(c.getProduct());
 		}
 		user.get().getMyOrders().add(order);
+		orderdao.delete(user.get().getOrderactive());
 		user.get().setOrderactive(new Order());
 		orderdao.save(order);
 		userdao.save(user.get());
 		return "order completed!";
 	}
 
-	public String addCart(int id, Cart cart) {
+	public String addCart(int id, int idproduct, int cuantity) {
 		Optional<User> user = userdao.findById(id);
-
+		
 		if (user.isPresent()) {
+			Optional<Product> product = productdao.findById(idproduct);
+			Cart cart = new Cart(product.get(),cuantity,product.get().getPrice());
 			user.get().getOrderactive().getCarts().add(cart);
 			cartdao.save(cart);
+			orderdao.save(user.get().getOrderactive());
 			userdao.save(user.get());
 			return "added product";
 		}
 		return "product not added";
 	}
-
-	/*
-	 * public String deleteCart(int id, Cart cart) {
-	 * 
-	 * }
-	 */
-
 }
