@@ -10,9 +10,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.google.gson.Gson;
-
-
 public class UserInfo {
 	// Sender's email ID needs to be mentioned
     private final String from = "urjcdadgestion@gmail.com";
@@ -66,8 +63,7 @@ public class UserInfo {
             message.setSubject("Correo de datos personales | ClickAndBuy Co.");
 
             // Now set the actual message
-            Gson g = new Gson();
-            message.setText(g.toJson(this.data));
+            message.setText(this.data);
 
             // Send message
             Transport.send(message);
