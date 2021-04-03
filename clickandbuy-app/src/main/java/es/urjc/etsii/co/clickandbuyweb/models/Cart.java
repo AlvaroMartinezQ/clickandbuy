@@ -16,7 +16,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	private Product product;
 	private int cuantity;
 	private double price;

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+    <head>
+    	<title>Pedidos</title>
+    	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS only  -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    	<link href="/css/marketplace.css" rel="stylesheet"/>
+    </head>
+    
+    <body>
+    	{{>\product\header}}
+    	<div class="container-fluid">
+			<div class="row">
+				<div class="row h-100">
+					<h4 id="title" style="text-align: center">PEDIDOS REALIZADOS</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-1">
+			&nbsp; <a href="/product/management" type="button"
+				class="btn btn-outline-info">Volver</a>
+		</div>
+		<br>
+		<div class="col-12">
+			<div class="card-group">
+				{{#orders}}
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="card border-dark mb-3" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">Nº de pedido: {{id}}</h5>
+							<h6>Fecha: {{date}}</h6>
+							<h6>Fecha entrega: {{estimated}}</h6>
+							<p class="card-text">Estado: {{state}}</p>
+							<p class="card-text">Precio total: {{price}}</p>
+							<form action="/order/seeorder" method="post">
+								<button type="submit" class="btn btn-primary btn-block">Ver con detalle</button>
+								<input type="hidden" name="id" value="{{id}}" />
+								<input type="hidden" name="_csrf" value="{{token}}" />
+							</form>
+						</div>
+					</div>
+					<div class="col-1"></div>
+				</div>
+				{{/orders}} {{^orders}}
+				<div class="row">
+					<h5 style="text-align: center; color: black">Sin productos
+						disponibles.</h5>
+				</div>
+				{{/orders}}
+			</div>
+		</div>
+    	{{>footer}}
+    </body>
+</html>

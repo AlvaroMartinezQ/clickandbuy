@@ -10,6 +10,11 @@ import es.urjc.etsii.co.clickandbuyweb.models.Product;
 
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
+	
+	@Override
+	@Query("SELECT p FROM Product p WHERE p.active=TRUE")
+	public List<Product> findAll();
+	
 	@Query("SELECT p FROM Product p WHERE p.name=:name")
 	public Product findByname(String name);
 	

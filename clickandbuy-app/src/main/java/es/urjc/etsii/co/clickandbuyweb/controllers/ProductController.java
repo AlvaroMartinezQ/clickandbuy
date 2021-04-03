@@ -33,7 +33,6 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-
 		model.addAttribute("products", u.getUser_product_list());
 		return new ModelAndView("product/productsView");
 	}
@@ -131,7 +130,7 @@ public class ProductController {
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		String result = productservice.updateProduct(id, name, description, price, stock, active);
-		model.addAttribute("result",result);
+		model.addAttribute("result", result);
 		model.addAttribute("updated", true);
 		model.addAttribute("product", productservice.getProduct(Integer.parseInt(id)));
 		return new ModelAndView("/product/modify");
@@ -147,6 +146,7 @@ public class ProductController {
 		productservice.deleteProduct(u.getId(), id);
 		return new ModelAndView("/product/management");
 	}
+
 	@RequestMapping("/denied")
 	public ModelAndView denied(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -156,5 +156,5 @@ public class ProductController {
 		model.addAttribute("user", u);
 		return new ModelAndView("product/denied");
 	}
-	
+
 }

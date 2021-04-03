@@ -10,8 +10,12 @@
     </head>
     
     <body>
+   		{{#head}}
     	{{>\admin\header}}
-    	
+    	{{/head}}
+    	{{^head}}
+    	{{>\product\header}}
+    	{{/head}}
 	<div class="container">
 	{{#product}}
 		<div class="col-1">
@@ -19,6 +23,34 @@
 				class="btn btn-outline-info">Volver</a>
 		</div>
 		<br>
+		<div class='row'>
+		<div class="card-group">
+			<div class="card">
+    			<div class="card-body">
+      				<h5 class="card-title">Resumen del pedido</h5>
+      				{{#orderactive}}
+      					<p></p>
+      					<p>{{product.name}} &nbsp; {{cuantity}} &nbsp; {{price}} &nbsp; 
+      					<a class="btn-close" aria-label="Close" href="/marketplace/deletecart?idcart={{id}}&id={{product.id}}"></a></p>
+      				{{/orderactive}}
+      				{{^orderactive}}
+      				<p class="card-text">Sin artículos en el carrito</p>
+      				{{/orderactive}}
+      				{{#empty}}
+					<p style="color: red;">La cesta está vacía</p>
+					{{/empty}}
+					{{#result}}
+					<p style="color: green;">{{result}}</p>
+					{{/result}}
+      				<form action="/marketplace/buy" method="post">
+						<button type="submit" class="btn btn-primary">Hacer pedido</button>
+						<input type="hidden" name="id" value="{{id}}" />
+						<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
+    			</div>
+  			</div>
+		</div>
+		</div>
 		<div class="card">
 			<article class="card-body">
 				<h3 class="card-title mb-4 mt-1">{{name}}</h3>
@@ -133,8 +165,10 @@
 					<p style="color: green;">{{result}}</p>
 					{{/updated}}
 					<div class="form-group">
-					<form action="/admin/updateProduct" method="post">
-						<button type="submit" class="btn btn-primary btn-block">Comprar</button>
+					<form action="/marketplace/add" method="post">
+						<label for="cuantity">Unidades</label><br>
+						<input type="number" name="cuantity" value = "1" min="1" max="10">
+						<button type="submit" class="btn btn-primary btn-block">Añadir a carrito</button>
 						<input type="hidden" name="id" value="{{id}}" />
 						<input type="hidden" name="_csrf" value="{{token}}" />
 					</form>
