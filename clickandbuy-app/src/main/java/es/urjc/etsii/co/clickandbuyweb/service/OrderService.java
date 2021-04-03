@@ -51,7 +51,7 @@ public class OrderService {
 		Order order = new Order(LocalDate.now(), LocalDate.now().plusDays((long) ((long) 2 + Math.random() * 7)),
 				"COMPLETADO", user.get().getOrderactive().getCarts());
 		order.priceTotal();
-		for(Cart c : order.getCarts()) {
+		for (Cart c : order.getCarts()) {
 			c.getProduct().getBuyers().add(id);
 			productdao.save(c.getProduct());
 		}
@@ -65,10 +65,18 @@ public class OrderService {
 
 	public String addCart(int id, int idproduct, int cuantity) {
 		Optional<User> user = userdao.findById(id);
-		
+		int aux = 0;
 		if (user.isPresent()) {
 			Optional<Product> product = productdao.findById(idproduct);
-			Cart cart = new Cart(product.get(),cuantity,product.get().getPrice());
+			for (Cart c : user.get().getOrderactive().getCarts()) {
+				if (c.getProduct().getId() == idproduct) {
+					aux = c.getCantidad();
+					user.get().getOrderactive().getCarts().remove(c);
+					cartdao.delete(c);
+					break;
+				}
+			}
+			Cart cart = new Cart(product.get(), aux + cuantity, product.get().getPrice());
 			user.get().getOrderactive().getCarts().add(cart);
 			cartdao.save(cart);
 			orderdao.save(user.get().getOrderactive());
@@ -76,5 +84,18 @@ public class OrderService {
 			return "added product";
 		}
 		return "product not added";
+	}
+
+	public String deleteCart(int id, int idcart) {
+		Optional<User> user = userdao.findById(id);
+
+		if (user.isPresent()) {
+			Optional<Cart> cart = cartdao.findById(idcart);
+
+			user.get().getOrderactive().getCarts().remove(cart.get());
+			cartdao.delete(cart.get());
+			return "cart product removed";
+		}
+		return "cart product not removed";
 	}
 }
