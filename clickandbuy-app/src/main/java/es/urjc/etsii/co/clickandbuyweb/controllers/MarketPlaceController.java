@@ -234,7 +234,8 @@ public class MarketPlaceController {
 			model.addAttribute("user", u);
 			model.addAttribute("product", product);
 			model.addAttribute("head",false);
-			orderservice.addCart(u.getId(), id, cuantity);
+			String result = orderservice.addCart(u.getId(), id, cuantity);
+			model.addAttribute("result", result);
 
 		}
 		return new ModelAndView("/marketplace/productsView");
