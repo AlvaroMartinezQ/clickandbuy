@@ -68,6 +68,11 @@ public class OrderService {
 		int aux = 0;
 		if (user.isPresent()) {
 			Optional<Product> product = productdao.findById(idproduct);
+			if(product.get().getstock() - cuantity < 0 ) {
+				return "Producto fuera de stock. Queda/n " + product.get().getstock() + " unidad/es disponible/s";
+			}
+			product.get().setstock(product.get().getstock() - cuantity);
+			productdao.save(product.get());
 			for (Cart c : user.get().getOrderactive().getCarts()) {
 				if (c.getProduct().getId() == idproduct) {
 					aux = c.getCantidad();
@@ -81,9 +86,9 @@ public class OrderService {
 			cartdao.save(cart);
 			orderdao.save(user.get().getOrderactive());
 			userdao.save(user.get());
-			return "added product";
+			return "Producto agregado!";
 		}
-		return "product not added";
+		return "Producto no agregado";
 	}
 
 	public String deleteCart(int id, int idcart) {
@@ -91,7 +96,8 @@ public class OrderService {
 
 		if (user.isPresent()) {
 			Optional<Cart> cart = cartdao.findById(idcart);
-
+			cart.get().getProduct().setstock(cart.get().getProduct().getstock() + cart.get().getCantidad());
+			productdao.save(cart.get().getProduct());
 			user.get().getOrderactive().getCarts().remove(cart.get());
 			cartdao.delete(cart.get());
 			return "cart product removed";
