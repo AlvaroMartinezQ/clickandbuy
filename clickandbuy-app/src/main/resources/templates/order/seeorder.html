@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<title>Ver pedido</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- BOOTSTRAP CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+			
+		<style>
+    	hr {
+		  margin-top: 1rem;
+		  margin-bottom: 1rem;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+    	</style>
+	</head>
+
+	<body>
+		{{>\product\header}}
+		<br>
+		<div class="container">
+			<div class="col-1"><a href="/order/view" type="button" class="btn btn-outline-info">Volver</a></div><br>
+			<div class="card text-center">
+				<div class="card-header">
+	    			Pedido
+	  			</div>
+	  			<div class="card-body">
+	  				<h5 class="card-title">Número de pedido: {{order.id}}</h5>
+	  				<h6>Fecha de creacion: {{order.date}}</h6>
+	  				<hr />
+	  				{{#order.estimated}}
+		  				<span style="white-space: pre-line">
+		  					Llegada estimada: {{order.estimated}}
+		  				</span>
+	  				{{/order.estimated}}
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Estado del pedido</h5>
+	  				<span style="white-space: pre-line">
+	  					{{order.state}}
+	  				</span>
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Productos</h5>
+	  				<span>
+		  			{{#order.carts}}
+				  		<p>&bull;{{product.name}}, precio: {{product.price}}$, cantidad: x{{cuantity}}.</p>
+				  	{{/order.carts}}
+	  				</span>
+	  				<br>
+	  				<hr />
+	  				<br>
+	  				<h5>Importe total</h5>
+	  				<span>
+		  				{{#order.price}}
+				  			<p>Precio: {{order.price}}$.</p>
+		  				{{/order.price}}
+	  				</span>
+	  			</div>
+			</div>
+		</div>
+		<br>
+		{{>footer}}
+	</body>
+</html>
