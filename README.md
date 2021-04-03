@@ -1,7 +1,6 @@
 <!-- PROJECT SHIELDS -->
 
 
-
 <!-- LOGO DEL PROYECTO -->
 <br />
 <p align="center">
@@ -60,13 +59,13 @@ La idea principal es el desarrollo de una tienda de venta online, en donde hay p
 El registro de usuario será gratuito, sin embargo, se podrán visualizar productos sin necesidad de estar registrado.
 Un usuario podrá añadir productos a su cesta de la compra de forma preliminar a su compra. Cuando éste haya finalizado, se generará un pedido que será registrado en el sistema, contando con el usuario dueño del pedido, los productos que lo forman, el precio... etc.
 
-Partes:
-* La parte pública del sistema será la libre visualización de productos, búsqueda de los mismos y navegación por la página.
-* La parte privada del sistema será la compra de productos, el acceso al perfil del usuario, la utilización del ranking, la publicación de comentarios, la administración y gestión de la web.
+Partes del servicio principal:
+* La parte pública del sistema será la posibilidad de crear usuarios para navegar por la web.
+* La parte privada del sistema será la compra de productos, el acceso al perfil del usuario, el acceso al merketplace del sistema, el uso del sistema de ranking, la publicación de productos, la administración y gestión de la web... Entre otros.
 
 La aplicación dispondrá de dos sistemas:
 * Sistema de compra - venta: descrito anteriormente.
-* Sistema interno de información: la aplicación principal se comunicará con un servicio externo de generación de informes sobre la tienda (pedidos, stock, usuarios...). Este sistema será una funcionalidad únicamnete accesible por los administradores de la tienda, que podrán encontrar en el apartado de administración de la página web.
+* Sistema interno de información: la aplicación principal se comunicará con un servicio externo de generación de informes sobre la tienda (pedidos, stock, usuarios...). También dispone de un chat en directo desarrollado con **web sockets**.
 
 Entidades:
 
@@ -101,73 +100,41 @@ Hay 3 roles de administradores principales del sistema, estos son:
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
 	* Tendrá claves foráneas a los productos del pedido.
 ```
-Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido con n productos se guardarán n entradas en la tabla de pedidos con un id único. Si se quiere añadir un nuevo pedido a un pedido existente, se ha de proporcionar el id único de ese pedido, si no existe se crea un pedido nuevo.
+:arrow_forward: Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido se crea un meta-pedido que contiene tantas unidades de ese producto como el pedido al que corresponde. La entidad Pedido también tendrá una clave foránea al usuario que lo ha solicitado.
  
 * Rating
 ```sh
 	Esta entidad representa a los ratings de los pedidos.
-	* Tendrá una clave foránea referente al usuario que realiza el pedido.
-	* Tendrá una clave foránea al pedido en cuestión.
+	* Tendrá una clave foránea referente al usuario que compra un producto.
+	* Tendrá una clave foránea al producto en cuestión.
 ```
 <br />
 Diagramas de la aplicación:
 
 * UML
 
+<!--
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/uml_fase2.jpg" alt="uml">
 </a>
-  
+-->
+
+TODO
+
 * Modelo E/R
 
+<!--
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/ModeloER.PNG" alt="modeler">
 </a>
+-->
+
+TODO
 
 Pantallas de navegación:
 
-* /
+TODO
 
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/1p.JPG" alt="pantalla1">
-</a>
-
-* /productView
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/2p.JPG" alt="pantalla2">
-</a>
-
-* /users
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/3p.JPG" alt="pantalla3">
-</a>
-
-* /admins
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/4p.JPG" alt="pantalla4">
-</a>
-
-* /products/main
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/5p.JPG" alt="pantalla5">
-</a>
-
-* /orders/main
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/6p.JPG" alt="pantalla6">
-</a>
-
-* /ratings
-
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/pantallas/7p.JPG" alt="pantalla7">
-</a>
-  
 ### Tecnologías
 
 * [Java](https://www.java.com/es/)
@@ -192,14 +159,13 @@ Pasos:
 	Levantar una instancia de MySQL Server en local.
 	```
 	```sh
-	Crear una base de datos con el nombre <clickandbuy>
+	Crear una base de datos con el nombre que prefieras. Recomendamos <clickandbuy>.
 	```
 	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.
+	NOTA: renombrar el fichero application.properties.template a application.properties en la carpeta donde este se encuentra
 	```sh
-	Modificar el fichero application.properties con tu usuario y contraseña.
-	```
-	NOTA: renombrar el fichero application.properties.template a application.properties en la carpeta donde este se encuentra 
-	
+	Modificar el fichero application.properties con tu usuario, contraseña y nombre de la DB.
+	``` 
 * En caso de usar Docker:
   ```sh
   TODO: futuros comandos.
@@ -211,35 +177,14 @@ Pasos:
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. En caso de usar Eclipse para lanzar el proyecto, abrir este en el IDE y lanzar la aplicación como una aplicación Spring.
-
-
+2. TODO: levantar instancias de las APPs.
 
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
-Si iniciamos la aplicación a través de Eclipse, esta será desplegada y accesible a través de la ip y puerto <strong>127.0.0.1:8080</strong>
-
-* Página de inicio: <url -> 127.0.0.1:8080/> home del sitio web. En esta pantalla somos capaces de registrarnos, continuar al sitio web sin acceder a ninguna cuenta, o acceder al sitio web con, por el momento, una simulación de login. Los botones siguientes recuperar datos e informar de una incidencia están aún por aprobar su desarrollo y uso.
-
-<img src="/statics/navimgs/home.JPG" alt="home">
-
-* Página de crear cuenta: <url -> 127.0.0.1:8080/createaccount>. En esta página y a través de un formulario podemos registrarnos como usuarios en la web.
-
-<img src="/statics/navimgs/createAcc.JPG" alt="newacc">
-
-* Página de inicio de sesión: <url -> 127.0.0.1:8080/login>. En esta página y a través de un formulario podemos entrar en la web y, por el momento, simular un login.
-
-<img src="/statics/navimgs/login.JPG" alt="login">
-
-* Página principal de visualización: <url -> 127.0.0.1:8080/productView>. Es esta página se muestran todos los productos a la venta a la vez que una serie de botones de enlaces rápidos que redireccionan a páginas de gestión de la web.
-
-<img src="/statics/navimgs/mainView.JPG" alt="mainview">
-
-* Página de error: <url -> cualquiera que no exista, por ejemplo: 127.0.0.1:8080/no_funciono>. Esta página es una redirección de /error cuando ocurre un fallo en el servidor, ya sea un error 403, 500, 400... También se ha ocultado información sensible respectiva al servidor de que sea imprimida por pantalla en el navegador. 
-
-<img src="/statics/navimgs/error.JPG" alt="error">
-
+TODO: 
+Servicio principal -> vista de páginas principales, registro de usuario y login. 1 Ejemplo sencillo de como modificar los datos de usuarios. 1 ejemplo sencillo de como subir un producto.
+Servicio interno -> 1 ejemplo de como pedir reportes de usuarios o información personal. 1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema.
 
 <!-- ROADMAP -->
 ## Mapa de trabajo
@@ -275,14 +220,14 @@ Segundo, desde la rama de desarrollo:
 <!-- LICENCIA -->
 ## Licencia
 
-Este proyecto está sujeto a la licencia `Apache License 2.0`. Para obtener más información sobre esta, acceder al fichero LICENSE.
+Este proyecto está sujeto a la licencia `Apache License 2.0`. Para obtener más información sobre esta, acceder al fichero <a href="https://github.com/AlvaroMartinezQ/clickandbuy/blob/master/LICENSE">LICENSE</a>.
 
 <!-- CONTACTO -->
 ## Contacto
 
-* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es - https://github.com/AlvaroMartinezQ
-* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es - https://github.com/patri-create
-* Luis Blay - l.blay.2017@alumnos.urjc.es - https://github.com/lblay
+* Alvaro Martinez - a.martinezq.2017@alumnos.urjc.es - <a href="https://github.com/AlvaroMartinezQ">Github</a>
+* Patricia Tarazaga - p.tarazaga.2018@alumnos.urjc.es - <a href="https://github.com/patri-create">Github</a>
+* Luis Blay - l.blay.2017@alumnos.urjc.es - <a href="https://github.com/lblay">Github</a>
 
 <!-- AGRADECIMIETNOS -->
 ## Agradecimientos
