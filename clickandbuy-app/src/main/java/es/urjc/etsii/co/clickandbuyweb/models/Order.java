@@ -33,6 +33,7 @@ public class Order {
 
 	public Order() {
 		super();
+		this.state = "ORDER ACTIVE";
 	}
 
 	public Order(LocalDate date, LocalDate estimated, String state, Set<Cart> carts) {
