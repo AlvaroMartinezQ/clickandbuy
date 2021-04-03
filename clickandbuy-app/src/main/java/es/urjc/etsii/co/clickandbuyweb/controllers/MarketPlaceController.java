@@ -95,11 +95,13 @@ public class MarketPlaceController {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
+			model.addAttribute("head", true);
 		} else {
 			model.addAttribute("orderactive", user.getOrderactive().getCarts());
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
+			model.addAttribute("head", false);
 		}
 		Product product = ps.getProduct(id);
 		List<Rating> listSorted = product.getRating();
@@ -121,11 +123,14 @@ public class MarketPlaceController {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
+			model.addAttribute("head", true);
 			isAdmin = true;
 		} else {
+
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
+			model.addAttribute("head", false);
 		}
 
 		// User has bought this product
@@ -157,12 +162,15 @@ public class MarketPlaceController {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
+			model.addAttribute("head", true);
 			emailUser = admin.getEmail();
 		} else {
+
 			model.addAttribute("mail", user.getEmail());
 			model.addAttribute("userid", user.getId());
 			model.addAttribute("user", user);
 			model.addAttribute("orderactive", user.getOrderactive().getCarts());
+			model.addAttribute("head", false);
 			emailUser = user.getEmail();
 		}
 
@@ -190,11 +198,14 @@ public class MarketPlaceController {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
+			model.addAttribute("head",true);
 		} else {
+
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("orderactive", u.getOrderactive().getCarts());
+			model.addAttribute("head",false);
 		}
 
 		Product product = ps.getProduct(id);
@@ -222,24 +233,69 @@ public class MarketPlaceController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("product", product);
+			model.addAttribute("head",false);
 			orderservice.addCart(u.getId(), id, cuantity);
 
 		}
 		return new ModelAndView("/marketplace/productsView");
 
 	}
-	
+
 	@RequestMapping("/buy")
-	public ModelAndView buy(Model model, HttpServletRequest request) {
+	public ModelAndView buy(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
 		Principal principal = request.getUserPrincipal();
 		if (principal != null) {
 			User u = us.getUser(principal.getName());
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
+			model.addAttribute("empty", false);
+			if (u.getOrderactive().getCarts().isEmpty()) {
+				Product product = ps.getProduct(id);
+				model.addAttribute("head",false);
+				model.addAttribute("empty", true);
+				model.addAttribute("product", product);
+				return new ModelAndView("/marketplace/productsView");
+			}
 			orderservice.buy(u.getId());
 		}
 		return new ModelAndView("/order/orderplaced");
 	}
 
+	@RequestMapping("/deletecart")
+	public ModelAndView delete(Model model, HttpServletRequest request, @RequestParam(required = true) int idcart,
+			@RequestParam(required = true) int id) {
+		Principal principal = request.getUserPrincipal();
+		if (principal != null) {
+			Product product = ps.getProduct(id);
+			User u = us.getUser(principal.getName());
+			model.addAttribute("orderactive", u.getOrderactive().getCarts());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			model.addAttribute("product", product);
+			model.addAttribute("head",false);
+			orderservice.deleteCart(u.getId(), idcart);
+		}
+		return new ModelAndView("/marketplace/productsView");
+	}
+
+	@RequestMapping("/denied")
+	public ModelAndView denied(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+		User u = us.getUser(principal.getName());
+		Admin admin = (Admin) admindao.findByEmail(principal.getName());
+
+		if (admin != null) {
+			model.addAttribute("mail", admin.getEmail());
+			model.addAttribute("userid", admin.getId());
+			model.addAttribute("user", admin);
+		} else {
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+		}
+		return new ModelAndView("/marketplace/denied");
+	}
 }
