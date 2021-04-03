@@ -39,6 +39,9 @@
       				{{#empty}}
 					<p style="color: red;">La cesta está vacía</p>
 					{{/empty}}
+					{{#result}}
+					<p style="color: green;">{{result}}</p>
+					{{/result}}
       				<form action="/marketplace/buy" method="post">
 						<button type="submit" class="btn btn-primary">Hacer pedido</button>
 						<input type="hidden" name="id" value="{{id}}" />
