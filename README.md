@@ -187,8 +187,8 @@ Pasos:
 ## Uso
 
 TODO: 
-Servicio principal -> vista de páginas principales, registro de usuario y login. 1 Ejemplo sencillo de como modificar los datos de usuarios. 1 ejemplo sencillo de como subir un producto.
-Servicio interno -> 1 ejemplo de como pedir reportes de usuarios o información personal. 1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema.
+Servicio principal -> vista de páginas principales, registro de usuario y login. 1 Ejemplo sencillo de como modificar los datos de usuarios. 1 ejemplo sencillo de como subir un producto.  
+Servicio interno -> 1 ejemplo de como pedir reportes de usuarios o información personal. 1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema.  
 
 <!-- ROADMAP -->
 ## Mapa de trabajo
