@@ -1,5 +1,6 @@
 package mailer;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,9 +13,12 @@ import javax.mail.internet.MimeMessage;
 
 public class WelcomeEmail {
 	
+	// Properties file
+	ReadPropertiesValue appConf = new ReadPropertiesValue();
+	
 	// Sender's email ID needs to be mentioned
-    private final String from = "urjcdadgestion@gmail.com";
-    private final String password = "admi1234";
+    private String from;
+    private String password;
     
     // Recipient's email ID needs to be mentioned
     private String to="";
@@ -27,6 +31,17 @@ public class WelcomeEmail {
     }
     
     public void setUp() {
+    	try {
+			this.from = appConf.getEmailHost();
+			this.password = appConf.getPasswordHost();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	// Bad credentials return immediately
+    	if(this.from==""||this.password=="") {
+    		System.out.println("\nEmail host credentials. Fix your config.properties file.\n");
+    		return;
+    	}
     	// Get system properties
         Properties properties = System.getProperties();
         
