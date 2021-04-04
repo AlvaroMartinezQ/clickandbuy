@@ -21,6 +21,7 @@ import mailer.WelcomeEmail;
 @Service
 @Transactional
 public class UserService {
+	
 	@Autowired
 	private UserDAO udao;
 	@Autowired
@@ -146,4 +147,5 @@ public class UserService {
 	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String realsurnames) {
 		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address,  realsurnames);
 	}
+	
 }

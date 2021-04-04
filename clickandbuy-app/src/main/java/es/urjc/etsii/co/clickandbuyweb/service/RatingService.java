@@ -22,6 +22,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 @Service
 @Transactional
 public class RatingService {
+	
 	@Autowired
 	private RatingDAO ratingdao;
 	@Autowired

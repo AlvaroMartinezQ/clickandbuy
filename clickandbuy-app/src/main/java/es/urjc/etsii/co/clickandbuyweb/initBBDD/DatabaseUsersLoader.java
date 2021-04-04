@@ -19,6 +19,10 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 @Component
 public class DatabaseUsersLoader {
 
+	/*
+	 * Set initial database values
+	 */
+	
 	@Autowired
 	private AdminDAO admindao;
 	
@@ -41,4 +45,5 @@ public class DatabaseUsersLoader {
 		}
 			
 	}
+	
 }

@@ -1,6 +1,5 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="marketplace_rating")
 public class Rating {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -22,7 +22,6 @@ public class Rating {
 	
 	@ManyToOne()
 	private User user;
-
 
 	public Rating() {
 		super();
@@ -76,10 +75,9 @@ public class Rating {
 		this.user = user;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Rating [id=" + id + ", comment=" + comment + ", rate=" + rate + ", user=" + user +"]";
 	}
+	
 }

@@ -8,6 +8,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 public class UpdateUser {
+	
 	@Autowired
 	private UserDAO udao;
 	

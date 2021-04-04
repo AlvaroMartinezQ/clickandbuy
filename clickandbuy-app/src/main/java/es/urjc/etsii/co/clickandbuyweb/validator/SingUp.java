@@ -8,6 +8,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 public class SingUp {
+	
 	@Autowired
 	private UserDAO udao;
 	
@@ -31,4 +32,5 @@ public class SingUp {
 		}
 		return 0;
 	}
+	
 }

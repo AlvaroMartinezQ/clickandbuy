@@ -1,10 +1,8 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @SessionScope
 @Table(name="core_admin")
-public class Admin implements Serializable{
+public class Admin {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -77,96 +76,77 @@ public class Admin implements Serializable{
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getRealname() {
 		return realname;
 	}
-
 
 	public void setRealname(String realname) {
 		this.realname = realname;
 	}
 
-
 	public String getPhone() {
 		return phone;
 	}
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-
 	public LocalDate getLast_login() {
 		return last_login;
 	}
-
 
 	public void setLast_login(LocalDate last_login) {
 		this.last_login = last_login;
 	}
 
-
 	public String getCharge() {
 		return charge;
 	}
-
 
 	public void setCharge(String charge) {
 		this.charge = charge;
 	}
 
-
 	public List<String> getRoles() {
 		return roles;
 	}
 
-
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-
 
 	@Override
 	public String toString() {
@@ -174,7 +154,6 @@ public class Admin implements Serializable{
 				+ realname + ", phone=" + phone + ", last_login=" + last_login + ", charge=" + charge + ", roles="
 				+ roles + "]";
 	}
-
 	
 }
 

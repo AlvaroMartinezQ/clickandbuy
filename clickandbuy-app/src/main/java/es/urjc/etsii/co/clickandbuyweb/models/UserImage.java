@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name="core_pics_user")
 public class UserImage {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

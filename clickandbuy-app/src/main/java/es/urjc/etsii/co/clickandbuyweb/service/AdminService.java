@@ -18,6 +18,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 @Service
 @Transactional
 public class AdminService {
+	
 	@Autowired
 	private AdminDAO admindao;
 	

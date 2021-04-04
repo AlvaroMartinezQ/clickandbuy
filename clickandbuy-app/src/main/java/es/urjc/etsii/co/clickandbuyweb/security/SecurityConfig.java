@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		/*
-		 * DO NOT put any http.authorizeRequests() after anyRequest() it won't work
+		 * DO NOT put any http.authorizeRequests() after anyRequest().authenticated() it won't work
 		 */
 		
 		/*
@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
 		
-		// Disable CSRF at the moment
+		// Disable CSRF if needed
 		// http.csrf().disable();
 	}
 	
@@ -81,4 +81,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authProvider);
 	}
+	
 }

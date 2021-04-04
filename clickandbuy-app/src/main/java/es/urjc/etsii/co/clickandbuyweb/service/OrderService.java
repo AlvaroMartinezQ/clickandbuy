@@ -24,13 +24,10 @@ public class OrderService {
 
 	@Autowired
 	private OrderDAO orderdao;
-
 	@Autowired
 	private UserDAO userdao;
-
 	@Autowired
 	private CartDAO cartdao;
-
 	@Autowired
 	private ProductDAO productdao;
 

@@ -17,6 +17,7 @@ public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new CSRFHandlerInterceptor());
 	}
+	
 }
 
 class CSRFHandlerInterceptor implements HandlerInterceptor {
@@ -32,4 +33,5 @@ class CSRFHandlerInterceptor implements HandlerInterceptor {
 			}
 		}
 	}
+	
 }

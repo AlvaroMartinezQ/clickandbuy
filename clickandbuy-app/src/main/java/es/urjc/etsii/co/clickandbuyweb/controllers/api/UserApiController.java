@@ -19,6 +19,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 @RestController
 @RequestMapping("/api/user")
 public class UserApiController {
+	
 	@Autowired
 	private UserService uservice;
 	
@@ -44,7 +45,5 @@ public class UserApiController {
 	public String deleteUser(@RequestParam(required=true)String usid) {
 		return uservice.deleteUser(usid);
 	}
-	
-	
 	
 }

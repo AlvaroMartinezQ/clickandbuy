@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="marketplace_product")
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -48,7 +49,6 @@ public class Product {
 	public Product() {
 		super();
 	}
-
 	
 	public Product(@NotNull(message = "Product price is required.") Double price,
 			@NotNull(message = "Product name is required.") String name,
@@ -62,7 +62,6 @@ public class Product {
 		this.active = active;
 		this.buyers = buyers;
 	}
-
 
 	public Product(int id, double price, String name, String description, int stock, boolean active, Set<Integer> buyers) {
 		super();
@@ -122,34 +121,27 @@ public class Product {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
 	
 	public Set<Integer> getBuyers() {
 		return buyers;
 	}
 
-
 	public void setBuyers(Set<Integer> buyers) {
 		this.buyers = buyers;
 	}
-
 
 	public List<Rating> getRating() {
 		return rating;
 	}
 
-
 	public void setRating(List<Rating> rating) {
 		this.rating = rating;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", price=" + price + ", name=" + name + ", description=" + description + ", stock="
 				+ stock + ", active=" + active + ", buyers=" + buyers + "]";
 	}
-
-
 
 }

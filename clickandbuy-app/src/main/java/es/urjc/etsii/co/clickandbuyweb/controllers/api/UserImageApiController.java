@@ -15,6 +15,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 @RestController
 @RequestMapping("/api/image")
 public class UserImageApiController {
+	
 	@Autowired
 	private UserImageService userimageservice;
 	
@@ -27,4 +28,5 @@ public class UserImageApiController {
 	public Resource imageGet(@RequestParam int usid) throws Exception {
 		return userimageservice.getImage(usid);
 	}
+	
 }

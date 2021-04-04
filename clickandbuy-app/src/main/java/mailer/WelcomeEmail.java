@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class WelcomeEmail {
+	
 	// Sender's email ID needs to be mentioned
     private final String from = "urjcdadgestion@gmail.com";
     private final String password = "admi1234";
@@ -67,4 +68,5 @@ public class WelcomeEmail {
             mex.printStackTrace();
         }
     }
+    
 }

@@ -14,4 +14,5 @@ public class SingIn {
 	public boolean validateLogin(User user, String password) {
 		return user.getPassword().equals(password) ? true : false;
 	}
+	
 }

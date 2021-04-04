@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 @Table(name="core_user")
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -53,7 +54,6 @@ public class User {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Order orderactive;
-	
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;

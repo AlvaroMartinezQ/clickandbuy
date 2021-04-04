@@ -15,6 +15,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 @Service
 @Transactional
 public class ProductService {
+	
 	@Autowired
 	private ProductDAO pdao;
 	@Autowired
@@ -124,4 +125,5 @@ public class ProductService {
 			return null;
 		return p;
 	}
+	
 }
