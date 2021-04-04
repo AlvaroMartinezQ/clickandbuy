@@ -11,7 +11,6 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 public class WebSocketHandler extends AbstractWebSocketHandler {
 	
-	// TODO: delete session connections when clients disconnect
 	private List<WebSocketSession> connectedClients = new ArrayList<>();
 	
 	@Override

@@ -12,8 +12,6 @@ import mailer.UserInfo;
 @RestController
 @RequestMapping("/legacy")
 public class PrivacyPolicyController {
-
-	final String userInfo = "https://127.0.0.1:8443/api/user/info";
 	
 	@RequestMapping("/user/info")
 	public String userInfo(@RequestParam(required=true)String data, @RequestParam(required=true)String email) {
