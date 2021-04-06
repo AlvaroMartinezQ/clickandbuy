@@ -98,10 +98,15 @@ Hay 3 roles de administradores principales del sistema, estos son:
 ```sh
 	Esta entidad representa a los pedidos del sistema.
 	* Trendrá una clave foránea referente al usuario que realiza el pedido.
-	* Tendrá claves foráneas a los productos del pedido.
+	* Cada pedido generado tendrá una lista de carritos.
 ```
 :arrow_forward: Los pedidos funcionarán de la siguiente manera: cada vez que se crea un nuevo pedido se crea un meta-pedido que contiene tantas unidades de ese producto como el pedido al que corresponde. La entidad Pedido también tendrá una clave foránea al usuario que lo ha solicitado.
- 
+
+* Carro
+```sh
+	Esta entidad representa el carrito de compras del sistema.
+	* El carrito está compuesto de productos.
+```
 * Rating
 ```sh
 	Esta entidad representa a los ratings de los pedidos.
