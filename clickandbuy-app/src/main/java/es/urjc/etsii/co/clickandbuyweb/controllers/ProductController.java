@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
@@ -66,8 +67,11 @@ public class ProductController {
 
 		Principal principal = request.getUserPrincipal();
 		User u = us.getUser(principal.getName());
-		productservice.saveProduct(u.getEmail(), price, name, desc, stock);
-		model.addAttribute("updated", true);
+		if (productservice.saveProduct(u.getEmail(), price, name, desc, stock) == null) {
+			model.addAttribute("error", true);
+		} else {
+			model.addAttribute("updated", true);
+		}
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
@@ -110,12 +114,14 @@ public class ProductController {
 	@RequestMapping("/modify")
 	public ModelAndView update(Model model, HttpServletRequest request, @RequestParam(required = true) int id) {
 		Principal principal = request.getUserPrincipal();
+		Product product = productservice.getProduct(id);
 		User u = us.getUser(principal.getName());
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 
-		model.addAttribute("product", productservice.getProduct(id));
+		model.addAttribute("product", product);
+		model.addAttribute("check", product.isActive());
 		return new ModelAndView("/product/modify");
 	}
 
@@ -126,13 +132,15 @@ public class ProductController {
 			@RequestParam(required = true) boolean active) {
 		Principal principal = request.getUserPrincipal();
 		User u = us.getUser(principal.getName());
+		Product product = productservice.getProduct(Integer.parseInt(id));
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		String result = productservice.updateProduct(id, name, description, price, stock, active);
+		model.addAttribute("check", product.isActive());
 		model.addAttribute("result", result);
 		model.addAttribute("updated", true);
-		model.addAttribute("product", productservice.getProduct(Integer.parseInt(id)));
+		model.addAttribute("product", product);
 		return new ModelAndView("/product/modify");
 	}
 

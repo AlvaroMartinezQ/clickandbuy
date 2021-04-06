@@ -29,6 +29,7 @@ public class Product {
 	private Double price;
 	@NotNull(message="Product name is required.")
     @Basic(optional=false)
+	@Column(unique=true)
 	private String name;
 	@NotNull(message="Product description is required.")
 	@Basic(optional=false)

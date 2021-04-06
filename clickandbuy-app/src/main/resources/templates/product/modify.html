@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label>Nombre</label> <input name="name" class="form-control"
-							placeholder="{{name}}">
+							placeholder="{{name}}" readonly>
 					</div>
 					<div class="form-group">
 						<label>Descripcion</label> {{#description}} <input
@@ -51,10 +51,21 @@
 							class="form-control" placeholder="{{stock}}">
 					</div>
 					<br>
+					{{#check}}
 					<p>Indique si el producto está o no activo:</p>
 					<input type="radio" name="active" value="true" checked>
-					Activo<br> <input type="radio" name="active" value="false">
-					No activo<br> <br> <br> {{#updated}}
+					Activo<br> 
+					<input type="radio" name="active" value="false">
+					No activo<br> <br> <br> 
+					{{/check}}
+					{{^check}}
+					<p>Indique si el producto está o no activo:</p>
+					<input type="radio" name="active" value="true">
+					Activo<br> 
+					<input type="radio" name="active" value="false" checked>
+					No activo<br> <br> <br> 
+					{{/check}}
+					{{#updated}}
 					<p style="color: green;">{{result}}</p>
 					{{/updated}}
 					<div class="form-group">

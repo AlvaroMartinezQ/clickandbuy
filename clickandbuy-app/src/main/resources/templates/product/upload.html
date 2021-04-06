@@ -50,6 +50,9 @@
 					<br> {{#updated}}
 					<p style="color: green;">Producto subido correctamente</p>
 					{{/updated}}
+					{{#error}}
+					<p style="color: red;">Error: el nombre del producto ya existe</p>
+					{{/error}}
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block">
 							Subir producto</button>

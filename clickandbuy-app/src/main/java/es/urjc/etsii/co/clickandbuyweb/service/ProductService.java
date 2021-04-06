@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.urjc.etsii.co.clickandbuyweb.dao.CartDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.ProductDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
+import es.urjc.etsii.co.clickandbuyweb.models.Cart;
 import es.urjc.etsii.co.clickandbuyweb.models.Product;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 
@@ -24,6 +26,8 @@ public class ProductService {
 	private UserService userservice;
 	@Autowired
 	private RatingService ratingservice;
+	@Autowired
+	private CartDAO cartdao;
 
 	public Iterable<Product> getAll() {
 		return pdao.findAll();
@@ -42,6 +46,9 @@ public class ProductService {
 	public Product saveProduct(String userEmail, Double price, String name, String description, int stock) {
 		User u = udao.findByUserEmail(userEmail);
 		if (u == null) {
+			return null;
+		}
+		if(pdao.findByname(name) != null) {
 			return null;
 		}
 
@@ -92,6 +99,11 @@ public class ProductService {
 	public void deleteProduct(int uid, int id) {
 		User user = udao.findByUserId(uid);
 		Product product = pdao.findByProductId(id);
+		for(Cart c : cartdao.findAll()) {
+			if(c.getProduct().getId() == id) {
+				return;
+			}
+		}
 		List<Product> list = user.getUser_product_list();
 		list.remove(product);
 		user.setUser_product_list(list);
