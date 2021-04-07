@@ -54,7 +54,7 @@ public class AdminController {
 	@PostMapping("/profileUpdate")
 	public ModelAndView profileUpdate(Model model, HttpServletRequest request, @RequestParam(required=true) String name, @RequestParam(required=true) String realname, @RequestParam(required=true) String phone) {
 		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
-		adminservice.adminUpdate(admin.getEmail(), realname, realname, phone, phone);
+		adminservice.adminUpdate(admin.getEmail(), realname, name, phone, "");
 		model.addAttribute("mail", admin.getEmail());
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
