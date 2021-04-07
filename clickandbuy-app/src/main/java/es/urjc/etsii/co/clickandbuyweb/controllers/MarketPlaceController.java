@@ -119,6 +119,7 @@ public class MarketPlaceController {
 		Admin admin = adminservice.getAdmin(principal.getName());
 		User user = us.getUser(principal.getName());
 		boolean isAdmin = false;
+		boolean isBought = true;
 		if (admin != null) {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
@@ -135,11 +136,15 @@ public class MarketPlaceController {
 
 		// User has bought this product
 		Product product = ps.getProduct(id);
+		
 
 		List<Rating> listSorted = product.getRating();
 		model.addAttribute("ratinglist", listSorted);
 
 		if (!isAdmin) {
+			if(!product.getBuyers().contains(user)) {
+				
+			}
 			Rating rating = new Rating(comment, Integer.valueOf(rate), us.getUser(user.getEmail()));
 			ratingservice.save(rating);
 			product.getRating().add(rating);
