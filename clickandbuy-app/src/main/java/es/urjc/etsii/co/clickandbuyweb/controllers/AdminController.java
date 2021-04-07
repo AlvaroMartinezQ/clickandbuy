@@ -52,11 +52,13 @@ public class AdminController {
 	}
 	
 	@PostMapping("/profileUpdate")
-	public ModelAndView profileUpdate(Model model, HttpServletRequest request) {
+	public ModelAndView profileUpdate(Model model, HttpServletRequest request, @RequestParam(required=true) String name, @RequestParam(required=true) String realname, @RequestParam(required=true) String phone) {
 		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
 		model.addAttribute("mail", admin.getEmail());
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
+		model.addAttribute("updated", true);
+		
 		
 		// Admin image
 		if(uis.hasPhoto(admin.getId())) {
