@@ -152,6 +152,7 @@ public class MarketPlaceController {
 			}
 		}
 
+		model.addAttribute("isBought", isBought);
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("product", product);
 		return new ModelAndView("/marketplace/productsView");
