@@ -143,12 +143,13 @@ public class MarketPlaceController {
 
 		if (!isAdmin) {
 			if(!product.getBuyers().contains(user)) {
-				
+				isBought = false;
+			} else {
+				Rating rating = new Rating(comment, Integer.valueOf(rate), us.getUser(user.getEmail()));
+				ratingservice.save(rating);
+				product.getRating().add(rating);
+				ps.saveUpdateProduct(product);
 			}
-			Rating rating = new Rating(comment, Integer.valueOf(rate), us.getUser(user.getEmail()));
-			ratingservice.save(rating);
-			product.getRating().add(rating);
-			ps.saveUpdateProduct(product);
 		}
 
 		model.addAttribute("isAdmin", isAdmin);
