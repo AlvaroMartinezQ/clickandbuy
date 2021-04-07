@@ -51,6 +51,23 @@ public class AdminController {
 		return new ModelAndView("admin/profile");
 	}
 	
+	@PostMapping("/profileUpdate")
+	public ModelAndView profileUpdate(Model model, HttpServletRequest request) {
+		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
+		model.addAttribute("mail", admin.getEmail());
+		model.addAttribute("userid", admin.getId());
+		model.addAttribute("user", admin);
+		
+		// Admin image
+		if(uis.hasPhoto(admin.getId())) {
+			model.addAttribute("userImage", true);
+			model.addAttribute("imageFile", uis.getImage(admin.getId()));
+		} else {
+			model.addAttribute("userImage", false);
+		}
+		return new ModelAndView("admin/profile");
+	}
+	
 	@PostMapping("/imageUpload")
 	public ModelAndView uploadImage(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam MultipartFile img) throws Exception {
 		try {
