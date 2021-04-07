@@ -112,6 +112,9 @@
 						{{#isAdmin}}
 							<p class="text-left" style="color:red;">Los administradores no pueden puntuar productos</p>
 						{{/isAdmin}}
+						{{^isBought}}
+							<p class="text-left" style="color:red;">Primero tienes que comprar este producto para puntuarlo</p>
+						{{/isBought}}
 						<div class="form-group">
 							<button type="submit" class="btn btn-warning">Puntuar</button>
 						</div>
