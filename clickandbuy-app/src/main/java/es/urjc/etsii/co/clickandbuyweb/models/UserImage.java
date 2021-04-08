@@ -17,18 +17,25 @@ public class UserImage {
 	private int id;
 	@Lob
 	private byte[] content;
-	@Column(nullable=false)
+	@Column()
 	private int usid;
-	@Column(nullable=false)
+	@Column()
 	private int asid;
 	
-	public UserImage(int id, byte[] content, int usid, int asid) {
+	public UserImage(int id, byte[] content, int usid) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.usid = usid;
+	}
+	
+	public UserImage(byte[] content, int asid) {
+		super();
+		this.content = content;
 		this.asid = asid;
 	}
+
+
 
 	public UserImage() {
 		super();

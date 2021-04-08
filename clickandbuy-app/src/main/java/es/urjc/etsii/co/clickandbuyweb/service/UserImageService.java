@@ -111,6 +111,19 @@ public class UserImageService {
 		return false;
 	}
 	
+	public boolean hasPhotoAdmin(int asid) {
+		byte[] image = null;
+		try {
+			image = userimagedao.findByAdminIdOp(asid).orElseThrow(() -> new Exception("User has no photo")).getContent();
+		} catch (Exception e) {
+			// print stack trace for DEBUG ??
+		}
+		if(image!=null) {
+			return true;
+		}
+		return false;
+	}
+	
 	public Resource getImage(String email) {
 		// Server status response shouldn't be shown by the browser - sensitive info
 		User u = userdao.findByUserEmail(email);
@@ -119,6 +132,21 @@ public class UserImageService {
 		}
 		int usid = u.getId();
 		byte[] image = userimagedao.findById_bytes(usid);
+		if(image==null) {
+			return null;
+		}
+		return new ByteArrayResource(image);
+		//return new ByteArrayResource(image);
+	}
+	
+	public Resource getImageAdmin(String email) {
+		// Server status response shouldn't be shown by the browser - sensitive info
+		Admin admin = admindao.findByEmail(email);
+		if(admin==null) {
+			return null;
+		}
+		int asid = admin.getId();
+		byte[] image = userimagedao.findByAdminId_bytes(asid);
 		if(image==null) {
 			return null;
 		}
