@@ -74,7 +74,7 @@ public class UserImageService {
 			return -1;
 		}
 		int asid = admin.getId();
-		UserImage existingImage = userimagedao.findByUserId(asid);
+		UserImage existingImage = userimagedao.findByAdminId(asid);
 		if(existingImage==null) {
 			UserImage uploadImage = new UserImage();
 			uploadImage.setContent(image.getBytes());
@@ -89,6 +89,12 @@ public class UserImageService {
 	public Resource getImage(int usid) {
 		// Server status response shouldn't be shown by the browser - sensitive info
 		byte[] image = userimagedao.findById(usid).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getContent();
+		return new ByteArrayResource(image);
+	}
+	
+	public Resource getImageAdmin(int asid) {
+		// Server status response shouldn't be shown by the browser - sensitive info
+		byte[] image = userimagedao.findByAdminIdOp(asid).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getContent();
 		return new ByteArrayResource(image);
 	}
 	

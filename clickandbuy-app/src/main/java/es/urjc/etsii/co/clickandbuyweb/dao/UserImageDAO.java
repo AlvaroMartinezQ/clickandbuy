@@ -28,5 +28,8 @@ public interface UserImageDAO extends JpaRepository<UserImage, Integer> {
 	@Query("SELECT img FROM UserImage img WHERE img.asid=:asid")
 	public byte[] findByAdminId_bytes(@Param("asid") int asid);
 	
+	@Query("SELECT img FROM UserImage img WHERE img.asid=:asid")
+	public Optional<UserImage> findByAdminIdOp(@Param("asid") int asid);
+	
 	
 }
