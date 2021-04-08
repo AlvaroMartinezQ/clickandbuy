@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserImageDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
@@ -20,6 +21,8 @@ public class UserImageService {
 	private UserImageDAO userimagedao;
 	@Autowired
 	private UserDAO userdao;
+	@Autowired
+	private AdminDAO admindao;
 	
 	public int upload(MultipartFile image, int usid) throws Exception {
 		User u = userdao.findByUserId(usid);
