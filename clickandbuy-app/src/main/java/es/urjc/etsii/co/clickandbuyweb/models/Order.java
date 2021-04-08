@@ -102,8 +102,12 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", date=" + date + ", estimated=" + estimated + ", state=" + state + ", carts="
-				+ carts + "]";
+		String cad = "";
+		for(Cart cart : this.getCarts()) {
+			cad += cart.getProduct().getName() + " Cantidad: " + cart.getCantidad() + " Precio: " + cart.getPrice() + "\n";
+		}
+		return "Order id= " + id + "\nDate= " + date + "\nEstimated= " + estimated + "\nState= " + state + "\ncarts=\n"
+				+ cad + "\nPrecio final: "+ this.getPriceTotal() + "\n";
 	}
 
 }
