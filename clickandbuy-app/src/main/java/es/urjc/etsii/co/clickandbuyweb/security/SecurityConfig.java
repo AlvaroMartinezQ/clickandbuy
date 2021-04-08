@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/product/modifyok").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
 		http.authorizeRequests().antMatchers("/product/delete").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
 		http.authorizeRequests().antMatchers("/product/view").hasAnyRole("SUPPLIER").and().exceptionHandling().accessDeniedPage("/product/denied");
+		http.authorizeRequests().antMatchers("/order/ordermail").hasAnyRole("SUPPLIER","NOTSUPPLIER").and().exceptionHandling().accessDeniedPage("/marketplace/denied");
 		http.authorizeRequests().antMatchers("/marketplace/add").hasAnyRole("SUPPLIER","NOTSUPPLIER").and().exceptionHandling().accessDeniedPage("/marketplace/denied");
 		http.authorizeRequests().antMatchers("/marketplace/buy").hasAnyRole("SUPPLIER","NOTSUPPLIER").and().exceptionHandling().accessDeniedPage("/marketplace/denied");
 		http.authorizeRequests().antMatchers("/marketplace/deletecart").hasAnyRole("SUPPLIER","NOTSUPPLIER").and().exceptionHandling().accessDeniedPage("/marketplace/denied");
