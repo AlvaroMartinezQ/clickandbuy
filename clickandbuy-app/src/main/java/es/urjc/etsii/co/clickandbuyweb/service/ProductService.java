@@ -32,6 +32,10 @@ public class ProductService {
 	public Iterable<Product> getAll() {
 		return pdao.findAll();
 	}
+	
+	public Iterable<Product> getAllActive() {
+		return pdao.findAllActive();
+	}
 
 	public Product getProduct(int id) {
 		Product p = new Product();
