@@ -98,7 +98,16 @@ public class UserController {
 	
 	@GetMapping("/singInError")
 	public ModelAndView singInError(Model model, HttpServletRequest request) {
-		return new ModelAndView("user/singInError");
+		Principal principal = request.getUserPrincipal();
+		if(principal!=null) {
+			User u=us.getUser(principal.getName());
+			model.addAttribute("mail", u.getEmail());
+			model.addAttribute("userid", u.getId());
+			model.addAttribute("user", u);
+			model.addAttribute("products", ps.getAll());
+			return new ModelAndView("/marketplace/productList");
+		}
+		return new ModelAndView("/user/singInError");
 	}
 	
 	/*

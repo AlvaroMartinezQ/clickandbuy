@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user/singUpForm").permitAll();
 		http.authorizeRequests().antMatchers("/ws").permitAll();
 		http.authorizeRequests().antMatchers("/user/singIn").permitAll();
+		http.authorizeRequests().antMatchers("/user/singInError").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		
 		// Custom Style Sheets and Images
@@ -64,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().usernameParameter("email");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/marketplace");
-		http.formLogin().failureUrl("/user/singIn");
+		http.formLogin().failureUrl("/user/singInError");
 		
 		/*
 		 * Logout
