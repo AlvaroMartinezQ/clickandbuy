@@ -60,7 +60,7 @@ public class MarketPlaceController {
 		if (admin != null) {
 			model.addAttribute("products", ps.getAll());
 			model.addAttribute("mail", admin.getEmail());
-			return new ModelAndView("/admin/productList");
+			return new ModelAndView("admin/productList");
 
 		}
 
@@ -70,7 +70,7 @@ public class MarketPlaceController {
 				us.updateLogin(u);
 				model.addAttribute("products", ps.getAll());
 				model.addAttribute("mail", u.getEmail());
-				return new ModelAndView("/marketplace/productList");
+				return new ModelAndView("marketplace/productList");
 			}
 
 			// Save the last login for the user
@@ -79,7 +79,7 @@ public class MarketPlaceController {
 				// Return products
 				model.addAttribute("products", ps.getAll());
 				model.addAttribute("mail", u.getEmail());
-				return new ModelAndView("/marketplace/productList");
+				return new ModelAndView("marketplace/productList");
 			}
 		}
 		return null;
@@ -108,7 +108,7 @@ public class MarketPlaceController {
 		model.addAttribute("ratinglist", listSorted);
 
 		model.addAttribute("product", ps.getProduct(id));
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 	}
 
 	@PostMapping("/rate")
@@ -154,7 +154,7 @@ public class MarketPlaceController {
 		model.addAttribute("isBought", notBought);
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("product", product);
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 	}
 
 	@GetMapping("/deleteRate")
@@ -191,7 +191,7 @@ public class MarketPlaceController {
 		System.out.println(status);
 		ps.saveUpdateProduct(product);
 		model.addAttribute("product", ps.getProduct(id));
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 	}
 
 	@PostMapping("/sortRating")
@@ -223,7 +223,7 @@ public class MarketPlaceController {
 		model.addAttribute("ratinglist", listSorted);
 
 		model.addAttribute("product", product);
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 	}
 
 	@RequestMapping("/add")
@@ -244,7 +244,7 @@ public class MarketPlaceController {
 			model.addAttribute("result", result);
 
 		}
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 
 	}
 
@@ -262,11 +262,11 @@ public class MarketPlaceController {
 				model.addAttribute("head",false);
 				model.addAttribute("empty", true);
 				model.addAttribute("product", product);
-				return new ModelAndView("/marketplace/productsView");
+				return new ModelAndView("marketplace/productsView");
 			}
 			orderservice.buy(u.getId());
 		}
-		return new ModelAndView("/order/orderplaced");
+		return new ModelAndView("order/orderplaced");
 	}
 
 	@RequestMapping("/deletecart")
@@ -284,7 +284,7 @@ public class MarketPlaceController {
 			model.addAttribute("head",false);
 			orderservice.deleteCart(u.getId(), idcart);
 		}
-		return new ModelAndView("/marketplace/productsView");
+		return new ModelAndView("marketplace/productsView");
 	}
 
 	@RequestMapping("/denied")
@@ -303,6 +303,6 @@ public class MarketPlaceController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 		}
-		return new ModelAndView("/marketplace/denied");
+		return new ModelAndView("marketplace/denied");
 	}
 }

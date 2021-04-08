@@ -33,7 +33,7 @@ public class OrderController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
-			return new ModelAndView("/order/ordermain");
+			return new ModelAndView("order/ordermain");
 		}
 		return new ModelAndView("user/singUp");
 	}
@@ -48,9 +48,9 @@ public class OrderController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			
-			return new ModelAndView("/order/orderlist");
+			return new ModelAndView("order/orderlist");
 		}
-		return new ModelAndView("/product/management");
+		return new ModelAndView("product/management");
 	}
 	
 	@RequestMapping("/seeorder")
@@ -64,9 +64,9 @@ public class OrderController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			
-			return new ModelAndView("/order/seeorder");
+			return new ModelAndView("order/seeorder");
 		}
-		return new ModelAndView("/product/management");
+		return new ModelAndView("product/management");
 	}
 
 }

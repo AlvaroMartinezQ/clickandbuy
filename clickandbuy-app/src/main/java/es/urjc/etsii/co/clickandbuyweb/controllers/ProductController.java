@@ -57,7 +57,7 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-		return new ModelAndView("/product/upload");
+		return new ModelAndView("product/upload");
 	}
 
 	@RequestMapping("/uploadform")
@@ -75,7 +75,7 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-		return new ModelAndView("/product/upload");
+		return new ModelAndView("product/upload");
 	}
 
 	@RequestMapping("/owner")
@@ -86,7 +86,7 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-		return new ModelAndView("/product/list");
+		return new ModelAndView("product/list");
 	}
 
 	@RequestMapping("/search")
@@ -96,7 +96,7 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-		return new ModelAndView("/product/search");
+		return new ModelAndView("product/search");
 	}
 
 	@RequestMapping("/searchdata")
@@ -108,7 +108,7 @@ public class ProductController {
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
-		return new ModelAndView("/product/searchview");
+		return new ModelAndView("product/searchview");
 	}
 
 	@RequestMapping("/modify")
@@ -122,7 +122,7 @@ public class ProductController {
 
 		model.addAttribute("product", product);
 		model.addAttribute("check", product.isActive());
-		return new ModelAndView("/product/modify");
+		return new ModelAndView("product/modify");
 	}
 
 	@RequestMapping("/modifyok")
@@ -141,7 +141,7 @@ public class ProductController {
 		model.addAttribute("result", result);
 		model.addAttribute("updated", true);
 		model.addAttribute("product", product);
-		return new ModelAndView("/product/modify");
+		return new ModelAndView("product/modify");
 	}
 
 	@RequestMapping("/delete")
@@ -152,7 +152,7 @@ public class ProductController {
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
 		productservice.deleteProduct(u.getId(), id);
-		return new ModelAndView("/product/management");
+		return new ModelAndView("product/management");
 	}
 
 	@RequestMapping("/denied")
