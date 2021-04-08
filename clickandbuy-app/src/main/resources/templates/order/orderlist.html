@@ -29,7 +29,7 @@
 				{{#orders}}
 				<div class="row">
 					<div class="col-1"></div>
-					<div class="card border-dark mb-3" style="width: 18rem;">
+					<div class="card border-dark mb-3" style="width: 19rem;">
 						<div class="card-body">
 							<h5 class="card-title">Nº de pedido: {{id}}</h5>
 							<h6>Fecha: {{date}}</h6>
@@ -38,9 +38,11 @@
 							<p class="card-text">Precio total: {{price}}</p>
 							<form action="/order/seeorder" method="post">
 								<button type="submit" class="btn btn-primary btn-block">Ver con detalle</button>
+								<a href="/user/ordermail?id={{id}}" type="button" class="btn btn-outline-success">Enviar mail</a>
 								<input type="hidden" name="id" value="{{id}}" />
 								<input type="hidden" name="_csrf" value="{{token}}" />
 							</form>
+							<br>
 						</div>
 					</div>
 					<div class="col-1"></div>
