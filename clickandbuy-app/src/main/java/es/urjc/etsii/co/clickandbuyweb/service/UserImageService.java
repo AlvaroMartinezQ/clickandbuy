@@ -46,7 +46,27 @@ public class UserImageService {
 		}
 	}
 	
+	
 	public int upload(MultipartFile image, String email) throws Exception {
+		User u = userdao.findByUserEmail(email);
+		if(u==null) {
+			// Error code for a non existing user
+			return -1;
+		}
+		int usid = u.getId();
+		UserImage existingImage = userimagedao.findByUserId(usid);
+		if(existingImage==null) {
+			UserImage uploadImage = new UserImage();
+			uploadImage.setContent(image.getBytes());
+			uploadImage.setUsid(usid);
+			return userimagedao.save(uploadImage).getId();
+		} else {
+			existingImage.setContent(image.getBytes());
+			return userimagedao.save(existingImage).getId();
+		}
+	}
+	
+	public int uploadAdmin(MultipartFile image, String email) throws Exception {
 		User u = userdao.findByUserEmail(email);
 		if(u==null) {
 			// Error code for a non existing user
