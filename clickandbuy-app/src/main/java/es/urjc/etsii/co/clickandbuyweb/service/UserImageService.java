@@ -73,12 +73,12 @@ public class UserImageService {
 			// Error code for a non existing user
 			return -1;
 		}
-		int usid = admin.getId();
-		UserImage existingImage = userimagedao.findByUserId(usid);
+		int asid = admin.getId();
+		UserImage existingImage = userimagedao.findByUserId(asid);
 		if(existingImage==null) {
 			UserImage uploadImage = new UserImage();
 			uploadImage.setContent(image.getBytes());
-			uploadImage.setUsid(usid);
+			uploadImage.setUsid(asid);
 			return userimagedao.save(uploadImage).getId();
 		} else {
 			existingImage.setContent(image.getBytes());
