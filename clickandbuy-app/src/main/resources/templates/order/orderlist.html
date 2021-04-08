@@ -38,7 +38,7 @@
 							<p class="card-text">Precio total: {{price}}</p>
 							<form action="/order/seeorder" method="post">
 								<button type="submit" class="btn btn-primary btn-block">Ver con detalle</button>
-								<a href="/user/ordermail?id={{id}}" type="button" class="btn btn-outline-success">Enviar mail</a>
+								<a href="/order/ordermail?id={{id}}" type="button" class="btn btn-outline-success">Enviar mail</a>
 								<input type="hidden" name="id" value="{{id}}" />
 								<input type="hidden" name="_csrf" value="{{token}}" />
 							</form>
