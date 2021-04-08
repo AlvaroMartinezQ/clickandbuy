@@ -22,7 +22,7 @@ public class UserPhotoController {
 		return uis.getImage(usid);
 	}
 	
-	@GetMapping(value="/retreive", produces = MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(value="/retreiveAdmin", produces = MediaType.IMAGE_JPEG_VALUE)
 	public Resource imageGetAdmin(@RequestParam int asid) throws Exception {
 		return uis.getImageAdmin(asid);
 	}

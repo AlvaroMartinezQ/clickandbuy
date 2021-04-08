@@ -42,9 +42,9 @@ public class AdminController {
 		model.addAttribute("user", admin);
 		
 		// Admin image
-		if(uis.hasPhoto(admin.getId())) {
+		if(uis.hasPhotoAdmin(admin.getId())) {
 			model.addAttribute("userImage", true);
-			model.addAttribute("imageFile", uis.getImage(admin.getId()));
+			model.addAttribute("imageFile", uis.getImageAdmin(admin.getId()));
 		} else {
 			model.addAttribute("userImage", false);
 		}
@@ -62,9 +62,9 @@ public class AdminController {
 		
 		
 		// Admin image
-		if(uis.hasPhoto(admin.getId())) {
+		if(uis.hasPhotoAdmin(admin.getId())) {
 			model.addAttribute("userImage", true);
-			model.addAttribute("imageFile", uis.getImage(admin.getId()));
+			model.addAttribute("imageFile", uis.getImageAdmin(admin.getId()));
 		} else {
 			model.addAttribute("userImage", false);
 		}
@@ -74,7 +74,7 @@ public class AdminController {
 	@PostMapping("/imageUpload")
 	public ModelAndView uploadImage(Model model, HttpServletRequest request, @RequestParam(required=true) String email, @RequestParam MultipartFile img) throws Exception {
 		try {
-			uis.upload(img, email);
+			uis.uploadAdmin(img, email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,9 +86,9 @@ public class AdminController {
 		model.addAttribute("updated", true);
 		
 		// User image
-		if(uis.hasPhoto(admin.getId())) {
+		if(uis.hasPhotoAdmin(admin.getId())) {
 			model.addAttribute("userImage", true);
-			model.addAttribute("image", uis.getImage(admin.getId()));
+			model.addAttribute("image", uis.getImageAdmin(admin.getId()));
 		} else {
 			model.addAttribute("userImage", false);
 		}
