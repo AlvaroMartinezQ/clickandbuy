@@ -19,12 +19,15 @@ public class UserImage {
 	private byte[] content;
 	@Column(nullable=false)
 	private int usid;
+	@Column(nullable=false)
+	private int asid;
 	
-	public UserImage(int id, byte[] content, int usid) {
+	public UserImage(int id, byte[] content, int usid, int asid) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.usid = usid;
+		this.asid = asid;
 	}
 
 	public UserImage() {
@@ -54,5 +57,14 @@ public class UserImage {
 	public void setUsid(int usid) {
 		this.usid = usid;
 	}
+
+	public int getAsid() {
+		return asid;
+	}
+
+	public void setAsid(int asid) {
+		this.asid = asid;
+	}
+	
 }
 
