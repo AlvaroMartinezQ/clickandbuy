@@ -222,8 +222,9 @@ public class AdminController {
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
 
-		model.addAttribute("updated", true);
 		model.addAttribute("result", productservice.updateProduct(String.valueOf(id), name, desc, price, stock, active));
+		model.addAttribute("check", productservice.getProduct(id).isActive());
+		model.addAttribute("updated", true);
 		model.addAttribute("product",productservice.getProduct(id));
 		return new ModelAndView("admin/modifyProduct");
 	}
