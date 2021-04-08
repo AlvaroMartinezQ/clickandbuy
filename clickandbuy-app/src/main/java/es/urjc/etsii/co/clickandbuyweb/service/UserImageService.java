@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
 import es.urjc.etsii.co.clickandbuyweb.dao.UserImageDAO;
+import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.models.UserImage;
 
@@ -67,12 +68,12 @@ public class UserImageService {
 	}
 	
 	public int uploadAdmin(MultipartFile image, String email) throws Exception {
-		User u = userdao.findByUserEmail(email);
-		if(u==null) {
+		Admin admin = admindao.findByEmail(email);
+		if(admin==null) {
 			// Error code for a non existing user
 			return -1;
 		}
-		int usid = u.getId();
+		int usid = admin.getId();
 		UserImage existingImage = userimagedao.findByUserId(usid);
 		if(existingImage==null) {
 			UserImage uploadImage = new UserImage();
