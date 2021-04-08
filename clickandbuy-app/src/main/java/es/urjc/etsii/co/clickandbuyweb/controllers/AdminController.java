@@ -123,11 +123,11 @@ public class AdminController {
 		
 		if(email.isBlank()||password.isBlank()||passwordconfirmation.isBlank()||realname.isBlank()||name.isBlank()||phone.isBlank()) {
 			model.addAttribute("fill_fields", true);
-			return new ModelAndView("/register");
+			return new ModelAndView("admin/register");
 		}
 		if(!password.equals(passwordconfirmation)) {
 			model.addAttribute("bad_fields", true);
-			return new ModelAndView("/register");
+			return new ModelAndView("admin/register");
 		}
 		
 		String rol = btnradio1? "ROLE_MANAGER":"ROLE_STAFF"; 
@@ -135,7 +135,7 @@ public class AdminController {
 		String status = adminservice.newAdmin(email, passwordconfirmation, realname, name, phone, charge, rol);
 		if(status.equals("status: this administrator already exist")) {
 			model.addAttribute("email_taken", true);
-			return new ModelAndView("/register");
+			return new ModelAndView("admin/register");
 		}
 		
 		model.addAttribute("successfully", true);
