@@ -38,7 +38,7 @@ public class AdminController {
 	public ModelAndView profile(Model model, HttpServletRequest request) {
 		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
 		model.addAttribute("mail", admin.getEmail());
-		model.addAttribute("userid", admin.getId());
+		model.addAttribute("aserid", admin.getId());
 		model.addAttribute("user", admin);
 		
 		// Admin image
@@ -56,7 +56,7 @@ public class AdminController {
 		Admin admin = adminservice.getAdmin(request.getUserPrincipal().getName());
 		adminservice.adminUpdate(admin.getEmail(), realname, name, phone, "");
 		model.addAttribute("mail", admin.getEmail());
-		model.addAttribute("userid", admin.getId());
+		model.addAttribute("aserid", admin.getId());
 		model.addAttribute("user", admin);
 		model.addAttribute("updated", true);
 		

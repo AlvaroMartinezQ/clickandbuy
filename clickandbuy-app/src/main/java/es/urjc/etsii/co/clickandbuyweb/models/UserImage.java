@@ -22,19 +22,13 @@ public class UserImage {
 	@Column()
 	private int asid;
 	
-	public UserImage(int id, byte[] content, int usid) {
+	public UserImage(int id, byte[] content, int usid, int asid) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.usid = usid;
-	}
-	
-	public UserImage(byte[] content, int asid) {
-		super();
-		this.content = content;
 		this.asid = asid;
 	}
-
 
 
 	public UserImage() {
