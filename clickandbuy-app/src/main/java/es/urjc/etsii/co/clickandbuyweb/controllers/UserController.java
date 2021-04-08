@@ -96,7 +96,7 @@ public class UserController {
 		return ("singInForm");
 	}
 	
-	@GetMapping("/singInError")
+	@GetMapping("/singFail")
 	public ModelAndView singInError(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		if(principal!=null) {
@@ -107,7 +107,8 @@ public class UserController {
 			model.addAttribute("products", ps.getAll());
 			return new ModelAndView("/marketplace/productList");
 		}
-		return new ModelAndView("/user/singInError");
+		model.addAttribute("error", true);
+		return new ModelAndView("/user/singIn");
 	}
 	
 	/*
