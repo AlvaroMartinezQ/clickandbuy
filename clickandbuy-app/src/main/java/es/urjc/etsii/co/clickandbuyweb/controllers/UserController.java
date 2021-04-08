@@ -45,7 +45,7 @@ public class UserController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("products", ps.getAll());
-			return new ModelAndView("/marketplace/productList");
+			return new ModelAndView("marketplace/productList");
 		}
 		return new ModelAndView("user/singUp");
 	}
@@ -86,7 +86,7 @@ public class UserController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("products", ps.getAll());
-			return new ModelAndView("/marketplace/productList");
+			return new ModelAndView("marketplace/productList");
 		}
 		return new ModelAndView("user/singIn");
 	}
@@ -105,10 +105,10 @@ public class UserController {
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("products", ps.getAll());
-			return new ModelAndView("/marketplace/productList");
+			return new ModelAndView("marketplace/productList");
 		}
 		model.addAttribute("error", true);
-		return new ModelAndView("/user/singIn");
+		return new ModelAndView("user/singIn");
 	}
 	
 	/*
