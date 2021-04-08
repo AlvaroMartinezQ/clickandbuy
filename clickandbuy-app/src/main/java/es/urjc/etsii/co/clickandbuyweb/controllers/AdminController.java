@@ -208,6 +208,7 @@ public class AdminController {
 		model.addAttribute("user", admin);
 
 		model.addAttribute("product",productservice.getProduct(id));
+		model.addAttribute("check", productservice.getProduct(id).isActive());
 		return new ModelAndView("admin/modifyProduct");
 	}
 	
