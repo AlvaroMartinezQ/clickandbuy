@@ -142,7 +142,7 @@ public class MarketPlaceController {
 		model.addAttribute("ratinglist", listSorted);
 
 		if (!isAdmin) {
-			if(product.getBuyers().contains(user)) {
+			if(product.getBuyers().contains(user.getId())) {
 				notBought = false;
 				Rating rating = new Rating(comment, Integer.valueOf(rate), us.getUser(user.getEmail()));
 				ratingservice.save(rating);
