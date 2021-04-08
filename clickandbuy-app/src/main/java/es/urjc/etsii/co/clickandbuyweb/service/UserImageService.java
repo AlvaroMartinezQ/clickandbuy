@@ -78,7 +78,7 @@ public class UserImageService {
 		if(existingImage==null) {
 			UserImage uploadImage = new UserImage();
 			uploadImage.setContent(image.getBytes());
-			uploadImage.setUsid(asid);
+			uploadImage.setAsid(asid);
 			return userimagedao.save(uploadImage).getId();
 		} else {
 			existingImage.setContent(image.getBytes());
