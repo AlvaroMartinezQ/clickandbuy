@@ -58,7 +58,7 @@ public class MarketPlaceController {
 		Admin admin = (Admin) admindao.findByEmail(principal.getName());
 
 		if (admin != null) {
-			model.addAttribute("products", ps.getAll());
+			model.addAttribute("products", ps.getAllActive());
 			model.addAttribute("mail", admin.getEmail());
 			return new ModelAndView("admin/productList");
 
@@ -68,7 +68,7 @@ public class MarketPlaceController {
 		if (u != null) {
 			if (u.getRoles().contains("ROLE_SUPPLIER")) {
 				us.updateLogin(u);
-				model.addAttribute("products", ps.getAll());
+				model.addAttribute("products", ps.getAllActive());
 				model.addAttribute("mail", u.getEmail());
 				return new ModelAndView("marketplace/productList");
 			}
@@ -77,7 +77,7 @@ public class MarketPlaceController {
 			if (u.getRoles().contains("ROLE_NOTSUPPLIER")) {
 				us.updateLogin(u);
 				// Return products
-				model.addAttribute("products", ps.getAll());
+				model.addAttribute("products", ps.getAllActive());
 				model.addAttribute("mail", u.getEmail());
 				return new ModelAndView("marketplace/productList");
 			}

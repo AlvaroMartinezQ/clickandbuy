@@ -195,8 +195,7 @@ public class AdminController {
 		model.addAttribute("userid", admin.getId());
 		model.addAttribute("user", admin);
 		
-		//Falta añadir el nuevo método productsergice.getAllProducts,
-		//para que salgan los no activos tambien
+
 		model.addAttribute("products", productservice.getAll());
 
 		return new ModelAndView("admin/productsView");

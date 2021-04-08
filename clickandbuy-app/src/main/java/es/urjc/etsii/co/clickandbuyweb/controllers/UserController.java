@@ -44,7 +44,7 @@ public class UserController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
-			model.addAttribute("products", ps.getAll());
+			model.addAttribute("products", ps.getAllActive());
 			return new ModelAndView("marketplace/productList");
 		}
 		return new ModelAndView("user/singUp");
@@ -85,7 +85,7 @@ public class UserController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
-			model.addAttribute("products", ps.getAll());
+			model.addAttribute("products", ps.getAllActive());
 			return new ModelAndView("marketplace/productList");
 		}
 		return new ModelAndView("user/singIn");
@@ -104,7 +104,7 @@ public class UserController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
-			model.addAttribute("products", ps.getAll());
+			model.addAttribute("products", ps.getAllActive());
 			return new ModelAndView("marketplace/productList");
 		}
 		model.addAttribute("error", true);
