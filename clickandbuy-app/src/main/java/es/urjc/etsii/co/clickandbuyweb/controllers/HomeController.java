@@ -36,14 +36,14 @@ public class HomeController {
 				model.addAttribute("userid", admin.getId());
 				model.addAttribute("user", admin);
 				model.addAttribute("products", ps.getAll());
-				return new ModelAndView("/admin/productListAdmin");
+				return new ModelAndView("admin/productListAdmin");
 			}
 			User u=us.getUser(principal.getName());
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
 			model.addAttribute("products", ps.getAll());
-			return new ModelAndView("/marketplace/productList");
+			return new ModelAndView("marketplace/productList");
 		}
 		return new ModelAndView("home");
 	}
