@@ -198,11 +198,13 @@ public class UserController {
 			model.addAttribute("mail", admin.getEmail());
 			model.addAttribute("userid", admin.getId());
 			model.addAttribute("user", admin);
+			model.addAttribute("head", true);
 			return new ModelAndView("user/globalChat");
 		}
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
+		model.addAttribute("head", false);
 		return new ModelAndView("user/globalChat");
 	}
 	
