@@ -76,9 +76,14 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<span style="font-size:20px;">Producto activo:</span>
+						{{#active}}
+							<span style="font-size:20px; color:green;"><b>Producto activo</b></span>
+						{{/active}}
+						{{^active}}
+							<span style="font-size:20px; color:red;"><b>Producto inactivo</b></span>
+						{{/active}}
+						
 						<br>
-				        	<span style="font-size:18px;">{{active}}</span>
 					</div>
 					<hr width=500>
 					<form action="/marketplace/rate" method="post">
