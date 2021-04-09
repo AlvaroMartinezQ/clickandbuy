@@ -1,6 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +59,7 @@ public class MarketPlaceController {
 		Admin admin = (Admin) admindao.findByEmail(principal.getName());
 
 		if (admin != null) {
+			admin.setLast_login(LocalDate.now());
 			model.addAttribute("products", ps.getAllActive());
 			model.addAttribute("mail", admin.getEmail());
 			return new ModelAndView("admin/productList");
