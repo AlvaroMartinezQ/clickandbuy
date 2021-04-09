@@ -16,8 +16,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.urjc.etsii.co.clickandbuyweb.models.Admin;
 import es.urjc.etsii.co.clickandbuyweb.models.Order;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
+import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
@@ -35,6 +37,8 @@ public class UserController {
 	private ProductService ps;
 	@Autowired
 	private OrderService orderservice;
+	@Autowired
+	private AdminService adminservice;
 	/*
 	 * SingUp: View and Form
 	 */
@@ -189,6 +193,13 @@ public class UserController {
 	public ModelAndView chat(Model model, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
+		Admin admin = adminservice.getAdmin(principal.getName());
+		if (admin != null) {
+			model.addAttribute("mail", admin.getEmail());
+			model.addAttribute("userid", admin.getId());
+			model.addAttribute("user", admin);
+			return new ModelAndView("user/globalChat");
+		}
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
