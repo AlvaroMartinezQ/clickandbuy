@@ -79,15 +79,12 @@ Entidades:
 	Esta entidad representa a los administradores del sistema.
  ```
  
-Hay 3 roles de administradores principales del sistema, estos son:
+Hay 2 roles de administradores principales del sistema, estos son:
 <p>
-:arrow_forward: Manager: este usuario será el responsable de la tienda y/o jefe. En principio solo habrá 1 usuario manager. Solo él podrá añadir nuevos administradores, 	dar de baja usuarios y productos, modificar valores en las tablas...
+:arrow_forward: Manager: este usuario será el responsable de la tienda y/o jefe. Habrá un Manager inicial, ya que con éste usuario, podremos dar de alta nuevos administradores, dar de baja usuarios, modificar y eliminar productos, limpiar ratings, modificar valores en las tablas...
 </p>
 <p>
-:arrow_forward: Técnico: este usuario será el responsable de controlar a los usuarios y productos. También será capaz de recoger informes de la tienda con el futuro servicio a implementar.
-</p>
-<p>
-:arrow_forward: Staff: este usuario será responsable de controlar los productos.
+:arrow_forward: Staff: este usuario será responsable de controlar los productos y resolver dudas por el chat del sistema.
 </p>
 
 * Producto
