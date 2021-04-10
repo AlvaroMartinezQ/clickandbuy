@@ -128,13 +128,11 @@ TODO
 
 * Modelo E/R
 
-<!--
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/uml/ModeloER.PNG" alt="modeler">
-</a>
--->
 
-TODO
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/modeloer/ModeloER.JPG" alt="modeler">
+</a>
+
 
 Pantallas de navegación:
 
