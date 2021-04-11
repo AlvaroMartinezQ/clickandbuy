@@ -128,16 +128,37 @@ TODO
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/modeloer/ModeloER.JPG" alt="modeler">
-</a>
+</a>  
 
 
-Pantallas de navegación:
+Pantallas de navegación:  
 
-TODO
+<br>Pantalla principal, home  
+  
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/new/home.JPG" alt="modeler">
+</a>  
+<br>Pantalla para crear usuario, sing up  
+  
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/new/register.JPG" alt="modeler">
+</a>  
+<br>Pantalla para acceder al sistema, sing in  
+  
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/new/login.JPG" alt="modeler">
+</a>  
+<br>Pantalla principal de la tienda, marketplace  
+  
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/pantallas/new/marketplace.JPG" alt="modeler">
+</a>  
+  
 
 ### Tecnologías
 
 * [Java](https://www.java.com/es/)
+* [Maven](https://maven.apache.org/)
 * [Spring](https://spring.io/)
 * [Docker](https://www.docker.com/)
 * [MySQL](https://www.mysql.com/)
@@ -153,42 +174,88 @@ Para descargar una copia local del proyecto sigue los siguientes pasos :rocket:
 ### Pre requisitios
 
 Pasos:
-
-* En caso de usar MySQL:
+* Maven
 	```sh
-	Levantar una instancia de MySQL Server en local.
+	Instalar Maven para correr las aplicaciones.
+	```
+
+En caso de descargar el repositorio en local:
+* MySQL
+	```sh
+	Instalar MySQL Server en local.
+	```
+	```sh
+	Levantar una instancia de MySQL Server.
 	```
 	```sh
 	Crear una base de datos con el nombre que prefieras. Recomendamos <clickandbuy>.
 	```
 	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.  
 	  
-	Renombrar el fichero application.properties.template dentro de clickandbuy-app a application.properties en la carpeta donde este se encuentra. Cambiar la BD usada (el nombre) al igual que el usuario y su contraseña.  
+	Renombrar el fichero application.properties.template dentro de clickandbuy-app a application.properties en la carpeta donde este se encuentra. Cambiar la BD usada (el nombre) al igual que el usuario y su contraseña. Renombrar el fichero application.properties.template dentro de clickandbuy-api a application.properties (en este caso no hacen falta más cambios en el fichero).  
 	```sh
-	Modificar el fichero application.properties con tu usuario, contraseña y nombre de la DB.
+	Completar el fichero application.properties con tu usuario, contraseña y nombre de la DB recién creados.
 	``` 
 	  
 	También es necesario renombrar los ficheros config.properties.template a config.properties <strong>en ambas aplicaciones</strong> e incluir un cliente de correo GMAIL (dirección de email) y su contraseña para que la aplicación sea capaz de enviar correos electrónicos, si no este apartado de la aplicación no funcionará. Sin embargo la aplicación es completamente funcional sin estos datos (imprimirá un mensaje por consola pero se puede obviar).  
-	  
-* En caso de usar Docker:
+  
+* Docker:
   ```sh
   TODO: futuros comandos.
   ```
 
 ### Instalación
 
-1. Clona el repositorio
+1. Clona el repositorio.
    ```sh
    git clone https://github.com/AlvaroMartinezQ/clickandbuy.git
    ```
-2. TODO: levantar instancias de las APPs.
+2. Levantar instancias de las APPs. Navegar a las carpetas del proyecto en dos terminales diferentes.
+
+Si se quiere correr la aplicación sin ficheros JAR. Desde la carpeta raíz del proyecto lanzar el siguiente comando <strong>en ambas terminales previamente abiertas</strong>:
+   ```sh
+   mvn spring-boot:run
+   ```
+
+Si se quiere correr la aplicación con ficheros JAR. Desde la carpeta raíz del proyecto lanzar el siguiente comando <strong>en ambas terminales previamente abiertas</strong> para compilar las aplicaciones:
+   ```sh
+   mvn package
+   ```
+Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>en ambas terminales previamente abiertas</strong>:
+   ```sh
+   java -jar clickandbuy-app-0.0.1-SNAPSHOT.jar
+   ```
+   ```sh
+   java -jar clickandbuy-api-0.0.1-SNAPSHOT.jar
+   ```
 
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
-TODO:  
-Servicio principal -> vista de páginas principales, registro de usuario y login. 1 Ejemplo sencillo de como modificar los datos de usuarios. 1 ejemplo sencillo de como subir un producto.  
-Servicio interno -> 1 ejemplo de como pedir reportes de usuarios o información personal. 1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema.  
+Servicio principal ->
+
+1 ejemplo sencillo de como crear un usuario y entrar al sistema.
+
+TODO
+
+1 ejemplo sencillo de como modificar los datos de usuarios.
+
+![changeUserData](https://user-images.githubusercontent.com/46459810/114321137-79824400-9b19-11eb-97d8-269d1e6aef23.gif)
+
+1 ejemplo sencillo de como subir un producto.
+
+TODO
+
+Servicio interno ->
+
+1 ejemplo de como pedir reportes de usuarios o información personal.
+
+TODO
+
+1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema. El usuario de la izquierda es un usuario administrador del sistema mientras que el de la derecha es un usuario normal.
+
+![userChat](https://user-images.githubusercontent.com/46459810/114321248-1a70ff00-9b1a-11eb-88fb-f7e72f8601a6.gif)
+
 
 <!-- ROADMAP -->
 ## Mapa de trabajo
