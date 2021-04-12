@@ -241,7 +241,8 @@ Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>e
     mysql> exit;
 ##### El punto 4 es un resumen del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-es).
 
-<br />
+
+
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
