@@ -125,14 +125,11 @@ UML de controlladores
     <img src="/statics/uml/umlcontroller.png" alt="uml">
 </a>
 
-
 * Modelo E/R
-
 
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/modeloer/ModeloER.JPG" alt="modeler">
 </a>  
-
 
 Pantallas de navegación:  
 
@@ -157,7 +154,6 @@ Pantallas de navegación:
     <img src="/statics/pantallas/new/marketplace.JPG" alt="modeler">
 </a>  
   
-
 ### Tecnologías
 
 * [Java](https://www.java.com/es/)
@@ -166,8 +162,6 @@ Pantallas de navegación:
 * [Docker](https://www.docker.com/)
 * [MySQL](https://www.mysql.com/)
 * [Bootstrap](https://getbootstrap.com/)
-
-
 
 <!-- EMPECEMOS -->
 ## Empecemos
@@ -190,15 +184,11 @@ En caso de descargar el repositorio en local:
 	```sh
 	Levantar una instancia de MySQL Server.
 	```
-	```sh
-	Crear una base de datos con el nombre que prefieras. Recomendamos <clickandbuy>.
-	```
+	Crear una base de datos con el nombre que prefieras. Recomendamos <clickandbuy>.  
 	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.  
 	  
 	Renombrar el fichero application.properties.template dentro de clickandbuy-app a application.properties en la carpeta donde este se encuentra. Cambiar la BD usada (el nombre) al igual que el usuario y su contraseña. Renombrar el fichero application.properties.template dentro de clickandbuy-api a application.properties (en este caso no hacen falta más cambios en el fichero).  
-	```sh
-	Completar el fichero application.properties con tu usuario, contraseña y nombre de la DB recién creados.
-	``` 
+	Completar el fichero application.properties con tu usuario, contraseña y nombre de la DB recién creados.  
 	  
 	También es necesario renombrar los ficheros config.properties.template a config.properties <strong>en ambas aplicaciones</strong> e incluir un cliente de correo GMAIL (dirección de email) y su contraseña para que la aplicación sea capaz de enviar correos electrónicos, si no este apartado de la aplicación no funcionará. Sin embargo la aplicación es completamente funcional sin estos datos (imprimirá un mensaje por consola pero se puede obviar).  
   
@@ -241,7 +231,7 @@ Servicio principal ->
 
 TODO
 
-1 ejemplo sencillo de como modificar los datos de usuarios.
+Modificación de datos personales de un usuario:
 
 ![changeUserData](https://user-images.githubusercontent.com/46459810/114321137-79824400-9b19-11eb-97d8-269d1e6aef23.gif)
 
@@ -255,7 +245,7 @@ Servicio interno ->
 
 TODO
 
-1 ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema. El usuario de la izquierda es un usuario administrador del sistema mientras que el de la derecha es un usuario normal.
+Ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema. El usuario de la izquierda es un usuario <strong>administrador</strong> del sistema mientras que el de la derecha es un <strong>usuario normal</strong>:
 
 ![userChat](https://user-images.githubusercontent.com/46459810/114321248-1a70ff00-9b1a-11eb-88fb-f7e72f8601a6.gif)
 
