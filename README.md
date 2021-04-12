@@ -65,7 +65,7 @@ Partes del servicio principal:
 
 La aplicación dispondrá de dos sistemas:
 * Sistema de compra - venta: descrito anteriormente.
-* Sistema interno de información: la aplicación principal se comunicará con un servicio externo de generación de informes sobre la tienda (pedidos, stock, usuarios...). También dispone de un chat en directo desarrollado con **web sockets**.
+* Sistema interno de información: la aplicación principal se comunicará con un servicio externo de generación de datos sobre la tienda (pedidos, stock, usuarios...). También dispone de un chat en directo desarrollado con **web sockets**.
 
 Entidades:
 
@@ -176,12 +176,8 @@ Pasos:
 
 En caso de descargar el repositorio en local:
 * MySQL
-	```sh
-	Instalar MySQL Server en local.
-	```
-	```sh
-	Levantar una instancia de MySQL Server.
-	```
+	Instalar MySQL Server en local.  
+	Levantar una instancia de MySQL Server.  
 	Crear una base de datos con el nombre que prefieras. Recomendamos <clickandbuy>.  
 	Opcional: crear un usuario y darle privilegios en la base de datos creada. Si no, utilizar el usuario root del sistema.  
 	  
@@ -223,7 +219,7 @@ Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>e
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
-Servicio principal ->
+<div align="center"><strong>Servicio principal</strong></div>
 
 1 ejemplo sencillo de como crear un usuario y entrar al sistema.
 
@@ -237,7 +233,7 @@ Modificación de datos personales de un usuario:
 
 TODO
 
-Servicio interno ->
+<div align="center"><strong>Servicio interno</strong></div>
 
 1 ejemplo de como pedir reportes de usuarios o información personal.
 
