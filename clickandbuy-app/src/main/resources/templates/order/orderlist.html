@@ -43,6 +43,11 @@
 								<input type="hidden" name="_csrf" value="{{token}}" />
 							</form>
 							<br>
+							{{^sended}}
+							<div class="row">
+								<h5 style="text-align: center; color: green">Mail enviado correctamente</h5>
+							</div>
+							{{/sended}}
 						</div>
 					</div>
 					<div class="col-1"></div>
