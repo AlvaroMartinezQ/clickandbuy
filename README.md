@@ -115,11 +115,14 @@ Diagramas de la aplicación:
 
 * UML
 
-<!--
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
-    <img src="/statics/uml/uml_fase2.jpg" alt="uml">
+    <img src="/statics/uml/UML.png" alt="uml">
 </a>
--->
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/uml/umlcontroller.png" alt="uml">
+</a>
+
 
 TODO
 
