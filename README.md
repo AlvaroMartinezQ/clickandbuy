@@ -115,16 +115,16 @@ Diagramas de la aplicación:
 
 * UML
 
+UML principal:
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
     <img src="/statics/uml/UML.png" alt="uml">
 </a>
 
-<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+UML de controlladores
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy/blob/dev/statics/uml/umlcontroller.png">
     <img src="/statics/uml/umlcontroller.png" alt="uml">
 </a>
 
-
-TODO
 
 * Modelo E/R
 
