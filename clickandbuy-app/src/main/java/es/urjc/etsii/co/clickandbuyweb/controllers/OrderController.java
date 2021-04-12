@@ -49,6 +49,7 @@ public class OrderController {
 			model.addAttribute("mail", u.getEmail());
 			model.addAttribute("userid", u.getId());
 			model.addAttribute("user", u);
+			model.addAttribute("sended",false);
 			
 			return new ModelAndView("order/orderlist");
 		}
@@ -92,7 +93,7 @@ public class OrderController {
 		 * Print the response from the server. For DEBUG purposes
 		 */
 		System.out.println(response);
-		
+		model.addAttribute("sended",true);
 		model.addAttribute("mail", u.getEmail());
 		model.addAttribute("userid", u.getId());
 		model.addAttribute("user", u);
