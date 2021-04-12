@@ -36,6 +36,7 @@
       <ul>
         <li><a href="#pre-requisitios">Pre requisitos</a></li>
         <li><a href="#instalación">Instalación</a></li>
+	<li><a href="#Despliegue-de-la-máquina-virtual">Despliegue de la máquina virtual</a></li>
       </ul>
     </li>
     <li><a href="#uso">Uso</a></li>
@@ -215,6 +216,30 @@ Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>e
    ```sh
    java -jar clickandbuy-api-0.0.1-SNAPSHOT.jar
    ```
+### Despliegue de la máquina virtual
+1. En primer lugar debemos de descargar VM VirtualBox del siguiente [enlace](https://www.oracle.com/es/virtualization/technologies/vm/downloads/virtualbox-downloads.html).
+2. Ahora procedemos a configurar e instalar la VM, para ello hemos seguido el siguiente [enlace](https://www.geeknetic.es/Noticia/17411/Como-usar-VirtualBox-para-crear-una-maquina-virtual.html). En nuestro caso hemos instalado el sistema operativo [Ubuntu](https://ubuntu.com/).
+3. Para la instalación del jdk y jre 11 hemos utilizado la siguiente [referencia](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-20-04-es).
+4. Instalacion de mysql desde el terminal de Ubuntu:
+##### Instalación
+    $ sudo apt update
+    $ sudo apt install mysql-server
+##### Configuración
+    $ sudo mysql_secure_installation
+##### Añadimos una clave a root
+    $ sudo mysql
+    mysql> alter user 'root'@'localhost' identified with mysql_native_password by '123456';
+##### Recargamos los privilegios de las tablas
+    mysql> flush privileges;
+##### Si deseamos crear un usuario, podemos hacer lo siguiente (en nuestro caso no lo hemos hecho)
+    mysql> create user 'test'@'localhost' identified by '123456';
+##### Añadimos permisos al nuevo usuario
+    mysql> grant all privileges on *.* to 'test'@'localhost' with grant option;
+##### Crear un esquema
+    mysql> create schema clickandbuy
+##### Si deseamos salir del terminal
+    mysql> exit;
+##### El punto 4 es un resumen del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-es).
 
 <!-- EJEMPLOS DE USO -->
 ## Uso
