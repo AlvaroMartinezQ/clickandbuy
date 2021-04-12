@@ -232,7 +232,7 @@ Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>e
 ##### Recargamos los privilegios de las tablas
     mysql> flush privileges;
 ##### Si deseamos crear un usuario, podemos hacer lo siguiente (en nuestro caso no lo hemos hecho)
-    mysql> create user 'test'@'localhost' identified by '123456';
+    mysql> create user 'newuser'@'localhost' identified by '1234';
 ##### Añadimos permisos al nuevo usuario
     mysql> grant all privileges on *.* to 'test'@'localhost' with grant option;
 ##### Crear un esquema
