@@ -241,32 +241,33 @@ Navegar a la carpeta target del proyecto y lanzar el siguiente comando <strong>e
     mysql> exit;
 ##### El punto 4 es un resumen del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-es).
 
+<br />
 <!-- EJEMPLOS DE USO -->
 ## Uso
 
 <div align="center"><strong>Servicio principal</strong></div>
 
-1 ejemplo sencillo de como crear un usuario y entrar al sistema.
+Crear un usuario y entrar al sistema:
 
-TODO
+![createUserAccount](https://user-images.githubusercontent.com/46459810/114441459-b73fa500-9bcb-11eb-9bf2-4a710a29a350.gif)
 
 Modificación de datos personales de un usuario:
 
-![changeUserData](https://user-images.githubusercontent.com/46459810/114321137-79824400-9b19-11eb-97d8-269d1e6aef23.gif)
+![changeUserInfo](https://user-images.githubusercontent.com/46459810/114441496-c32b6700-9bcb-11eb-8749-42f0da19811e.gif)
 
-1 ejemplo sencillo de como subir un producto.
+Subida de un producto:
 
-TODO
+![uploadProduct](https://user-images.githubusercontent.com/46459810/114441518-c9214800-9bcb-11eb-8d83-0f2cc261d616.gif)
 
 <div align="center"><strong>Servicio interno</strong></div>
 
 1 ejemplo de como pedir reportes de usuarios o información personal.
 
-TODO
+![requestUserInfo](https://user-images.githubusercontent.com/46459810/114441541-cfafbf80-9bcb-11eb-8082-5cb61f993fc8.gif)
 
-Ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema. El usuario de la izquierda es un usuario <strong>administrador</strong> del sistema mientras que el de la derecha es un <strong>usuario normal</strong>:
+Ejemplo con dos cuentas simultáneas en diferentes navegadores del chat del sistema:
 
-![userChat](https://user-images.githubusercontent.com/46459810/114321248-1a70ff00-9b1a-11eb-88fb-f7e72f8601a6.gif)
+![chatExample](https://user-images.githubusercontent.com/46459810/114441560-d50d0a00-9bcb-11eb-83c0-e93012059bb7.gif)
 
 
 <!-- ROADMAP -->
