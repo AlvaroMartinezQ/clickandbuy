@@ -111,7 +111,7 @@ Hay 2 roles de administradores principales del sistema, estos son:
 	* Tendrá una clave foránea al producto en cuestión.
 ```
 <br />
-Diagramas de la aplicación:
+<div align="center">Diagramas de la aplicación</div>
 
 * UML principal:
 <a href="https://github.com/AlvaroMartinezQ/clickandbuy">
@@ -129,7 +129,7 @@ Diagramas de la aplicación:
     <img src="/statics/modeloer/ModeloER.JPG" alt="modeler">
 </a>  
 
-Pantallas de navegación:  
+<div align="center">Pantallas de navegación</div>
 
 <br>Pantalla principal, home  
   
