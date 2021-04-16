@@ -17,10 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
-import es.urjc.etsii.co.clickandbuyweb.models.Order;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
-import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
@@ -35,8 +33,7 @@ public class UserController {
 	private UserImageService uis;
 	@Autowired
 	private ProductService ps;
-	@Autowired
-	private OrderService orderservice;
+
 	@Autowired
 	private AdminService adminservice;
 	/*
