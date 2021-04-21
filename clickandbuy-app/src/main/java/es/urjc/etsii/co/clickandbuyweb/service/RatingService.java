@@ -60,20 +60,20 @@ public class RatingService {
 		return "status: saved";
 	}
 	
-	public String deleteRating(int id, String email) {
+	public boolean deleteRating(int id, String email) {
 		Optional<Rating> rating = ratingdao.findById(id);
 		User user = userdao.findByUserEmail(email);
 		Admin admin = admindao.findByEmail(email);
 		if(!rating.isPresent())
-			return "status: rating not found";
+			return false;
 		if(user==null && admin==null)
-			return "status: user not found";
+			return false;
 		if(user!=null) {
 			if(rating.get().getUser().getEmail() != email)
-				return "status: you are not the owner of this rating";
+				return false;
 		}
 		ratingdao.deleteById(id);
-		return "status: rating deleted";
+		return true;
 	}
 	
 	public List<Rating> getAllRatingsSorted() {
@@ -99,7 +99,8 @@ public class RatingService {
 	
 	public String deleteAllRatingsFromProduct(int id) {
 		Product product = productservice.getProduct(id);
-		ratingdao.deleteAllByProduct(id);;
+		ratingdao.deleteAllByProduct(id);
+		product.getRating().clear();
 		productservice.saveUpdateProduct(product);
 		return "status: all ratings deleted";
 	}
