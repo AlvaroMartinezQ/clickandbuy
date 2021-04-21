@@ -1,35 +1,38 @@
-version: '2'
+version: "3"
 services:
-    mysql-clicknbuy:
-        restart: on-failure
-        container_name: mysql-clicknbuy
-        image: mysql:8.0
+    cnbapp:
+        build: .
+        restart: "on-failure"
         environment: 
-            MYSQL_DATABASE: clickandbuyDB
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: userDB
-            MYSQL_PASSWORD: password
-        volumes:
-            - ./sql:/docker-entrypoint-initdb.d
-        ports:
-            - "6033:3306"
-        healthcheck:
-            # test: "/usr/bin/mysql --user=root --password=root--execute \"SHOW DATABASES;\""
-            test: "echo db healthcheck"
-            interval: 2s
-            timeout: 20s
-            retries: 3
-
-    clicknbuyapp:
-        restart: on-failure
-        build: ./
-        expose:
-            - "8443"
-        ports:
-            - "8443:8443"
-        environment:
-            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-clicknbuy:6033/clickandbuyDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
             - SPRING_DATASOURCE_USERNAME=userDB
             - SPRING_DATASOURCE_PASSWORD=password
-        links:
-            - mysql-clicknbuy
+        ports: 
+            - "8443:8443"
+        networks:
+            - main
+        depends_on: 
+            - cnbdb
+
+    cnbdb:
+        image: mysql:latest
+        restart: "on-failure"
+        environment: 
+            - MYSQL_ROOT_PASSWORD=admi1234
+            - MYSQL_USER=userDB
+            - MYSQL_PASSWORD=password
+            - MYSQL_DATABASE=clickandbuyDB
+        ports: 
+            - "8084:3306"
+        expose: 
+            - "3306"
+        networks: 
+            - main
+        volumes: 
+            - cnbdbvol:/var/lib/mysql
+
+networks:
+    main:
+
+volumes: 
+    cnbdbvol:

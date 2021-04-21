@@ -1,5 +1,5 @@
-FROM openjdk:latest
-LABEL Alvaro Martinez <alvaroo2302@gmail.com>
-RUN java -version
+FROM openjdk:12
+RUN echo hellodocker
 COPY ./clickandbuy-app/target/clickandbuy-app-0.0.1-SNAPSHOT.jar /opt
-ENTRYPOINT ["java","-jar","/opt/clickandbuy-app-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8443
+CMD ["java", "-jar", "/opt/clickandbuy-app-0.0.1-SNAPSHOT.jar"]
