@@ -97,16 +97,17 @@ public class RatingService {
 		return ratingSorted;
 	}
 	
-	public String deleteAllRatingsFromProduct(int id) {
-		Product product = productservice.getProduct(id);
-		ratingdao.deleteAllByProduct(id);
+	public String deleteAllRatingsFromProduct(int product_id) {
+		Product product = productservice.getProduct(product_id);
+		ratingdao.deleteAll(product.getRating());
 		product.getRating().clear();
 		productservice.saveUpdateProduct(product);
 		return "status: all ratings deleted";
 	}
 	
-	public String deleteAllRatingsFromProductWithoutUpdate(int id) {
-		ratingdao.deleteAllByProduct(id);;
+	public String deleteAllRatingsFromProductWithoutUpdate(int product_id) {
+		Product product = productservice.getProduct(product_id);
+		ratingdao.deleteAll(product.getRating());
 		return "status: all ratings deleted";
 	}
 	
