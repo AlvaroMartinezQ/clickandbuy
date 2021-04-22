@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import es.urjc.etsii.co.clickandbuyweb.models.Rating;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
-import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.RatingService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
 
@@ -24,9 +23,6 @@ public class RatingController {
 	private RatingService ratingservice;
 	@Autowired
 	private UserService userservice;
-
-	@Autowired
-	private ProductService productservice;
 	
 	@GetMapping("/all")
 	public Iterable<Rating> getAll() {

@@ -119,10 +119,8 @@ public class ProductService {
 		Iterable<User> users = userservice.getUsers();
 		for(User user: users) {
 			if(user.getUser_product_list().contains(product)) {
-				System.out.println("el usuario se ha encontrado");
 				List<Product> list = user.getUser_product_list();
 				list.remove(product);
-				System.out.println("se ha eliminado el producto de su lista");
 				user.setUser_product_list(list);
 				udao.save(user);
 				

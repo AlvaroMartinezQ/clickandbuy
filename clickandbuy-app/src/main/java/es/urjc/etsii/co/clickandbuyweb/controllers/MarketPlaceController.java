@@ -188,9 +188,13 @@ public class MarketPlaceController {
 		model.addAttribute("ratinglist", listSorted);
 
 		Optional<Rating> rating = ratingservice.getRating(idrating);
+		boolean status = ratingservice.deleteRating(idrating, emailUser);
+		if(!status) {
+			model.addAttribute("product", product);
+			return new ModelAndView("marketplace/productsView");
+		}
 		product.getRating().remove(rating.get());
-		String status = ratingservice.deleteRating(idrating, emailUser);
-		System.out.println(status);
+		
 		ps.saveUpdateProduct(product);
 		model.addAttribute("product", ps.getProduct(id));
 		return new ModelAndView("marketplace/productsView");

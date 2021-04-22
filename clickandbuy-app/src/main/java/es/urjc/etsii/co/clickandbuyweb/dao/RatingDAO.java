@@ -20,7 +20,7 @@ public interface RatingDAO extends JpaRepository<Rating, Integer>{
 
 	@Modifying(clearAutomatically = true)
 	@Transactional
-	@Query(value = "delete FROM marketplace_rating WHERE product_id=:id", nativeQuery = true)
-	public void deleteAllByProduct(@Param("id")int id);
+	@Query(value = "delete FROM marketplace_rating WHERE product_id=:product_id", nativeQuery = true)
+	public void deleteAllByProduct(@Param("product_id")int product_id);
 
 }
