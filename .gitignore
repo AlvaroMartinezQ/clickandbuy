@@ -15,6 +15,7 @@ clickandbuy-app/src/main/resources/application.properties
 clickandbuy-app/src/main/resources/config.properties
 internal-service/src/main/resources/application.properties
 internal-service/src/main/resources/config.properties
+cnbdbvol/
 
 ### Eclipse ###
 

@@ -22,6 +22,7 @@ import es.urjc.etsii.co.clickandbuyweb.service.AdminService;
 import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserImageService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
+import mailer.ReadPropertiesValue;
 
 @RestController
 @RequestMapping("/user")
@@ -214,10 +215,13 @@ public class UserController {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		String data = u.toString();
+
+		// Properties file
+		ReadPropertiesValue appConf = new ReadPropertiesValue();
 		/*
-		 *  Keep this URL hardcoded as it is not going to change
+		 *  Internal service URL
 		 */
-		String url="http://127.0.0.1:8081/legacy/user/info?data=" + data + "&email=" + u.getEmail();
+		String url="http://" + appConf.getInternalServiceHost() + ":8081/legacy/user/info?data=" + data + "&email=" + u.getEmail();
 		/*
 		 * Fire the end-point call
 		 * The end-point sends back a String object

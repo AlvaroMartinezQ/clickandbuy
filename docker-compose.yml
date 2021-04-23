@@ -1,5 +1,8 @@
 version: "3"
 services:
+
+    # NOTE: do not change any of the services names 
+
     cnbapp:
         build: .
         restart: "on-failure"
@@ -29,7 +32,15 @@ services:
         networks: 
             - main
         volumes: 
-            - cnbdbvol:/var/lib/mysql
+            - ./cnbdbvol:/var/lib/mysql
+
+    cnbinternal:
+        build: ./internal-service
+        restart: "on-failure"
+        ports: 
+            - "8081:8081"
+        networks:
+            - main
 
 networks:
     main:

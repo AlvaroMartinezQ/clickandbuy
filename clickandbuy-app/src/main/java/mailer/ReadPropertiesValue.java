@@ -54,6 +54,28 @@ public class ReadPropertiesValue {
 		return password;
 	}
 
+	public String getInternalServiceHost() throws IOException {
+		String url = "";
+		try {
+			Properties prop = new Properties();
+			String propFileName = "application.properties";
+
+			inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+			if (inputStream != null) {
+				prop.load(inputStream);
+			} else {
+				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+			}
+			url = prop.getProperty("internal.service.path");
+		} catch (Exception e) {
+			System.out.println("Exception while reading the email host");
+		} finally {
+			inputStream.close();
+		}
+		return url;
+	}
+
 	// Get both host email and password
 	public String getPropValues() throws IOException {
  
