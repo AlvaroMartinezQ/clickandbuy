@@ -7,6 +7,7 @@ services:
             - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
             - SPRING_DATASOURCE_USERNAME=userDB
             - SPRING_DATASOURCE_PASSWORD=password
+            - INTERNAL_SERVICE_PATH=cnbinternal
         ports: 
             - "8443:8443"
         networks:
@@ -29,7 +30,15 @@ services:
         networks: 
             - main
         volumes: 
-            - cnbdbvol:/var/lib/mysql
+            - ./cnbdbvol:/var/lib/mysql
+
+    cnbinternal:
+        build: ./internal-service
+        restart: "on-failure"
+        ports: 
+            - "8081:8081"
+        networks:
+            - main
 
 networks:
     main:
