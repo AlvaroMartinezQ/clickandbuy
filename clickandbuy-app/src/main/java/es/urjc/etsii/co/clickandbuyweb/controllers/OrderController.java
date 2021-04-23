@@ -80,10 +80,13 @@ public class OrderController {
 		Order order = orderservice.getOrderById(id);
 		RestTemplate restTemplate = new RestTemplate();
 		String data = order.toString();
+
+		// Properties file
+		ReadPropertiesValue appConf = new ReadPropertiesValue();
 		/*
-		 *  Keep this URL hardcoded as it is not going to change
+		 *  Internal service URL
 		 */
-		String url="http://127.0.0.1:8081/ordermail/send?data=" + data + "&email=" + u.getEmail();
+		String url="http://" + appConf.getInternalServiceHost() + ":8081/ordermail/send?data=" + data + "&email=" + u.getEmail();
 		/*
 		 * Fire the end-point call
 		 * The end-point sends back a String object
