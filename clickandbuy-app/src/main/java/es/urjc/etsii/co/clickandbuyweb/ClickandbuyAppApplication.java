@@ -9,8 +9,12 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 
+
+@EnableCaching
 @SpringBootApplication
 public class ClickandbuyAppApplication {
+	
+	private static final Log LOG = LogFactory.getLog(ClickandbuyAppApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClickandbuyAppApplication.class, args);
