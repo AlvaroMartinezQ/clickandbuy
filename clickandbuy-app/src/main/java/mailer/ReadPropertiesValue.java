@@ -71,7 +71,7 @@ public class ReadPropertiesValue {
 			} else {
 				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
 			}
-			url = prop.getProperty("internal.service.path");
+			url = prop.getProperty("intern");
 		} catch (Exception e) {
 			System.out.println("Exception while reading the email host");
 		} finally {
