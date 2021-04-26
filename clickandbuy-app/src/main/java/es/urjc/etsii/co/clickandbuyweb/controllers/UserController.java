@@ -209,7 +209,6 @@ public class UserController {
 	// User info - Internal service
 	@RequestMapping("/info")
 	public ModelAndView infoUser(Model model, HttpServletRequest request) throws IOException {
-		System.out.println("Info request from user");
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		

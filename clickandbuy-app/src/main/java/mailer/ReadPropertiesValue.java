@@ -9,6 +9,10 @@ public class ReadPropertiesValue {
 
 	String result = "";
 	InputStream inputStream;
+
+	public ReadPropertiesValue() {
+		super();
+	}
 	
 	public String getEmailHost() throws IOException {
 		String email = "";

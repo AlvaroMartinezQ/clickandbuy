@@ -17,6 +17,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.Order;
 import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.service.OrderService;
 import es.urjc.etsii.co.clickandbuyweb.service.UserService;
+import mailer.ReadPropertiesValue;
 
 @RestController
 @RequestMapping("/order")
@@ -74,7 +75,6 @@ public class OrderController {
 	
 	@RequestMapping("/ordermail")
 	public ModelAndView orderMail(Model model, HttpServletRequest request, @RequestParam(required=true)int id) throws IOException {
-		System.out.println("Info request from user");
 		Principal principal = request.getUserPrincipal();
 		User u=us.getUser(principal.getName());
 		Order order = orderservice.getOrderById(id);
