@@ -119,13 +119,7 @@ public class ProductService {
 		Iterable<User> users = userservice.getUsers();
 		for(User user: users) {
 			if(user.getUser_product_list().contains(product)) {
-				List<Product> list = user.getUser_product_list();
-				list.remove(product);
-				user.setUser_product_list(list);
-				udao.save(user);
-				
-				ratingservice.deleteAllRatingsFromProductWithoutUpdate(id);
-				pdao.delete(product);
+				deleteProduct(user.getId(),id);
 				return "Product has been deleted correctly";
 			}
 		}
