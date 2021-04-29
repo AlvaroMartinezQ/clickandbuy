@@ -29,8 +29,6 @@ public class ProductService {
 	@Autowired
 	private UserService userservice;
 	@Autowired
-	private RatingService ratingservice;
-	@Autowired
 	private CartDAO cartdao;
 
 	@Cacheable(cacheNames = "products")
