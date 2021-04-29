@@ -31,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/user/singFail").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		
+		// API calls for cache testing
+		http.authorizeRequests().antMatchers("/api/**").permitAll();
+		
 		// Custom Style Sheets and Images
 		http.authorizeRequests().antMatchers("/css/**", "/imgs/**", "/favicon.ico").permitAll();
 		

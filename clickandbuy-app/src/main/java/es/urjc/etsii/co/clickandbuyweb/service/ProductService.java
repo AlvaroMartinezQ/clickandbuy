@@ -5,6 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.CartDAO;
@@ -16,6 +19,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 @Transactional
+@CacheConfig(cacheNames="products")
 public class ProductService {
 	
 	@Autowired
@@ -29,10 +33,12 @@ public class ProductService {
 	@Autowired
 	private CartDAO cartdao;
 
-	public Iterable<Product> getAll() {
+	@Cacheable(cacheNames = "products")
+	public List<Product> getAll() {
 		return pdao.findAll();
 	}
 	
+	@Cacheable(cacheNames = "products")
 	public Iterable<Product> getAllActive() {
 		return pdao.findAllActive();
 	}
@@ -47,6 +53,7 @@ public class ProductService {
 		return p;
 	}
 
+	@CacheEvict(cacheNames = "products", allEntries=true)
 	public Product saveProduct(String userEmail, Double price, String name, String description, int stock) {
 		User u = udao.findByUserEmail(userEmail);
 		if (u == null) {
@@ -69,11 +76,13 @@ public class ProductService {
 		return p;
 	}
 	
+	@CacheEvict(cacheNames = "products", allEntries=true)
 	public String saveUpdateProduct(Product product) {
 		pdao.save(product);
 		return "status: saved";
 	}
 
+	@CacheEvict(cacheNames = "products", allEntries=true)
 	public String updateProduct(String id, String name, String description, String price, String stock,
 			boolean active) {
 		int pid = Integer.parseInt(id);
@@ -100,6 +109,7 @@ public class ProductService {
 		return "status: saved";
 	}
 
+	@CacheEvict(cacheNames = "products", allEntries=true)
 	public void deleteProduct(int uid, int id) {
 		User user = udao.findByUserId(uid);
 		Product product = pdao.findByProductId(id);
@@ -114,6 +124,7 @@ public class ProductService {
 		udao.save(user);
 	}
 	
+	@CacheEvict(cacheNames = "products", allEntries=true)
 	public String deleteProductByAdmin(int id) {
 		Product product = pdao.findByProductId(id);
 		Iterable<User> users = userservice.getUsers();

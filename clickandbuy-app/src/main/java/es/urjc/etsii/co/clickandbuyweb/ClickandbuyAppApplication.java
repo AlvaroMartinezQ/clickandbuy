@@ -23,7 +23,7 @@ public class ClickandbuyAppApplication {
 	@Bean
     public CacheManager cacheManager() {
     	LOG.info("Activating cache...");
-    	return new ConcurrentMapCacheManager("clickandbuy");
+    	return new ConcurrentMapCacheManager("users", "admins", "products");
     }
 
 }
