@@ -3,7 +3,18 @@ services:
 
     # NOTE: do not change any of the services names 
 
-    cnbapp:
+    haproxy:
+        image: haproxy
+        ports: 
+            - "80:80"
+        container_name: 'clicknbuy_cnbhaproxy'
+        volumes:
+            - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+        networks: 
+            main:
+                ipv4_address: 172.18.0.2
+
+    cnbapp1:
         build: .
         restart: "on-failure"
         environment: 
@@ -12,10 +23,32 @@ services:
             - SPRING_DATASOURCE_PASSWORD=password
         ports: 
             - "8443:8443"
+        expose:
+            - "8443"
         networks:
-            - main
+            main:
+                ipv4_address: 172.18.0.3
         depends_on: 
             - cnbdb
+            - haproxy
+    
+    cnbapp2:
+        build: .
+        restart: "on-failure"
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
+            - SPRING_DATASOURCE_USERNAME=userDB
+            - SPRING_DATASOURCE_PASSWORD=password
+        ports: 
+            - "8444:8443"
+        expose:
+            - "8444"
+        networks:
+            main:
+                ipv4_address: 172.18.0.5
+        depends_on: 
+            - cnbdb
+            - haproxy
 
     cnbdb:
         image: mysql:latest
@@ -30,7 +63,8 @@ services:
         expose: 
             - "3306"
         networks: 
-            - main
+            main:
+                ipv4_address: 172.18.0.3
         volumes: 
             - ./cnbdbvol:/var/lib/mysql
 
@@ -40,10 +74,16 @@ services:
         ports: 
             - "8081:8081"
         networks:
-            - main
+            main:
+                ipv4_address: 172.18.0.4
 
 networks:
     main:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.2/16
 
 volumes: 
     cnbdbvol:
