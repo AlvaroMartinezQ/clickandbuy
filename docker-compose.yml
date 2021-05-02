@@ -1,7 +1,10 @@
 version: "3"
 services:
 
-    # NOTE: do not change any of the services names 
+    # NOTE: do not change any of the services names
+
+    # When docker-compose up this file access the webpage 
+    # through the balancer located at 172.18.0.2:443
 
     haproxy:
         image: haproxy
@@ -13,9 +16,13 @@ services:
         networks: 
             main:
                 ipv4_address: 172.18.0.2
+        depends_on: 
+            - cnbapp1
+            - cnbapp2
 
     cnbapp1:
         build: .
+        container_name: 'cnbapp1'
         restart: "on-failure"
         environment: 
             - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
@@ -27,13 +34,13 @@ services:
             - "8443"
         networks:
             main:
-                ipv4_address: 172.18.0.3
+                ipv4_address: 172.18.0.5
         depends_on: 
             - cnbdb
-            - haproxy
     
     cnbapp2:
         build: .
+        container_name: 'cnbapp2'
         restart: "on-failure"
         environment: 
             - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
@@ -45,10 +52,9 @@ services:
             - "8444"
         networks:
             main:
-                ipv4_address: 172.18.0.5
+                ipv4_address: 172.18.0.6
         depends_on: 
             - cnbdb
-            - haproxy
 
     cnbdb:
         image: mysql:latest
