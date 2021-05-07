@@ -13,6 +13,7 @@ services:
         container_name: 'clicknbuy_cnbhaproxy'
         volumes:
             - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+            - ./haproxy/key.pem:/etc/haproxy/key.pem
         networks: 
             main:
                 ipv4_address: 172.18.0.2
@@ -29,9 +30,9 @@ services:
             - SPRING_DATASOURCE_USERNAME=userDB
             - SPRING_DATASOURCE_PASSWORD=password
         ports: 
-            - "8443:8443"
+            - "8002:8443"
         expose:
-            - "8443"
+            - "8002"
         networks:
             main:
                 ipv4_address: 172.18.0.5
@@ -47,9 +48,9 @@ services:
             - SPRING_DATASOURCE_USERNAME=userDB
             - SPRING_DATASOURCE_PASSWORD=password
         ports: 
-            - "8444:8443"
+            - "8001:8443"
         expose:
-            - "8444"
+            - "8001"
         networks:
             main:
                 ipv4_address: 172.18.0.6
