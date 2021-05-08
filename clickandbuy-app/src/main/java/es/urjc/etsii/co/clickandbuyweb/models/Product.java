@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="marketplace_product")
-public class Product {
+public class Product implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
