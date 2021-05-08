@@ -9,6 +9,9 @@ import java.util.concurrent.Executors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import es.urjc.etsii.co.clickandbuyweb.dao.UserDAO;
@@ -17,9 +20,11 @@ import es.urjc.etsii.co.clickandbuyweb.validator.SingIn;
 import es.urjc.etsii.co.clickandbuyweb.validator.SingUp;
 import es.urjc.etsii.co.clickandbuyweb.validator.UpdateUser;
 import mailer.WelcomeEmail;
+import cacheTests.Sleep;
 
 @Service
 @Transactional
+@CacheConfig(cacheNames="users")
 public class UserService {
 	
 	@Autowired
@@ -31,7 +36,11 @@ public class UserService {
 	@Autowired
 	private UpdateUser updateUserValidator;
 	
+	private Sleep sleep = new Sleep();
+	
+	@Cacheable(cacheNames = "users")
 	public Iterable<User> getUsers(){
+		sleep.sleep(3000);
 		return udao.findAll();
 	}
 	
@@ -39,6 +48,7 @@ public class UserService {
 		return udao.findByUserEmail(email);
 	}
 	
+	@CacheEvict(cacheNames = "users", allEntries=true)
 	public String saveUser(String email, String password) {
 		User duplicate = udao.findByUserEmail(email);
 		if(duplicate!=null) {
@@ -54,6 +64,7 @@ public class UserService {
 		return "status: saved";
 	}
 	
+	@CacheEvict(cacheNames = "users", allEntries=true)
 	public String updateUserApi(String userEmail, String name, String realname, String realsurnames, String address, String phone, String bankaccount) {
 		User u=udao.findByUserEmail(userEmail);
 		if(u==null) {
@@ -80,6 +91,7 @@ public class UserService {
 		return "status: updated";
 	}
 	
+	@CacheEvict(cacheNames = "users", allEntries=true)
 	public String deleteUser(String usid) {
 		int id=Integer.parseInt(usid);
 		User u=udao.findByUserId(id);
@@ -90,6 +102,7 @@ public class UserService {
 		return "status: deleted";
 	}
 	
+	@CacheEvict(cacheNames = "users", allEntries=true)
 	public int singUpUser(String email, String emailConfirmation, String password, String passwordConfirmation, boolean is_supplier) {
 		int status=singUpValidator.validateUser(email, emailConfirmation, password, passwordConfirmation);
 		if(status!=0) {
@@ -144,6 +157,7 @@ public class UserService {
 		return success;
 	}
 	
+	@CacheEvict(cacheNames = "users", allEntries=true)
 	public int updateUser(String email, String name, String realname, String phone, String bankaccount, String address, String realsurnames) {
 		return updateUserValidator.updateUser(email, name, realname, phone, bankaccount, address,  realsurnames);
 	}

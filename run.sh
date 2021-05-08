@@ -10,11 +10,11 @@ if [ -d "/target" ]
 then
     mvn clean
 fi
-mvn package
+mvn package -DskipTests
 
 cd ../internal-service
 if [ -d "/target" ]
 then
     mvn clean
 fi
-mvn package
+mvn package -DskipTests

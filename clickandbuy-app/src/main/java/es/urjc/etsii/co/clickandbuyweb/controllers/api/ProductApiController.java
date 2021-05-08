@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.controllers.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +16,12 @@ import es.urjc.etsii.co.clickandbuyweb.service.ProductService;
 @RestController
 @RequestMapping("/api/product")
 public class ProductApiController {
+	
 	@Autowired
-	private ProductService pservice;;
+	private ProductService pservice;
 
 	@GetMapping("/all")
-	public Iterable<Product> getAll() {
+	public List<Product> getAll() {
 		return pservice.getAll();
 	}
 

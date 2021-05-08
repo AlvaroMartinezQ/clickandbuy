@@ -1,19 +1,59 @@
 version: "3"
 services:
 
-    # NOTE: do not change any of the services names 
+    # NOTE: do not change any of the services names
 
-    cnbapp:
+    # When docker-compose up this file access the webpage 
+    # through the balancer located at 172.18.0.2:443
+
+    haproxy:
+        image: haproxy
+        ports: 
+            - "80:80"
+        container_name: 'clicknbuy_cnbhaproxy'
+        volumes:
+            - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+            - ./haproxy/key.pem:/etc/haproxy/key.pem
+        networks: 
+            main:
+                ipv4_address: 172.18.0.2
+        depends_on: 
+            - cnbapp1
+            - cnbapp2
+
+    cnbapp1:
         build: .
+        container_name: 'cnbapp1'
         restart: "on-failure"
         environment: 
             - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
             - SPRING_DATASOURCE_USERNAME=userDB
             - SPRING_DATASOURCE_PASSWORD=password
         ports: 
-            - "8443:8443"
+            - "8002:8443"
+        expose:
+            - "8002"
         networks:
-            - main
+            main:
+                ipv4_address: 172.18.0.5
+        depends_on: 
+            - cnbdb
+    
+    cnbapp2:
+        build: .
+        container_name: 'cnbapp2'
+        restart: "on-failure"
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:mysql://cnbdb:3306/clickandbuyDB
+            - SPRING_DATASOURCE_USERNAME=userDB
+            - SPRING_DATASOURCE_PASSWORD=password
+        ports: 
+            - "8001:8443"
+        expose:
+            - "8001"
+        networks:
+            main:
+                ipv4_address: 172.18.0.6
         depends_on: 
             - cnbdb
 
@@ -30,7 +70,8 @@ services:
         expose: 
             - "3306"
         networks: 
-            - main
+            main:
+                ipv4_address: 172.18.0.3
         volumes: 
             - ./cnbdbvol:/var/lib/mysql
 
@@ -40,10 +81,16 @@ services:
         ports: 
             - "8081:8081"
         networks:
-            - main
+            main:
+                ipv4_address: 172.18.0.4
 
 networks:
     main:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.2/16
 
 volumes: 
     cnbdbvol:

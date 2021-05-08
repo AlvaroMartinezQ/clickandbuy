@@ -14,29 +14,31 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-
 import es.urjc.etsii.co.clickandbuyweb.dao.AdminDAO;
 import es.urjc.etsii.co.clickandbuyweb.models.Admin;
+import cacheTests.Sleep;
 
-@CacheConfig(cacheNames="clickandbuy")
 @Service
 @Transactional
+@CacheConfig(cacheNames="admins")
 public class AdminService {
 	
 	@Autowired
 	private AdminDAO admindao;
 	
-	@Cacheable
+	private Sleep sleep = new Sleep();
+	
+	@Cacheable(cacheNames = "admins")
 	public List<Admin> getAdmins() {
+		sleep.sleep(3000);
 		return admindao.findAll();
 	}
 	
-	@Cacheable
 	public Admin getAdmin(String email) {
 		return admindao.findByEmail(email);
 	}
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict(cacheNames = "admins", allEntries=true)
 	public String newAdmin(String email, String password, String realname, String name, String phone, String charge, String rol) {
 		Admin replicate = admindao.findByEmail(email);
 		if(replicate!=null) {
@@ -51,7 +53,7 @@ public class AdminService {
 		return "status: saved";
 	}
 
-	@CacheEvict(allEntries=true)
+	@CacheEvict(cacheNames = "admins", allEntries=true)
 	public String deleteById(int id) {
 		Optional<Admin> admin =admindao.findById(id);
 		if(admin.isPresent()) {
@@ -61,7 +63,7 @@ public class AdminService {
 		return "status: not found";
 	}
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict(cacheNames = "admins", allEntries=true)
 	public String adminUpdate(String email, String realname, String name, String phone, String rol) {
 		Admin admin = admindao.findByEmail(email);
 		if(!realname.isBlank()) {

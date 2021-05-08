@@ -34,8 +34,8 @@ public class UserApiController {
 	}
 	
 	@PostMapping("/update")
-	public String updateUser(@RequestParam(required=true)String userEmail, @RequestParam(required=false)String name, 
-								@RequestParam(required=false)String realname, @RequestParam(required=false)String realsurnames, 
+	public String updateUser(@RequestParam(required=true)String userEmail, @RequestParam(required=false)String name,
+								@RequestParam(required=false)String realname, @RequestParam(required=false)String realsurnames,
 								@RequestParam(required=false)String address, @RequestParam(required=false)String phone,
 								@RequestParam(required=false)String bankaccount) {
 		return uservice.updateUserApi(userEmail, name, realname, realsurnames, address, phone, bankaccount);
