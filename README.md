@@ -130,6 +130,12 @@ Hay 2 roles de administradores principales del sistema, estos son:
     <img src="/statics/modeloer/ModeloER.JPG" alt="modeler">
 </a>  
 
+* Infraestructura
+
+<a href="https://github.com/AlvaroMartinezQ/clickandbuy">
+    <img src="/statics/infrastructure/infrastructure.png" alt="modeler">
+</a>  
+
 <div align="center">Pantallas de navegación</div>
 
 <br>Pantalla principal, home  
