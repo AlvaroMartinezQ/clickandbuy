@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -23,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="core_user")
-public class User {
+public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

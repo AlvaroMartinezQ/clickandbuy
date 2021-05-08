@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="core_pics_user")
-public class UserImage {
+public class UserImage implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

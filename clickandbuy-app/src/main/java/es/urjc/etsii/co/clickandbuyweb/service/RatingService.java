@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -21,7 +22,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 @Transactional
-public class RatingService {
+public class RatingService implements Serializable{
 	
 	@Autowired
 	private RatingDAO ratingdao;
