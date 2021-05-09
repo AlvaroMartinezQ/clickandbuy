@@ -220,7 +220,7 @@ public class UserController {
 		/*
 		 *  Internal service URL
 		 */
-		String url="http://" + appConf.getInternalServiceHost() + ":8081/legacy/user/info?data=" + data + "&email=" + u.getEmail();
+		String url="http://" + appConf.getInternalServiceHost() + "/legacy/user/info?data=" + data + "&email=" + u.getEmail();
 		/*
 		 * Fire the end-point call
 		 * The end-point sends back a String object
