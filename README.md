@@ -136,7 +136,7 @@ Hay 2 roles de administradores principales del sistema, estos son:
     <img src="/statics/infrastructure/infrastructure.png" alt="modeler">
 </a>  
 
-* Endpoints del Servicio Interno en el siguiente [enlace](https://github.com/AlvaroMartinezQ/clickandbuy/blob/dev/internal-service/src/main/java/es/urjc/etsii/co/clickandbuyweb/api/README.md)
+* Endpoints del Servicio Interno en el siguiente [enlace](https://github.com/AlvaroMartinezQ/clickandbuy/blob/dev/internal-service/src/main/java/es/urjc/etsii/co/clickandbuyweb/api/README.md).
 
 <br>
 <div align="center">Pantallas de navegación</div>
