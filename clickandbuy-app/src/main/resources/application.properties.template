@@ -4,25 +4,29 @@ server.ssl.key-store-password=password
 server.ssl.key-password=password
 
 # Do not change this IP and port
-intern=172.18.0.4:8081
-
-##############
-# H2 DATABSE #
-##############
-#spring.h2.console.enabled=TRUE
+intern=172.18.0.2:8080
 
 ####################################
 # LOCAL DOCKER DATABASE CONNECTION #
 ####################################
-spring.datasource.url=jdbc:mysql://localhost:<port>/<name of the db>?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+spring.datasource.url=jdbc:mysql://172.17.0.3:3306/clickandbuyDB
 # set up your database config here
-spring.datasource.username=
-spring.datasource.password=
+spring.datasource.username=userDB
+spring.datasource.password=password
 
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.format_sql=true
+
+#########
+# REDIS #
+#########
+spring.redis.host=
+spring.redis.port=
+spring.redis.database=0
+spring.redis.password=
+spring.redis.timeout=60000
 
 server.error.include-stacktrace=never
 logging.level.org.springframework.web=DEBUG
@@ -31,5 +35,4 @@ spring.mvc.log-request-details=true
 spring.mustache.suffix=.html
 server.error.path=/src/main/resources/templates/error
 spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false
-
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS=false
