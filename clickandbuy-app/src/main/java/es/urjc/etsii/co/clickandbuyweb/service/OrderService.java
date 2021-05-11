@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 
 @Service
 @Transactional
-public class OrderService {
+public class OrderService implements Serializable{
 
 	@Autowired
 	private OrderDAO orderdao;

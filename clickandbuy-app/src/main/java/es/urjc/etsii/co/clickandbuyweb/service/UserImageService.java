@@ -1,5 +1,7 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -16,7 +18,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 import es.urjc.etsii.co.clickandbuyweb.models.UserImage;
 
 @Service
-public class UserImageService {
+public class UserImageService implements Serializable{
 
 	@Autowired
 	private UserImageDAO userimagedao;

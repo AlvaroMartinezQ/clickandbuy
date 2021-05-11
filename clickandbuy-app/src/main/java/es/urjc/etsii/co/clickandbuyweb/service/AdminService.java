@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ import cacheTests.Sleep;
 @Service
 @Transactional
 @CacheConfig(cacheNames="admins")
-public class AdminService {
+public class AdminService implements Serializable{
 	
 	@Autowired
 	private AdminDAO admindao;

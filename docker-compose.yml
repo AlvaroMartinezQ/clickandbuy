@@ -84,6 +84,15 @@ services:
             main:
                 ipv4_address: 172.18.0.4
 
+    cnbinternalbackup:
+        build: ./internal-service
+        restart: "on-failure"
+        ports: 
+            - "8082:8081"
+        networks:
+            main:
+                ipv4_address: 172.18.0.7
+
 networks:
     main:
         driver: bridge

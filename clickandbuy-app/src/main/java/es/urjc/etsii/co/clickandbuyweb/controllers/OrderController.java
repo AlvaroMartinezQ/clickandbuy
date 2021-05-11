@@ -86,7 +86,7 @@ public class OrderController {
 		/*
 		 *  Internal service URL
 		 */
-		String url="http://" + appConf.getInternalServiceHost() + ":8081/ordermail/send?data=" + data + "&email=" + u.getEmail();
+		String url="http://" + appConf.getInternalServiceHost() + "/ordermail/send?data=" + data + "&email=" + u.getEmail();
 		/*
 		 * Fire the end-point call
 		 * The end-point sends back a String object

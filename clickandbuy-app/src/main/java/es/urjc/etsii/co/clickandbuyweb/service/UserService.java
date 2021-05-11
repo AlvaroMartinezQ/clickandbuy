@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ import cacheTests.Sleep;
 @Service
 @Transactional
 @CacheConfig(cacheNames="users")
-public class UserService {
+public class UserService implements Serializable{
 	
 	@Autowired
 	private UserDAO udao;

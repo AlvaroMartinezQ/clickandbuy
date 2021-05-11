@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @SessionScope
 @Table(name="core_admin")
-public class Admin {
+public class Admin implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

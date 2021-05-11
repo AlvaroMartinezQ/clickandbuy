@@ -1,5 +1,6 @@
 package es.urjc.etsii.co.clickandbuyweb.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -20,7 +21,7 @@ import es.urjc.etsii.co.clickandbuyweb.models.User;
 @Service
 @Transactional
 @CacheConfig(cacheNames="products")
-public class ProductService {
+public class ProductService implements Serializable{
 	
 	@Autowired
 	private ProductDAO pdao;

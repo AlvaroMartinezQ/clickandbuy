@@ -3,8 +3,8 @@ server.ssl.key-store=classpath:keystore.jks
 server.ssl.key-store-password=password
 server.ssl.key-password=password
 
-# Do not forget to change this variable to cnbinternal if the application is running inside Docker
-intern=127.0.0.1
+# Do not change this IP and port
+intern=172.18.0.4:8081
 
 ##############
 # H2 DATABSE #

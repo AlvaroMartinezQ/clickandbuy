@@ -15,6 +15,8 @@ import org.springframework.session.hazelcast.config.annotation.web.http.EnableHa
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.spring.cache.HazelcastCacheManager;
 
 
 @EnableCaching
@@ -29,9 +31,9 @@ public class ClickandbuyAppApplication {
 	}
 	
 	@Bean
-    public CacheManager cacheManager() {
+    public CacheManager cacheManager(HazelcastInstance hazelcastInstance) {
     	LOG.info("Activating cache...");
-    	return new ConcurrentMapCacheManager("users", "admins", "products");
+    	return new HazelcastCacheManager(hazelcastInstance);
     }
 	
 	@Bean
