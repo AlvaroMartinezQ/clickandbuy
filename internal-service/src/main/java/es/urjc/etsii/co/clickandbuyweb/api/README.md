@@ -14,5 +14,5 @@ Endpoint: user orders
 
 WS endpoints:  
 	:heavy_exclamation_mark: Connects all users to a same chat.  
-	:heavy_exclamation_mark: This enpoint is used through js.  
+	:heavy_exclamation_mark: This enpoint is used through js in the main app.  
 	:heavy_exclamation_mark: /socket  
