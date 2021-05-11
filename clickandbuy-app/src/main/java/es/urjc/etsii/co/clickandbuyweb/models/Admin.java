@@ -19,12 +19,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 @Entity
 @SessionScope
 @Table(name="core_admin")
 public class Admin implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -39,10 +45,13 @@ public class Admin implements Serializable{
 	@Column(nullable=false, length=12)
 	private String phone;
     @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate last_login;
 	// Charge should be: [MANAGER, ADMIN]
 	private String charge;
 	
+	@JsonIgnore
 	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 	

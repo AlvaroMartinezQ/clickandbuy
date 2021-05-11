@@ -11,6 +11,12 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.session.hazelcast.config.annotation.web.http.EnableHazelcastHttpSession;
 
 import com.hazelcast.config.Config;
@@ -21,7 +27,7 @@ import com.hazelcast.spring.cache.HazelcastCacheManager;
 
 @EnableCaching
 @SpringBootApplication
-@EnableHazelcastHttpSession
+//@EnableHazelcastHttpSession
 public class ClickandbuyAppApplication {
 	
 	private static final Log LOG = LogFactory.getLog(ClickandbuyAppApplication.class);
@@ -30,11 +36,24 @@ public class ClickandbuyAppApplication {
 		SpringApplication.run(ClickandbuyAppApplication.class, args);
 	}
 	
+//	@Bean
+//    public CacheManager cacheManager(HazelcastInstance hazelcastInstance) {
+//    	LOG.info("Activating cache...");
+//    	return new HazelcastCacheManager(hazelcastInstance);
+//    }
+	
 	@Bean
-    public CacheManager cacheManager(HazelcastInstance hazelcastInstance) {
-    	LOG.info("Activating cache...");
-    	return new HazelcastCacheManager(hazelcastInstance);
-    }
+	public CacheManager cacheManager(RedisConnectionFactory factory) {
+		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+		RedisCacheConfiguration redisCacheConfiguration = config
+				.serializeKeysWith(
+						RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+				.serializeValuesWith(RedisSerializationContext.SerializationPair
+						.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+		RedisCacheManager redisCacheManager = RedisCacheManager.builder(factory).cacheDefaults(redisCacheConfiguration)
+				.build();
+		return redisCacheManager;
+	}
 	
 	@Bean
 	public Config config() {

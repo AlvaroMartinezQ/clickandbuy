@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name="core_pics_user")
 public class UserImage implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

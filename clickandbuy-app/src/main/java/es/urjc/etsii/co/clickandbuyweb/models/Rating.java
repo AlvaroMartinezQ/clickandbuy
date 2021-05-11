@@ -10,10 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="marketplace_rating")
 public class Rating implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -22,6 +25,7 @@ public class Rating implements Serializable{
 	@Column(nullable=false, length=1)
 	private int rate;
 	
+	@JsonIgnore
 	@ManyToOne()
 	private User user;
 

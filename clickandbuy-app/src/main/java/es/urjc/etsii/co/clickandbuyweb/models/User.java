@@ -22,10 +22,13 @@ import javax.persistence.Table;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="core_user")
 public class User implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -50,15 +53,19 @@ public class User implements Serializable{
 	private boolean is_active;
 	private boolean is_supplier;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Order> myOrders;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Order orderactive;
 	
+	@JsonIgnore
 	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 
+	@JsonIgnore
 	@OneToMany(targetEntity=Product.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
 	@Column(nullable=true)
 	List<Product> user_product_list = new ArrayList<>();

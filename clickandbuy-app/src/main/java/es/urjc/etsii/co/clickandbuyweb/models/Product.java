@@ -18,10 +18,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="marketplace_product")
 public class Product implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -40,10 +43,12 @@ public class Product implements Serializable{
 	private int stock;
 	private boolean active;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	@JoinColumn(name="product_id")
 	private List<Rating> rating;
 	
+	@JsonIgnore
 	@Column
 	@ElementCollection(targetClass=Integer.class)
 	private Set<Integer> buyers;
