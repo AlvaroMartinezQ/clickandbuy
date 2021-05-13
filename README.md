@@ -197,9 +197,12 @@ En caso de descargar el repositorio en local:
 	También es necesario renombrar los ficheros config.properties.template a config.properties <strong>en ambas aplicaciones</strong> e incluir un cliente de correo GMAIL (dirección de email) y su contraseña para que la aplicación sea capaz de enviar correos electrónicos, si no este apartado de la aplicación no funcionará. Sin embargo la aplicación es completamente funcional sin estos datos (imprimirá un mensaje por consola pero se puede obviar).  
   
 * Docker:
+No aseguramos el correcto funcionamiento con Docker sobre un host con SO Windows. Todas las pruebas han sido realizadas a través de Linux.
   ```sh
-  TODO: futuros comandos.
+  docker-compose up
   ```
+
+Dependiendo desde la rama que se lance el proyecto se crearán una serie de contenedores. Se acede a la web a través de la IP estática que se le ha asignado al contenedor en el fichero YML y este ya redirecciona ese tráfico a cada web.
 
 ### Instalación
 
