@@ -1,5 +1,8 @@
 <!-- PROJECT SHIELDS -->
-
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Apache 2.0][license-shield]][license-url]
 
 <!-- LOGO DEL PROYECTO -->
 <br />
@@ -331,3 +334,12 @@ Este proyecto está sujeto a la licencia `Apache License 2.0`. Para obtener más
 
 * [Universidad Rey Juan Carlos](https://www.urjc.es/)
 
+	
+[contributors-shield]: https://img.shields.io/github/contributors/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
+[contributors-url]: https://github.com/AlvaroMartinezQ/clickandbuy/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
+[forks-url]: https://github.com/AlvaroMartinezQ/clickandbuy/network/members
+[stars-shield]: https://img.shields.io/github/stars/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
+[stars-url]: https://github.com/AlvaroMartinezQ/clickandbuy/stargazers
+[license-shield]: https://img.shields.io/github/license/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
+[license-url]: https://github.com/AlvaroMartinezQ/clickandbuy/blob/master/LICENSE.txt
