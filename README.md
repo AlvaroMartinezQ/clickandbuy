@@ -342,4 +342,4 @@ Este proyecto está sujeto a la licencia `Apache License 2.0`. Para obtener más
 [stars-shield]: https://img.shields.io/github/stars/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
 [stars-url]: https://github.com/AlvaroMartinezQ/clickandbuy/stargazers
 [license-shield]: https://img.shields.io/github/license/AlvaroMartinezQ/clickandbuy.svg?style=for-the-badge
-[license-url]: https://github.com/AlvaroMartinezQ/clickandbuy/blob/master/LICENSE.txt
+[license-url]: https://github.com/AlvaroMartinezQ/clickandbuy/master/LICENSE.txt
