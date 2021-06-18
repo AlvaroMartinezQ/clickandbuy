@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://www.youtube.com/watch?v=Yy1ApDKt7Hs">
-    <img src="/statics/logo/company_logo.jpg" alt="Logo" width="450" height="450">
+    <img src="/statics/logo/company_logo.jpg" alt="Logo" width="250" height="250">
   </a>
 
   <h3 align="center">Click & Buy</h3>
