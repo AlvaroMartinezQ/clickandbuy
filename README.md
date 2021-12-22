@@ -4,6 +4,9 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Apache 2.0][license-shield]][license-url]
 
+<!-- LOG4J -->
+IMPORTANT: this project is affected by the CVE-2021-45105 vulnerability.
+
 <!-- LOGO DEL PROYECTO -->
 <br />
 <p align="center">
