@@ -6,7 +6,7 @@
 
 <!-- LOG4J -->
 ```diff
-- **IMPORTANT: this project is affected by the CVE-2021-45105 vulnerability.**
+- IMPORTANT: this project is affected by the CVE-2021-45105 vulnerability.
 ```
 
 <!-- LOGO DEL PROYECTO -->
