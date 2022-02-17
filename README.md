@@ -6,7 +6,7 @@
 
 <!-- LOG4J -->
 ```diff
-- IMPORTANT: this project is most likely affected by the CVE-2021-45105 vulnerability and has no plan on been updated!
+- This project is most likely affected by the CVE-2021-45105 vulnerability and is not updated!
 ```
 
 <!-- LOGO DEL PROYECTO -->
